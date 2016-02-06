@@ -73,8 +73,6 @@ namespace Telestream.Cloud.SDK.Core
 			return request;
 		}
 
-
-
 		private RestRequest CreateRequest(RestMethod method, string endpoint, object data = null, QueryParamList parameters = null, string factoryId = null)
 		{
 			var access = _apiAccess;

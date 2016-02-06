@@ -34,9 +34,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Core\FileUploader.cs" />
     <Compile Include="Core\IConfigurationService.cs" />
     <Compile Include="Core\DataSerializer.cs" />
     <Compile Include="Core\HttpUtility.cs" />
+    <Compile Include="Core\IDataSerializer.cs" />
     <Compile Include="Core\QueryParamList.cs" />
     <Compile Include="Core\RequestFactory.cs" />
     <Compile Include="Core\ApiAccess.cs" />

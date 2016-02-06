@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Telestream.Cloud.SDK.Core;
 using Telestream.Cloud.SDK.Exceptions;
@@ -13,7 +14,7 @@ namespace Telestream.Cloud.SDK.Core
 {
 	public class RestClient
 	{
-		private DataSerializer _serializer;
+		private IDataSerializer _serializer;
 		private HttpClient _client;
 		private SecurityUtility _security;
 

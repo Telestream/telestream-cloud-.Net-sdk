@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -137,6 +138,15 @@ namespace Telestream.Cloud.SDK
 		public Task<Factory> ChangeFactoryName(string factoryId, string newName)
 		{
 			return _cloudService.ChangeFactoryName(FactoryId, newName);
+		}
+
+		public async Task UploadFile(string fileName, Stream dataStream)
+		{
+			var session = await _cloudService.StartUpload(FactoryId, dataStream.Length, fileName);
+
+			var fileUploader = new FileUploader();
+
+			await fileUploader.UploadFile(session, dataStream);
 		}
 	}
 }

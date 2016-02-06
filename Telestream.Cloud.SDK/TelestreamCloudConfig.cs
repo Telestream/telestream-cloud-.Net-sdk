@@ -16,6 +16,14 @@ namespace Telestream.Cloud.SDK
 				Credentials = new ApiAccess(accessKey, secretKey);
 			}
 		}
+		
+		public static void Initialize(string accessKey, string secretKey, string hostname, string version, int port ) 
+		{
+			lock (padlock)
+			{
+				Credentials = new ApiAccess(accessKey, secretKey, hostname, version, port);
+			}
+		}
 
 		private static object padlock = new object();
 

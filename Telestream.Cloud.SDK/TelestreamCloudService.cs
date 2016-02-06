@@ -205,7 +205,7 @@ namespace Telestream.Cloud.SDK
 			return _client.Invoke<Factory>(request);
 		}
 
-		public Task<UploadSession> StartUpload(long fileSize, string fileName)
+		public Task<UploadSession> StartUpload(string factoryId, long fileSize, string fileName)
 		{
 			const string FILE_SIZE = "file_size";
 			const string FILE_NAME = "file_name";
@@ -215,40 +215,38 @@ namespace Telestream.Cloud.SDK
 				new QueryParamList()
 				.Add(FILE_SIZE, fileSize.ToString())
 				.Add(FILE_NAME, fileName)
-				.Add(PROFILES, "h264"), null);
+				.Add(PROFILES, "h264"), factoryId);
 
 			return _client.Invoke<UploadSession>(request);
 		}
 
+		int CHUNK_SIZE = 5 * 1024 * 1024;
+
 		public async Task UploadFile(UploadSession session, Stream dataStream, IProgress<double> progress)
 		{
-			int chunkSize = 5 * 1024 * 1024;
-			long pos = 0;
-			byte[] buffer = new byte[chunkSize];
+			long position = 0;
+			byte[] buffer = new byte[CHUNK_SIZE];
 			HttpClient client = new HttpClient();
 
-
-			dataStream.Seek(pos, SeekOrigin.Begin);
+			dataStream.Seek(position, SeekOrigin.Begin);
 
 			int readed = 0;
 			while ((readed = dataStream.Read(buffer, 0, buffer.Length)) != 0)
 			{
+				System.Diagnostics.Debug.WriteLine("Content-Lenght:{0}", CHUNK_SIZE.ToString());
+				System.Diagnostics.Debug.WriteLine("Content-Range: {0}", string.Format("bytes {0}-{1}/{2}", position, dataStream.Position - 1, dataStream.Length));
 
-				System.Diagnostics.Debug.WriteLine("Content-Lenght:{0}", chunkSize.ToString());
-				System.Diagnostics.Debug.WriteLine("Content-Range: {0}", string.Format("bytes {0}-{1}/{2}", pos, dataStream.Position - 1, dataStream.Length));
-
-				HttpRequestMessage message = new HttpRequestMessage(HttpMethod.Post, session.Location);
+				HttpRequestMessage message = new HttpRequestMessage(HttpMethod.Put, session.Location);
 				message.Headers.Add("Cache-Control", "no-cache");
 				message.Content = new ByteArrayContent(buffer);
-				message.Content.Headers.Add("Content-Range", string.Format("bytes {0}-{1}/{2}", pos, dataStream.Position - 1, dataStream.Length));
+				message.Content.Headers.Add("Content-Range", string.Format("bytes {0}-{1}/{2}", position, dataStream.Position - 1, dataStream.Length));
 				message.Content.Headers.Add("Content-Type", "application/octet-stream");
 				var resp = await client.SendAsync(message);
-				var aa = await resp.Content.ReadAsStringAsync();
 
-				pos = dataStream.Position;
+				position = dataStream.Position;
 				if (progress != null)
 				{
-					progress.Report((pos / (double)dataStream.Length) * 100);
+					progress.Report((position / (double)dataStream.Length) * 100);
 				}
 			}
 
@@ -258,5 +256,12 @@ namespace Telestream.Cloud.SDK
 			client.DefaultRequestHeaders.TryAddWithoutValidation("Content-Range", "bytes */" + dataStream.Length);
 			client.DefaultRequestHeaders.TryAddWithoutValidation("Content-Lenght", "0");
 		}
+
+
+
+		//public Task ResumeUpload(string uploadSessionId)
+		//{
+
+		//}
 	}
 }

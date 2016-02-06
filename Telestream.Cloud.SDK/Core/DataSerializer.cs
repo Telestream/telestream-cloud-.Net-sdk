@@ -8,7 +8,7 @@ using Telestream.Cloud.SDK.Exceptions;
 
 namespace Telestream.Cloud.SDK.Core
 {
-	public class DataSerializer
+	public class DataSerializer : IDataSerializer
 	{
 		public TResult Deserialize<TResult>(string value)
 		{
