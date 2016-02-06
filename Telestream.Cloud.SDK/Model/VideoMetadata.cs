@@ -10,10 +10,10 @@ namespace Telestream.Cloud.SDK.Model
 	public class VideoMetadata : ModelBase
 	{
 		[JsonProperty("source_image_width")]
-		public string SourceImageWidth { get; set; }
+		public int SourceImageWidth { get; set; }
 
 		[JsonProperty("create_date")]
-		public string CreateDate { get; set; }
+		public DateTime CreateDate { get; set; }
 
 		[JsonProperty("file_type")]
 		public string FileType { get; set; }
@@ -28,7 +28,7 @@ namespace Telestream.Cloud.SDK.Model
 		public string TrackVolume { get; set; }
 
 		[JsonProperty("source_image_height")]
-		public string SourceImageHeight { get; set; }
+		public int SourceImageHeight { get; set; }
 
 		[JsonProperty("file_size")]
 		public string FileSize { get; set; }
@@ -58,10 +58,10 @@ namespace Telestream.Cloud.SDK.Model
 		public string HandlerType { get; set; }
 
 		[JsonProperty("track_modify_date")]
-		public string TrackModifyDate { get; set; }
+		public DateTime TrackModifyDate { get; set; }
 
 		[JsonProperty("image_width")]
-		public string ImageWidth { get; set; }
+		public int ImageWidth { get; set; }
 
 		[JsonProperty("track_id")]
 		public string TrackId { get; set; }
@@ -70,13 +70,13 @@ namespace Telestream.Cloud.SDK.Model
 		public string SelectionTime { get; set; }
 
 		[JsonProperty("movie_data_size")]
-		public string MovieDataSize { get; set; }
+		public long MovieDataSize { get; set; }
 
 		[JsonProperty("compatible_brands")]
 		public string[] CompatibleBrands { get; set; }
 
 		[JsonProperty("x_resolution")]
-		public string XResolution { get; set; }
+		public int XResolution { get; set; }
 
 		[JsonProperty("avg_bitrate")]
 		public string AvgBitrate { get; set; }
@@ -88,10 +88,10 @@ namespace Telestream.Cloud.SDK.Model
 		public string PreferredVolume { get; set; }
 
 		[JsonProperty("time_scale")]
-		public string TimeScale { get; set; }
+		public int TimeScale { get; set; }
 
 		[JsonProperty("audio_channels")]
-		public string AudioChannels { get; set; }
+		public int AudioChannels { get; set; }
 
 		[JsonProperty("audio_format")]
 		public string AudioFormat { get; set; }
@@ -112,19 +112,19 @@ namespace Telestream.Cloud.SDK.Model
 		public string HandlerVendorId { get; set; }
 
 		[JsonProperty("bit_depth")]
-		public string BitDepth { get; set; }
+		public int BitDepth { get; set; }
 
 		[JsonProperty("y_resolution")]
-		public string YResolution { get; set; }
+		public int YResolution { get; set; }
 
 		[JsonProperty("track_create_date")]
 		public string TrackCreateDate { get; set; }
 
 		[JsonProperty("image_size")]
-		public string ImageSize { get; set; }
+		public long ImageSize { get; set; }
 
 		[JsonProperty("rotation")]
-		public string Rotation { get; set; }
+		public int Rotation { get; set; }
 
 		[JsonProperty("media_create_date")]
 		public string MediaCreateDate { get; set; }
@@ -142,7 +142,7 @@ namespace Telestream.Cloud.SDK.Model
 		public string GraphicsMode { get; set; }
 
 		[JsonProperty("track_layer")]
-		public string TrackLayer { get; set; }
+		public int TrackLayer { get; set; }
 
 		[JsonProperty("next_track_id")]
 		public string NextTrackId { get; set; }
@@ -163,28 +163,28 @@ namespace Telestream.Cloud.SDK.Model
 		public string VideoFrameRate { get; set; }
 
 		[JsonProperty("image_height")]
-		public string ImageHeight { get; set; }
+		public int ImageHeight { get; set; }
 
 		[JsonProperty("modify_date")]
-		public string ModifyDate { get; set; }
+		public DateTime ModifyDate { get; set; }
 
 		[JsonProperty("title")]
 		public string Title { get; set; }
 
 		[JsonProperty("preferred_rate")]
-		public string PreferredRate { get; set; }
+		public int PreferredRate { get; set; }
 
 		[JsonProperty("balance")]
-		public string Balance { get; set; }
+		public int Balance { get; set; }
 
 		[JsonProperty("handler_description")]
 		public string HandlerDescription { get; set; }
 
 		[JsonProperty("media_header_version")]
-		public string MediaHeaderVersion { get; set; }
+		public int MediaHeaderVersion { get; set; }
 
 		[JsonProperty("audio_bits_per_sample")]
-		public string AudioBitsPerSample { get; set; }
+		public int AudioBitsPerSample { get; set; }
 
 
 	}

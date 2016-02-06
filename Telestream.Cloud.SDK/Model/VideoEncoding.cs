@@ -25,7 +25,7 @@ namespace Telestream.Cloud.SDK.Model
 		public EncodingStatus Status { get; set; }
 
 		[JsonProperty("audio_channels")]
-		public string AudioChannels { get; set; }
+		public int AudioChannels { get; set; }
 
 		[JsonProperty("profile_id")]
 		public string ProfileId { get; set; }
@@ -34,22 +34,22 @@ namespace Telestream.Cloud.SDK.Model
 		public string UpdatedAt { get; set; }
 
 		[JsonProperty("height")]
-		public string Height { get; set; }
+		public int Height { get; set; }
 
 		[JsonProperty("profile_name")]
 		public string ProfileName { get; set; }
 
 		[JsonProperty("audio_bitrate")]
-		public string AudioBitrate { get; set; }
+		public int AudioBitrate { get; set; }
 
 		[JsonProperty("audio_codec")]
 		public string AudioCodec { get; set; }
 
 		[JsonProperty("file_size")]
-		public string FileSize { get; set; }
+		public long FileSize { get; set; }
 
 		[JsonProperty("duration")]
-		public string Duration { get; set; }
+		public int Duration { get; set; }
 
 		[JsonProperty("path")]
 		public string Path { get; set; }
@@ -61,34 +61,34 @@ namespace Telestream.Cloud.SDK.Model
 		public string Id { get; set; }
 
 		[JsonProperty("encoding_time")]
-		public string EncodingTime { get; set; }
+		public int EncodingTime { get; set; }
 
 		[JsonProperty("created_at")]
-		public string CreatedAt { get; set; }
+		public DateTime CreatedAt { get; set; }
 
 		[JsonProperty("video_id")]
 		public string VideoId { get; set; }
 
 		[JsonProperty("started_encoding_at")]
-		public string StartedEncodingAt { get; set; }
+		public DateTime StartedEncodingAt { get; set; }
 
 		[JsonProperty("audio_sample_rate")]
-		public string AudioSampleRate { get; set; }
+		public int AudioSampleRate { get; set; }
 
 		[JsonProperty("width")]
-		public string Width { get; set; }
+		public int Width { get; set; }
 
 		[JsonProperty("encoding_progress")]
-		public string EncodingProgress { get; set; }
+		public int EncodingProgress { get; set; }
 
 		[JsonProperty("fps")]
-		public string Fps { get; set; }
+		public double Fps { get; set; }
 
 		[JsonProperty("video_codec")]
 		public string VideoCodec { get; set; }
 
 		[JsonProperty("video_bitrate")]
-		public string VideoBitrate { get; set; }
+		public int VideoBitrate { get; set; }
 
 		[JsonProperty("mime_type")]
 		public string MimeType { get; set; }

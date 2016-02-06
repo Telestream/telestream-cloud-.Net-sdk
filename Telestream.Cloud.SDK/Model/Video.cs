@@ -21,13 +21,13 @@ namespace Telestream.Cloud.SDK.Model
 		public string Extname { get; set; }
 
 		[JsonProperty("audio_sample_rate")]
-		public string AudioSampleRate { get; set; }
+		public int AudioSampleRate { get; set; }
 
 		[JsonProperty("audio_codec")]
 		public string AudioCodec { get; set; }
 
 		[JsonProperty("fps")]
-		public string Fps { get; set; }
+		public double Fps { get; set; }
 
 		[JsonProperty("created_at")]
 		public DateTime CreatedAt { get; set; }
@@ -39,22 +39,22 @@ namespace Telestream.Cloud.SDK.Model
 		public string SourceUrl { get; set; }
 
 		[JsonProperty("width")]
-		public string Width { get; set; }
+		public int Width { get; set; }
 
 		[JsonProperty("audio_channels")]
-		public string AudioChannels { get; set; }
+		public int AudioChannels { get; set; }
 
 		[JsonProperty("video_bitrate")]
-		public string VideoBitrate { get; set; }
+		public int VideoBitrate { get; set; }
 
 		[JsonProperty("original_filename")]
 		public string OriginalFilename { get; set; }
 
 		[JsonProperty("file_size")]
-		public string FileSize { get; set; }
+		public long FileSize { get; set; }
 
 		[JsonProperty("duration")]
-		public string Duration { get; set; }
+		public int Duration { get; set; }
 
 		[JsonProperty("video_codec")]
 		public string VideoCodec { get; set; }
@@ -63,7 +63,7 @@ namespace Telestream.Cloud.SDK.Model
 		public string Path { get; set; }
 
 		[JsonProperty("height")]
-		public string Height { get; set; }
+		public int Height { get; set; }
 
 		[JsonProperty("id")]
 		public string Id { get; set; }
@@ -72,7 +72,7 @@ namespace Telestream.Cloud.SDK.Model
 		public string MimeType { get; set; }
 
 		[JsonProperty("audio_bitrate")]
-		public string AudioBitrate { get; set; }
+		public int AudioBitrate { get; set; }
 
 		public List<VideoEncoding> Encodings { get; set; }
 	}

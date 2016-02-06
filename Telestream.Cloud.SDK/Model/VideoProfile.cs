@@ -10,7 +10,7 @@ namespace Telestream.Cloud.SDK.Model
 	public class VideoProfile : ModelBase
 	{
 		[JsonProperty("keyframe_interval")]
-		public string KeyframeInterval { get; set; }
+		public int KeyframeInterval { get; set; }
 
 		[JsonProperty("preset_name")]
 		public string PresetName { get; set; }
@@ -19,22 +19,22 @@ namespace Telestream.Cloud.SDK.Model
 		public string UpdatedAt { get; set; }
 
 		[JsonProperty("height")]
-		public string Height { get; set; }
+		public int Height { get; set; }
 
 		[JsonProperty("width")]
-		public string Width { get; set; }
+		public int Width { get; set; }
 
 		[JsonProperty("upscale")]
-		public string Upscale { get; set; }
+		public bool Upscale { get; set; }
 
 		[JsonProperty("audio_bitrate")]
-		public string AudioBitrate { get; set; }
+		public int AudioBitrate { get; set; }
 
 		[JsonProperty("id")]
 		public string Id { get; set; }
 
 		[JsonProperty("audio_sample_rate")]
-		public string AudioSampleRate { get; set; }
+		public int AudioSampleRate { get; set; }
 
 		[JsonProperty("name")]
 		public string Name { get; set; }
@@ -43,7 +43,7 @@ namespace Telestream.Cloud.SDK.Model
 		public string Title { get; set; }
 
 		[JsonProperty("video_bitrate")]
-		public string VideoBitrate { get; set; }
+		public int VideoBitrate { get; set; }
 
 		[JsonProperty("extname")]
 		public string Extname { get; set; }
@@ -58,6 +58,6 @@ namespace Telestream.Cloud.SDK.Model
 		public string AspectMode { get; set; }
 
 		[JsonProperty("created_at")]
-		public string CreatedAt { get; set; }
+		public DateTime CreatedAt { get; set; }
 	}
 }
