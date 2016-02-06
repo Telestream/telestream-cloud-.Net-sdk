@@ -22,8 +22,6 @@ namespace Telestream.Cloud.SDK.Core
 		private const int CHUNK_SIZE = 5 * 1024 * 1024;
 		private readonly Regex _rangeHeaderRegex;
 
-		public int ChunkSize { get; set; }
-
 		public Task UploadFile(UploadSession session, long position, Stream dataStream)
 		{
 			return UploadFile(session, position, dataStream, null);
@@ -37,6 +35,12 @@ namespace Telestream.Cloud.SDK.Core
 		public Task UploadFile(UploadSession session, Stream dataStream, IProgress<double> progress)
 		{
 			return UploadFile(session, 0, dataStream, progress);
+		}
+
+
+		public Task UploadFile(UploadSession session, Stream dataStream, CancellationToken cancelToken)
+		{
+			return UploadFile(session, 0, dataStream, null, cancelToken);
 		}
 
 		public async Task UploadFile(UploadSession session, long position, Stream dataStream, IProgress<double> progress, CancellationToken cancelToken = default(CancellationToken))
@@ -60,7 +64,7 @@ namespace Telestream.Cloud.SDK.Core
 
 				var message = CreateChunkMessage(position, dataStream.Position - 1, dataStream.Length, buffer, session.Location);
 
-				var response = await SendMessage(httpClient, message);
+				var response = await SendMessage(httpClient, message, cancelToken);
 
 				position = dataStream.Position;
 
@@ -87,10 +91,12 @@ namespace Telestream.Cloud.SDK.Core
 			await ResumeUpload(session, position, dataStream, null);
 		}
 
-		public async Task ResumeUpload(UploadSession session, Stream dataStream, IProgress<double> progress)
+		public async Task ResumeUpload(UploadSession session, Stream dataStream, IProgress<double> progress, CancellationToken cancelToken = default(CancellationToken))
 		{
+			if (session == null) { throw new ArgumentNullException("session"); }
+
 			var position = await GetBrokenUpload(dataStream, session.Location);
-			await ResumeUpload(session, dataStream, progress);
+			await ResumeUpload(session, position, dataStream, progress, cancelToken);
 		}
 
 		public Task ResumeUpload(UploadSession session, long position, Stream dataStream, IProgress<double> progress, CancellationToken cancelToken = default(CancellationToken))
@@ -106,6 +112,8 @@ namespace Telestream.Cloud.SDK.Core
 
 		public async Task<long> GetBrokenUpload(Stream dataStream, string location)
 		{
+			if (dataStream == null) { throw new ArgumentNullException("dataStream"); }
+
 			var message = new HttpRequestMessage(HttpMethod.Put, location);
 			message.Content = CreateMessageContent(string.Format("bytes */{0}", dataStream.Length), new byte[0]);
 
@@ -140,14 +148,16 @@ namespace Telestream.Cloud.SDK.Core
 			return SendMessage(client, message, cancelToken);
 		}
 
-		private Task<HttpResponseMessage> SendMessage(HttpClient client, HttpRequestMessage message)
-		{
-			return client.SendAsync(message);
-		}
-
 		private Task<HttpResponseMessage> SendMessage(HttpClient client, HttpRequestMessage message, CancellationToken cancelToken = default(CancellationToken))
 		{
-			return client.SendAsync(message, cancelToken);
+			try
+			{
+				return client.SendAsync(message, cancelToken);
+			}
+			catch (Exception ex)
+			{
+				throw new TelestreamCloudException("Unable to complete request", ex);
+			}
 		}
 
 		private long GetPosition(HttpResponseMessage response)
@@ -178,5 +188,8 @@ namespace Telestream.Cloud.SDK.Core
 
 			return response.Headers.GetValues(RANGE_KEY).First();
 		}
+
+
+
 	}
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Telestream.Cloud.SDK.Core;
 using Telestream.Cloud.SDK.Model;
@@ -12,6 +13,7 @@ namespace Telestream.Cloud.SDK
 	public class FactoryService : ServiceBase
 	{
 		private TelestreamCloudService _cloudService;
+		private FileUploader _fileUploader = new FileUploader();
 
 		public FactoryService(string factoryId)
 			: base()
@@ -140,13 +142,30 @@ namespace Telestream.Cloud.SDK
 			return _cloudService.ChangeFactoryName(FactoryId, newName);
 		}
 
-		public async Task UploadFile(string fileName, Stream dataStream)
+		public Task<UploadSession> BeginUpload(string fileName, Stream dataStream, CancellationToken cancelToken = default(CancellationToken))
 		{
-			var session = await _cloudService.StartUpload(FactoryId, dataStream.Length, fileName);
+			return _cloudService.StartUpload(FactoryId, dataStream.Length, fileName, cancelToken);
+		}
 
-			var fileUploader = new FileUploader();
+		public Task UploadFile(string fileName, Stream dataStream, CancellationToken cancelToken = default(CancellationToken))
+		{
+			return UploadFile(fileName, dataStream, null, cancelToken);
+		}
 
-			await fileUploader.UploadFile(session, dataStream);
+		public async Task UploadFile(string fileName, Stream dataStream, IProgress<double> progress, CancellationToken cancelToken = default(CancellationToken))
+		{
+			var session = await BeginUpload(fileName, dataStream);
+			await _fileUploader.UploadFile(session, 0, dataStream, progress, cancelToken);
+		}
+
+		public Task ResumeUpload(UploadSession session, Stream dataStream, IProgress<double> progress, CancellationToken cancelToken = default(CancellationToken))
+		{
+			return _fileUploader.ResumeUpload(session, dataStream, progress, cancelToken);
+		}
+
+		public Task AbortUpload(UploadSession session)
+		{
+			return _fileUploader.AbortUpload(session);
 		}
 	}
 }

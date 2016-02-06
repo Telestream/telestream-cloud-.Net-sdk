@@ -24,19 +24,14 @@ namespace Telestream.Cloud.SDK.Core
 			_security = new SecurityUtility();
 		}
 
-		public async Task<string> Invoke(RestRequest request)
+		public async Task<string> Invoke(RestRequest request, CancellationToken cancelToken = default(CancellationToken))
 		{
 			if (request == null) { throw new ArgumentNullException("request"); }
 
 			var client = CreateClient(request);
 			var message = CreateMessage(request);
 
-			if (message.Content != null)
-			{
-				var i = await message.Content.ReadAsStringAsync();
-			}
-
-			var response = await client.SendAsync(message);
+			var response = await client.SendAsync(message, cancelToken);
 			if (response.IsSuccessStatusCode)
 			{
 				var content = await response.Content.ReadAsStringAsync();
@@ -60,11 +55,11 @@ namespace Telestream.Cloud.SDK.Core
 			}
 		}
 
-		public async Task<TResult> Invoke<TResult>(RestRequest request)
+		public async Task<TResult> Invoke<TResult>(RestRequest request, CancellationToken cancelToken = default(CancellationToken))
 		{
 			if (request == null) { throw new ArgumentNullException("request"); }
 
-			string content = await Invoke(request);
+			string content = await Invoke(request, cancelToken);
 			var deserialized = _serializer.Deserialize<TResult>(content);
 			return deserialized;
 		}

@@ -51,8 +51,8 @@ namespace Telestream.Cloud.SDK.Model
 		[JsonProperty("priority")]
 		public string Priority { get; set; }
 
-		[JsonProperty("add_timestamp")]
-		public string AddTimestamp { get; set; }
+		[JsonProperty("time_code")]
+		public string TimeCode { get; set; }
 
 		[JsonProperty("aspect_mode")]
 		public string AspectMode { get; set; }

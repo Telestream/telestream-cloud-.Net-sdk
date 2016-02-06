@@ -13,6 +13,7 @@ using Org.BouncyCastle.Crypto.Parameters;
 using Telestream.Cloud.SDK.Model;
 using System.IO;
 using System.Net.Http;
+using System.Threading;
 namespace Telestream.Cloud.SDK
 {
 	public class TelestreamCloudService : ServiceBase
@@ -205,7 +206,7 @@ namespace Telestream.Cloud.SDK
 			return _client.Invoke<Factory>(request);
 		}
 
-		public Task<UploadSession> StartUpload(string factoryId, long fileSize, string fileName)
+		public Task<UploadSession> StartUpload(string factoryId, long fileSize, string fileName, CancellationToken cancelToken=default(CancellationToken))
 		{
 			const string FILE_SIZE = "file_size";
 			const string FILE_NAME = "file_name";
@@ -217,51 +218,8 @@ namespace Telestream.Cloud.SDK
 				.Add(FILE_NAME, fileName)
 				.Add(PROFILES, "h264"), factoryId);
 
-			return _client.Invoke<UploadSession>(request);
+			return _client.Invoke<UploadSession>(request, cancelToken);
 		}
 
-		int CHUNK_SIZE = 5 * 1024 * 1024;
-
-		public async Task UploadFile(UploadSession session, Stream dataStream, IProgress<double> progress)
-		{
-			long position = 0;
-			byte[] buffer = new byte[CHUNK_SIZE];
-			HttpClient client = new HttpClient();
-
-			dataStream.Seek(position, SeekOrigin.Begin);
-
-			int readed = 0;
-			while ((readed = dataStream.Read(buffer, 0, buffer.Length)) != 0)
-			{
-				System.Diagnostics.Debug.WriteLine("Content-Lenght:{0}", CHUNK_SIZE.ToString());
-				System.Diagnostics.Debug.WriteLine("Content-Range: {0}", string.Format("bytes {0}-{1}/{2}", position, dataStream.Position - 1, dataStream.Length));
-
-				HttpRequestMessage message = new HttpRequestMessage(HttpMethod.Put, session.Location);
-				message.Headers.Add("Cache-Control", "no-cache");
-				message.Content = new ByteArrayContent(buffer);
-				message.Content.Headers.Add("Content-Range", string.Format("bytes {0}-{1}/{2}", position, dataStream.Position - 1, dataStream.Length));
-				message.Content.Headers.Add("Content-Type", "application/octet-stream");
-				var resp = await client.SendAsync(message);
-
-				position = dataStream.Position;
-				if (progress != null)
-				{
-					progress.Report((position / (double)dataStream.Length) * 100);
-				}
-			}
-
-			client = new HttpClient();
-			client.DefaultRequestHeaders.TryAddWithoutValidation("Content-Type", "application/octet-stream");
-			client.DefaultRequestHeaders.TryAddWithoutValidation("Cache-Control", "no-cache");
-			client.DefaultRequestHeaders.TryAddWithoutValidation("Content-Range", "bytes */" + dataStream.Length);
-			client.DefaultRequestHeaders.TryAddWithoutValidation("Content-Lenght", "0");
-		}
-
-
-
-		//public Task ResumeUpload(string uploadSessionId)
-		//{
-
-		//}
 	}
 }
