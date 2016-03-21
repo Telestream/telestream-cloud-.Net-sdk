@@ -208,17 +208,17 @@ namespace Telestream.Cloud.SDK
 
 		public Task<UploadSession> StartUpload(string factoryId, long fileSize, string fileName, CancellationToken cancelToken=default(CancellationToken))
 		{
-			const string FILE_SIZE = "file_size";
-			const string FILE_NAME = "file_name";
-			const string PROFILES = "profiles";
+            const string FILE_SIZE = "file_size";
+            const string FILE_NAME = "file_name";
 
-			var request = _requestFactory.Post("videos/upload.json",
-				new QueryParamList()
-				.Add(FILE_SIZE, fileSize.ToString())
-				.Add(FILE_NAME, fileName)
-				.Add(PROFILES, "h264"), factoryId);
+            var request = _requestFactory.Post(
+                "videos/upload.json",
+                new QueryParamList()
+                    .Add(FILE_SIZE, fileSize.ToString())
+                    .Add(FILE_NAME, fileName),
+                factoryId);
 
-			return _client.Invoke<UploadSession>(request, cancelToken);
+            return _client.Invoke<UploadSession>(request, cancelToken);
 		}
 
 	}
