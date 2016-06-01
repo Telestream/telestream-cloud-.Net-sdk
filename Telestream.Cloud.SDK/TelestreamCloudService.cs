@@ -206,19 +206,26 @@ namespace Telestream.Cloud.SDK
 			return _client.Invoke<Factory>(request);
 		}
 
+		public Task<Factory> ChangeFactoryOutputsPathFormat(string factoryId, string newOutputsPathFormat)
+		{
+			ValidateFactoryId(factoryId);
+			var request = _requestFactory.PutJson(string.Format("factories/{0}.json", factoryId), new { outputs_path_format = newOutputsPathFormat }, null);
+			return _client.Invoke<Factory>(request);
+		}
+
 		public Task<UploadSession> StartUpload(string factoryId, long fileSize, string fileName, CancellationToken cancelToken=default(CancellationToken))
 		{
-            const string FILE_SIZE = "file_size";
-            const string FILE_NAME = "file_name";
+			const string FILE_SIZE = "file_size";
+			const string FILE_NAME = "file_name";
 
-            var request = _requestFactory.Post(
-                "videos/upload.json",
-                new QueryParamList()
-                    .Add(FILE_SIZE, fileSize.ToString())
-                    .Add(FILE_NAME, fileName),
-                factoryId);
+			var request = _requestFactory.Post(
+				"videos/upload.json",
+				new QueryParamList()
+					.Add(FILE_SIZE, fileSize.ToString())
+					.Add(FILE_NAME, fileName),
+				factoryId);
 
-            return _client.Invoke<UploadSession>(request, cancelToken);
+			return _client.Invoke<UploadSession>(request, cancelToken);
 		}
 
 	}
