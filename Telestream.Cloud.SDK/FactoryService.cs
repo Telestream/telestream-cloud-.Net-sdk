@@ -142,6 +142,11 @@ namespace Telestream.Cloud.SDK
 			return _cloudService.ChangeFactoryName(FactoryId, newName);
 		}
 
+		public Task<Factory> ChangeFactoryOutputsPathFormat(string factoryId, string newOutputsPathFormat)
+		{
+			return _cloudService.ChangeFactoryOutputsPathFormat(FactoryId, newOutputsPathFormat);
+		}
+
 		public Task<UploadSession> BeginUpload(string fileName, Stream dataStream, CancellationToken cancelToken = default(CancellationToken))
 		{
 			return _cloudService.StartUpload(FactoryId, dataStream.Length, fileName, cancelToken);
