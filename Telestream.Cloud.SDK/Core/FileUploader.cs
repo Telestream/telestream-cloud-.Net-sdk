@@ -9,6 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Telestream.Cloud.SDK.Exceptions;
 using Telestream.Cloud.SDK.Model;
+using Newtonsoft.Json;
 
 namespace Telestream.Cloud.SDK.Core
 {
@@ -22,28 +23,28 @@ namespace Telestream.Cloud.SDK.Core
         private const int CHUNK_SIZE = 5 * 1024 * 1024;
         private readonly Regex _rangeHeaderRegex;
 
-        public Task UploadFile(UploadSession session, long position, Stream dataStream)
+        public Task<Video> UploadFile(UploadSession session, long position, Stream dataStream)
         {
             return UploadFile(session, position, dataStream, null);
         }
 
-        public Task UploadFile(UploadSession session, Stream dataStream)
+        public Task<Video> UploadFile(UploadSession session, Stream dataStream)
         {
             return UploadFile(session, dataStream, null);
         }
 
-        public Task UploadFile(UploadSession session, Stream dataStream, IProgress<double> progress)
+        public Task<Video> UploadFile(UploadSession session, Stream dataStream, IProgress<double> progress)
         {
             return UploadFile(session, 0, dataStream, progress);
         }
 
 
-        public Task UploadFile(UploadSession session, Stream dataStream, CancellationToken cancelToken)
+        public Task<Video> UploadFile(UploadSession session, Stream dataStream, CancellationToken cancelToken)
         {
             return UploadFile(session, 0, dataStream, null, cancelToken);
         }
 
-        public async Task UploadFile(UploadSession session, long position, Stream dataStream, IProgress<double> progress, CancellationToken cancelToken = default(CancellationToken))
+        public async Task<Video> UploadFile(UploadSession session, long position, Stream dataStream, IProgress<double> progress, CancellationToken cancelToken = default(CancellationToken))
         {
             if (dataStream == null)
             {
@@ -77,7 +78,16 @@ namespace Telestream.Cloud.SDK.Core
                 {
                     break;
                 }
+
+                if (response.StatusCode != System.Net.HttpStatusCode.NoContent)
+                {
+                    string body = await response.Content.ReadAsStringAsync();
+
+                    return ParseJson(body);
+                }
             }
+
+            return null;
         }
 
         public Task ResumeUpload(UploadSession session, long position, Stream dataStream)
@@ -189,7 +199,13 @@ namespace Telestream.Cloud.SDK.Core
             return response.Headers.GetValues(RANGE_KEY).First();
         }
 
+        private Video ParseJson(string body)
+        {
+            JsonTextReader reader = new JsonTextReader(new StringReader(body));
 
-
+            JsonSerializer serializer = new JsonSerializer();
+            Video video = serializer.Deserialize<Video>(reader);
+            return video;
+        }
     }
 }
