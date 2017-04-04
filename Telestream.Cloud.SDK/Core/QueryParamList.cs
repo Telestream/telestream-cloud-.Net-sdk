@@ -34,7 +34,7 @@ namespace Telestream.Cloud.SDK.Core
 
 		public void SortByKey()
 		{
-			Sort((x, y) => string.Compare(x.Key, y.Key));
+			Sort((x, y) => string.Compare(x.Key, y.Key, StringComparison.Ordinal));
 		}
 
 		public QueryParamList AddNonEmpty<T>(string key, Nullable<T> value) where T : struct
