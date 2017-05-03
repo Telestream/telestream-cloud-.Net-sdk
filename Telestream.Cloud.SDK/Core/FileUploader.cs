@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using Telestream.Cloud.SDK.Exceptions;
@@ -15,141 +12,146 @@ namespace Telestream.Cloud.SDK.Core
 {
     public class FileUploader
     {
-        public FileUploader()
+        private UploadSessionInfo session;
+        private Stream main_file;
+
+        private class FileToUpload
         {
-            _rangeHeaderRegex = new Regex(@"^\d-(?<position>\d*)$");
+            private String name;
+            private Stream data;
+
+            private int parts;
+            private int part_size;
+            private int [] missing_parts;
+
+            FileToUpload(String n, Stream d)
+            {
+                if (null == n || null == d)
+                    throw new ArgumentException("Given file name or stream is null");
+
+                name = n;
+                data = d;
+            }
         }
 
-        private const int CHUNK_SIZE = 5 * 1024 * 1024;
-        private readonly Regex _rangeHeaderRegex;
-
-        public Task<Video> UploadFile(UploadSession session, long position, Stream dataStream)
+        public FileUploader(UploadSessionInfo usi, Stream s)
         {
-            return UploadFile(session, position, dataStream, null);
+            session = usi;
+            main_file = s;
         }
 
-        public Task<Video> UploadFile(UploadSession session, Stream dataStream)
+        public static async Task<FileUploader> Init(RestClient rc, RequestFactory rf, string factoryId, Stream dataStream, string fileName, CancellationToken cancelToken = default(CancellationToken))
         {
-            return UploadFile(session, dataStream, null);
+            const string FILE_SIZE = "file_size";
+            const string FILE_NAME = "file_name";
+
+            var request = rf.Post(
+                "videos/upload.json",
+                new QueryParamList()
+                    .Add(FILE_SIZE, dataStream.Length.ToString())
+                    .Add(FILE_NAME, fileName)
+                    .Add("multi_chunk", "true"),
+                factoryId);
+
+            var s = await rc.Invoke<UploadSessionInfo>(request, cancelToken);
+
+            return new FileUploader(s, dataStream);
         }
 
-        public Task<Video> UploadFile(UploadSession session, Stream dataStream, IProgress<double> progress)
+        public Task<Video> UploadFile()
         {
-            return UploadFile(session, 0, dataStream, progress);
+            return UploadFile(null);
         }
 
-
-        public Task<Video> UploadFile(UploadSession session, Stream dataStream, CancellationToken cancelToken)
+        public Task<Video> UploadFile(CancellationToken cancelToken)
         {
-            return UploadFile(session, 0, dataStream, null, cancelToken);
+            return UploadFile(null, cancelToken);
         }
 
-        public async Task<Video> UploadFile(UploadSession session, long position, Stream dataStream, IProgress<double> progress, CancellationToken cancelToken = default(CancellationToken))
+        public async Task<Video> UploadFile(IProgress<double> progress, CancellationToken cancelToken = default(CancellationToken))
         {
-            if (dataStream == null)
+            System.Diagnostics.Debug.WriteLine("Parts: {0}", session.Parts);
+            System.Diagnostics.Debug.WriteLine("Part Size: {0}", session.Part_Size);
+            System.Diagnostics.Debug.WriteLine("Max Connections: {0}", session.Max_Connections);
+            if (main_file == null)
             {
                 throw new ArgumentNullException("dataStream");
             }
 
-            byte[] buffer = new byte[CHUNK_SIZE];
+            byte[] buffer = new byte[session.Part_Size];
 
             var httpClient = new HttpClient();
 
-            dataStream.Seek(position, SeekOrigin.Begin);
-            int readed = 0;
-
-            while ((readed = dataStream.Read(buffer, 0, buffer.Length)) != 0)
+            for (int i=0; i<session.Parts; ++i)
             {
-                System.Diagnostics.Debug.WriteLine("Content-Lenght:{0}", CHUNK_SIZE.ToString());
-                System.Diagnostics.Debug.WriteLine("Content-Range: {0}", string.Format("bytes {0}-{1}/{2}", position, dataStream.Position - 1, dataStream.Length));
-
-                var message = CreateChunkMessage(position, dataStream.Position - 1, dataStream.Length, buffer, session.Location);
-
-                var response = await SendMessage(httpClient, message, cancelToken);
-
-                position = dataStream.Position;
-
-                if (progress != null)
+                int bytesRead;
+                if ((bytesRead = main_file.Read(buffer, 0, buffer.Length)) > 0)
                 {
-                    progress.Report((position / (double)dataStream.Length) * 100);
-                }
+                    var message = CreateChunkMessage(i, buffer, bytesRead, session.Location);
+                    var response = await SendMessage(httpClient, message, cancelToken);
 
-                if (cancelToken.IsCancellationRequested)
-                {
-                    break;
-                }
+                    if (progress != null)
+                    {
+                        progress.Report((main_file.Position / (double)main_file.Length) * 100);
+                    }
 
-                if (response.StatusCode != System.Net.HttpStatusCode.NoContent)
-                {
-                    string body = await response.Content.ReadAsStringAsync();
+                    if (cancelToken.IsCancellationRequested)
+                    {
+                        break;
+                    }
 
-                    return ParseJson(body);
+                    if (response.StatusCode != System.Net.HttpStatusCode.NoContent)
+                    {
+                        string body = await response.Content.ReadAsStringAsync();
+
+                        return ParseJson(body);
+                    }
                 }
             }
-
             return null;
         }
 
-        public Task ResumeUpload(UploadSession session, long position, Stream dataStream)
+        public async Task ResumeUpload(Stream dataStream)
         {
-            return ResumeUpload(session, position, dataStream, null);
+//            var position = await GetBrokenUpload(dataStream, session.Location);
+//            await ResumeUpload(session, position, dataStream, null);
         }
 
-        public async Task ResumeUpload(UploadSession session, Stream dataStream)
-        {
-            var position = await GetBrokenUpload(dataStream, session.Location);
-            await ResumeUpload(session, position, dataStream, null);
-        }
-
-        public async Task ResumeUpload(UploadSession session, Stream dataStream, IProgress<double> progress, CancellationToken cancelToken = default(CancellationToken))
+        public async Task ResumeUpload(Stream dataStream, IProgress<double> progress, CancellationToken cancelToken = default(CancellationToken))
         {
             if (session == null) { throw new ArgumentNullException("session"); }
 
-            var position = await GetBrokenUpload(dataStream, session.Location);
-            await ResumeUpload(session, position, dataStream, progress, cancelToken);
+//            var position = await GetBrokenUpload(dataStream, session.Location);
+//            await ResumeUpload(session, position, dataStream, progress, cancelToken);
         }
 
-        public Task ResumeUpload(UploadSession session, long position, Stream dataStream, IProgress<double> progress, CancellationToken cancelToken = default(CancellationToken))
-        {
-            return UploadFile(session, position, dataStream, progress, cancelToken);
-        }
-
-        public async Task AbortUpload(UploadSession session, CancellationToken cancelToken = default(CancellationToken))
+        public async Task AbortUpload(CancellationToken cancelToken = default(CancellationToken))
         {
             var message = new HttpRequestMessage(HttpMethod.Delete, session.Location);
             await SendMessage(message, cancelToken);
         }
 
-        public async Task<long> GetBrokenUpload(Stream dataStream, string location)
-        {
-            if (dataStream == null) { throw new ArgumentNullException("dataStream"); }
+//        public async Task<long> GetBrokenUpload(int part_id, string location)
+//        {
+//            var message = new HttpRequestMessage(HttpMethod.Put, location);
+//            message.Content = CreateMessageContent(part_id, new byte[0]);
+//
+//            var response = await SendMessage(message);
+//
+//            var result = GetPosition(response);
+//            return result;
+//        }
 
-            var message = new HttpRequestMessage(HttpMethod.Put, location);
-            message.Content = CreateMessageContent(string.Format("bytes */{0}", dataStream.Length), new byte[0]);
-
-            var response = await SendMessage(message);
-
-            var result = GetPosition(response);
-            return result;
-        }
-
-        private HttpRequestMessage CreateChunkMessage(long from, long to, long totalLength, byte[] bytes, string location)
+        private HttpRequestMessage CreateChunkMessage(int part_id, byte[] bytes, int bytesToSend, string location)
         {
             var message = new HttpRequestMessage(HttpMethod.Put, location);
             message.Headers.Add("Cache-Control", "no-cache");
 
-            var content = CreateMessageContent(string.Format("bytes {0}-{1}/{2}", from, to, totalLength), bytes);
-            message.Content = content;
+            message.Content = new ByteArrayContent(bytes, 0, bytesToSend);
+            message.Content.Headers.Add("Content-Type", "application/octet-stream");
+            message.Content.Headers.Add("X-Part", part_id.ToString());
 
             return message;
-        }
-
-        private HttpContent CreateMessageContent(string contentRange, byte[] bytes)
-        {
-            var content = new ByteArrayContent(bytes);
-            content.Headers.Add("Content-Range", contentRange);
-            content.Headers.Add("Content-Type", "application/octet-stream");
-            return content;
         }
 
         private Task<HttpResponseMessage> SendMessage(HttpRequestMessage message, CancellationToken cancelToken = default(CancellationToken))
@@ -168,24 +170,6 @@ namespace Telestream.Cloud.SDK.Core
             {
                 throw new TelestreamCloudException("Unable to complete request", ex);
             }
-        }
-
-        private long GetPosition(HttpResponseMessage response)
-        {
-            var headerValue = ExtractFromHeader(response);
-            return GetPosition(headerValue);
-        }
-
-        private long GetPosition(string headerValue)
-        {
-            var match = _rangeHeaderRegex.Match(headerValue);
-
-            if (!match.Success)
-            {
-                throw new TelestreamCloudException("Invalid range");
-            }
-
-            return long.Parse(match.Groups["position"].Value);
         }
 
         private string ExtractFromHeader(HttpResponseMessage response)
