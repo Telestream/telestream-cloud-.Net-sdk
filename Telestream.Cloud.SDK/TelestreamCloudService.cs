@@ -75,6 +75,11 @@ namespace Telestream.Cloud.SDK
              );
         }
 
+        public Task<Video> CreateVideo(string factoryId, Video video)
+        {
+            return InvokePost<Video>(factoryId, "videos.json", video);
+        }
+
         public Task<List<Video>> GetVideos(string factoryId)
 		{
 			ValidateFactoryId(factoryId);
