@@ -12,7 +12,7 @@ namespace Telestream.Cloud.SDK.Core
 {
     public class FileUploader
     {
-        private UploadSessionInfo session;
+        private UploadSession session;
         private Stream main_file;
 
         private class FileToUpload
@@ -34,7 +34,11 @@ namespace Telestream.Cloud.SDK.Core
             }
         }
 
-        public FileUploader(UploadSessionInfo usi, Stream s)
+        public FileUploader()
+        {
+        }
+
+        public FileUploader(UploadSession usi, Stream s)
         {
             session = usi;
             main_file = s;
@@ -53,9 +57,17 @@ namespace Telestream.Cloud.SDK.Core
                     .Add("multi_chunk", "true"),
                 factoryId);
 
-            var s = await rc.Invoke<UploadSessionInfo>(request, cancelToken);
+            var s = await rc.Invoke<UploadSession>(request, cancelToken);
 
             return new FileUploader(s, dataStream);
+        }
+
+        public Task<Video> UploadFile(UploadSession sess, Stream dataStream)
+        {
+            session = sess;
+            main_file = dataStream;
+
+            return this.UploadFile(null, new CancellationToken());
         }
 
         public Task<Video> UploadFile()
@@ -81,7 +93,7 @@ namespace Telestream.Cloud.SDK.Core
             byte[] buffer = new byte[session.Part_Size];
 
             var httpClient = new HttpClient();
-
+                        Video video = null;
             for (int i=0; i<session.Parts; ++i)
             {
                 int bytesRead;
@@ -104,11 +116,11 @@ namespace Telestream.Cloud.SDK.Core
                     {
                         string body = await response.Content.ReadAsStringAsync();
 
-                        return ParseJson(body);
+                        video = ParseJson(body);
                     }
                 }
             }
-            return null;
+            return video;
         }
 
         public async Task ResumeUpload(Stream dataStream)

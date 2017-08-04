@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Telestream.Cloud.SDK.Model
 {
-	public class UploadSessionInfo : ModelBase
+	public class UploadSession : ModelBase
 	{
 		public string Id { get; set; }
 		public string Location { get; set; }
