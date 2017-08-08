@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Telestream.Cloud.SDK.Core;
@@ -13,7 +11,6 @@ namespace Telestream.Cloud.SDK
 	public class FactoryService : ServiceBase
 	{
 		private TelestreamCloudService _cloudService;
-		private FileUploader _fileUploader = new FileUploader();
 
 		public FactoryService(string factoryId)
 			: base()
@@ -147,30 +144,14 @@ namespace Telestream.Cloud.SDK
 			return _cloudService.ChangeFactoryOutputsPathFormat(FactoryId, newOutputsPathFormat);
 		}
 
-		public Task<UploadSession> BeginUpload(string fileName, Stream dataStream, CancellationToken cancelToken = default(CancellationToken))
+		public Task<FileUploader> InitFileUploader(string fileName, Stream dataStream, CancellationToken cancelToken = default(CancellationToken))
 		{
-			return _cloudService.StartUpload(FactoryId, dataStream.Length, fileName, cancelToken);
+			return InitFileUploader(fileName, dataStream, null, cancelToken);
 		}
 
-		public Task UploadFile(string fileName, Stream dataStream, CancellationToken cancelToken = default(CancellationToken))
+		public async Task<FileUploader> InitFileUploader(string fileName, Stream dataStream, IProgress<double> progress, CancellationToken cancelToken = default(CancellationToken))
 		{
-			return UploadFile(fileName, dataStream, null, cancelToken);
+            return await FileUploader.Init(_client, _requestFactory, FactoryId, dataStream, fileName, cancelToken);
 		}
-
-		public async Task UploadFile(string fileName, Stream dataStream, IProgress<double> progress, CancellationToken cancelToken = default(CancellationToken))
-		{
-			var session = await BeginUpload(fileName, dataStream);
-			await _fileUploader.UploadFile(session, 0, dataStream, progress, cancelToken);
-		}
-
-		public Task ResumeUpload(UploadSession session, Stream dataStream, IProgress<double> progress, CancellationToken cancelToken = default(CancellationToken))
-		{
-			return _fileUploader.ResumeUpload(session, dataStream, progress, cancelToken);
-		}
-
-		public Task AbortUpload(UploadSession session)
-		{
-			return _fileUploader.AbortUpload(session);
-		}
-	}
+    }
 }

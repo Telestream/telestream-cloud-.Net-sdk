@@ -10,5 +10,8 @@ namespace Telestream.Cloud.SDK.Model
 	{
 		public string Id { get; set; }
 		public string Location { get; set; }
+		public long Parts { get; set; }
+		public long Part_Size { get; set; }
+		public long Max_Connections { get; set; }
 	}
 }
