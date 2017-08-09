@@ -166,18 +166,20 @@ namespace Telestream.Cloud.SDK
         {
             return _cloudService.StartUpload(FactoryId, dataStream.Length, fileName, pathFormat, extraVars, profiles, cancelToken);
         }
-        public Task UploadFile(string fileName, Stream dataStream, CancellationToken cancelToken = default(CancellationToken))
+        public Task<Video> UploadFile(string fileName, Stream dataStream, CancellationToken cancelToken = default(CancellationToken))
         {
             return UploadFile(fileName, dataStream, null, null, null, null, cancelToken);
         }
 
-        public async Task UploadFile(string fileName, Stream dataStream, string pathFormat,
+        public async Task<Video> UploadFile(string fileName, Stream dataStream, string pathFormat,
                                Dictionary<string, string> extraVars, string profiles = null,
                                IProgress<double> progress = null,
                                CancellationToken cancelToken = default(CancellationToken))
         {
             var session = await BeginUpload(fileName, dataStream, pathFormat, extraVars, profiles, cancelToken);
-            await _fileUploader.UploadFile(session, dataStream, progress, cancelToken);
+            var video = await _fileUploader.UploadFile(session, dataStream, progress, cancelToken);
+
+            return video;
         }
     }
 }
