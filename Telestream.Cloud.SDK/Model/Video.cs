@@ -62,6 +62,9 @@ namespace Telestream.Cloud.SDK.Model
 		[JsonProperty("path")]
 		public string Path { get; set; }
 
+                [JsonProperty("path_format")]
+                public string PathFormat { get; set; }
+
 		[JsonProperty("height")]
 		public int Height { get; set; }
 
@@ -73,6 +76,12 @@ namespace Telestream.Cloud.SDK.Model
 
 		[JsonProperty("audio_bitrate")]
 		public int AudioBitrate { get; set; }
+
+		[JsonProperty("profiles")]
+		public string Profiles { get; set; }
+
+		[JsonProperty("extra_variables")]
+		public Dictionary<String, String> ExtraVariables { get;  set; }
 
 		public List<VideoEncoding> Encodings { get; set; }
 	}
