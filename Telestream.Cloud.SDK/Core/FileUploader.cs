@@ -62,7 +62,9 @@ namespace Telestream.Cloud.SDK.Core
             return new FileUploader(s, dataStream);
         }
 
-        public Task<Video> UploadFile(UploadSession sess, Stream dataStream)
+        public Task<Video> UploadFile(UploadSession sess, Stream dataStream,
+                                      IProgress<double> progress = null,
+                                      CancellationToken cancelToken = default(CancellationToken))
         {
             session = sess;
             main_file = dataStream;
