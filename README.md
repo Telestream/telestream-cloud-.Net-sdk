@@ -85,6 +85,14 @@ Sumbit a new job with h264 and webm profile
   var newJob = await cloud.CreateVideo("[FACTORY_ID]"), "https://link.to/your_movie.mp4", new string[] { "h264", "webm" });
 ```
 
+Sumbit a new job with h264 and webm profile and extra files
+```csharp
+  var newVideo = new Video() { Profiles = "h264,webm", SourceUrl = "https://link.to/your_movie.mp4" };
+  newVideo.AddExtraFile("closed_captions", "https://link.to/your_file.ext");
+  newVideo.InputPath = "relative/path/to/input_file.ext";
+  var newJob = await cloud.CreateVideo(firstFactory.Id, newVideo);
+```
+
 Delete a job
 ```csharp
   await factoryService.DeleteVideo("[JOB_ID]");
