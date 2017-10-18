@@ -142,7 +142,7 @@ namespace Telestream.Cloud.SDK
 		public Task<VideoEncoding> CreateEncoding(string factoryId, string videoId, string profileId, string profileName)
 		{
 			ValidateId("videoId", videoId);
-
+                
 			return InvokePost<VideoEncoding>(
 				factoryId,
 				"encodings.json",

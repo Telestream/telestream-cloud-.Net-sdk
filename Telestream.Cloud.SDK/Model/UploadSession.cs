@@ -12,3 +12,4 @@ namespace Telestream.Cloud.SDK.Model
 		public string Location { get; set; }
 	}
 }
+    
