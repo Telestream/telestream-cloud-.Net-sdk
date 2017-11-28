@@ -23,3 +23,4 @@ namespace Telestream.Cloud.SDK.Model
 		public int LastUploadedPart { get; set; } = -1;
 	}
 }
+    
