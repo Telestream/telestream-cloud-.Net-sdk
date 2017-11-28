@@ -10,200 +10,118 @@ using Newtonsoft.Json;
 
 namespace Telestream.Cloud.SDK.Core
 {
-    public class FileUploader
-    {
-        private UploadSession session;
-        private Stream main_file;
+	public class FileUploader
+	{
+		public FileUploader()
+		{
+		}
 
-        private class FileToUpload
-        {
-            private String name;
-            private Stream data;
+		private bool canceled = false;
+		public async Task<Video> UploadFile(UploadSession session, Stream dataStream, IProgress<double> progress, CancellationToken cancelToken = default(CancellationToken))
+		{
+			if (dataStream == null)
+			{
+				throw new ArgumentNullException("dataStream");
+			}
 
-            private int parts;
-            private int part_size;
-            private int [] missing_parts;
+			byte[] buffer = new byte[session.PartSize];
 
-            FileToUpload(String n, Stream d)
-            {
-                if (null == n || null == d)
-                    throw new ArgumentException("Given file name or stream is null");
+			var httpClient = new HttpClient();
+			Video video = null;
 
-                name = n;
-                data = d;
-            }
-        }
+			for (var i = session.LastUploadedPart + 1; i < session.Parts; i++)
+			{
+				if (i == 2 && !canceled) {
+					canceled = true;
+					return null; }
+				int bytesRead;
+				if ((bytesRead = dataStream.Read(buffer, 0, buffer.Length)) > 0)
+				{
+					var message = CreateChunkMessage(i, buffer, bytesRead, session.Location);
+					var response = await SendMessage(httpClient, message, cancelToken);
 
-        public FileUploader()
-        {
-        }
+					if (progress != null)
+					{
+						progress.Report((dataStream.Position / (double)dataStream.Length) * 100);
+					}
 
-        public FileUploader(UploadSession usi, Stream s)
-        {
-            session = usi;
-            main_file = s;
-        }
+					if (cancelToken.IsCancellationRequested)
+					{
+						break;
+					}
 
-        public static async Task<FileUploader> Init(RestClient rc, RequestFactory rf, string factoryId, Stream dataStream, string fileName, CancellationToken cancelToken = default(CancellationToken))
-        {
-            const string FILE_SIZE = "file_size";
-            const string FILE_NAME = "file_name";
+					if (response.StatusCode != System.Net.HttpStatusCode.NoContent)
+					{
+						string body = await response.Content.ReadAsStringAsync();
 
-            var request = rf.Post(
-                "videos/upload.json",
-                new QueryParamList()
-                    .Add(FILE_SIZE, dataStream.Length.ToString())
-                    .Add(FILE_NAME, fileName)
-                    .Add("multi_chunk", "true"),
-                factoryId);
+						video = ParseJson(body);
+					}
+					session.LastUploadedPart = i;
+				}
+			}
+			return video;
+		}
 
-            var s = await rc.Invoke<UploadSession>(request, cancelToken);
+		public Task ResumeUpload(UploadSession session, Stream dataStream, IProgress<double> progress = null, CancellationToken cancelToken = default(CancellationToken))
+		{
+			return UploadFile(session, dataStream, progress, cancelToken);
+		}
 
-            return new FileUploader(s, dataStream);
-        }
+		public async Task AbortUpload(UploadSession session, CancellationToken cancelToken = default(CancellationToken))
+		{
+			if (session == null) { throw new ArgumentNullException("session"); }
+			var message = new HttpRequestMessage(HttpMethod.Delete, session.Location);
+			await SendMessage(message, cancelToken);
+		}
 
-        public Task<Video> UploadFile(UploadSession sess, Stream dataStream,
-                                      IProgress<double> progress = null,
-                                      CancellationToken cancelToken = default(CancellationToken))
-        {
-            session = sess;
-            main_file = dataStream;
+		private HttpRequestMessage CreateChunkMessage(int part_id, byte[] bytes, int bytesToSend, string location)
+		{
+			var message = new HttpRequestMessage(HttpMethod.Put, location);
+			message.Headers.Add("Cache-Control", "no-cache");
 
-            return this.UploadFile(null, new CancellationToken());
-        }
+			message.Content = new ByteArrayContent(bytes, 0, bytesToSend);
+			message.Content.Headers.Add("Content-Type", "application/octet-stream");
+			message.Content.Headers.Add("X-Part", part_id.ToString());
 
-        public Task<Video> UploadFile()
-        {
-            return UploadFile(null);
-        }
+			return message;
+		}
 
-        public Task<Video> UploadFile(CancellationToken cancelToken)
-        {
-            return UploadFile(null, cancelToken);
-        }
+		private Task<HttpResponseMessage> SendMessage(HttpRequestMessage message, CancellationToken cancelToken = default(CancellationToken))
+		{
+			var client = new HttpClient();
+			return SendMessage(client, message, cancelToken);
+		}
 
-        public async Task<Video> UploadFile(IProgress<double> progress, CancellationToken cancelToken = default(CancellationToken))
-        {
-            System.Diagnostics.Debug.WriteLine("Parts: {0}", session.Parts);
-            System.Diagnostics.Debug.WriteLine("Part Size: {0}", session.Part_Size);
-            System.Diagnostics.Debug.WriteLine("Max Connections: {0}", session.Max_Connections);
-            if (main_file == null)
-            {
-                throw new ArgumentNullException("dataStream");
-            }
+		private Task<HttpResponseMessage> SendMessage(HttpClient client, HttpRequestMessage message, CancellationToken cancelToken = default(CancellationToken))
+		{
+			try
+			{
+				return client.SendAsync(message, cancelToken);
+			}
+			catch (Exception ex)
+			{
+				throw new TelestreamCloudException("Unable to complete request", ex);
+			}
+		}
 
-            byte[] buffer = new byte[session.Part_Size];
+		private string ExtractFromHeader(HttpResponseMessage response)
+		{
+			const string RANGE_KEY = "Range";
+			if (!response.Headers.Contains(RANGE_KEY))
+			{
+				throw new TelestreamCloudException(string.Format("'{0}' header not found", RANGE_KEY));
+			}
 
-            var httpClient = new HttpClient();
-                        Video video = null;
-            for (int i=0; i<session.Parts; ++i)
-            {
-                int bytesRead;
-                if ((bytesRead = main_file.Read(buffer, 0, buffer.Length)) > 0)
-                {
-                    var message = CreateChunkMessage(i, buffer, bytesRead, session.Location);
-                    var response = await SendMessage(httpClient, message, cancelToken);
+			return response.Headers.GetValues(RANGE_KEY).First();
+		}
 
-                    if (progress != null)
-                    {
-                        progress.Report((main_file.Position / (double)main_file.Length) * 100);
-                    }
+		private Video ParseJson(string body)
+		{
+			JsonTextReader reader = new JsonTextReader(new StringReader(body));
 
-                    if (cancelToken.IsCancellationRequested)
-                    {
-                        break;
-                    }
-
-                    if (response.StatusCode != System.Net.HttpStatusCode.NoContent)
-                    {
-                        string body = await response.Content.ReadAsStringAsync();
-
-                        video = ParseJson(body);
-                    }
-                }
-            }
-            return video;
-        }
-
-        public async Task ResumeUpload(Stream dataStream)
-        {
-//            var position = await GetBrokenUpload(dataStream, session.Location);
-//            await ResumeUpload(session, position, dataStream, null);
-        }
-
-        public async Task ResumeUpload(Stream dataStream, IProgress<double> progress, CancellationToken cancelToken = default(CancellationToken))
-        {
-            if (session == null) { throw new ArgumentNullException("session"); }
-
-//            var position = await GetBrokenUpload(dataStream, session.Location);
-//            await ResumeUpload(session, position, dataStream, progress, cancelToken);
-        }
-
-        public async Task AbortUpload(CancellationToken cancelToken = default(CancellationToken))
-        {
-            var message = new HttpRequestMessage(HttpMethod.Delete, session.Location);
-            await SendMessage(message, cancelToken);
-        }
-
-//        public async Task<long> GetBrokenUpload(int part_id, string location)
-//        {
-//            var message = new HttpRequestMessage(HttpMethod.Put, location);
-//            message.Content = CreateMessageContent(part_id, new byte[0]);
-//
-//            var response = await SendMessage(message);
-//
-//            var result = GetPosition(response);
-//            return result;
-//        }
-
-        private HttpRequestMessage CreateChunkMessage(int part_id, byte[] bytes, int bytesToSend, string location)
-        {
-            var message = new HttpRequestMessage(HttpMethod.Put, location);
-            message.Headers.Add("Cache-Control", "no-cache");
-
-            message.Content = new ByteArrayContent(bytes, 0, bytesToSend);
-            message.Content.Headers.Add("Content-Type", "application/octet-stream");
-            message.Content.Headers.Add("X-Part", part_id.ToString());
-
-            return message;
-        }
-
-        private Task<HttpResponseMessage> SendMessage(HttpRequestMessage message, CancellationToken cancelToken = default(CancellationToken))
-        {
-            var client = new HttpClient();
-            return SendMessage(client, message, cancelToken);
-        }
-
-        private Task<HttpResponseMessage> SendMessage(HttpClient client, HttpRequestMessage message, CancellationToken cancelToken = default(CancellationToken))
-        {
-            try
-            {
-                return client.SendAsync(message, cancelToken);
-            }
-            catch (Exception ex)
-            {
-                throw new TelestreamCloudException("Unable to complete request", ex);
-            }
-        }
-
-        private string ExtractFromHeader(HttpResponseMessage response)
-        {
-            const string RANGE_KEY = "Range";
-            if (!response.Headers.Contains(RANGE_KEY))
-            {
-                throw new TelestreamCloudException(string.Format("'{0}' header not found", RANGE_KEY));
-            }
-
-            return response.Headers.GetValues(RANGE_KEY).First();
-        }
-
-        private Video ParseJson(string body)
-        {
-            JsonTextReader reader = new JsonTextReader(new StringReader(body));
-
-            JsonSerializer serializer = new JsonSerializer();
-            Video video = serializer.Deserialize<Video>(reader);
-            return video;
-        }
-    }
+			JsonSerializer serializer = new JsonSerializer();
+			Video video = serializer.Deserialize<Video>(reader);
+			return video;
+		}
+	}
 }

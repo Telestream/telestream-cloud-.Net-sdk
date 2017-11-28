@@ -214,10 +214,10 @@ namespace Telestream.Cloud.SDK
                 }
                public Task<UploadSession> StartUpload(string factoryId, long fileSize, string fileName, CancellationToken cancelToken = default(CancellationToken))
                {
-                       return StartUpload(factoryId, fileSize, fileName, null, null, null, cancelToken);
+                       return StartUploadSession(factoryId, fileSize, fileName, null, null, null, cancelToken);
                }
 
-               public Task<UploadSession> StartUpload(string factoryId, long fileSize, string fileName, string pathFormat,
+               public Task<UploadSession> StartUploadSession(string factoryId, long fileSize, string fileName, string pathFormat,
                                                       Dictionary<string, string> extraVars, string profiles = null,
                                                       CancellationToken cancelToken = default(CancellationToken))
                {
