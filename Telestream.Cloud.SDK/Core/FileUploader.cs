@@ -16,7 +16,6 @@ namespace Telestream.Cloud.SDK.Core
 		{
 		}
 
-		private bool canceled = false;
 		public async Task<Video> UploadFile(UploadSession session, Stream dataStream, IProgress<double> progress, CancellationToken cancelToken = default(CancellationToken))
 		{
 			if (dataStream == null)
@@ -31,9 +30,6 @@ namespace Telestream.Cloud.SDK.Core
 
 			for (var i = session.LastUploadedPart + 1; i < session.Parts; i++)
 			{
-				if (i == 2 && !canceled) {
-					canceled = true;
-					return null; }
 				int bytesRead;
 				if ((bytesRead = dataStream.Read(buffer, 0, buffer.Length)) > 0)
 				{

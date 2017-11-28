@@ -113,6 +113,9 @@
     <Compile Include="..\Telestream.Cloud.SDK\Model\UploadSession.cs">
       <Link>Model\UploadSession.cs</Link>
     </Compile>
+       <Compile Include="..\Telestream.Cloud.SDK\Model\ExtraFile.cs">
+      <Link>Model\ExtraFile.cs</Link>
+    </Compile>
     <Compile Include="..\Telestream.Cloud.SDK\Model\Video.cs">
       <Link>Model\Video.cs</Link>
     </Compile>
