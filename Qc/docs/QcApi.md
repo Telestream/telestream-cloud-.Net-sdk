@@ -1,0 +1,865 @@
+# Telestream.Cloud.Qc.Api.QcApi
+
+All URIs are relative to *https://api.cloud.telestream.net/qc/v1.0*
+
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**CancelJob**](QcApi.md#canceljob) | **PUT** /projects/{project}/jobs/{job}/cancel.json | 
+[**CreateJob**](QcApi.md#createjob) | **POST** /projects/{project}/jobs.json | Create a new job
+[**CreateProject**](QcApi.md#createproject) | **POST** /projects.json | Create a new project
+[**GetJob**](QcApi.md#getjob) | **GET** /projects/{project}/jobs/{job}.json | Get QC job
+[**GetProject**](QcApi.md#getproject) | **GET** /projects/{project}.json | Get project by Id
+[**ListJobs**](QcApi.md#listjobs) | **GET** /projects/{project}/jobs.json | Get jobs form projects
+[**ListProjects**](QcApi.md#listprojects) | **GET** /projects.json | List all projects for an account
+[**ModifyProject**](QcApi.md#modifyproject) | **PUT** /projects/{project}.json | Modify project
+[**Proxy**](QcApi.md#proxy) | **GET** /projects/{project}/jobs/{job}/proxy.json | 
+[**RemoveJob**](QcApi.md#removejob) | **DELETE** /projects/{project}/jobs/{job}.json | 
+[**RemoveProject**](QcApi.md#removeproject) | **DELETE** /projects/{project}.json | 
+[**SignedUrls**](QcApi.md#signedurls) | **GET** /projects/{project}/jobs/{job}/signed-urls.json | 
+[**UploadVideo**](QcApi.md#uploadvideo) | **POST** /projects/{project}/upload.json | Creates an upload session
+
+
+<a name="canceljob"></a>
+# **CancelJob**
+> void CancelJob (string project, string job)
+
+
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using Telestream.Cloud.Qc.Api;
+using Telestream.Cloud.Qc.Client;
+using Telestream.Cloud.Qc.Model;
+
+namespace Example
+{
+    public class CancelJobExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("X-Api-Key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("X-Api-Key", "Bearer");
+
+            var apiInstance = new QcApi();
+            var project = project_example;  // string | A unique identifier of a Project.
+            var job = job_example;  // string | A unique identifier of a Job.
+
+            try
+            {
+                apiInstance.CancelJob(project, job);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling QcApi.CancelJob: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project** | **string**| A unique identifier of a Project. | 
+ **job** | **string**| A unique identifier of a Job. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[apiKey](../README.md#apiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="createjob"></a>
+# **CreateJob**
+> Job CreateJob (string project, JobData data)
+
+Create a new job
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using Telestream.Cloud.Qc.Api;
+using Telestream.Cloud.Qc.Client;
+using Telestream.Cloud.Qc.Model;
+
+namespace Example
+{
+    public class CreateJobExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("X-Api-Key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("X-Api-Key", "Bearer");
+
+            var apiInstance = new QcApi();
+            var project = project_example;  // string | A unique identifier of a Project.
+            var data = new JobData(); // JobData | 
+
+            try
+            {
+                // Create a new job
+                Job result = apiInstance.CreateJob(project, data);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling QcApi.CreateJob: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project** | **string**| A unique identifier of a Project. | 
+ **data** | [**JobData**](JobData.md)|  | 
+
+### Return type
+
+[**Job**](Job.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="createproject"></a>
+# **CreateProject**
+> Project CreateProject (Data data = null)
+
+Create a new project
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using Telestream.Cloud.Qc.Api;
+using Telestream.Cloud.Qc.Client;
+using Telestream.Cloud.Qc.Model;
+
+namespace Example
+{
+    public class CreateProjectExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("X-Api-Key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("X-Api-Key", "Bearer");
+
+            var apiInstance = new QcApi();
+            var data = new Data(); // Data |  (optional) 
+
+            try
+            {
+                // Create a new project
+                Project result = apiInstance.CreateProject(data);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling QcApi.CreateProject: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **data** | [**Data**](Data.md)|  | [optional] 
+
+### Return type
+
+[**Project**](Project.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="getjob"></a>
+# **GetJob**
+> Job GetJob (string project, string job)
+
+Get QC job
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using Telestream.Cloud.Qc.Api;
+using Telestream.Cloud.Qc.Client;
+using Telestream.Cloud.Qc.Model;
+
+namespace Example
+{
+    public class GetJobExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("X-Api-Key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("X-Api-Key", "Bearer");
+
+            var apiInstance = new QcApi();
+            var project = project_example;  // string | A unique identifier of a Project.
+            var job = job_example;  // string | A unique identifier of a Job.
+
+            try
+            {
+                // Get QC job
+                Job result = apiInstance.GetJob(project, job);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling QcApi.GetJob: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project** | **string**| A unique identifier of a Project. | 
+ **job** | **string**| A unique identifier of a Job. | 
+
+### Return type
+
+[**Job**](Job.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="getproject"></a>
+# **GetProject**
+> Project GetProject (string project)
+
+Get project by Id
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using Telestream.Cloud.Qc.Api;
+using Telestream.Cloud.Qc.Client;
+using Telestream.Cloud.Qc.Model;
+
+namespace Example
+{
+    public class GetProjectExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("X-Api-Key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("X-Api-Key", "Bearer");
+
+            var apiInstance = new QcApi();
+            var project = project_example;  // string | A unique identifier of a Project.
+
+            try
+            {
+                // Get project by Id
+                Project result = apiInstance.GetProject(project);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling QcApi.GetProject: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project** | **string**| A unique identifier of a Project. | 
+
+### Return type
+
+[**Project**](Project.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="listjobs"></a>
+# **ListJobs**
+> JobsCollection ListJobs (string project, bool? expand = null, string status = null, int? perPage = null, int? page = null)
+
+Get jobs form projects
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using Telestream.Cloud.Qc.Api;
+using Telestream.Cloud.Qc.Client;
+using Telestream.Cloud.Qc.Model;
+
+namespace Example
+{
+    public class ListJobsExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("X-Api-Key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("X-Api-Key", "Bearer");
+
+            var apiInstance = new QcApi();
+            var project = project_example;  // string | A unique identifier of a Project.
+            var expand = true;  // bool? | Expand details of job (optional) 
+            var status = status_example;  // string | Filter jobs by status (optional) 
+            var perPage = 56;  // int? | Limit number of listed jobs (optional)  (default to 30)
+            var page = 56;  // int? | Index of jobs page to be listed (optional) 
+
+            try
+            {
+                // Get jobs form projects
+                JobsCollection result = apiInstance.ListJobs(project, expand, status, perPage, page);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling QcApi.ListJobs: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project** | **string**| A unique identifier of a Project. | 
+ **expand** | **bool?**| Expand details of job | [optional] 
+ **status** | **string**| Filter jobs by status | [optional] 
+ **perPage** | **int?**| Limit number of listed jobs | [optional] [default to 30]
+ **page** | **int?**| Index of jobs page to be listed | [optional] 
+
+### Return type
+
+[**JobsCollection**](JobsCollection.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="listprojects"></a>
+# **ListProjects**
+> List<Project> ListProjects ()
+
+List all projects for an account
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using Telestream.Cloud.Qc.Api;
+using Telestream.Cloud.Qc.Client;
+using Telestream.Cloud.Qc.Model;
+
+namespace Example
+{
+    public class ListProjectsExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("X-Api-Key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("X-Api-Key", "Bearer");
+
+            var apiInstance = new QcApi();
+
+            try
+            {
+                // List all projects for an account
+                List&lt;Project&gt; result = apiInstance.ListProjects();
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling QcApi.ListProjects: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**List<Project>**](Project.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="modifyproject"></a>
+# **ModifyProject**
+> Project ModifyProject (string project, Data1 data = null)
+
+Modify project
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using Telestream.Cloud.Qc.Api;
+using Telestream.Cloud.Qc.Client;
+using Telestream.Cloud.Qc.Model;
+
+namespace Example
+{
+    public class ModifyProjectExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("X-Api-Key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("X-Api-Key", "Bearer");
+
+            var apiInstance = new QcApi();
+            var project = project_example;  // string | 
+            var data = new Data1(); // Data1 |  (optional) 
+
+            try
+            {
+                // Modify project
+                Project result = apiInstance.ModifyProject(project, data);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling QcApi.ModifyProject: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project** | **string**|  | 
+ **data** | [**Data1**](Data1.md)|  | [optional] 
+
+### Return type
+
+[**Project**](Project.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="proxy"></a>
+# **Proxy**
+> Proxy Proxy (string project, string job)
+
+
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using Telestream.Cloud.Qc.Api;
+using Telestream.Cloud.Qc.Client;
+using Telestream.Cloud.Qc.Model;
+
+namespace Example
+{
+    public class ProxyExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("X-Api-Key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("X-Api-Key", "Bearer");
+
+            var apiInstance = new QcApi();
+            var project = project_example;  // string | A unique identifier of a Project.
+            var job = job_example;  // string | A unique identifier of a Job.
+
+            try
+            {
+                Proxy result = apiInstance.Proxy(project, job);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling QcApi.Proxy: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project** | **string**| A unique identifier of a Project. | 
+ **job** | **string**| A unique identifier of a Job. | 
+
+### Return type
+
+[**Proxy**](Proxy.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="removejob"></a>
+# **RemoveJob**
+> void RemoveJob (string project, string job)
+
+
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using Telestream.Cloud.Qc.Api;
+using Telestream.Cloud.Qc.Client;
+using Telestream.Cloud.Qc.Model;
+
+namespace Example
+{
+    public class RemoveJobExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("X-Api-Key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("X-Api-Key", "Bearer");
+
+            var apiInstance = new QcApi();
+            var project = project_example;  // string | A unique identifier of a Project.
+            var job = job_example;  // string | A unique identifier of a Job.
+
+            try
+            {
+                apiInstance.RemoveJob(project, job);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling QcApi.RemoveJob: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project** | **string**| A unique identifier of a Project. | 
+ **job** | **string**| A unique identifier of a Job. | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[apiKey](../README.md#apiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="removeproject"></a>
+# **RemoveProject**
+> void RemoveProject (string project)
+
+
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using Telestream.Cloud.Qc.Api;
+using Telestream.Cloud.Qc.Client;
+using Telestream.Cloud.Qc.Model;
+
+namespace Example
+{
+    public class RemoveProjectExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("X-Api-Key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("X-Api-Key", "Bearer");
+
+            var apiInstance = new QcApi();
+            var project = project_example;  // string | 
+
+            try
+            {
+                apiInstance.RemoveProject(project);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling QcApi.RemoveProject: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project** | **string**|  | 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[apiKey](../README.md#apiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="signedurls"></a>
+# **SignedUrls**
+> Dictionary<string, string> SignedUrls (string project, string job)
+
+
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using Telestream.Cloud.Qc.Api;
+using Telestream.Cloud.Qc.Client;
+using Telestream.Cloud.Qc.Model;
+
+namespace Example
+{
+    public class SignedUrlsExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("X-Api-Key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("X-Api-Key", "Bearer");
+
+            var apiInstance = new QcApi();
+            var project = project_example;  // string | A unique identifier of a Project.
+            var job = job_example;  // string | A unique identifier of a Job.
+
+            try
+            {
+                Dictionary&lt;string, string&gt; result = apiInstance.SignedUrls(project, job);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling QcApi.SignedUrls: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project** | **string**| A unique identifier of a Project. | 
+ **job** | **string**| A unique identifier of a Job. | 
+
+### Return type
+
+**Dictionary<string, string>**
+
+### Authorization
+
+[apiKey](../README.md#apiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="uploadvideo"></a>
+# **UploadVideo**
+> UploadSession UploadVideo (string project, VideoUploadBody videoUploadBody)
+
+Creates an upload session
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using Telestream.Cloud.Qc.Api;
+using Telestream.Cloud.Qc.Client;
+using Telestream.Cloud.Qc.Model;
+
+namespace Example
+{
+    public class UploadVideoExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("X-Api-Key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("X-Api-Key", "Bearer");
+
+            var apiInstance = new QcApi();
+            var project = project_example;  // string | A unique identifier of a Project.
+            var videoUploadBody = new VideoUploadBody(); // VideoUploadBody | 
+
+            try
+            {
+                // Creates an upload session
+                UploadSession result = apiInstance.UploadVideo(project, videoUploadBody);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling QcApi.UploadVideo: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project** | **string**| A unique identifier of a Project. | 
+ **videoUploadBody** | [**VideoUploadBody**](VideoUploadBody.md)|  | 
+
+### Return type
+
+[**UploadSession**](UploadSession.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
