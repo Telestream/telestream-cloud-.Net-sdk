@@ -1,154 +1,66 @@
-using System;
-using System.IO;
-using System.Linq;
-using System.Net.Http;
-using Newtonsoft.Json;
-using System.Threading.Tasks;
-using Telestream.Cloud.Flip.Model;
-using Telestream.Cloud.Flip.Client;
-using Telestream.Cloud.Flip.Api;
+﻿using System;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
-using RestSharp.Portable;
-using RestSharp.Portable.HttpClient;
+using System.IO;
+using System.Threading.Tasks;
+using Telestream.Cloud.Flip.Client;
+using Telestream.Cloud.Flip.Model;
 
-namespace Telestream.Cloud.Flip.Client
+namespace Telestream.Cloud.Flip.Api
 {
-	public class FileUploader
+	public class FileUploader : FileUploaderBase
 	{
-		protected FlipApi _apiClient;
-
-		public FileUploader(FlipApi apiClient)
+		public FileUploader(FlipApi apiClient) : base(apiClient)
 		{
-			if(apiClient == null) { throw new ArgumentNullException(nameof(apiClient)); }
-			_apiClient = apiClient;
+
 		}
 
-		public async Task UploadFile(string filePath, string contextId, string profiles, List<ExtraFileMetadata> extraFiles = null)
+		public async Task UploadFile(string filePath, string contextId, List<ExtraFileMetadata> extraFiles = default(List<ExtraFileMetadata>), string profiles = default(string), string pathFormat = default(string), string payload = default(string), Dictionary<string, string> extraVariables = default(Dictionary<string, string>), string watermarkUrl = default(string), string watermarkLeft = default(string), string watermarkTop = default(string), string watermarkRight = default(string), string watermarkBottom = default(string), string watermarkWidth = default(string), string watermarkHeight = default(string), string clipLength = default(string), string clipOffset = default(string))
 		{
 			var fileName = Path.GetFileName(filePath);
 			var fileInfo = new FileInfo(filePath);
-
 			var extraFilesData = PrepareExtraFiles(extraFiles);
-			var videoSession = await PrepareMainFile(filePath, contextId, profiles, extraFilesData);
+			var videoSession = await PrepareMainFile(filePath,
+													 contextId,
+													 extraFilesData == null ? null : extraFilesData.ToExtraFileList(),
+													 profiles,
+													 pathFormat,
+													 payload,
+													 extraVariables,
+													 watermarkUrl,
+													 watermarkLeft,
+													 watermarkTop,
+													 watermarkRight,
+													 watermarkBottom,
+													 watermarkWidth,
+													 watermarkHeight,
+													 clipLength,
+													 clipOffset);
+			await UploadFile(filePath, videoSession, extraFilesData);
 
-			if (extraFilesData != null)
-			{
-				extraFilesData.Apply(videoSession);
-			}
-
-			await PerformUpload(filePath, videoSession.Location, videoSession.PartSize.Value, null);
-
-			if (extraFilesData != null)
-			{
-				foreach (var extraFile in extraFilesData)
-				{
-					await PerformUpload(extraFile.FilePath, videoSession.Location, extraFile.PartSize.Value, extraFile.Tag);
-				}
-			}
 		}
 
-		private Task<UploadSession> PrepareMainFile(string filePath, string contextId, string profiles, ExtraFileItemCollection extraFilesData)
+		private Task<UploadSession> PrepareMainFile(string filePath, string contextId, List<ExtraFile> extraFiles = default(List<ExtraFile>), string profiles = default(string), string pathFormat = default(string), string payload = default(string), Dictionary<string, string> extraVariables = default(Dictionary<string, string>), string watermarkUrl = default(string), string watermarkLeft = default(string), string watermarkTop = default(string), string watermarkRight = default(string), string watermarkBottom = default(string), string watermarkWidth = default(string), string watermarkHeight = default(string), string clipLength = default(string), string clipOffset = default(string))
 		{
 			var fileInfo = new FileInfo(filePath);
-			var uploadBody = new VideoUploadBody(FileSize: fileInfo.Length,
-												 FileName: fileInfo.Name,
-												 Profiles: profiles,
-												 MultiChunk: true,
-												 ExtraFiles: extraFilesData != null ? extraFilesData.ToExtraFileList() : null);
+			var uploadBody = new VideoUploadBody(fileInfo.Length,
+												 fileInfo.Name,
+												 extraFiles,
+												 profiles,
+												 pathFormat,
+												 payload,
+												 extraVariables,
+												 watermarkUrl,
+												 watermarkLeft,
+												 watermarkTop,
+												 watermarkRight,
+												 watermarkBottom,
+												 watermarkWidth,
+												 watermarkHeight,
+												 clipLength,
+												 clipOffset,
+												 true);
 
 			return _apiClient.UploadVideoAsync(contextId, uploadBody);
 		}
-
-		private ExtraFileItemCollection PrepareExtraFiles(List<ExtraFileMetadata> extraFiles)
-		{
-			if (extraFiles == null) { return null; }
-			return new ExtraFileItemCollection(extraFiles);
-		}
-
-		private async Task PerformUpload(string filePath, string location, int partSize, string tag = null)
-		{
-			var missingParts = await GetMissingParts(location, tag);
-
-			using (var fileStream = File.Open(filePath, FileMode.Open))
-			{
-				byte[] buffer = new byte[partSize];
-				foreach (var chunkIndex in missingParts)
-				{
-					await UploadChunk(buffer, location, partSize, fileStream, tag, chunkIndex);
-				}
-			}
-		}
-
-		public async Task UploadChunk(byte[] buffer, string location, int partSize, Stream dataStream, string tag, int chunkIndex)
-		{
-			int bytesRead;
-			var httpClient = new HttpClient();
-
-			dataStream.Seek(chunkIndex * partSize, SeekOrigin.Begin);
-
-			if ((bytesRead = dataStream.Read(buffer, 0, buffer.Length)) > 0)
-			{
-				var message = CreateChunkMessage(chunkIndex, buffer, bytesRead, location, tag);
-				var response = await SendMessage(httpClient, message);
-			}
-		}
-
-		public async Task AbortUpload(UploadSession session)
-		{
-			if (session == null) { throw new ArgumentNullException(nameof(session)); }
-			var message = new HttpRequestMessage(HttpMethod.Delete, session.Location);
-			await SendMessage(message);
-		}
-
-		private HttpRequestMessage CreateChunkMessage(int part_id, byte[] bytes, int bytesToSend, string location, string tag)
-		{
-			var message = new HttpRequestMessage(HttpMethod.Put, location);
-			message.Headers.Add("Cache-Control", "no-cache");
-
-			message.Content = new ByteArrayContent(bytes, 0, bytesToSend);
-			message.Content.Headers.Add("Content-Type", "application/octet-stream");
-			message.Content.Headers.Add("X-Part", part_id.ToString());
-
-			if (!string.IsNullOrEmpty(tag))
-			{
-				message.Content.Headers.Add("X-Extra-File-Tag", tag);
-			}
-
-			return message;
-		}
-
-		private Task<HttpResponseMessage> SendMessage(HttpRequestMessage message)
-		{
-			var client = new HttpClient();
-			return SendMessage(client, message);
-		}
-
-		private Task<HttpResponseMessage> SendMessage(HttpClient client, HttpRequestMessage message)
-		{
-			return client.SendAsync(message);
-		}
-
-		private async Task<int[]> GetMissingParts(string location, string tag)
-		{
-			var request = new RestRequest(location, Method.GET);
-			request.Serializer = null;
-			var restClient = new RestClient(location);
-			if (!string.IsNullOrEmpty(tag))
-			{
-				request.AddHeader("X-Extra-File-Tag", tag);
-			}
-			var response = await restClient.Execute(request);
-			var parsed = (MissingPartsResponse)_apiClient.Configuration.ApiClient.Deserialize(response, typeof(MissingPartsResponse));
-			return parsed.MissingParts;
-		}
-
-		[DataContract]
-		protected class MissingPartsResponse
-		{
-			[DataMember(Name = "missing_parts")]
-			public int[] MissingParts { get; set; }
-		}
-
 	}
 }

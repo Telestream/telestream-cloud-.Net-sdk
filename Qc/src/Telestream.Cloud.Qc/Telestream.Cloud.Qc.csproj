@@ -4,7 +4,7 @@ Qc API
 
 QC API
 
-OpenAPI spec version: 1.0.0
+OpenAPI spec version: 2.0.0
 Contact: cloudsupport@telestream.net
 -->
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">

@@ -4,24 +4,24 @@ All URIs are relative to *https://api.cloud.telestream.net/qc/v1.0*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CancelJob**](QcApi.md#canceljob) | **PUT** /projects/{project}/jobs/{job}/cancel.json | 
-[**CreateJob**](QcApi.md#createjob) | **POST** /projects/{project}/jobs.json | Create a new job
+[**CancelJob**](QcApi.md#canceljob) | **PUT** /projects/{project_id}/jobs/{job_id}/cancel.json | 
+[**CreateJob**](QcApi.md#createjob) | **POST** /projects/{project_id}/jobs.json | Create a new job
 [**CreateProject**](QcApi.md#createproject) | **POST** /projects.json | Create a new project
-[**GetJob**](QcApi.md#getjob) | **GET** /projects/{project}/jobs/{job}.json | Get QC job
-[**GetProject**](QcApi.md#getproject) | **GET** /projects/{project}.json | Get project by Id
-[**ListJobs**](QcApi.md#listjobs) | **GET** /projects/{project}/jobs.json | Get jobs form projects
+[**GetJob**](QcApi.md#getjob) | **GET** /projects/{project_id}/jobs/{job_id}.json | Get QC job
+[**GetProject**](QcApi.md#getproject) | **GET** /projects/{project_id}.json | Get project by Id
+[**ListJobs**](QcApi.md#listjobs) | **GET** /projects/{project_id}/jobs.json | Get jobs form projects
 [**ListProjects**](QcApi.md#listprojects) | **GET** /projects.json | List all projects for an account
-[**ModifyProject**](QcApi.md#modifyproject) | **PUT** /projects/{project}.json | Modify project
-[**Proxy**](QcApi.md#proxy) | **GET** /projects/{project}/jobs/{job}/proxy.json | 
-[**RemoveJob**](QcApi.md#removejob) | **DELETE** /projects/{project}/jobs/{job}.json | 
-[**RemoveProject**](QcApi.md#removeproject) | **DELETE** /projects/{project}.json | 
-[**SignedUrls**](QcApi.md#signedurls) | **GET** /projects/{project}/jobs/{job}/signed-urls.json | 
-[**UploadVideo**](QcApi.md#uploadvideo) | **POST** /projects/{project}/upload.json | Creates an upload session
+[**ModifyProject**](QcApi.md#modifyproject) | **PUT** /projects/{project_id}.json | Modify project
+[**Proxy**](QcApi.md#proxy) | **GET** /projects/{project_id}/jobs/{job_id}/proxy.json | 
+[**RemoveJob**](QcApi.md#removejob) | **DELETE** /projects/{project_id}/jobs/{job_id}.json | 
+[**RemoveProject**](QcApi.md#removeproject) | **DELETE** /projects/{project_id}.json | 
+[**SignedUrls**](QcApi.md#signedurls) | **GET** /projects/{project_id}/jobs/{job_id}/signed-urls.json | 
+[**UploadVideo**](QcApi.md#uploadvideo) | **POST** /projects/{project_id}/upload.json | Creates an upload session
 
 
 <a name="canceljob"></a>
 # **CancelJob**
-> void CancelJob (string project, string job)
+> void CancelJob (string projectId, string jobId)
 
 
 
@@ -45,12 +45,12 @@ namespace Example
             // Configuration.Default.AddApiKeyPrefix("X-Api-Key", "Bearer");
 
             var apiInstance = new QcApi();
-            var project = project_example;  // string | A unique identifier of a Project.
-            var job = job_example;  // string | A unique identifier of a Job.
+            var projectId = projectId_example;  // string | A unique identifier of a Project.
+            var jobId = jobId_example;  // string | A unique identifier of a Job.
 
             try
             {
-                apiInstance.CancelJob(project, job);
+                apiInstance.CancelJob(projectId, jobId);
             }
             catch (Exception e)
             {
@@ -65,8 +65,8 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project** | **string**| A unique identifier of a Project. | 
- **job** | **string**| A unique identifier of a Job. | 
+ **projectId** | **string**| A unique identifier of a Project. | 
+ **jobId** | **string**| A unique identifier of a Job. | 
 
 ### Return type
 
@@ -85,7 +85,7 @@ void (empty response body)
 
 <a name="createjob"></a>
 # **CreateJob**
-> Job CreateJob (string project, JobData data)
+> Job CreateJob (string projectId, JobData data)
 
 Create a new job
 
@@ -109,13 +109,13 @@ namespace Example
             // Configuration.Default.AddApiKeyPrefix("X-Api-Key", "Bearer");
 
             var apiInstance = new QcApi();
-            var project = project_example;  // string | A unique identifier of a Project.
+            var projectId = projectId_example;  // string | A unique identifier of a Project.
             var data = new JobData(); // JobData | 
 
             try
             {
                 // Create a new job
-                Job result = apiInstance.CreateJob(project, data);
+                Job result = apiInstance.CreateJob(projectId, data);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -131,7 +131,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project** | **string**| A unique identifier of a Project. | 
+ **projectId** | **string**| A unique identifier of a Project. | 
  **data** | [**JobData**](JobData.md)|  | 
 
 ### Return type
@@ -215,7 +215,7 @@ Name | Type | Description  | Notes
 
 <a name="getjob"></a>
 # **GetJob**
-> Job GetJob (string project, string job)
+> Job GetJob (string projectId, string jobId)
 
 Get QC job
 
@@ -239,13 +239,13 @@ namespace Example
             // Configuration.Default.AddApiKeyPrefix("X-Api-Key", "Bearer");
 
             var apiInstance = new QcApi();
-            var project = project_example;  // string | A unique identifier of a Project.
-            var job = job_example;  // string | A unique identifier of a Job.
+            var projectId = projectId_example;  // string | A unique identifier of a Project.
+            var jobId = jobId_example;  // string | A unique identifier of a Job.
 
             try
             {
                 // Get QC job
-                Job result = apiInstance.GetJob(project, job);
+                Job result = apiInstance.GetJob(projectId, jobId);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -261,8 +261,8 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project** | **string**| A unique identifier of a Project. | 
- **job** | **string**| A unique identifier of a Job. | 
+ **projectId** | **string**| A unique identifier of a Project. | 
+ **jobId** | **string**| A unique identifier of a Job. | 
 
 ### Return type
 
@@ -281,7 +281,7 @@ Name | Type | Description  | Notes
 
 <a name="getproject"></a>
 # **GetProject**
-> Project GetProject (string project)
+> Project GetProject (string projectId)
 
 Get project by Id
 
@@ -305,12 +305,12 @@ namespace Example
             // Configuration.Default.AddApiKeyPrefix("X-Api-Key", "Bearer");
 
             var apiInstance = new QcApi();
-            var project = project_example;  // string | A unique identifier of a Project.
+            var projectId = projectId_example;  // string | A unique identifier of a Project.
 
             try
             {
                 // Get project by Id
-                Project result = apiInstance.GetProject(project);
+                Project result = apiInstance.GetProject(projectId);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -326,7 +326,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project** | **string**| A unique identifier of a Project. | 
+ **projectId** | **string**| A unique identifier of a Project. | 
 
 ### Return type
 
@@ -345,7 +345,7 @@ Name | Type | Description  | Notes
 
 <a name="listjobs"></a>
 # **ListJobs**
-> JobsCollection ListJobs (string project, bool? expand = null, string status = null, int? perPage = null, int? page = null)
+> JobsCollection ListJobs (string projectId, bool? expand = null, string status = null, int? perPage = null, int? page = null)
 
 Get jobs form projects
 
@@ -369,7 +369,7 @@ namespace Example
             // Configuration.Default.AddApiKeyPrefix("X-Api-Key", "Bearer");
 
             var apiInstance = new QcApi();
-            var project = project_example;  // string | A unique identifier of a Project.
+            var projectId = projectId_example;  // string | A unique identifier of a Project.
             var expand = true;  // bool? | Expand details of job (optional) 
             var status = status_example;  // string | Filter jobs by status (optional) 
             var perPage = 56;  // int? | Limit number of listed jobs (optional)  (default to 30)
@@ -378,7 +378,7 @@ namespace Example
             try
             {
                 // Get jobs form projects
-                JobsCollection result = apiInstance.ListJobs(project, expand, status, perPage, page);
+                JobsCollection result = apiInstance.ListJobs(projectId, expand, status, perPage, page);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -394,7 +394,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project** | **string**| A unique identifier of a Project. | 
+ **projectId** | **string**| A unique identifier of a Project. | 
  **expand** | **bool?**| Expand details of job | [optional] 
  **status** | **string**| Filter jobs by status | [optional] 
  **perPage** | **int?**| Limit number of listed jobs | [optional] [default to 30]
@@ -477,7 +477,7 @@ This endpoint does not need any parameter.
 
 <a name="modifyproject"></a>
 # **ModifyProject**
-> Project ModifyProject (string project, Data1 data = null)
+> Project ModifyProject (string projectId, Data1 data = null)
 
 Modify project
 
@@ -501,13 +501,13 @@ namespace Example
             // Configuration.Default.AddApiKeyPrefix("X-Api-Key", "Bearer");
 
             var apiInstance = new QcApi();
-            var project = project_example;  // string | 
+            var projectId = projectId_example;  // string | 
             var data = new Data1(); // Data1 |  (optional) 
 
             try
             {
                 // Modify project
-                Project result = apiInstance.ModifyProject(project, data);
+                Project result = apiInstance.ModifyProject(projectId, data);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -523,7 +523,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project** | **string**|  | 
+ **projectId** | **string**|  | 
  **data** | [**Data1**](Data1.md)|  | [optional] 
 
 ### Return type
@@ -543,7 +543,7 @@ Name | Type | Description  | Notes
 
 <a name="proxy"></a>
 # **Proxy**
-> Proxy Proxy (string project, string job)
+> Proxy Proxy (string projectId, string jobId)
 
 
 
@@ -567,12 +567,12 @@ namespace Example
             // Configuration.Default.AddApiKeyPrefix("X-Api-Key", "Bearer");
 
             var apiInstance = new QcApi();
-            var project = project_example;  // string | A unique identifier of a Project.
-            var job = job_example;  // string | A unique identifier of a Job.
+            var projectId = projectId_example;  // string | A unique identifier of a Project.
+            var jobId = jobId_example;  // string | A unique identifier of a Job.
 
             try
             {
-                Proxy result = apiInstance.Proxy(project, job);
+                Proxy result = apiInstance.Proxy(projectId, jobId);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -588,8 +588,8 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project** | **string**| A unique identifier of a Project. | 
- **job** | **string**| A unique identifier of a Job. | 
+ **projectId** | **string**| A unique identifier of a Project. | 
+ **jobId** | **string**| A unique identifier of a Job. | 
 
 ### Return type
 
@@ -608,7 +608,7 @@ Name | Type | Description  | Notes
 
 <a name="removejob"></a>
 # **RemoveJob**
-> void RemoveJob (string project, string job)
+> void RemoveJob (string projectId, string jobId)
 
 
 
@@ -632,12 +632,12 @@ namespace Example
             // Configuration.Default.AddApiKeyPrefix("X-Api-Key", "Bearer");
 
             var apiInstance = new QcApi();
-            var project = project_example;  // string | A unique identifier of a Project.
-            var job = job_example;  // string | A unique identifier of a Job.
+            var projectId = projectId_example;  // string | A unique identifier of a Project.
+            var jobId = jobId_example;  // string | A unique identifier of a Job.
 
             try
             {
-                apiInstance.RemoveJob(project, job);
+                apiInstance.RemoveJob(projectId, jobId);
             }
             catch (Exception e)
             {
@@ -652,8 +652,8 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project** | **string**| A unique identifier of a Project. | 
- **job** | **string**| A unique identifier of a Job. | 
+ **projectId** | **string**| A unique identifier of a Project. | 
+ **jobId** | **string**| A unique identifier of a Job. | 
 
 ### Return type
 
@@ -672,7 +672,7 @@ void (empty response body)
 
 <a name="removeproject"></a>
 # **RemoveProject**
-> void RemoveProject (string project)
+> void RemoveProject (string projectId)
 
 
 
@@ -696,11 +696,11 @@ namespace Example
             // Configuration.Default.AddApiKeyPrefix("X-Api-Key", "Bearer");
 
             var apiInstance = new QcApi();
-            var project = project_example;  // string | 
+            var projectId = projectId_example;  // string | 
 
             try
             {
-                apiInstance.RemoveProject(project);
+                apiInstance.RemoveProject(projectId);
             }
             catch (Exception e)
             {
@@ -715,7 +715,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project** | **string**|  | 
+ **projectId** | **string**|  | 
 
 ### Return type
 
@@ -734,7 +734,7 @@ void (empty response body)
 
 <a name="signedurls"></a>
 # **SignedUrls**
-> Dictionary<string, string> SignedUrls (string project, string job)
+> Dictionary<string, string> SignedUrls (string projectId, string jobId)
 
 
 
@@ -758,12 +758,12 @@ namespace Example
             // Configuration.Default.AddApiKeyPrefix("X-Api-Key", "Bearer");
 
             var apiInstance = new QcApi();
-            var project = project_example;  // string | A unique identifier of a Project.
-            var job = job_example;  // string | A unique identifier of a Job.
+            var projectId = projectId_example;  // string | A unique identifier of a Project.
+            var jobId = jobId_example;  // string | A unique identifier of a Job.
 
             try
             {
-                Dictionary&lt;string, string&gt; result = apiInstance.SignedUrls(project, job);
+                Dictionary&lt;string, string&gt; result = apiInstance.SignedUrls(projectId, jobId);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -779,8 +779,8 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project** | **string**| A unique identifier of a Project. | 
- **job** | **string**| A unique identifier of a Job. | 
+ **projectId** | **string**| A unique identifier of a Project. | 
+ **jobId** | **string**| A unique identifier of a Job. | 
 
 ### Return type
 
@@ -799,7 +799,7 @@ Name | Type | Description  | Notes
 
 <a name="uploadvideo"></a>
 # **UploadVideo**
-> UploadSession UploadVideo (string project, VideoUploadBody videoUploadBody)
+> UploadSession UploadVideo (string projectId, VideoUploadBody videoUploadBody)
 
 Creates an upload session
 
@@ -823,13 +823,13 @@ namespace Example
             // Configuration.Default.AddApiKeyPrefix("X-Api-Key", "Bearer");
 
             var apiInstance = new QcApi();
-            var project = project_example;  // string | A unique identifier of a Project.
+            var projectId = projectId_example;  // string | A unique identifier of a Project.
             var videoUploadBody = new VideoUploadBody(); // VideoUploadBody | 
 
             try
             {
                 // Creates an upload session
-                UploadSession result = apiInstance.UploadVideo(project, videoUploadBody);
+                UploadSession result = apiInstance.UploadVideo(projectId, videoUploadBody);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -845,7 +845,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project** | **string**| A unique identifier of a Project. | 
+ **projectId** | **string**| A unique identifier of a Project. | 
  **videoUploadBody** | [**VideoUploadBody**](VideoUploadBody.md)|  | 
 
 ### Return type
