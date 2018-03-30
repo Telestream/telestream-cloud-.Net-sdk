@@ -37,25 +37,25 @@ namespace Telestream.Cloud.Tts.Model
         {
             
             /// <summary>
-            /// Enum Available for "available"
+            /// Enum Available for value: available
             /// </summary>
             [EnumMember(Value = "available")]
             Available = 1,
             
             /// <summary>
-            /// Enum Modified for "modified"
+            /// Enum Modified for value: modified
             /// </summary>
             [EnumMember(Value = "modified")]
             Modified = 2,
             
             /// <summary>
-            /// Enum Training for "training"
+            /// Enum Training for value: training
             /// </summary>
             [EnumMember(Value = "training")]
             Training = 3,
             
             /// <summary>
-            /// Enum Failed for "failed"
+            /// Enum Failed for value: failed
             /// </summary>
             [EnumMember(Value = "failed")]
             Failed = 4

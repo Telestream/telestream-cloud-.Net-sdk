@@ -37,31 +37,31 @@ namespace Telestream.Cloud.Tts.Model
         {
             
             /// <summary>
-            /// Enum Pending for "pending"
+            /// Enum Pending for value: pending
             /// </summary>
             [EnumMember(Value = "pending")]
             Pending = 1,
             
             /// <summary>
-            /// Enum Preparing for "preparing"
+            /// Enum Preparing for value: preparing
             /// </summary>
             [EnumMember(Value = "preparing")]
             Preparing = 2,
             
             /// <summary>
-            /// Enum Processing for "processing"
+            /// Enum Processing for value: processing
             /// </summary>
             [EnumMember(Value = "processing")]
             Processing = 3,
             
             /// <summary>
-            /// Enum Success for "success"
+            /// Enum Success for value: success
             /// </summary>
             [EnumMember(Value = "success")]
             Success = 4,
             
             /// <summary>
-            /// Enum Error for "error"
+            /// Enum Error for value: error
             /// </summary>
             [EnumMember(Value = "error")]
             Error = 5

@@ -3,7 +3,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Duration** | **int?** | Video stream duration measured in seconds. | [optional] 
+**Duration** | **decimal?** | Video stream duration measured in seconds. | [optional] 
 **Codec** | **string** |  | [optional] 
 **Width** | **int?** |  | [optional] 
 **Height** | **int?** |  | [optional] 
