@@ -168,9 +168,9 @@ namespace Telestream.Cloud.Tts.Api
         /// </remarks>
         /// <exception cref="Telestream.Cloud.Tts.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="projectID">ID of the Project</param>
-        /// <param name="jobId"></param>
+        /// <param name="jobID"></param>
         /// <returns></returns>
-        void DeleteJob (string projectID, string jobId);
+        void DeleteJob (string projectID, string jobID);
 
         /// <summary>
         /// Deletes the Job
@@ -180,9 +180,9 @@ namespace Telestream.Cloud.Tts.Api
         /// </remarks>
         /// <exception cref="Telestream.Cloud.Tts.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="projectID">ID of the Project</param>
-        /// <param name="jobId"></param>
+        /// <param name="jobID"></param>
         /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> DeleteJobWithHttpInfo (string projectID, string jobId);
+        ApiResponse<Object> DeleteJobWithHttpInfo (string projectID, string jobID);
         /// <summary>
         /// Deletes the Project
         /// </summary>
@@ -210,9 +210,9 @@ namespace Telestream.Cloud.Tts.Api
         /// </remarks>
         /// <exception cref="Telestream.Cloud.Tts.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="projectID">ID of the Project</param>
-        /// <param name="jobId"></param>
+        /// <param name="jobID"></param>
         /// <returns>Job</returns>
-        Job Job (string projectID, string jobId);
+        Job Job (string projectID, string jobID);
 
         /// <summary>
         /// Returns the Job
@@ -222,9 +222,9 @@ namespace Telestream.Cloud.Tts.Api
         /// </remarks>
         /// <exception cref="Telestream.Cloud.Tts.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="projectID">ID of the Project</param>
-        /// <param name="jobId"></param>
+        /// <param name="jobID"></param>
         /// <returns>ApiResponse of Job</returns>
-        ApiResponse<Job> JobWithHttpInfo (string projectID, string jobId);
+        ApiResponse<Job> JobWithHttpInfo (string projectID, string jobID);
         /// <summary>
         /// Returns the Job Result
         /// </summary>
@@ -233,9 +233,9 @@ namespace Telestream.Cloud.Tts.Api
         /// </remarks>
         /// <exception cref="Telestream.Cloud.Tts.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="projectID">ID of the Project</param>
-        /// <param name="jobId"></param>
+        /// <param name="jobID"></param>
         /// <returns>JobResult</returns>
-        JobResult JobResult (string projectID, string jobId);
+        JobResult JobResult (string projectID, string jobID);
 
         /// <summary>
         /// Returns the Job Result
@@ -245,9 +245,9 @@ namespace Telestream.Cloud.Tts.Api
         /// </remarks>
         /// <exception cref="Telestream.Cloud.Tts.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="projectID">ID of the Project</param>
-        /// <param name="jobId"></param>
+        /// <param name="jobID"></param>
         /// <returns>ApiResponse of JobResult</returns>
-        ApiResponse<JobResult> JobResultWithHttpInfo (string projectID, string jobId);
+        ApiResponse<JobResult> JobResultWithHttpInfo (string projectID, string jobID);
         /// <summary>
         /// Returns a collection of Jobs
         /// </summary>
@@ -524,9 +524,9 @@ namespace Telestream.Cloud.Tts.Api
         /// </remarks>
         /// <exception cref="Telestream.Cloud.Tts.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="projectID">ID of the Project</param>
-        /// <param name="jobId"></param>
+        /// <param name="jobID"></param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task DeleteJobAsync (string projectID, string jobId);
+        System.Threading.Tasks.Task DeleteJobAsync (string projectID, string jobID);
 
         /// <summary>
         /// Deletes the Job
@@ -536,9 +536,9 @@ namespace Telestream.Cloud.Tts.Api
         /// </remarks>
         /// <exception cref="Telestream.Cloud.Tts.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="projectID">ID of the Project</param>
-        /// <param name="jobId"></param>
+        /// <param name="jobID"></param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> DeleteJobAsyncWithHttpInfo (string projectID, string jobId);
+        System.Threading.Tasks.Task<ApiResponse<Object>> DeleteJobAsyncWithHttpInfo (string projectID, string jobID);
         /// <summary>
         /// Deletes the Project
         /// </summary>
@@ -566,9 +566,9 @@ namespace Telestream.Cloud.Tts.Api
         /// </remarks>
         /// <exception cref="Telestream.Cloud.Tts.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="projectID">ID of the Project</param>
-        /// <param name="jobId"></param>
+        /// <param name="jobID"></param>
         /// <returns>Task of Job</returns>
-        System.Threading.Tasks.Task<Job> JobAsync (string projectID, string jobId);
+        System.Threading.Tasks.Task<Job> JobAsync (string projectID, string jobID);
 
         /// <summary>
         /// Returns the Job
@@ -578,9 +578,9 @@ namespace Telestream.Cloud.Tts.Api
         /// </remarks>
         /// <exception cref="Telestream.Cloud.Tts.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="projectID">ID of the Project</param>
-        /// <param name="jobId"></param>
+        /// <param name="jobID"></param>
         /// <returns>Task of ApiResponse (Job)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Job>> JobAsyncWithHttpInfo (string projectID, string jobId);
+        System.Threading.Tasks.Task<ApiResponse<Job>> JobAsyncWithHttpInfo (string projectID, string jobID);
         /// <summary>
         /// Returns the Job Result
         /// </summary>
@@ -589,9 +589,9 @@ namespace Telestream.Cloud.Tts.Api
         /// </remarks>
         /// <exception cref="Telestream.Cloud.Tts.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="projectID">ID of the Project</param>
-        /// <param name="jobId"></param>
+        /// <param name="jobID"></param>
         /// <returns>Task of JobResult</returns>
-        System.Threading.Tasks.Task<JobResult> JobResultAsync (string projectID, string jobId);
+        System.Threading.Tasks.Task<JobResult> JobResultAsync (string projectID, string jobID);
 
         /// <summary>
         /// Returns the Job Result
@@ -601,9 +601,9 @@ namespace Telestream.Cloud.Tts.Api
         /// </remarks>
         /// <exception cref="Telestream.Cloud.Tts.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="projectID">ID of the Project</param>
-        /// <param name="jobId"></param>
+        /// <param name="jobID"></param>
         /// <returns>Task of ApiResponse (JobResult)</returns>
-        System.Threading.Tasks.Task<ApiResponse<JobResult>> JobResultAsyncWithHttpInfo (string projectID, string jobId);
+        System.Threading.Tasks.Task<ApiResponse<JobResult>> JobResultAsyncWithHttpInfo (string projectID, string jobID);
         /// <summary>
         /// Returns a collection of Jobs
         /// </summary>
@@ -1807,11 +1807,11 @@ namespace Telestream.Cloud.Tts.Api
         /// </summary>
         /// <exception cref="Telestream.Cloud.Tts.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="projectID">ID of the Project</param>
-        /// <param name="jobId"></param>
+        /// <param name="jobID"></param>
         /// <returns></returns>
-        public void DeleteJob (string projectID, string jobId)
+        public void DeleteJob (string projectID, string jobID)
         {
-             DeleteJobWithHttpInfo(projectID, jobId);
+             DeleteJobWithHttpInfo(projectID, jobID);
         }
 
         /// <summary>
@@ -1819,18 +1819,18 @@ namespace Telestream.Cloud.Tts.Api
         /// </summary>
         /// <exception cref="Telestream.Cloud.Tts.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="projectID">ID of the Project</param>
-        /// <param name="jobId"></param>
+        /// <param name="jobID"></param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> DeleteJobWithHttpInfo (string projectID, string jobId)
+        public ApiResponse<Object> DeleteJobWithHttpInfo (string projectID, string jobID)
         {
             // verify the required parameter 'projectID' is set
             if (projectID == null)
                 throw new ApiException(400, "Missing required parameter 'projectID' when calling TtsApi->DeleteJob");
-            // verify the required parameter 'jobId' is set
-            if (jobId == null)
-                throw new ApiException(400, "Missing required parameter 'jobId' when calling TtsApi->DeleteJob");
+            // verify the required parameter 'jobID' is set
+            if (jobID == null)
+                throw new ApiException(400, "Missing required parameter 'jobID' when calling TtsApi->DeleteJob");
 
-            var localVarPath = "./projects/{projectID}/jobs/{id}";
+            var localVarPath = "./projects/{projectID}/jobs/{jobID}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1853,7 +1853,7 @@ namespace Telestream.Cloud.Tts.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             if (projectID != null) localVarPathParams.Add("projectID", Configuration.ApiClient.ParameterToString(projectID)); // path parameter
-            if (jobId != null) localVarPathParams.Add("job_id", Configuration.ApiClient.ParameterToString(jobId)); // path parameter
+            if (jobID != null) localVarPathParams.Add("jobID", Configuration.ApiClient.ParameterToString(jobID)); // path parameter
 
             // authentication (apiKey) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
@@ -1884,11 +1884,11 @@ namespace Telestream.Cloud.Tts.Api
         /// </summary>
         /// <exception cref="Telestream.Cloud.Tts.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="projectID">ID of the Project</param>
-        /// <param name="jobId"></param>
+        /// <param name="jobID"></param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task DeleteJobAsync (string projectID, string jobId)
+        public async System.Threading.Tasks.Task DeleteJobAsync (string projectID, string jobID)
         {
-             await DeleteJobAsyncWithHttpInfo(projectID, jobId);
+             await DeleteJobAsyncWithHttpInfo(projectID, jobID);
 
         }
 
@@ -1897,18 +1897,18 @@ namespace Telestream.Cloud.Tts.Api
         /// </summary>
         /// <exception cref="Telestream.Cloud.Tts.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="projectID">ID of the Project</param>
-        /// <param name="jobId"></param>
+        /// <param name="jobID"></param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> DeleteJobAsyncWithHttpInfo (string projectID, string jobId)
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> DeleteJobAsyncWithHttpInfo (string projectID, string jobID)
         {
             // verify the required parameter 'projectID' is set
             if (projectID == null)
                 throw new ApiException(400, "Missing required parameter 'projectID' when calling TtsApi->DeleteJob");
-            // verify the required parameter 'jobId' is set
-            if (jobId == null)
-                throw new ApiException(400, "Missing required parameter 'jobId' when calling TtsApi->DeleteJob");
+            // verify the required parameter 'jobID' is set
+            if (jobID == null)
+                throw new ApiException(400, "Missing required parameter 'jobID' when calling TtsApi->DeleteJob");
 
-            var localVarPath = "./projects/{projectID}/jobs/{id}";
+            var localVarPath = "./projects/{projectID}/jobs/{jobID}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1931,7 +1931,7 @@ namespace Telestream.Cloud.Tts.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             if (projectID != null) localVarPathParams.Add("projectID", Configuration.ApiClient.ParameterToString(projectID)); // path parameter
-            if (jobId != null) localVarPathParams.Add("job_id", Configuration.ApiClient.ParameterToString(jobId)); // path parameter
+            if (jobID != null) localVarPathParams.Add("jobID", Configuration.ApiClient.ParameterToString(jobID)); // path parameter
 
             // authentication (apiKey) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
@@ -2093,11 +2093,11 @@ namespace Telestream.Cloud.Tts.Api
         /// </summary>
         /// <exception cref="Telestream.Cloud.Tts.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="projectID">ID of the Project</param>
-        /// <param name="jobId"></param>
+        /// <param name="jobID"></param>
         /// <returns>Job</returns>
-        public Job Job (string projectID, string jobId)
+        public Job Job (string projectID, string jobID)
         {
-             ApiResponse<Job> localVarResponse = JobWithHttpInfo(projectID, jobId);
+             ApiResponse<Job> localVarResponse = JobWithHttpInfo(projectID, jobID);
              return localVarResponse.Data;
         }
 
@@ -2106,18 +2106,18 @@ namespace Telestream.Cloud.Tts.Api
         /// </summary>
         /// <exception cref="Telestream.Cloud.Tts.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="projectID">ID of the Project</param>
-        /// <param name="jobId"></param>
+        /// <param name="jobID"></param>
         /// <returns>ApiResponse of Job</returns>
-        public ApiResponse< Job > JobWithHttpInfo (string projectID, string jobId)
+        public ApiResponse< Job > JobWithHttpInfo (string projectID, string jobID)
         {
             // verify the required parameter 'projectID' is set
             if (projectID == null)
                 throw new ApiException(400, "Missing required parameter 'projectID' when calling TtsApi->Job");
-            // verify the required parameter 'jobId' is set
-            if (jobId == null)
-                throw new ApiException(400, "Missing required parameter 'jobId' when calling TtsApi->Job");
+            // verify the required parameter 'jobID' is set
+            if (jobID == null)
+                throw new ApiException(400, "Missing required parameter 'jobID' when calling TtsApi->Job");
 
-            var localVarPath = "./projects/{projectID}/jobs/{id}";
+            var localVarPath = "./projects/{projectID}/jobs/{jobID}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2140,7 +2140,7 @@ namespace Telestream.Cloud.Tts.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             if (projectID != null) localVarPathParams.Add("projectID", Configuration.ApiClient.ParameterToString(projectID)); // path parameter
-            if (jobId != null) localVarPathParams.Add("job_id", Configuration.ApiClient.ParameterToString(jobId)); // path parameter
+            if (jobID != null) localVarPathParams.Add("jobID", Configuration.ApiClient.ParameterToString(jobID)); // path parameter
 
             // authentication (apiKey) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
@@ -2171,11 +2171,11 @@ namespace Telestream.Cloud.Tts.Api
         /// </summary>
         /// <exception cref="Telestream.Cloud.Tts.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="projectID">ID of the Project</param>
-        /// <param name="jobId"></param>
+        /// <param name="jobID"></param>
         /// <returns>Task of Job</returns>
-        public async System.Threading.Tasks.Task<Job> JobAsync (string projectID, string jobId)
+        public async System.Threading.Tasks.Task<Job> JobAsync (string projectID, string jobID)
         {
-             ApiResponse<Job> localVarResponse = await JobAsyncWithHttpInfo(projectID, jobId);
+             ApiResponse<Job> localVarResponse = await JobAsyncWithHttpInfo(projectID, jobID);
              return localVarResponse.Data;
 
         }
@@ -2185,18 +2185,18 @@ namespace Telestream.Cloud.Tts.Api
         /// </summary>
         /// <exception cref="Telestream.Cloud.Tts.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="projectID">ID of the Project</param>
-        /// <param name="jobId"></param>
+        /// <param name="jobID"></param>
         /// <returns>Task of ApiResponse (Job)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Job>> JobAsyncWithHttpInfo (string projectID, string jobId)
+        public async System.Threading.Tasks.Task<ApiResponse<Job>> JobAsyncWithHttpInfo (string projectID, string jobID)
         {
             // verify the required parameter 'projectID' is set
             if (projectID == null)
                 throw new ApiException(400, "Missing required parameter 'projectID' when calling TtsApi->Job");
-            // verify the required parameter 'jobId' is set
-            if (jobId == null)
-                throw new ApiException(400, "Missing required parameter 'jobId' when calling TtsApi->Job");
+            // verify the required parameter 'jobID' is set
+            if (jobID == null)
+                throw new ApiException(400, "Missing required parameter 'jobID' when calling TtsApi->Job");
 
-            var localVarPath = "./projects/{projectID}/jobs/{id}";
+            var localVarPath = "./projects/{projectID}/jobs/{jobID}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2219,7 +2219,7 @@ namespace Telestream.Cloud.Tts.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             if (projectID != null) localVarPathParams.Add("projectID", Configuration.ApiClient.ParameterToString(projectID)); // path parameter
-            if (jobId != null) localVarPathParams.Add("job_id", Configuration.ApiClient.ParameterToString(jobId)); // path parameter
+            if (jobID != null) localVarPathParams.Add("jobID", Configuration.ApiClient.ParameterToString(jobID)); // path parameter
 
             // authentication (apiKey) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
@@ -2250,11 +2250,11 @@ namespace Telestream.Cloud.Tts.Api
         /// </summary>
         /// <exception cref="Telestream.Cloud.Tts.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="projectID">ID of the Project</param>
-        /// <param name="jobId"></param>
+        /// <param name="jobID"></param>
         /// <returns>JobResult</returns>
-        public JobResult JobResult (string projectID, string jobId)
+        public JobResult JobResult (string projectID, string jobID)
         {
-             ApiResponse<JobResult> localVarResponse = JobResultWithHttpInfo(projectID, jobId);
+             ApiResponse<JobResult> localVarResponse = JobResultWithHttpInfo(projectID, jobID);
              return localVarResponse.Data;
         }
 
@@ -2263,18 +2263,18 @@ namespace Telestream.Cloud.Tts.Api
         /// </summary>
         /// <exception cref="Telestream.Cloud.Tts.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="projectID">ID of the Project</param>
-        /// <param name="jobId"></param>
+        /// <param name="jobID"></param>
         /// <returns>ApiResponse of JobResult</returns>
-        public ApiResponse< JobResult > JobResultWithHttpInfo (string projectID, string jobId)
+        public ApiResponse< JobResult > JobResultWithHttpInfo (string projectID, string jobID)
         {
             // verify the required parameter 'projectID' is set
             if (projectID == null)
                 throw new ApiException(400, "Missing required parameter 'projectID' when calling TtsApi->JobResult");
-            // verify the required parameter 'jobId' is set
-            if (jobId == null)
-                throw new ApiException(400, "Missing required parameter 'jobId' when calling TtsApi->JobResult");
+            // verify the required parameter 'jobID' is set
+            if (jobID == null)
+                throw new ApiException(400, "Missing required parameter 'jobID' when calling TtsApi->JobResult");
 
-            var localVarPath = "./projects/{projectID}/jobs/{id}/result";
+            var localVarPath = "./projects/{projectID}/jobs/{jobID}/result";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2297,7 +2297,7 @@ namespace Telestream.Cloud.Tts.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             if (projectID != null) localVarPathParams.Add("projectID", Configuration.ApiClient.ParameterToString(projectID)); // path parameter
-            if (jobId != null) localVarPathParams.Add("job_id", Configuration.ApiClient.ParameterToString(jobId)); // path parameter
+            if (jobID != null) localVarPathParams.Add("jobID", Configuration.ApiClient.ParameterToString(jobID)); // path parameter
 
             // authentication (apiKey) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
@@ -2328,11 +2328,11 @@ namespace Telestream.Cloud.Tts.Api
         /// </summary>
         /// <exception cref="Telestream.Cloud.Tts.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="projectID">ID of the Project</param>
-        /// <param name="jobId"></param>
+        /// <param name="jobID"></param>
         /// <returns>Task of JobResult</returns>
-        public async System.Threading.Tasks.Task<JobResult> JobResultAsync (string projectID, string jobId)
+        public async System.Threading.Tasks.Task<JobResult> JobResultAsync (string projectID, string jobID)
         {
-             ApiResponse<JobResult> localVarResponse = await JobResultAsyncWithHttpInfo(projectID, jobId);
+             ApiResponse<JobResult> localVarResponse = await JobResultAsyncWithHttpInfo(projectID, jobID);
              return localVarResponse.Data;
 
         }
@@ -2342,18 +2342,18 @@ namespace Telestream.Cloud.Tts.Api
         /// </summary>
         /// <exception cref="Telestream.Cloud.Tts.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="projectID">ID of the Project</param>
-        /// <param name="jobId"></param>
+        /// <param name="jobID"></param>
         /// <returns>Task of ApiResponse (JobResult)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<JobResult>> JobResultAsyncWithHttpInfo (string projectID, string jobId)
+        public async System.Threading.Tasks.Task<ApiResponse<JobResult>> JobResultAsyncWithHttpInfo (string projectID, string jobID)
         {
             // verify the required parameter 'projectID' is set
             if (projectID == null)
                 throw new ApiException(400, "Missing required parameter 'projectID' when calling TtsApi->JobResult");
-            // verify the required parameter 'jobId' is set
-            if (jobId == null)
-                throw new ApiException(400, "Missing required parameter 'jobId' when calling TtsApi->JobResult");
+            // verify the required parameter 'jobID' is set
+            if (jobID == null)
+                throw new ApiException(400, "Missing required parameter 'jobID' when calling TtsApi->JobResult");
 
-            var localVarPath = "./projects/{projectID}/jobs/{id}/result";
+            var localVarPath = "./projects/{projectID}/jobs/{jobID}/result";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2376,7 +2376,7 @@ namespace Telestream.Cloud.Tts.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             if (projectID != null) localVarPathParams.Add("projectID", Configuration.ApiClient.ParameterToString(projectID)); // path parameter
-            if (jobId != null) localVarPathParams.Add("job_id", Configuration.ApiClient.ParameterToString(jobId)); // path parameter
+            if (jobID != null) localVarPathParams.Add("jobID", Configuration.ApiClient.ParameterToString(jobID)); // path parameter
 
             // authentication (apiKey) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))

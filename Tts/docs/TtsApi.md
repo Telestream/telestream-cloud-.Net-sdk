@@ -10,10 +10,10 @@ Method | HTTP request | Description
 [**CreateJob**](TtsApi.md#createjob) | **POST** /projects/{projectID}/jobs | Creates a new Job
 [**CreateProject**](TtsApi.md#createproject) | **POST** /projects | Creates a new Project
 [**DeleteCorpus**](TtsApi.md#deletecorpus) | **DELETE** /projects/{projectID}/corpora/{name} | Creates a new Corpus
-[**DeleteJob**](TtsApi.md#deletejob) | **DELETE** /projects/{projectID}/jobs/{id} | Deletes the Job
+[**DeleteJob**](TtsApi.md#deletejob) | **DELETE** /projects/{projectID}/jobs/{jobID} | Deletes the Job
 [**DeleteProject**](TtsApi.md#deleteproject) | **DELETE** /projects/{projectID} | Deletes the Project
-[**Job**](TtsApi.md#job) | **GET** /projects/{projectID}/jobs/{id} | Returns the Job
-[**JobResult**](TtsApi.md#jobresult) | **GET** /projects/{projectID}/jobs/{id}/result | Returns the Job Result
+[**Job**](TtsApi.md#job) | **GET** /projects/{projectID}/jobs/{jobID} | Returns the Job
+[**JobResult**](TtsApi.md#jobresult) | **GET** /projects/{projectID}/jobs/{jobID}/result | Returns the Job Result
 [**Jobs**](TtsApi.md#jobs) | **GET** /projects/{projectID}/jobs | Returns a collection of Jobs
 [**Project**](TtsApi.md#project) | **GET** /projects/{projectID} | Returns the Project
 [**Projects**](TtsApi.md#projects) | **GET** /projects | Returns a collection of Projects
@@ -428,7 +428,7 @@ void (empty response body)
 
 <a name="deletejob"></a>
 # **DeleteJob**
-> void DeleteJob (string projectID, string jobId)
+> void DeleteJob (string projectID, string jobID)
 
 Deletes the Job
 
@@ -455,12 +455,12 @@ namespace Example
 
             var apiInstance = new TtsApi();
             var projectID = projectID_example;  // string | ID of the Project
-            var jobId = jobId_example;  // string | 
+            var jobID = jobID_example;  // string | 
 
             try
             {
                 // Deletes the Job
-                apiInstance.DeleteJob(projectID, jobId);
+                apiInstance.DeleteJob(projectID, jobID);
             }
             catch (Exception e)
             {
@@ -476,7 +476,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **projectID** | **string**| ID of the Project | 
- **jobId** | **string**|  | 
+ **jobID** | **string**|  | 
 
 ### Return type
 
@@ -556,7 +556,7 @@ void (empty response body)
 
 <a name="job"></a>
 # **Job**
-> Job Job (string projectID, string jobId)
+> Job Job (string projectID, string jobID)
 
 Returns the Job
 
@@ -583,12 +583,12 @@ namespace Example
 
             var apiInstance = new TtsApi();
             var projectID = projectID_example;  // string | ID of the Project
-            var jobId = jobId_example;  // string | 
+            var jobID = jobID_example;  // string | 
 
             try
             {
                 // Returns the Job
-                Job result = apiInstance.Job(projectID, jobId);
+                Job result = apiInstance.Job(projectID, jobID);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -605,7 +605,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **projectID** | **string**| ID of the Project | 
- **jobId** | **string**|  | 
+ **jobID** | **string**|  | 
 
 ### Return type
 
@@ -624,7 +624,7 @@ Name | Type | Description  | Notes
 
 <a name="jobresult"></a>
 # **JobResult**
-> JobResult JobResult (string projectID, string jobId)
+> JobResult JobResult (string projectID, string jobID)
 
 Returns the Job Result
 
@@ -651,12 +651,12 @@ namespace Example
 
             var apiInstance = new TtsApi();
             var projectID = projectID_example;  // string | ID of the Project
-            var jobId = jobId_example;  // string | 
+            var jobID = jobID_example;  // string | 
 
             try
             {
                 // Returns the Job Result
-                JobResult result = apiInstance.JobResult(projectID, jobId);
+                JobResult result = apiInstance.JobResult(projectID, jobID);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -673,7 +673,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **projectID** | **string**| ID of the Project | 
- **jobId** | **string**|  | 
+ **jobID** | **string**|  | 
 
 ### Return type
 

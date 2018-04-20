@@ -18,6 +18,7 @@ namespace Telestream.Cloud.Tts.Client
         public class FileUploaderBase
         {
                 protected TtsApi _apiClient;
+            public string MediaId;
 
                 public FileUploaderBase(TtsApi apiClient)
                 {
@@ -27,6 +28,7 @@ namespace Telestream.Cloud.Tts.Client
 
                 public async Task UploadFile(string filePath, UploadSession videoSession, ExtraFileItemCollection extraFilesData, IProgress<double> progress, CancellationToken cancelToken = default(CancellationToken))
                 {
+                    this.MediaId = await GetMediaId(videoSession.Location);
 
                         if (extraFilesData != null)
                         {
@@ -137,11 +139,22 @@ namespace Telestream.Cloud.Tts.Client
                         return parsed.MissingParts;
                 }
 
+            private async Task<string> GetMediaId(string location)
+            {
+                var request = new RestRequest(location, Method.GET);
+                request.Serializer = null;
+                var restClient = new RestClient(location);
+                var response = await restClient.Execute(request);
+                var parsed = (MissingPartsResponse)_apiClient.Configuration.ApiClient.Deserialize(response, typeof(MissingPartsResponse));
+                return parsed.MediaId;
+            }
                 [DataContract]
                 protected class MissingPartsResponse
                 {
                         [DataMember(Name = "missing_parts")]
                         public int[] MissingParts { get; set; }
+                        [DataMember(Name = "media_id")]
+                        public string MediaId { get; set; }
                 }
 
         }
