@@ -118,6 +118,7 @@ namespace Telestream.Cloud.Qc.Model
         /// Initializes a new instance of the <see cref="Job" /> class.
         /// </summary>
         /// <param name="Id">Id.</param>
+        /// <param name="ProjectId">ProjectId.</param>
         /// <param name="Status">Status.</param>
         /// <param name="State">State.</param>
         /// <param name="Duration">Duration.</param>
@@ -130,9 +131,10 @@ namespace Telestream.Cloud.Qc.Model
         /// <param name="ErrorClass">ErrorClass.</param>
         /// <param name="ErrorMessage">ErrorMessage.</param>
         /// <param name="Details">Details.</param>
-        public Job(string Id = default(string), StatusEnum? Status = default(StatusEnum?), string State = default(string), int? Duration = default(int?), TypeEnum? Type = default(TypeEnum?), int? Progress = default(int?), string Filename = default(string), string SourceUrl = default(string), string CreatedAt = default(string), string UpdatedAt = default(string), string ErrorClass = default(string), string ErrorMessage = default(string), JobDetails Details = default(JobDetails))
+        public Job(string Id = default(string), string ProjectId = default(string), StatusEnum? Status = default(StatusEnum?), string State = default(string), int? Duration = default(int?), TypeEnum? Type = default(TypeEnum?), int? Progress = default(int?), string Filename = default(string), string SourceUrl = default(string), string CreatedAt = default(string), string UpdatedAt = default(string), string ErrorClass = default(string), string ErrorMessage = default(string), JobDetails Details = default(JobDetails))
         {
             this.Id = Id;
+            this.ProjectId = ProjectId;
             this.Status = Status;
             this.State = State;
             this.Duration = Duration;
@@ -152,6 +154,12 @@ namespace Telestream.Cloud.Qc.Model
         /// </summary>
         [DataMember(Name="id", EmitDefaultValue=false)]
         public string Id { get; set; }
+
+        /// <summary>
+        /// Gets or Sets ProjectId
+        /// </summary>
+        [DataMember(Name="project_id", EmitDefaultValue=false)]
+        public string ProjectId { get; set; }
 
 
         /// <summary>
@@ -224,6 +232,7 @@ namespace Telestream.Cloud.Qc.Model
             var sb = new StringBuilder();
             sb.Append("class Job {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  ProjectId: ").Append(ProjectId).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  State: ").Append(State).Append("\n");
             sb.Append("  Duration: ").Append(Duration).Append("\n");
@@ -274,6 +283,11 @@ namespace Telestream.Cloud.Qc.Model
                     this.Id == input.Id ||
                     (this.Id != null &&
                     this.Id.Equals(input.Id))
+                ) && 
+                (
+                    this.ProjectId == input.ProjectId ||
+                    (this.ProjectId != null &&
+                    this.ProjectId.Equals(input.ProjectId))
                 ) && 
                 (
                     this.Status == input.Status ||
@@ -348,6 +362,8 @@ namespace Telestream.Cloud.Qc.Model
                 int hashCode = 41;
                 if (this.Id != null)
                     hashCode = hashCode * 59 + this.Id.GetHashCode();
+                if (this.ProjectId != null)
+                    hashCode = hashCode * 59 + this.ProjectId.GetHashCode();
                 if (this.Status != null)
                     hashCode = hashCode * 59 + this.Status.GetHashCode();
                 if (this.State != null)

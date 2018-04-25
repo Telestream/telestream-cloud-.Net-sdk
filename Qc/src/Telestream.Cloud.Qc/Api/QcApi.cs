@@ -297,6 +297,25 @@ namespace Telestream.Cloud.Qc.Api
         /// <returns>ApiResponse of Dictionary&lt;string, string&gt;</returns>
         ApiResponse<Dictionary<string, string>> SignedUrlsWithHttpInfo (string projectId, string jobId);
         /// <summary>
+        /// List all templates
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Telestream.Cloud.Qc.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>List&lt;Template&gt;</returns>
+        List<Template> Templates ();
+
+        /// <summary>
+        /// List all templates
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Telestream.Cloud.Qc.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of List&lt;Template&gt;</returns>
+        ApiResponse<List<Template>> TemplatesWithHttpInfo ();
+        /// <summary>
         /// Creates an upload session
         /// </summary>
         /// <remarks>
@@ -593,6 +612,25 @@ namespace Telestream.Cloud.Qc.Api
         /// <param name="jobId">A unique identifier of a Job.</param>
         /// <returns>Task of ApiResponse (Dictionary&lt;string, string&gt;)</returns>
         System.Threading.Tasks.Task<ApiResponse<Dictionary<string, string>>> SignedUrlsAsyncWithHttpInfo (string projectId, string jobId);
+        /// <summary>
+        /// List all templates
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Telestream.Cloud.Qc.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of List&lt;Template&gt;</returns>
+        System.Threading.Tasks.Task<List<Template>> TemplatesAsync ();
+
+        /// <summary>
+        /// List all templates
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Telestream.Cloud.Qc.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiResponse (List&lt;Template&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<Template>>> TemplatesAsyncWithHttpInfo ();
         /// <summary>
         /// Creates an upload session
         /// </summary>
@@ -2574,6 +2612,139 @@ namespace Telestream.Cloud.Qc.Api
             return new ApiResponse<Dictionary<string, string>>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
                 (Dictionary<string, string>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Dictionary<string, string>)));
+        }
+
+        /// <summary>
+        /// List all templates 
+        /// </summary>
+        /// <exception cref="Telestream.Cloud.Qc.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>List&lt;Template&gt;</returns>
+        public List<Template> Templates ()
+        {
+             ApiResponse<List<Template>> localVarResponse = TemplatesWithHttpInfo();
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List all templates 
+        /// </summary>
+        /// <exception cref="Telestream.Cloud.Qc.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of List&lt;Template&gt;</returns>
+        public ApiResponse< List<Template> > TemplatesWithHttpInfo ()
+        {
+
+            var localVarPath = "./templates.json";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+
+            // authentication (apiKey) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
+            {
+                localVarHeaderParams["X-Api-Key"] = Configuration.GetApiKeyWithPrefix("X-Api-Key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("Templates", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<List<Template>>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                (List<Template>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<Template>)));
+        }
+
+        /// <summary>
+        /// List all templates 
+        /// </summary>
+        /// <exception cref="Telestream.Cloud.Qc.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of List&lt;Template&gt;</returns>
+        public async System.Threading.Tasks.Task<List<Template>> TemplatesAsync ()
+        {
+             ApiResponse<List<Template>> localVarResponse = await TemplatesAsyncWithHttpInfo();
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// List all templates 
+        /// </summary>
+        /// <exception cref="Telestream.Cloud.Qc.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiResponse (List&lt;Template&gt;)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<List<Template>>> TemplatesAsyncWithHttpInfo ()
+        {
+
+            var localVarPath = "./templates.json";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+
+            // authentication (apiKey) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
+            {
+                localVarHeaderParams["X-Api-Key"] = Configuration.GetApiKeyWithPrefix("X-Api-Key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("Templates", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<List<Template>>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                (List<Template>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<Template>)));
         }
 
         /// <summary>

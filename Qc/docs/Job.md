@@ -4,6 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** |  | [optional] 
+**ProjectId** | **string** |  | [optional] 
 **Status** | **string** |  | [optional] 
 **State** | **string** |  | [optional] 
 **Duration** | **int?** |  | [optional] 
