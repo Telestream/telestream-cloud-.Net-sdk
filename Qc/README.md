@@ -46,6 +46,7 @@ Class | Method | HTTP request | Description
 *QcApi* | [**RemoveJob**](docs/QcApi.md#removejob) | **DELETE** /projects/{project_id}/jobs/{job_id}.json | 
 *QcApi* | [**RemoveProject**](docs/QcApi.md#removeproject) | **DELETE** /projects/{project_id}.json | 
 *QcApi* | [**SignedUrls**](docs/QcApi.md#signedurls) | **GET** /projects/{project_id}/jobs/{job_id}/signed-urls.json | 
+*QcApi* | [**Templates**](docs/QcApi.md#templates) | **GET** /templates.json | List all templates
 *QcApi* | [**UploadVideo**](docs/QcApi.md#uploadvideo) | **POST** /projects/{project_id}/upload.json | Creates an upload session
 
 
@@ -67,6 +68,7 @@ Class | Method | HTTP request | Description
  - [Model.Options](docs/Options.md)
  - [Model.Project](docs/Project.md)
  - [Model.Proxy](docs/Proxy.md)
+ - [Model.Template](docs/Template.md)
  - [Model.UploadSession](docs/UploadSession.md)
  - [Model.VideoStream](docs/VideoStream.md)
  - [Model.VideoUploadBody](docs/VideoUploadBody.md)

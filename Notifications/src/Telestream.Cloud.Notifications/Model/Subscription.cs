@@ -39,7 +39,13 @@ namespace Telestream.Cloud.Notifications.Model
             /// Enum Email for value: email
             /// </summary>
             [EnumMember(Value = "email")]
-            Email = 1
+            Email = 1,
+            
+            /// <summary>
+            /// Enum Webhook for value: webhook
+            /// </summary>
+            [EnumMember(Value = "webhook")]
+            Webhook = 2
         }
 
         /// <summary>
@@ -50,7 +56,7 @@ namespace Telestream.Cloud.Notifications.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Subscription" /> class.
         /// </summary>
-        /// <param name="Id">Id.</param>
+        /// <param name="Id">[read-only] Subscription identifier .</param>
         /// <param name="Type">Type.</param>
         /// <param name="Topic">Topic.</param>
         /// <param name="_Params">_Params.</param>
@@ -63,8 +69,9 @@ namespace Telestream.Cloud.Notifications.Model
         }
         
         /// <summary>
-        /// Gets or Sets Id
+        /// [read-only] Subscription identifier 
         /// </summary>
+        /// <value>[read-only] Subscription identifier </value>
         [DataMember(Name="id", EmitDefaultValue=false)]
         public string Id { get; set; }
 

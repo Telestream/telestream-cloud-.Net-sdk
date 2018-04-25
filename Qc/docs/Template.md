@@ -1,12 +1,13 @@
-# Telestream.Cloud.Notifications.Model.Subscription
+# Telestream.Cloud.Qc.Model.Template
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** | [read-only] Subscription identifier  | [optional] 
+**Name** | **string** |  | [optional] 
 **Type** | **string** |  | [optional] 
-**Topic** | [**Topic**](Topic.md) |  | [optional] 
-**_Params** | [**ModelParams**](ModelParams.md) |  | [optional] 
+**Description** | **string** |  | [optional] 
+**Produces** | **Dictionary&lt;string, string&gt;** |  | [optional] 
+**Takes** | **Dictionary&lt;string, string&gt;** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

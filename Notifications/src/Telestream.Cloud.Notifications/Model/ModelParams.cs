@@ -29,12 +29,45 @@ namespace Telestream.Cloud.Notifications.Model
     public partial class ModelParams :  IEquatable<ModelParams>
     {
         /// <summary>
+        /// @webhook  \&quot;HTTP method\&quot; 
+        /// </summary>
+        /// <value>@webhook  \&quot;HTTP method\&quot; </value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum MethodEnum
+        {
+            
+            /// <summary>
+            /// Enum Get for value: get
+            /// </summary>
+            [EnumMember(Value = "get")]
+            Get = 1,
+            
+            /// <summary>
+            /// Enum Post for value: post
+            /// </summary>
+            [EnumMember(Value = "post")]
+            Post = 2
+        }
+
+        /// <summary>
+        /// @webhook  \&quot;HTTP method\&quot; 
+        /// </summary>
+        /// <value>@webhook  \&quot;HTTP method\&quot; </value>
+        [DataMember(Name="method", EmitDefaultValue=false)]
+        public MethodEnum? Method { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="ModelParams" /> class.
         /// </summary>
         /// <param name="Addresses">@email  E-mail address .</param>
-        public ModelParams(List<string> Addresses = default(List<string>))
+        /// <param name="Url">@webhook  \&quot;Webhook URL\&quot; .</param>
+        /// <param name="Method">@webhook  \&quot;HTTP method\&quot; .</param>
+        /// <param name="Retries">@webhook  \&quot;Number of attempts before forgetting the notification\&quot; .</param>
+        public ModelParams(List<string> Addresses = default(List<string>), string Url = default(string), MethodEnum? Method = default(MethodEnum?), int? Retries = default(int?))
         {
             this.Addresses = Addresses;
+            this.Url = Url;
+            this.Method = Method;
+            this.Retries = Retries;
         }
         
         /// <summary>
@@ -45,6 +78,21 @@ namespace Telestream.Cloud.Notifications.Model
         public List<string> Addresses { get; set; }
 
         /// <summary>
+        /// @webhook  \&quot;Webhook URL\&quot; 
+        /// </summary>
+        /// <value>@webhook  \&quot;Webhook URL\&quot; </value>
+        [DataMember(Name="url", EmitDefaultValue=false)]
+        public string Url { get; set; }
+
+
+        /// <summary>
+        /// @webhook  \&quot;Number of attempts before forgetting the notification\&quot; 
+        /// </summary>
+        /// <value>@webhook  \&quot;Number of attempts before forgetting the notification\&quot; </value>
+        [DataMember(Name="retries", EmitDefaultValue=false)]
+        public int? Retries { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -53,6 +101,9 @@ namespace Telestream.Cloud.Notifications.Model
             var sb = new StringBuilder();
             sb.Append("class ModelParams {\n");
             sb.Append("  Addresses: ").Append(Addresses).Append("\n");
+            sb.Append("  Url: ").Append(Url).Append("\n");
+            sb.Append("  Method: ").Append(Method).Append("\n");
+            sb.Append("  Retries: ").Append(Retries).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -91,6 +142,21 @@ namespace Telestream.Cloud.Notifications.Model
                     this.Addresses == input.Addresses ||
                     this.Addresses != null &&
                     this.Addresses.SequenceEqual(input.Addresses)
+                ) && 
+                (
+                    this.Url == input.Url ||
+                    (this.Url != null &&
+                    this.Url.Equals(input.Url))
+                ) && 
+                (
+                    this.Method == input.Method ||
+                    (this.Method != null &&
+                    this.Method.Equals(input.Method))
+                ) && 
+                (
+                    this.Retries == input.Retries ||
+                    (this.Retries != null &&
+                    this.Retries.Equals(input.Retries))
                 );
         }
 
@@ -105,6 +171,12 @@ namespace Telestream.Cloud.Notifications.Model
                 int hashCode = 41;
                 if (this.Addresses != null)
                     hashCode = hashCode * 59 + this.Addresses.GetHashCode();
+                if (this.Url != null)
+                    hashCode = hashCode * 59 + this.Url.GetHashCode();
+                if (this.Method != null)
+                    hashCode = hashCode * 59 + this.Method.GetHashCode();
+                if (this.Retries != null)
+                    hashCode = hashCode * 59 + this.Retries.GetHashCode();
                 return hashCode;
             }
         }

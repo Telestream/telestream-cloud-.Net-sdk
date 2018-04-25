@@ -32,9 +32,11 @@ namespace Telestream.Cloud.Qc.Model
         /// Initializes a new instance of the <see cref="JobDetailsResult" /> class.
         /// </summary>
         /// <param name="Alerts">Alerts.</param>
-        public JobDetailsResult(List<Alert> Alerts = default(List<Alert>))
+        /// <param name="Reports">Reports.</param>
+        public JobDetailsResult(List<Alert> Alerts = default(List<Alert>), List<string> Reports = default(List<string>))
         {
             this.Alerts = Alerts;
+            this.Reports = Reports;
         }
         
         /// <summary>
@@ -42,6 +44,12 @@ namespace Telestream.Cloud.Qc.Model
         /// </summary>
         [DataMember(Name="alerts", EmitDefaultValue=false)]
         public List<Alert> Alerts { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Reports
+        /// </summary>
+        [DataMember(Name="reports", EmitDefaultValue=false)]
+        public List<string> Reports { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -52,6 +60,7 @@ namespace Telestream.Cloud.Qc.Model
             var sb = new StringBuilder();
             sb.Append("class JobDetailsResult {\n");
             sb.Append("  Alerts: ").Append(Alerts).Append("\n");
+            sb.Append("  Reports: ").Append(Reports).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -90,6 +99,11 @@ namespace Telestream.Cloud.Qc.Model
                     this.Alerts == input.Alerts ||
                     this.Alerts != null &&
                     this.Alerts.SequenceEqual(input.Alerts)
+                ) && 
+                (
+                    this.Reports == input.Reports ||
+                    this.Reports != null &&
+                    this.Reports.SequenceEqual(input.Reports)
                 );
         }
 
@@ -104,6 +118,8 @@ namespace Telestream.Cloud.Qc.Model
                 int hashCode = 41;
                 if (this.Alerts != null)
                     hashCode = hashCode * 59 + this.Alerts.GetHashCode();
+                if (this.Reports != null)
+                    hashCode = hashCode * 59 + this.Reports.GetHashCode();
                 return hashCode;
             }
         }

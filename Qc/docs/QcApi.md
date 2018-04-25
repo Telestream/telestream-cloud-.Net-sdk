@@ -16,6 +16,7 @@ Method | HTTP request | Description
 [**RemoveJob**](QcApi.md#removejob) | **DELETE** /projects/{project_id}/jobs/{job_id}.json | 
 [**RemoveProject**](QcApi.md#removeproject) | **DELETE** /projects/{project_id}.json | 
 [**SignedUrls**](QcApi.md#signedurls) | **GET** /projects/{project_id}/jobs/{job_id}/signed-urls.json | 
+[**Templates**](QcApi.md#templates) | **GET** /templates.json | List all templates
 [**UploadVideo**](QcApi.md#uploadvideo) | **POST** /projects/{project_id}/upload.json | Creates an upload session
 
 
@@ -785,6 +786,66 @@ Name | Type | Description  | Notes
 ### Return type
 
 **Dictionary<string, string>**
+
+### Authorization
+
+[apiKey](../README.md#apiKey)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="templates"></a>
+# **Templates**
+> List<Template> Templates ()
+
+List all templates
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using Telestream.Cloud.Qc.Api;
+using Telestream.Cloud.Qc.Client;
+using Telestream.Cloud.Qc.Model;
+
+namespace Example
+{
+    public class TemplatesExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: apiKey
+            Configuration.Default.AddApiKey("X-Api-Key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("X-Api-Key", "Bearer");
+
+            var apiInstance = new QcApi();
+
+            try
+            {
+                // List all templates
+                List&lt;Template&gt; result = apiInstance.Templates();
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling QcApi.Templates: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**List<Template>**](Template.md)
 
 ### Authorization
 
