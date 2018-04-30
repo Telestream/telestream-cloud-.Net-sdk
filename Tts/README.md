@@ -40,10 +40,10 @@ Class | Method | HTTP request | Description
 *TtsApi* | [**CreateJob**](docs/TtsApi.md#createjob) | **POST** /projects/{projectID}/jobs | Creates a new Job
 *TtsApi* | [**CreateProject**](docs/TtsApi.md#createproject) | **POST** /projects | Creates a new Project
 *TtsApi* | [**DeleteCorpus**](docs/TtsApi.md#deletecorpus) | **DELETE** /projects/{projectID}/corpora/{name} | Creates a new Corpus
-*TtsApi* | [**DeleteJob**](docs/TtsApi.md#deletejob) | **DELETE** /projects/{projectID}/jobs/{id} | Deletes the Job
+*TtsApi* | [**DeleteJob**](docs/TtsApi.md#deletejob) | **DELETE** /projects/{projectID}/jobs/{jobID} | Deletes the Job
 *TtsApi* | [**DeleteProject**](docs/TtsApi.md#deleteproject) | **DELETE** /projects/{projectID} | Deletes the Project
-*TtsApi* | [**Job**](docs/TtsApi.md#job) | **GET** /projects/{projectID}/jobs/{id} | Returns the Job
-*TtsApi* | [**JobResult**](docs/TtsApi.md#jobresult) | **GET** /projects/{projectID}/jobs/{id}/result | Returns the Job Result
+*TtsApi* | [**Job**](docs/TtsApi.md#job) | **GET** /projects/{projectID}/jobs/{jobID} | Returns the Job
+*TtsApi* | [**JobResult**](docs/TtsApi.md#jobresult) | **GET** /projects/{projectID}/jobs/{jobID}/result | Returns the Job Result
 *TtsApi* | [**Jobs**](docs/TtsApi.md#jobs) | **GET** /projects/{projectID}/jobs | Returns a collection of Jobs
 *TtsApi* | [**Project**](docs/TtsApi.md#project) | **GET** /projects/{projectID} | Returns the Project
 *TtsApi* | [**Projects**](docs/TtsApi.md#projects) | **GET** /projects | Returns a collection of Projects

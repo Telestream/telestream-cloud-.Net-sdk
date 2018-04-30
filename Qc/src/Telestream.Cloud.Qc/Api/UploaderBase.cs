@@ -28,6 +28,8 @@ namespace Telestream.Cloud.Qc.Client
 
                 public async Task UploadFile(string filePath, UploadSession videoSession, ExtraFileItemCollection extraFilesData, IProgress<double> progress, CancellationToken cancelToken = default(CancellationToken))
                 {
+                    var connections = 8;
+
                     this.MediaId = await GetMediaId(videoSession.Location);
 
                         if (extraFilesData != null)
@@ -35,13 +37,18 @@ namespace Telestream.Cloud.Qc.Client
                                 extraFilesData.Apply(videoSession);
                         }
 
-                        await PerformUpload(filePath, videoSession.Location, videoSession.PartSize.Value, null, progress, cancelToken);
+                        if (videoSession.MaxConnections.HasValue)
+                        {
+                                connections = videoSession.MaxConnections.Value;
+                        }
+
+                        await PerformUpload(filePath, videoSession.Location, videoSession.PartSize.Value, videoSession.Parts.Value, connections, null, progress, cancelToken);
 
                         if (extraFilesData != null)
                         {
                                 foreach (var extraFile in extraFilesData)
                                 {
-                                        await PerformUpload(extraFile.FilePath, videoSession.Location, extraFile.PartSize.Value, extraFile.Tag, progress, cancelToken);
+                                        await PerformUpload(extraFile.FilePath, videoSession.Location, extraFile.PartSize.Value, extraFile.Parts.Value, connections, extraFile.Tag, progress, cancelToken);
                                 }
                         }
                 }
@@ -52,30 +59,84 @@ namespace Telestream.Cloud.Qc.Client
                         return new ExtraFileItemCollection(extraFiles);
                 }
 
-                private async Task PerformUpload(string filePath, string location, int partSize, string tag = null, IProgress<double> progress = null, CancellationToken cancelToken = default(CancellationToken))
+                private async Task PerformUpload(string filePath, string location, int partSize, int parts, int connections = 8, string tag = null, IProgress<double> progress = null, CancellationToken cancelToken = default(CancellationToken))
                 {
-                        var missingParts = await GetMissingParts(location, tag);
-
                         using (var fileStream = File.Open(filePath, FileMode.Open))
                         {
-                                byte[] buffer = new byte[partSize];
-                                foreach (var chunkIndex in missingParts)
+                                var retries = 3;
+
+                                do
                                 {
-                                        await UploadChunk(buffer, location, partSize, fileStream, tag, chunkIndex);
-                                        if (progress != null)
-                                        {
-                                            progress.Report((chunkIndex+1) * 100.0f / missingParts.Length);
-                                        }
+                                        if (retries == 0)
+                                                break;
 
-                                        if (cancelToken.IsCancellationRequested)
-                                        {
-                                            break;
-                                        }
-
-                                }
+                                        --retries;
+                                } while (!(await upload(fileStream, location, tag, partSize, parts, connections, progress, cancelToken))) ;
                         }
                 }
+            private async Task<bool> upload(FileStream fileStream, string location, string tag, int partSize, int parts, int connections, IProgress<double> progress = null, CancellationToken cancelToken = default(CancellationToken))
+            {
+                    var tasks = new List<Task>();
+                    var uploaded = 0;
 
+                    var missingParts = await GetMissingParts(location, tag);
+
+                    foreach (var chunkIndex in missingParts)
+                    {
+                        byte[] buffer = new byte[partSize];
+                        fileStream.Seek(chunkIndex * partSize, SeekOrigin.Begin);
+                        var bytesRead = fileStream.Read(buffer, 0, buffer.Length);
+                        var message = CreateChunkMessage(chunkIndex, buffer, bytesRead, location, tag);
+
+                        if (tasks.Count == connections)
+                        {
+                            try
+                            {
+                                var id = Task.WaitAny(tasks.ToArray(), cancelToken);
+                                tasks.Remove(tasks[id]);
+                                uploaded++;
+
+                                if (progress != null)
+                                {
+                                    progress.Report((uploaded) * 100.0f / parts);
+                                }
+                            }
+                            catch (OperationCanceledException)
+                            {
+                                return true;
+                            }
+                        }
+
+                        var task = SendMessage(message);
+
+                        tasks.Add(task);
+                    }
+
+                    while (tasks.Count() > 0)
+                    {
+                        try
+                        {
+                            var id = Task.WaitAny(tasks.ToArray(), cancelToken);
+                            tasks.Remove(tasks[id]);
+                            uploaded++;
+
+                            if (progress != null)
+                            {
+                                progress.Report((uploaded) * 100.0f / parts);
+                            }
+                        }
+                        catch (OperationCanceledException)
+                        {
+                            return true;
+                        }
+                    }
+
+                    missingParts = await GetMissingParts(location, tag);
+                    if (missingParts.Length == 0)
+                        return true;
+
+                    return false;
+            }
                 public async Task UploadChunk(byte[] buffer, string location, int partSize, Stream dataStream, string tag, int chunkIndex)
                 {
                         int bytesRead;
@@ -96,6 +157,7 @@ namespace Telestream.Cloud.Qc.Client
                         var message = new HttpRequestMessage(HttpMethod.Delete, session.Location);
                         await SendMessage(message);
                 }
+
 
                 private HttpRequestMessage CreateChunkMessage(int part_id, byte[] bytes, int bytesToSend, string location, string tag)
                 {

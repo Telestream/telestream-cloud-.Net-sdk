@@ -39,7 +39,10 @@ namespace Telestream.Cloud.Flip.Model
         /// <param name="ExtraFiles">ExtraFiles.</param>
         /// <param name="ExtraVariables">ExtraVariables.</param>
         /// <param name="PathFormat">PathFormat.</param>
-        public CreateVideoBody(string SourceUrl = default(string), string Profiles = default(string), string Payload = default(string), string Pipeline = default(string), List<string> SubtitleFiles = default(List<string>), Dictionary<string, List<string>> ExtraFiles = default(Dictionary<string, List<string>>), Dictionary<string, string> ExtraVariables = default(Dictionary<string, string>), string PathFormat = default(string))
+        /// <param name="ClipEnd">Clip ends at a specific time..</param>
+        /// <param name="ClipLength">A clip’s duration..</param>
+        /// <param name="ClipOffset">Clip starts at a specific offset..</param>
+        public CreateVideoBody(string SourceUrl = default(string), string Profiles = default(string), string Payload = default(string), string Pipeline = default(string), List<string> SubtitleFiles = default(List<string>), Dictionary<string, List<string>> ExtraFiles = default(Dictionary<string, List<string>>), Dictionary<string, string> ExtraVariables = default(Dictionary<string, string>), string PathFormat = default(string), string ClipEnd = default(string), string ClipLength = default(string), string ClipOffset = default(string))
         {
             this.SourceUrl = SourceUrl;
             this.Profiles = Profiles;
@@ -49,6 +52,9 @@ namespace Telestream.Cloud.Flip.Model
             this.ExtraFiles = ExtraFiles;
             this.ExtraVariables = ExtraVariables;
             this.PathFormat = PathFormat;
+            this.ClipEnd = ClipEnd;
+            this.ClipLength = ClipLength;
+            this.ClipOffset = ClipOffset;
         }
         
         /// <summary>
@@ -105,6 +111,27 @@ namespace Telestream.Cloud.Flip.Model
         public string PathFormat { get; set; }
 
         /// <summary>
+        /// Clip ends at a specific time.
+        /// </summary>
+        /// <value>Clip ends at a specific time.</value>
+        [DataMember(Name="clip_end", EmitDefaultValue=false)]
+        public string ClipEnd { get; set; }
+
+        /// <summary>
+        /// A clip’s duration.
+        /// </summary>
+        /// <value>A clip’s duration.</value>
+        [DataMember(Name="clip_length", EmitDefaultValue=false)]
+        public string ClipLength { get; set; }
+
+        /// <summary>
+        /// Clip starts at a specific offset.
+        /// </summary>
+        /// <value>Clip starts at a specific offset.</value>
+        [DataMember(Name="clip_offset", EmitDefaultValue=false)]
+        public string ClipOffset { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -120,6 +147,9 @@ namespace Telestream.Cloud.Flip.Model
             sb.Append("  ExtraFiles: ").Append(ExtraFiles).Append("\n");
             sb.Append("  ExtraVariables: ").Append(ExtraVariables).Append("\n");
             sb.Append("  PathFormat: ").Append(PathFormat).Append("\n");
+            sb.Append("  ClipEnd: ").Append(ClipEnd).Append("\n");
+            sb.Append("  ClipLength: ").Append(ClipLength).Append("\n");
+            sb.Append("  ClipOffset: ").Append(ClipOffset).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -193,6 +223,21 @@ namespace Telestream.Cloud.Flip.Model
                     this.PathFormat == input.PathFormat ||
                     (this.PathFormat != null &&
                     this.PathFormat.Equals(input.PathFormat))
+                ) && 
+                (
+                    this.ClipEnd == input.ClipEnd ||
+                    (this.ClipEnd != null &&
+                    this.ClipEnd.Equals(input.ClipEnd))
+                ) && 
+                (
+                    this.ClipLength == input.ClipLength ||
+                    (this.ClipLength != null &&
+                    this.ClipLength.Equals(input.ClipLength))
+                ) && 
+                (
+                    this.ClipOffset == input.ClipOffset ||
+                    (this.ClipOffset != null &&
+                    this.ClipOffset.Equals(input.ClipOffset))
                 );
         }
 
@@ -221,6 +266,12 @@ namespace Telestream.Cloud.Flip.Model
                     hashCode = hashCode * 59 + this.ExtraVariables.GetHashCode();
                 if (this.PathFormat != null)
                     hashCode = hashCode * 59 + this.PathFormat.GetHashCode();
+                if (this.ClipEnd != null)
+                    hashCode = hashCode * 59 + this.ClipEnd.GetHashCode();
+                if (this.ClipLength != null)
+                    hashCode = hashCode * 59 + this.ClipLength.GetHashCode();
+                if (this.ClipOffset != null)
+                    hashCode = hashCode * 59 + this.ClipOffset.GetHashCode();
                 return hashCode;
             }
         }

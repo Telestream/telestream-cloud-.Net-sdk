@@ -92,7 +92,7 @@ namespace Telestream.Cloud.Tts.Model
         /// <param name="FileSize">The file size of the input file..</param>
         /// <param name="CreatedAt">A date and time when the job was created.</param>
         /// <param name="UpdatedAt">A date and time when the job was updated.</param>
-        public Job(string Id = default(string), string Name = default(string), string OriginalFilename = default(string), string ProjectId = default(string), string SourceUrl = default(string), StatusEnum? Status = default(StatusEnum?), string Error = default(string), int? Progress = default(int?), int? Confidence = default(int?), int? Duration = default(int?), int? Bitrate = default(int?), int? SampleRate = default(int?), string Format = default(string), string FileSize = default(string), string CreatedAt = default(string), string UpdatedAt = default(string))
+        public Job(string Id = default(string), string Name = default(string), string OriginalFilename = default(string), string ProjectId = default(string), string SourceUrl = default(string), StatusEnum? Status = default(StatusEnum?), string Error = default(string), int? Progress = default(int?), int? Confidence = default(int?), int? Duration = default(int?), int? Bitrate = default(int?), int? SampleRate = default(int?), string Format = default(string), int? FileSize = default(int?), string CreatedAt = default(string), string UpdatedAt = default(string))
         {
             this.Id = Id;
             this.Name = Name;
@@ -202,7 +202,7 @@ namespace Telestream.Cloud.Tts.Model
         /// </summary>
         /// <value>The file size of the input file.</value>
         [DataMember(Name="file_size", EmitDefaultValue=false)]
-        public string FileSize { get; set; }
+        public int? FileSize { get; set; }
 
         /// <summary>
         /// A date and time when the job was created

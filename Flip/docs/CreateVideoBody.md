@@ -11,6 +11,9 @@ Name | Type | Description | Notes
 **ExtraFiles** | **Dictionary&lt;string, List&lt;string&gt;&gt;** |  | [optional] 
 **ExtraVariables** | **Dictionary&lt;string, string&gt;** |  | [optional] 
 **PathFormat** | **string** |  | [optional] 
+**ClipEnd** | **string** | Clip ends at a specific time. | [optional] 
+**ClipLength** | **string** | A clip’s duration. | [optional] 
+**ClipOffset** | **string** | Clip starts at a specific offset. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

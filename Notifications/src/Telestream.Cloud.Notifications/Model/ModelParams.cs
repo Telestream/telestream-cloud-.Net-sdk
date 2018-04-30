@@ -29,9 +29,9 @@ namespace Telestream.Cloud.Notifications.Model
     public partial class ModelParams :  IEquatable<ModelParams>
     {
         /// <summary>
-        /// @webhook  \&quot;HTTP method\&quot; 
+        /// #webhook  \&quot;HTTP method\&quot; 
         /// </summary>
-        /// <value>@webhook  \&quot;HTTP method\&quot; </value>
+        /// <value>#webhook  \&quot;HTTP method\&quot; </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum MethodEnum
         {
@@ -50,18 +50,18 @@ namespace Telestream.Cloud.Notifications.Model
         }
 
         /// <summary>
-        /// @webhook  \&quot;HTTP method\&quot; 
+        /// #webhook  \&quot;HTTP method\&quot; 
         /// </summary>
-        /// <value>@webhook  \&quot;HTTP method\&quot; </value>
+        /// <value>#webhook  \&quot;HTTP method\&quot; </value>
         [DataMember(Name="method", EmitDefaultValue=false)]
         public MethodEnum? Method { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="ModelParams" /> class.
         /// </summary>
-        /// <param name="Addresses">@email  E-mail address .</param>
-        /// <param name="Url">@webhook  \&quot;Webhook URL\&quot; .</param>
-        /// <param name="Method">@webhook  \&quot;HTTP method\&quot; .</param>
-        /// <param name="Retries">@webhook  \&quot;Number of attempts before forgetting the notification\&quot; .</param>
+        /// <param name="Addresses">#email  E-mail address .</param>
+        /// <param name="Url">#webhook  \&quot;Webhook URL\&quot; .</param>
+        /// <param name="Method">#webhook  \&quot;HTTP method\&quot; .</param>
+        /// <param name="Retries">#webhook  \&quot;Number of attempts before forgetting the notification\&quot; .</param>
         public ModelParams(List<string> Addresses = default(List<string>), string Url = default(string), MethodEnum? Method = default(MethodEnum?), int? Retries = default(int?))
         {
             this.Addresses = Addresses;
@@ -71,24 +71,24 @@ namespace Telestream.Cloud.Notifications.Model
         }
         
         /// <summary>
-        /// @email  E-mail address 
+        /// #email  E-mail address 
         /// </summary>
-        /// <value>@email  E-mail address </value>
+        /// <value>#email  E-mail address </value>
         [DataMember(Name="addresses", EmitDefaultValue=false)]
         public List<string> Addresses { get; set; }
 
         /// <summary>
-        /// @webhook  \&quot;Webhook URL\&quot; 
+        /// #webhook  \&quot;Webhook URL\&quot; 
         /// </summary>
-        /// <value>@webhook  \&quot;Webhook URL\&quot; </value>
+        /// <value>#webhook  \&quot;Webhook URL\&quot; </value>
         [DataMember(Name="url", EmitDefaultValue=false)]
         public string Url { get; set; }
 
 
         /// <summary>
-        /// @webhook  \&quot;Number of attempts before forgetting the notification\&quot; 
+        /// #webhook  \&quot;Number of attempts before forgetting the notification\&quot; 
         /// </summary>
-        /// <value>@webhook  \&quot;Number of attempts before forgetting the notification\&quot; </value>
+        /// <value>#webhook  \&quot;Number of attempts before forgetting the notification\&quot; </value>
         [DataMember(Name="retries", EmitDefaultValue=false)]
         public int? Retries { get; set; }
 
