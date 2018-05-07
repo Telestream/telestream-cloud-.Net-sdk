@@ -29,68 +29,77 @@ namespace Telestream.Cloud.Notifications.Model
     public partial class ModelParams :  IEquatable<ModelParams>
     {
         /// <summary>
-        /// #webhook  \&quot;HTTP method\&quot; 
+        /// [optional] #webhook;  HTTP method; default: POST (GET, POST) 
         /// </summary>
-        /// <value>#webhook  \&quot;HTTP method\&quot; </value>
+        /// <value>[optional] #webhook;  HTTP method; default: POST (GET, POST) </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum MethodEnum
         {
             
             /// <summary>
-            /// Enum Get for value: get
+            /// Enum GET for value: GET
             /// </summary>
-            [EnumMember(Value = "get")]
-            Get = 1,
+            [EnumMember(Value = "GET")]
+            GET = 1,
             
             /// <summary>
-            /// Enum Post for value: post
+            /// Enum POST for value: POST
             /// </summary>
-            [EnumMember(Value = "post")]
-            Post = 2
+            [EnumMember(Value = "POST")]
+            POST = 2
         }
 
         /// <summary>
-        /// #webhook  \&quot;HTTP method\&quot; 
+        /// [optional] #webhook;  HTTP method; default: POST (GET, POST) 
         /// </summary>
-        /// <value>#webhook  \&quot;HTTP method\&quot; </value>
+        /// <value>[optional] #webhook;  HTTP method; default: POST (GET, POST) </value>
         [DataMember(Name="method", EmitDefaultValue=false)]
         public MethodEnum? Method { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="ModelParams" /> class.
         /// </summary>
-        /// <param name="Addresses">#email  E-mail address .</param>
-        /// <param name="Url">#webhook  \&quot;Webhook URL\&quot; .</param>
-        /// <param name="Method">#webhook  \&quot;HTTP method\&quot; .</param>
-        /// <param name="Retries">#webhook  \&quot;Number of attempts before forgetting the notification\&quot; .</param>
-        public ModelParams(List<string> Addresses = default(List<string>), string Url = default(string), MethodEnum? Method = default(MethodEnum?), int? Retries = default(int?))
+        /// <param name="Addresses">[required] #email;  E-mail addresses .</param>
+        /// <param name="Url">[required] #webhook;  Webhook URL .</param>
+        /// <param name="Method">[optional] #webhook;  HTTP method; default: POST (GET, POST) .</param>
+        /// <param name="Retries">[optional] #webhook;  Number of retries before forgetting the notification; default: 0 .</param>
+        /// <param name="ContentType">[optional] #webhook; default: application/json (application/json, application/x-www-form-urlencoded) .</param>
+        public ModelParams(List<string> Addresses = default(List<string>), string Url = default(string), MethodEnum? Method = default(MethodEnum?), int? Retries = default(int?), string ContentType = default(string))
         {
             this.Addresses = Addresses;
             this.Url = Url;
             this.Method = Method;
             this.Retries = Retries;
+            this.ContentType = ContentType;
         }
         
         /// <summary>
-        /// #email  E-mail address 
+        /// [required] #email;  E-mail addresses 
         /// </summary>
-        /// <value>#email  E-mail address </value>
+        /// <value>[required] #email;  E-mail addresses </value>
         [DataMember(Name="addresses", EmitDefaultValue=false)]
         public List<string> Addresses { get; set; }
 
         /// <summary>
-        /// #webhook  \&quot;Webhook URL\&quot; 
+        /// [required] #webhook;  Webhook URL 
         /// </summary>
-        /// <value>#webhook  \&quot;Webhook URL\&quot; </value>
+        /// <value>[required] #webhook;  Webhook URL </value>
         [DataMember(Name="url", EmitDefaultValue=false)]
         public string Url { get; set; }
 
 
         /// <summary>
-        /// #webhook  \&quot;Number of attempts before forgetting the notification\&quot; 
+        /// [optional] #webhook;  Number of retries before forgetting the notification; default: 0 
         /// </summary>
-        /// <value>#webhook  \&quot;Number of attempts before forgetting the notification\&quot; </value>
+        /// <value>[optional] #webhook;  Number of retries before forgetting the notification; default: 0 </value>
         [DataMember(Name="retries", EmitDefaultValue=false)]
         public int? Retries { get; set; }
+
+        /// <summary>
+        /// [optional] #webhook; default: application/json (application/json, application/x-www-form-urlencoded) 
+        /// </summary>
+        /// <value>[optional] #webhook; default: application/json (application/json, application/x-www-form-urlencoded) </value>
+        [DataMember(Name="content_type", EmitDefaultValue=false)]
+        public string ContentType { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -104,6 +113,7 @@ namespace Telestream.Cloud.Notifications.Model
             sb.Append("  Url: ").Append(Url).Append("\n");
             sb.Append("  Method: ").Append(Method).Append("\n");
             sb.Append("  Retries: ").Append(Retries).Append("\n");
+            sb.Append("  ContentType: ").Append(ContentType).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -157,6 +167,11 @@ namespace Telestream.Cloud.Notifications.Model
                     this.Retries == input.Retries ||
                     (this.Retries != null &&
                     this.Retries.Equals(input.Retries))
+                ) && 
+                (
+                    this.ContentType == input.ContentType ||
+                    (this.ContentType != null &&
+                    this.ContentType.Equals(input.ContentType))
                 );
         }
 
@@ -177,6 +192,8 @@ namespace Telestream.Cloud.Notifications.Model
                     hashCode = hashCode * 59 + this.Method.GetHashCode();
                 if (this.Retries != null)
                     hashCode = hashCode * 59 + this.Retries.GetHashCode();
+                if (this.ContentType != null)
+                    hashCode = hashCode * 59 + this.ContentType.GetHashCode();
                 return hashCode;
             }
         }

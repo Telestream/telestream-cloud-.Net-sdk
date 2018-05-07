@@ -29,8 +29,9 @@ namespace Telestream.Cloud.Notifications.Model
     public partial class Topic :  IEquatable<Topic>
     {
         /// <summary>
-        /// Defines Service
+        /// [required] Name of service 
         /// </summary>
+        /// <value>[required] Name of service </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum ServiceEnum
         {
@@ -43,15 +44,17 @@ namespace Telestream.Cloud.Notifications.Model
         }
 
         /// <summary>
-        /// Gets or Sets Service
+        /// [required] Name of service 
         /// </summary>
+        /// <value>[required] Name of service </value>
         [DataMember(Name="service", EmitDefaultValue=false)]
         public ServiceEnum? Service { get; set; }
         /// <summary>
-        /// Defines Events
+        /// [required] Name of the event;  Quality Control (video-passed,  video-error,  video-warning,  video-rejected,  video-canceled) 
         /// </summary>
+        /// <value>[required] Name of the event;  Quality Control (video-passed,  video-error,  video-warning,  video-rejected,  video-canceled) </value>
         [JsonConverter(typeof(StringEnumConverter))]
-        public enum EventsEnum
+        public enum EventEnum
         {
             
             /// <summary>
@@ -85,25 +88,22 @@ namespace Telestream.Cloud.Notifications.Model
             Canceled = 5
         }
 
-
         /// <summary>
-        /// Name of the event  Quality Control - video-passed - video-error - video-warning - video-rejected - video-canceled 
+        /// [required] Name of the event;  Quality Control (video-passed,  video-error,  video-warning,  video-rejected,  video-canceled) 
         /// </summary>
-        /// <value>Name of the event  Quality Control - video-passed - video-error - video-warning - video-rejected - video-canceled </value>
-        [DataMember(Name="events", EmitDefaultValue=false)]
-        public List<EventsEnum> Events { get; set; }
+        /// <value>[required] Name of the event;  Quality Control (video-passed,  video-error,  video-warning,  video-rejected,  video-canceled) </value>
+        [DataMember(Name="event", EmitDefaultValue=false)]
+        public EventEnum? _Event { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Topic" /> class.
         /// </summary>
-        /// <param name="Account">[read-only] Account identifier connected to subscription notification .</param>
-        /// <param name="Service">Service.</param>
-        /// <param name="Events">Name of the event  Quality Control - video-passed - video-error - video-warning - video-rejected - video-canceled .</param>
-        /// <param name="Project">Project ID.</param>
-        public Topic(string Account = default(string), ServiceEnum? Service = default(ServiceEnum?), List<EventsEnum> Events = default(List<EventsEnum>), string Project = default(string))
+        /// <param name="Service">[required] Name of service .</param>
+        /// <param name="_Event">[required] Name of the event;  Quality Control (video-passed,  video-error,  video-warning,  video-rejected,  video-canceled) .</param>
+        /// <param name="Project">[required] Project ID .</param>
+        public Topic(ServiceEnum? Service = default(ServiceEnum?), EventEnum? _Event = default(EventEnum?), string Project = default(string))
         {
-            this.Account = Account;
             this.Service = Service;
-            this.Events = Events;
+            this._Event = _Event;
             this.Project = Project;
         }
         
@@ -112,14 +112,14 @@ namespace Telestream.Cloud.Notifications.Model
         /// </summary>
         /// <value>[read-only] Account identifier connected to subscription notification </value>
         [DataMember(Name="account", EmitDefaultValue=false)]
-        public string Account { get; set; }
+        public string Account { get; private set; }
 
 
 
         /// <summary>
-        /// Project ID
+        /// [required] Project ID 
         /// </summary>
-        /// <value>Project ID</value>
+        /// <value>[required] Project ID </value>
         [DataMember(Name="project", EmitDefaultValue=false)]
         public string Project { get; set; }
 
@@ -133,7 +133,7 @@ namespace Telestream.Cloud.Notifications.Model
             sb.Append("class Topic {\n");
             sb.Append("  Account: ").Append(Account).Append("\n");
             sb.Append("  Service: ").Append(Service).Append("\n");
-            sb.Append("  Events: ").Append(Events).Append("\n");
+            sb.Append("  _Event: ").Append(_Event).Append("\n");
             sb.Append("  Project: ").Append(Project).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -180,9 +180,9 @@ namespace Telestream.Cloud.Notifications.Model
                     this.Service.Equals(input.Service))
                 ) && 
                 (
-                    this.Events == input.Events ||
-                    this.Events != null &&
-                    this.Events.SequenceEqual(input.Events)
+                    this._Event == input._Event ||
+                    (this._Event != null &&
+                    this._Event.Equals(input._Event))
                 ) && 
                 (
                     this.Project == input.Project ||
@@ -204,8 +204,8 @@ namespace Telestream.Cloud.Notifications.Model
                     hashCode = hashCode * 59 + this.Account.GetHashCode();
                 if (this.Service != null)
                     hashCode = hashCode * 59 + this.Service.GetHashCode();
-                if (this.Events != null)
-                    hashCode = hashCode * 59 + this.Events.GetHashCode();
+                if (this._Event != null)
+                    hashCode = hashCode * 59 + this._Event.GetHashCode();
                 if (this.Project != null)
                     hashCode = hashCode * 59 + this.Project.GetHashCode();
                 return hashCode;

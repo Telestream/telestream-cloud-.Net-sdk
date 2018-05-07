@@ -158,7 +158,6 @@ namespace Telestream.Cloud.Flip.Client
                         await SendMessage(message);
                 }
 
-
                 private HttpRequestMessage CreateChunkMessage(int part_id, byte[] bytes, int bytesToSend, string location, string tag)
                 {
                         var message = new HttpRequestMessage(HttpMethod.Put, location);

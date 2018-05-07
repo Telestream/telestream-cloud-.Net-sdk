@@ -29,8 +29,9 @@ namespace Telestream.Cloud.Notifications.Model
     public partial class Subscription :  IEquatable<Subscription>
     {
         /// <summary>
-        /// Defines Type
+        /// [required] Type of subscription (email, webhook) 
         /// </summary>
+        /// <value>[required] Type of subscription (email, webhook) </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TypeEnum
         {
@@ -49,20 +50,19 @@ namespace Telestream.Cloud.Notifications.Model
         }
 
         /// <summary>
-        /// Gets or Sets Type
+        /// [required] Type of subscription (email, webhook) 
         /// </summary>
+        /// <value>[required] Type of subscription (email, webhook) </value>
         [DataMember(Name="type", EmitDefaultValue=false)]
         public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Subscription" /> class.
         /// </summary>
-        /// <param name="Id">[read-only] Subscription identifier .</param>
-        /// <param name="Type">Type.</param>
-        /// <param name="Topic">Topic.</param>
-        /// <param name="_Params">_Params.</param>
-        public Subscription(string Id = default(string), TypeEnum? Type = default(TypeEnum?), Topic Topic = default(Topic), ModelParams _Params = default(ModelParams))
+        /// <param name="Type">[required] Type of subscription (email, webhook) .</param>
+        /// <param name="Topic">[required] .</param>
+        /// <param name="_Params">[required] .</param>
+        public Subscription(TypeEnum? Type = default(TypeEnum?), Topic Topic = default(Topic), ModelParams _Params = default(ModelParams))
         {
-            this.Id = Id;
             this.Type = Type;
             this.Topic = Topic;
             this._Params = _Params;
@@ -73,18 +73,20 @@ namespace Telestream.Cloud.Notifications.Model
         /// </summary>
         /// <value>[read-only] Subscription identifier </value>
         [DataMember(Name="id", EmitDefaultValue=false)]
-        public string Id { get; set; }
+        public string Id { get; private set; }
 
 
         /// <summary>
-        /// Gets or Sets Topic
+        /// [required] 
         /// </summary>
+        /// <value>[required] </value>
         [DataMember(Name="topic", EmitDefaultValue=false)]
         public Topic Topic { get; set; }
 
         /// <summary>
-        /// Gets or Sets _Params
+        /// [required] 
         /// </summary>
+        /// <value>[required] </value>
         [DataMember(Name="params", EmitDefaultValue=false)]
         public ModelParams _Params { get; set; }
 
