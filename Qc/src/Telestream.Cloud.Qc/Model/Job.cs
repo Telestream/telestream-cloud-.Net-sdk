@@ -130,8 +130,9 @@ namespace Telestream.Cloud.Qc.Model
         /// <param name="UpdatedAt">UpdatedAt.</param>
         /// <param name="ErrorClass">ErrorClass.</param>
         /// <param name="ErrorMessage">ErrorMessage.</param>
+        /// <param name="Payload">Payload.</param>
         /// <param name="Details">Details.</param>
-        public Job(string Id = default(string), string ProjectId = default(string), StatusEnum? Status = default(StatusEnum?), string State = default(string), int? Duration = default(int?), TypeEnum? Type = default(TypeEnum?), int? Progress = default(int?), string Filename = default(string), string SourceUrl = default(string), string CreatedAt = default(string), string UpdatedAt = default(string), string ErrorClass = default(string), string ErrorMessage = default(string), JobDetails Details = default(JobDetails))
+        public Job(string Id = default(string), string ProjectId = default(string), StatusEnum? Status = default(StatusEnum?), string State = default(string), int? Duration = default(int?), TypeEnum? Type = default(TypeEnum?), int? Progress = default(int?), string Filename = default(string), string SourceUrl = default(string), string CreatedAt = default(string), string UpdatedAt = default(string), string ErrorClass = default(string), string ErrorMessage = default(string), string Payload = default(string), JobDetails Details = default(JobDetails))
         {
             this.Id = Id;
             this.ProjectId = ProjectId;
@@ -146,6 +147,7 @@ namespace Telestream.Cloud.Qc.Model
             this.UpdatedAt = UpdatedAt;
             this.ErrorClass = ErrorClass;
             this.ErrorMessage = ErrorMessage;
+            this.Payload = Payload;
             this.Details = Details;
         }
         
@@ -218,6 +220,12 @@ namespace Telestream.Cloud.Qc.Model
         public string ErrorMessage { get; set; }
 
         /// <summary>
+        /// Gets or Sets Payload
+        /// </summary>
+        [DataMember(Name="payload", EmitDefaultValue=false)]
+        public string Payload { get; set; }
+
+        /// <summary>
         /// Gets or Sets Details
         /// </summary>
         [DataMember(Name="details", EmitDefaultValue=false)]
@@ -244,6 +252,7 @@ namespace Telestream.Cloud.Qc.Model
             sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
             sb.Append("  ErrorClass: ").Append(ErrorClass).Append("\n");
             sb.Append("  ErrorMessage: ").Append(ErrorMessage).Append("\n");
+            sb.Append("  Payload: ").Append(Payload).Append("\n");
             sb.Append("  Details: ").Append(Details).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -345,6 +354,11 @@ namespace Telestream.Cloud.Qc.Model
                     this.ErrorMessage.Equals(input.ErrorMessage))
                 ) && 
                 (
+                    this.Payload == input.Payload ||
+                    (this.Payload != null &&
+                    this.Payload.Equals(input.Payload))
+                ) && 
+                (
                     this.Details == input.Details ||
                     (this.Details != null &&
                     this.Details.Equals(input.Details))
@@ -386,6 +400,8 @@ namespace Telestream.Cloud.Qc.Model
                     hashCode = hashCode * 59 + this.ErrorClass.GetHashCode();
                 if (this.ErrorMessage != null)
                     hashCode = hashCode * 59 + this.ErrorMessage.GetHashCode();
+                if (this.Payload != null)
+                    hashCode = hashCode * 59 + this.Payload.GetHashCode();
                 if (this.Details != null)
                     hashCode = hashCode * 59 + this.Details.GetHashCode();
                 return hashCode;

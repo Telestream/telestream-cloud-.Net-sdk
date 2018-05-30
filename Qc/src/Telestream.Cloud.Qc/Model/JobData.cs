@@ -33,10 +33,12 @@ namespace Telestream.Cloud.Qc.Model
         /// </summary>
         /// <param name="Options">Options.</param>
         /// <param name="Url">Url.</param>
-        public JobData(Options Options = default(Options), string Url = default(string))
+        /// <param name="Payload">Payload is an arbitrary text of length 256 or shorter that you can store along the Media. It is typically used to retain an association with one of your own DB record ID..</param>
+        public JobData(Options Options = default(Options), string Url = default(string), string Payload = default(string))
         {
             this.Options = Options;
             this.Url = Url;
+            this.Payload = Payload;
         }
         
         /// <summary>
@@ -52,6 +54,13 @@ namespace Telestream.Cloud.Qc.Model
         public string Url { get; set; }
 
         /// <summary>
+        /// Payload is an arbitrary text of length 256 or shorter that you can store along the Media. It is typically used to retain an association with one of your own DB record ID.
+        /// </summary>
+        /// <value>Payload is an arbitrary text of length 256 or shorter that you can store along the Media. It is typically used to retain an association with one of your own DB record ID.</value>
+        [DataMember(Name="payload", EmitDefaultValue=false)]
+        public string Payload { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -61,6 +70,7 @@ namespace Telestream.Cloud.Qc.Model
             sb.Append("class JobData {\n");
             sb.Append("  Options: ").Append(Options).Append("\n");
             sb.Append("  Url: ").Append(Url).Append("\n");
+            sb.Append("  Payload: ").Append(Payload).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -104,6 +114,11 @@ namespace Telestream.Cloud.Qc.Model
                     this.Url == input.Url ||
                     (this.Url != null &&
                     this.Url.Equals(input.Url))
+                ) && 
+                (
+                    this.Payload == input.Payload ||
+                    (this.Payload != null &&
+                    this.Payload.Equals(input.Payload))
                 );
         }
 
@@ -120,6 +135,8 @@ namespace Telestream.Cloud.Qc.Model
                     hashCode = hashCode * 59 + this.Options.GetHashCode();
                 if (this.Url != null)
                     hashCode = hashCode * 59 + this.Url.GetHashCode();
+                if (this.Payload != null)
+                    hashCode = hashCode * 59 + this.Payload.GetHashCode();
                 return hashCode;
             }
         }

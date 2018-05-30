@@ -77,8 +77,8 @@ Class | Method | HTTP request | Description
 <a name="documentation-for-authorization"></a>
 ## Documentation for Authorization
 
-<a name="apiKey"></a>
-### apiKey
+<a name="api_key"></a>
+### api_key
 
 - **Type**: API key
 - **API key parameter name**: X-Api-Key

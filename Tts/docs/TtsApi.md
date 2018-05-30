@@ -44,7 +44,7 @@ namespace Example
     {
         public void main()
         {
-            // Configure API key authorization: apiKey
+            // Configure API key authorization: api_key
             Configuration.Default.AddApiKey("X-Api-Key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // Configuration.Default.AddApiKeyPrefix("X-Api-Key", "Bearer");
@@ -79,7 +79,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[api_key](../README.md#api_key)
 
 ### HTTP request headers
 
@@ -110,7 +110,7 @@ namespace Example
     {
         public void main()
         {
-            // Configure API key authorization: apiKey
+            // Configure API key authorization: api_key
             Configuration.Default.AddApiKey("X-Api-Key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // Configuration.Default.AddApiKeyPrefix("X-Api-Key", "Bearer");
@@ -147,7 +147,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[api_key](../README.md#api_key)
 
 ### HTTP request headers
 
@@ -178,7 +178,7 @@ namespace Example
     {
         public void main()
         {
-            // Configure API key authorization: apiKey
+            // Configure API key authorization: api_key
             Configuration.Default.AddApiKey("X-Api-Key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // Configuration.Default.AddApiKeyPrefix("X-Api-Key", "Bearer");
@@ -216,7 +216,7 @@ void (empty response body)
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[api_key](../README.md#api_key)
 
 ### HTTP request headers
 
@@ -247,7 +247,7 @@ namespace Example
     {
         public void main()
         {
-            // Configure API key authorization: apiKey
+            // Configure API key authorization: api_key
             Configuration.Default.AddApiKey("X-Api-Key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // Configuration.Default.AddApiKeyPrefix("X-Api-Key", "Bearer");
@@ -284,7 +284,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[api_key](../README.md#api_key)
 
 ### HTTP request headers
 
@@ -315,7 +315,7 @@ namespace Example
     {
         public void main()
         {
-            // Configure API key authorization: apiKey
+            // Configure API key authorization: api_key
             Configuration.Default.AddApiKey("X-Api-Key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // Configuration.Default.AddApiKeyPrefix("X-Api-Key", "Bearer");
@@ -350,7 +350,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[api_key](../README.md#api_key)
 
 ### HTTP request headers
 
@@ -381,7 +381,7 @@ namespace Example
     {
         public void main()
         {
-            // Configure API key authorization: apiKey
+            // Configure API key authorization: api_key
             Configuration.Default.AddApiKey("X-Api-Key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // Configuration.Default.AddApiKeyPrefix("X-Api-Key", "Bearer");
@@ -417,7 +417,7 @@ void (empty response body)
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[api_key](../README.md#api_key)
 
 ### HTTP request headers
 
@@ -448,7 +448,7 @@ namespace Example
     {
         public void main()
         {
-            // Configure API key authorization: apiKey
+            // Configure API key authorization: api_key
             Configuration.Default.AddApiKey("X-Api-Key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // Configuration.Default.AddApiKeyPrefix("X-Api-Key", "Bearer");
@@ -484,7 +484,7 @@ void (empty response body)
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[api_key](../README.md#api_key)
 
 ### HTTP request headers
 
@@ -515,7 +515,7 @@ namespace Example
     {
         public void main()
         {
-            // Configure API key authorization: apiKey
+            // Configure API key authorization: api_key
             Configuration.Default.AddApiKey("X-Api-Key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // Configuration.Default.AddApiKeyPrefix("X-Api-Key", "Bearer");
@@ -545,7 +545,7 @@ void (empty response body)
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[api_key](../README.md#api_key)
 
 ### HTTP request headers
 
@@ -576,7 +576,7 @@ namespace Example
     {
         public void main()
         {
-            // Configure API key authorization: apiKey
+            // Configure API key authorization: api_key
             Configuration.Default.AddApiKey("X-Api-Key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // Configuration.Default.AddApiKeyPrefix("X-Api-Key", "Bearer");
@@ -613,7 +613,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[api_key](../README.md#api_key)
 
 ### HTTP request headers
 
@@ -644,7 +644,7 @@ namespace Example
     {
         public void main()
         {
-            // Configure API key authorization: apiKey
+            // Configure API key authorization: api_key
             Configuration.Default.AddApiKey("X-Api-Key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // Configuration.Default.AddApiKeyPrefix("X-Api-Key", "Bearer");
@@ -681,7 +681,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[api_key](../README.md#api_key)
 
 ### HTTP request headers
 
@@ -712,7 +712,7 @@ namespace Example
     {
         public void main()
         {
-            // Configure API key authorization: apiKey
+            // Configure API key authorization: api_key
             Configuration.Default.AddApiKey("X-Api-Key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // Configuration.Default.AddApiKeyPrefix("X-Api-Key", "Bearer");
@@ -751,7 +751,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[api_key](../README.md#api_key)
 
 ### HTTP request headers
 
@@ -782,7 +782,7 @@ namespace Example
     {
         public void main()
         {
-            // Configure API key authorization: apiKey
+            // Configure API key authorization: api_key
             Configuration.Default.AddApiKey("X-Api-Key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // Configuration.Default.AddApiKeyPrefix("X-Api-Key", "Bearer");
@@ -817,7 +817,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[api_key](../README.md#api_key)
 
 ### HTTP request headers
 
@@ -848,7 +848,7 @@ namespace Example
     {
         public void main()
         {
-            // Configure API key authorization: apiKey
+            // Configure API key authorization: api_key
             Configuration.Default.AddApiKey("X-Api-Key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // Configuration.Default.AddApiKeyPrefix("X-Api-Key", "Bearer");
@@ -879,7 +879,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[api_key](../README.md#api_key)
 
 ### HTTP request headers
 
@@ -910,7 +910,7 @@ namespace Example
     {
         public void main()
         {
-            // Configure API key authorization: apiKey
+            // Configure API key authorization: api_key
             Configuration.Default.AddApiKey("X-Api-Key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // Configuration.Default.AddApiKeyPrefix("X-Api-Key", "Bearer");
@@ -944,7 +944,7 @@ void (empty response body)
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[api_key](../README.md#api_key)
 
 ### HTTP request headers
 
@@ -975,7 +975,7 @@ namespace Example
     {
         public void main()
         {
-            // Configure API key authorization: apiKey
+            // Configure API key authorization: api_key
             Configuration.Default.AddApiKey("X-Api-Key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // Configuration.Default.AddApiKeyPrefix("X-Api-Key", "Bearer");
@@ -1010,7 +1010,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[api_key](../README.md#api_key)
 
 ### HTTP request headers
 
@@ -1039,7 +1039,7 @@ namespace Example
     {
         public void main()
         {
-            // Configure API key authorization: apiKey
+            // Configure API key authorization: api_key
             Configuration.Default.AddApiKey("X-Api-Key", "YOUR_API_KEY");
             // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
             // Configuration.Default.AddApiKeyPrefix("X-Api-Key", "Bearer");
@@ -1076,7 +1076,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apiKey](../README.md#apiKey)
+[api_key](../README.md#api_key)
 
 ### HTTP request headers
 

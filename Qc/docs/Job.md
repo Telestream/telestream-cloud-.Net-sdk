@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **UpdatedAt** | **string** |  | [optional] 
 **ErrorClass** | **string** |  | [optional] 
 **ErrorMessage** | **string** |  | [optional] 
+**Payload** | **string** |  | [optional] 
 **Details** | [**JobDetails**](JobDetails.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

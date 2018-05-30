@@ -55,7 +55,7 @@ namespace Telestream.Cloud.Flip.Model
         /// <param name="UpdatedAt">A date and time when a Video has been updated last time..</param>
         /// <param name="VideoBitrate">video bitrate (in bits/s).</param>
         /// <param name="VideoCodec">A codec that has been used to encode the input file&#39;s video streams..</param>
-        public Video(string Id = default(string), int? AudioBitrate = default(int?), int? AudioChannels = default(int?), string AudioCodec = default(string), int? AudioSampleRate = default(int?), string CreatedAt = default(string), int? Duration = default(int?), int? EncodingsCount = default(int?), string ErrorClass = default(string), string ErrorMessage = default(string), string Extname = default(string), int? FileSize = default(int?), decimal? Fps = default(decimal?), int? Height = default(int?), int? Width = default(int?), string MimeType = default(string), string OriginalFilename = default(string), string Path = default(string), string Payload = default(string), string SourceUrl = default(string), string Status = default(string), string UpdatedAt = default(string), string VideoBitrate = default(string), string VideoCodec = default(string))
+        public Video(string Id = default(string), int? AudioBitrate = default(int?), int? AudioChannels = default(int?), string AudioCodec = default(string), int? AudioSampleRate = default(int?), string CreatedAt = default(string), int? Duration = default(int?), int? EncodingsCount = default(int?), string ErrorClass = default(string), string ErrorMessage = default(string), string Extname = default(string), long? FileSize = default(long?), decimal? Fps = default(decimal?), int? Height = default(int?), int? Width = default(int?), string MimeType = default(string), string OriginalFilename = default(string), string Path = default(string), string Payload = default(string), string SourceUrl = default(string), string Status = default(string), string UpdatedAt = default(string), string VideoBitrate = default(string), string VideoCodec = default(string))
         {
             this.Id = Id;
             this.AudioBitrate = AudioBitrate;
@@ -165,7 +165,7 @@ namespace Telestream.Cloud.Flip.Model
         /// </summary>
         /// <value>A size of the source file.</value>
         [DataMember(Name="file_size", EmitDefaultValue=false)]
-        public int? FileSize { get; set; }
+        public long? FileSize { get; set; }
 
         /// <summary>
         /// Number of frames per second.

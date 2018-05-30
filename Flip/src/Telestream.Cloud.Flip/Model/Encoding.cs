@@ -62,7 +62,7 @@ namespace Telestream.Cloud.Flip.Model
         /// <param name="VideoBitrate">video bitrate (in bits/s).</param>
         /// <param name="VideoCodec">A codec that is used to encode video streams..</param>
         /// <param name="VideoId">An id of a related Video object.</param>
-        public Encoding(string Id = default(string), int? AudioBitrate = default(int?), int? AudioChannels = default(int?), string AudioCodec = default(string), int? AudioSampleRate = default(int?), string CreatedAt = default(string), int? Duration = default(int?), int? EncodingProgress = default(int?), int? EncodingTime = default(int?), string ErrorClass = default(string), string ErrorMessage = default(string), string ExternalId = default(string), string Extname = default(string), int? FileSize = default(int?), List<string> Files = default(List<string>), decimal? Fps = default(decimal?), int? Height = default(int?), int? Width = default(int?), string LogfileUrl = default(string), string MimeType = default(string), string ParentEncodingId = default(string), string Path = default(string), string ProfileId = default(string), string ProfileName = default(string), List<string> Screenshots = default(List<string>), string StartedEncodingAt = default(string), string Status = default(string), string UpdatedAt = default(string), int? VideoBitrate = default(int?), string VideoCodec = default(string), string VideoId = default(string))
+        public Encoding(string Id = default(string), int? AudioBitrate = default(int?), int? AudioChannels = default(int?), string AudioCodec = default(string), int? AudioSampleRate = default(int?), string CreatedAt = default(string), int? Duration = default(int?), int? EncodingProgress = default(int?), int? EncodingTime = default(int?), string ErrorClass = default(string), string ErrorMessage = default(string), string ExternalId = default(string), string Extname = default(string), long? FileSize = default(long?), List<string> Files = default(List<string>), decimal? Fps = default(decimal?), int? Height = default(int?), int? Width = default(int?), string LogfileUrl = default(string), string MimeType = default(string), string ParentEncodingId = default(string), string Path = default(string), string ProfileId = default(string), string ProfileName = default(string), List<string> Screenshots = default(List<string>), string StartedEncodingAt = default(string), string Status = default(string), string UpdatedAt = default(string), int? VideoBitrate = default(int?), string VideoCodec = default(string), string VideoId = default(string))
         {
             this.Id = Id;
             this.AudioBitrate = AudioBitrate;
@@ -189,7 +189,7 @@ namespace Telestream.Cloud.Flip.Model
         /// </summary>
         /// <value>A size of the output file.</value>
         [DataMember(Name="file_size", EmitDefaultValue=false)]
-        public int? FileSize { get; set; }
+        public long? FileSize { get; set; }
 
         /// <summary>
         /// An array of output file names.

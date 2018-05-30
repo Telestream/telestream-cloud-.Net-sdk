@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **ErrorMessage** | **string** | A message that explains why the encoding process has resulted in an error. It is present only if the encoding status is equal to &#x60;fail&#x60;. | [optional] 
 **ExternalId** | **string** |  | [optional] 
 **Extname** | **string** | Extension of the output file. | [optional] 
-**FileSize** | **int?** | A size of the output file. | [optional] 
+**FileSize** | **long?** | A size of the output file. | [optional] 
 **Files** | **List&lt;string&gt;** | An array of output file names. | [optional] 
 **Fps** | **decimal?** | Number of frames per second. | [optional] 
 **Height** | **int?** | Height of the output video. | [optional] 

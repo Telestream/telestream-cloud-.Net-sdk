@@ -882,7 +882,7 @@ namespace Telestream.Cloud.Tts.Api
 
             if (projectID != null) localVarPathParams.Add("projectID", Configuration.ApiClient.ParameterToString(projectID)); // path parameter
 
-            // authentication (apiKey) required
+            // authentication (api_key) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
             {
                 localVarHeaderParams["X-Api-Key"] = Configuration.GetApiKeyWithPrefix("X-Api-Key");
@@ -955,7 +955,7 @@ namespace Telestream.Cloud.Tts.Api
 
             if (projectID != null) localVarPathParams.Add("projectID", Configuration.ApiClient.ParameterToString(projectID)); // path parameter
 
-            // authentication (apiKey) required
+            // authentication (api_key) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
             {
                 localVarHeaderParams["X-Api-Key"] = Configuration.GetApiKeyWithPrefix("X-Api-Key");
@@ -1033,7 +1033,7 @@ namespace Telestream.Cloud.Tts.Api
             if (projectID != null) localVarPathParams.Add("projectID", Configuration.ApiClient.ParameterToString(projectID)); // path parameter
             if (name != null) localVarPathParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // path parameter
 
-            // authentication (apiKey) required
+            // authentication (api_key) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
             {
                 localVarHeaderParams["X-Api-Key"] = Configuration.GetApiKeyWithPrefix("X-Api-Key");
@@ -1112,7 +1112,7 @@ namespace Telestream.Cloud.Tts.Api
             if (projectID != null) localVarPathParams.Add("projectID", Configuration.ApiClient.ParameterToString(projectID)); // path parameter
             if (name != null) localVarPathParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // path parameter
 
-            // authentication (apiKey) required
+            // authentication (api_key) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
             {
                 localVarHeaderParams["X-Api-Key"] = Configuration.GetApiKeyWithPrefix("X-Api-Key");
@@ -1202,7 +1202,7 @@ namespace Telestream.Cloud.Tts.Api
                 localVarPostBody = body; // byte array
             }
 
-            // authentication (apiKey) required
+            // authentication (api_key) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
             {
                 localVarHeaderParams["X-Api-Key"] = Configuration.GetApiKeyWithPrefix("X-Api-Key");
@@ -1293,7 +1293,7 @@ namespace Telestream.Cloud.Tts.Api
                 localVarPostBody = body; // byte array
             }
 
-            // authentication (apiKey) required
+            // authentication (api_key) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
             {
                 localVarHeaderParams["X-Api-Key"] = Configuration.GetApiKeyWithPrefix("X-Api-Key");
@@ -1378,7 +1378,7 @@ namespace Telestream.Cloud.Tts.Api
                 localVarPostBody = job; // byte array
             }
 
-            // authentication (apiKey) required
+            // authentication (api_key) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
             {
                 localVarHeaderParams["X-Api-Key"] = Configuration.GetApiKeyWithPrefix("X-Api-Key");
@@ -1464,7 +1464,7 @@ namespace Telestream.Cloud.Tts.Api
                 localVarPostBody = job; // byte array
             }
 
-            // authentication (apiKey) required
+            // authentication (api_key) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
             {
                 localVarHeaderParams["X-Api-Key"] = Configuration.GetApiKeyWithPrefix("X-Api-Key");
@@ -1543,7 +1543,7 @@ namespace Telestream.Cloud.Tts.Api
                 localVarPostBody = project; // byte array
             }
 
-            // authentication (apiKey) required
+            // authentication (api_key) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
             {
                 localVarHeaderParams["X-Api-Key"] = Configuration.GetApiKeyWithPrefix("X-Api-Key");
@@ -1623,7 +1623,7 @@ namespace Telestream.Cloud.Tts.Api
                 localVarPostBody = project; // byte array
             }
 
-            // authentication (apiKey) required
+            // authentication (api_key) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
             {
                 localVarHeaderParams["X-Api-Key"] = Configuration.GetApiKeyWithPrefix("X-Api-Key");
@@ -1700,7 +1700,7 @@ namespace Telestream.Cloud.Tts.Api
             if (projectID != null) localVarPathParams.Add("projectID", Configuration.ApiClient.ParameterToString(projectID)); // path parameter
             if (name != null) localVarPathParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // path parameter
 
-            // authentication (apiKey) required
+            // authentication (api_key) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
             {
                 localVarHeaderParams["X-Api-Key"] = Configuration.GetApiKeyWithPrefix("X-Api-Key");
@@ -1778,7 +1778,7 @@ namespace Telestream.Cloud.Tts.Api
             if (projectID != null) localVarPathParams.Add("projectID", Configuration.ApiClient.ParameterToString(projectID)); // path parameter
             if (name != null) localVarPathParams.Add("name", Configuration.ApiClient.ParameterToString(name)); // path parameter
 
-            // authentication (apiKey) required
+            // authentication (api_key) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
             {
                 localVarHeaderParams["X-Api-Key"] = Configuration.GetApiKeyWithPrefix("X-Api-Key");
@@ -1855,7 +1855,7 @@ namespace Telestream.Cloud.Tts.Api
             if (projectID != null) localVarPathParams.Add("projectID", Configuration.ApiClient.ParameterToString(projectID)); // path parameter
             if (jobID != null) localVarPathParams.Add("jobID", Configuration.ApiClient.ParameterToString(jobID)); // path parameter
 
-            // authentication (apiKey) required
+            // authentication (api_key) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
             {
                 localVarHeaderParams["X-Api-Key"] = Configuration.GetApiKeyWithPrefix("X-Api-Key");
@@ -1933,7 +1933,7 @@ namespace Telestream.Cloud.Tts.Api
             if (projectID != null) localVarPathParams.Add("projectID", Configuration.ApiClient.ParameterToString(projectID)); // path parameter
             if (jobID != null) localVarPathParams.Add("jobID", Configuration.ApiClient.ParameterToString(jobID)); // path parameter
 
-            // authentication (apiKey) required
+            // authentication (api_key) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
             {
                 localVarHeaderParams["X-Api-Key"] = Configuration.GetApiKeyWithPrefix("X-Api-Key");
@@ -1998,7 +1998,7 @@ namespace Telestream.Cloud.Tts.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
 
-            // authentication (apiKey) required
+            // authentication (api_key) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
             {
                 localVarHeaderParams["X-Api-Key"] = Configuration.GetApiKeyWithPrefix("X-Api-Key");
@@ -2064,7 +2064,7 @@ namespace Telestream.Cloud.Tts.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
 
-            // authentication (apiKey) required
+            // authentication (api_key) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
             {
                 localVarHeaderParams["X-Api-Key"] = Configuration.GetApiKeyWithPrefix("X-Api-Key");
@@ -2142,7 +2142,7 @@ namespace Telestream.Cloud.Tts.Api
             if (projectID != null) localVarPathParams.Add("projectID", Configuration.ApiClient.ParameterToString(projectID)); // path parameter
             if (jobID != null) localVarPathParams.Add("jobID", Configuration.ApiClient.ParameterToString(jobID)); // path parameter
 
-            // authentication (apiKey) required
+            // authentication (api_key) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
             {
                 localVarHeaderParams["X-Api-Key"] = Configuration.GetApiKeyWithPrefix("X-Api-Key");
@@ -2221,7 +2221,7 @@ namespace Telestream.Cloud.Tts.Api
             if (projectID != null) localVarPathParams.Add("projectID", Configuration.ApiClient.ParameterToString(projectID)); // path parameter
             if (jobID != null) localVarPathParams.Add("jobID", Configuration.ApiClient.ParameterToString(jobID)); // path parameter
 
-            // authentication (apiKey) required
+            // authentication (api_key) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
             {
                 localVarHeaderParams["X-Api-Key"] = Configuration.GetApiKeyWithPrefix("X-Api-Key");
@@ -2299,7 +2299,7 @@ namespace Telestream.Cloud.Tts.Api
             if (projectID != null) localVarPathParams.Add("projectID", Configuration.ApiClient.ParameterToString(projectID)); // path parameter
             if (jobID != null) localVarPathParams.Add("jobID", Configuration.ApiClient.ParameterToString(jobID)); // path parameter
 
-            // authentication (apiKey) required
+            // authentication (api_key) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
             {
                 localVarHeaderParams["X-Api-Key"] = Configuration.GetApiKeyWithPrefix("X-Api-Key");
@@ -2378,7 +2378,7 @@ namespace Telestream.Cloud.Tts.Api
             if (projectID != null) localVarPathParams.Add("projectID", Configuration.ApiClient.ParameterToString(projectID)); // path parameter
             if (jobID != null) localVarPathParams.Add("jobID", Configuration.ApiClient.ParameterToString(jobID)); // path parameter
 
-            // authentication (apiKey) required
+            // authentication (api_key) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
             {
                 localVarHeaderParams["X-Api-Key"] = Configuration.GetApiKeyWithPrefix("X-Api-Key");
@@ -2456,7 +2456,7 @@ namespace Telestream.Cloud.Tts.Api
             if (page != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "page", page)); // query parameter
             if (perPage != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "per_page", perPage)); // query parameter
 
-            // authentication (apiKey) required
+            // authentication (api_key) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
             {
                 localVarHeaderParams["X-Api-Key"] = Configuration.GetApiKeyWithPrefix("X-Api-Key");
@@ -2535,7 +2535,7 @@ namespace Telestream.Cloud.Tts.Api
             if (page != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "page", page)); // query parameter
             if (perPage != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "per_page", perPage)); // query parameter
 
-            // authentication (apiKey) required
+            // authentication (api_key) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
             {
                 localVarHeaderParams["X-Api-Key"] = Configuration.GetApiKeyWithPrefix("X-Api-Key");
@@ -2607,7 +2607,7 @@ namespace Telestream.Cloud.Tts.Api
 
             if (projectID != null) localVarPathParams.Add("projectID", Configuration.ApiClient.ParameterToString(projectID)); // path parameter
 
-            // authentication (apiKey) required
+            // authentication (api_key) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
             {
                 localVarHeaderParams["X-Api-Key"] = Configuration.GetApiKeyWithPrefix("X-Api-Key");
@@ -2680,7 +2680,7 @@ namespace Telestream.Cloud.Tts.Api
 
             if (projectID != null) localVarPathParams.Add("projectID", Configuration.ApiClient.ParameterToString(projectID)); // path parameter
 
-            // authentication (apiKey) required
+            // authentication (api_key) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
             {
                 localVarHeaderParams["X-Api-Key"] = Configuration.GetApiKeyWithPrefix("X-Api-Key");
@@ -2746,7 +2746,7 @@ namespace Telestream.Cloud.Tts.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
 
-            // authentication (apiKey) required
+            // authentication (api_key) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
             {
                 localVarHeaderParams["X-Api-Key"] = Configuration.GetApiKeyWithPrefix("X-Api-Key");
@@ -2813,7 +2813,7 @@ namespace Telestream.Cloud.Tts.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
 
-            // authentication (apiKey) required
+            // authentication (api_key) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
             {
                 localVarHeaderParams["X-Api-Key"] = Configuration.GetApiKeyWithPrefix("X-Api-Key");
@@ -2884,7 +2884,7 @@ namespace Telestream.Cloud.Tts.Api
 
             if (projectID != null) localVarPathParams.Add("projectID", Configuration.ApiClient.ParameterToString(projectID)); // path parameter
 
-            // authentication (apiKey) required
+            // authentication (api_key) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
             {
                 localVarHeaderParams["X-Api-Key"] = Configuration.GetApiKeyWithPrefix("X-Api-Key");
@@ -2956,7 +2956,7 @@ namespace Telestream.Cloud.Tts.Api
 
             if (projectID != null) localVarPathParams.Add("projectID", Configuration.ApiClient.ParameterToString(projectID)); // path parameter
 
-            // authentication (apiKey) required
+            // authentication (api_key) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
             {
                 localVarHeaderParams["X-Api-Key"] = Configuration.GetApiKeyWithPrefix("X-Api-Key");
@@ -3035,7 +3035,7 @@ namespace Telestream.Cloud.Tts.Api
                 localVarPostBody = project; // byte array
             }
 
-            // authentication (apiKey) required
+            // authentication (api_key) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
             {
                 localVarHeaderParams["X-Api-Key"] = Configuration.GetApiKeyWithPrefix("X-Api-Key");
@@ -3115,7 +3115,7 @@ namespace Telestream.Cloud.Tts.Api
                 localVarPostBody = project; // byte array
             }
 
-            // authentication (apiKey) required
+            // authentication (api_key) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
             {
                 localVarHeaderParams["X-Api-Key"] = Configuration.GetApiKeyWithPrefix("X-Api-Key");
@@ -3200,7 +3200,7 @@ namespace Telestream.Cloud.Tts.Api
                 localVarPostBody = videoUploadBody; // byte array
             }
 
-            // authentication (apiKey) required
+            // authentication (api_key) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
             {
                 localVarHeaderParams["X-Api-Key"] = Configuration.GetApiKeyWithPrefix("X-Api-Key");
@@ -3286,7 +3286,7 @@ namespace Telestream.Cloud.Tts.Api
                 localVarPostBody = videoUploadBody; // byte array
             }
 
-            // authentication (apiKey) required
+            // authentication (api_key) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
             {
                 localVarHeaderParams["X-Api-Key"] = Configuration.GetApiKeyWithPrefix("X-Api-Key");
