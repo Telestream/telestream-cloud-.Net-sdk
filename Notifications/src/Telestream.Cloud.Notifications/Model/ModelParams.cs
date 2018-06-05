@@ -29,9 +29,9 @@ namespace Telestream.Cloud.Notifications.Model
     public partial class ModelParams :  IEquatable<ModelParams>
     {
         /// <summary>
-        /// [optional] #webhook;  HTTP method; default: POST (GET, POST) 
+        /// #webhook;  HTTP method; default: POST (GET, POST) 
         /// </summary>
-        /// <value>[optional] #webhook;  HTTP method; default: POST (GET, POST) </value>
+        /// <value>#webhook;  HTTP method; default: POST (GET, POST) </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum MethodEnum
         {
@@ -50,20 +50,47 @@ namespace Telestream.Cloud.Notifications.Model
         }
 
         /// <summary>
-        /// [optional] #webhook;  HTTP method; default: POST (GET, POST) 
+        /// #webhook;  HTTP method; default: POST (GET, POST) 
         /// </summary>
-        /// <value>[optional] #webhook;  HTTP method; default: POST (GET, POST) </value>
+        /// <value>#webhook;  HTTP method; default: POST (GET, POST) </value>
         [DataMember(Name="method", EmitDefaultValue=false)]
         public MethodEnum? Method { get; set; }
         /// <summary>
+        /// #webhook; default: application/json (application/json, application/x-www-form-urlencoded) 
+        /// </summary>
+        /// <value>#webhook; default: application/json (application/json, application/x-www-form-urlencoded) </value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum ContentTypeEnum
+        {
+            
+            /// <summary>
+            /// Enum Json for value: application/json
+            /// </summary>
+            [EnumMember(Value = "application/json")]
+            Json = 1,
+            
+            /// <summary>
+            /// Enum XWwwFormUrlencoded for value: application/x-www-form-urlencoded
+            /// </summary>
+            [EnumMember(Value = "application/x-www-form-urlencoded")]
+            XWwwFormUrlencoded = 2
+        }
+
+        /// <summary>
+        /// #webhook; default: application/json (application/json, application/x-www-form-urlencoded) 
+        /// </summary>
+        /// <value>#webhook; default: application/json (application/json, application/x-www-form-urlencoded) </value>
+        [DataMember(Name="content_type", EmitDefaultValue=false)]
+        public ContentTypeEnum? ContentType { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="ModelParams" /> class.
         /// </summary>
-        /// <param name="Addresses">[required] #email;  E-mail addresses .</param>
-        /// <param name="Url">[required] #webhook;  Webhook URL .</param>
-        /// <param name="Method">[optional] #webhook;  HTTP method; default: POST (GET, POST) .</param>
-        /// <param name="Retries">[optional] #webhook;  Number of retries before forgetting the notification; default: 0 .</param>
-        /// <param name="ContentType">[optional] #webhook; default: application/json (application/json, application/x-www-form-urlencoded) .</param>
-        public ModelParams(List<string> Addresses = default(List<string>), string Url = default(string), MethodEnum? Method = default(MethodEnum?), int? Retries = default(int?), string ContentType = default(string))
+        /// <param name="Addresses">#email;  E-mail addresses .</param>
+        /// <param name="Url">#webhook;  Webhook URL .</param>
+        /// <param name="Method">#webhook;  HTTP method; default: POST (GET, POST) .</param>
+        /// <param name="Retries">#webhook;  Number of retries before forgetting the notification; default: 0 .</param>
+        /// <param name="ContentType">#webhook; default: application/json (application/json, application/x-www-form-urlencoded) .</param>
+        public ModelParams(List<string> Addresses = default(List<string>), string Url = default(string), MethodEnum? Method = default(MethodEnum?), int? Retries = default(int?), ContentTypeEnum? ContentType = default(ContentTypeEnum?))
         {
             this.Addresses = Addresses;
             this.Url = Url;
@@ -73,33 +100,27 @@ namespace Telestream.Cloud.Notifications.Model
         }
         
         /// <summary>
-        /// [required] #email;  E-mail addresses 
+        /// #email;  E-mail addresses 
         /// </summary>
-        /// <value>[required] #email;  E-mail addresses </value>
+        /// <value>#email;  E-mail addresses </value>
         [DataMember(Name="addresses", EmitDefaultValue=false)]
         public List<string> Addresses { get; set; }
 
         /// <summary>
-        /// [required] #webhook;  Webhook URL 
+        /// #webhook;  Webhook URL 
         /// </summary>
-        /// <value>[required] #webhook;  Webhook URL </value>
+        /// <value>#webhook;  Webhook URL </value>
         [DataMember(Name="url", EmitDefaultValue=false)]
         public string Url { get; set; }
 
 
         /// <summary>
-        /// [optional] #webhook;  Number of retries before forgetting the notification; default: 0 
+        /// #webhook;  Number of retries before forgetting the notification; default: 0 
         /// </summary>
-        /// <value>[optional] #webhook;  Number of retries before forgetting the notification; default: 0 </value>
+        /// <value>#webhook;  Number of retries before forgetting the notification; default: 0 </value>
         [DataMember(Name="retries", EmitDefaultValue=false)]
         public int? Retries { get; set; }
 
-        /// <summary>
-        /// [optional] #webhook; default: application/json (application/json, application/x-www-form-urlencoded) 
-        /// </summary>
-        /// <value>[optional] #webhook; default: application/json (application/json, application/x-www-form-urlencoded) </value>
-        [DataMember(Name="content_type", EmitDefaultValue=false)]
-        public string ContentType { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

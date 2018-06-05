@@ -32,8 +32,8 @@ namespace Telestream.Cloud.Notifications.Api
         /// </remarks>
         /// <exception cref="Telestream.Cloud.Notifications.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="subscription"> (optional)</param>
-        /// <returns></returns>
-        void CreateSubscription (Subscription subscription = null);
+        /// <returns>Subscription</returns>
+        Subscription CreateSubscription (Subscription subscription = null);
 
         /// <summary>
         /// Create a new subscription
@@ -43,8 +43,8 @@ namespace Telestream.Cloud.Notifications.Api
         /// </remarks>
         /// <exception cref="Telestream.Cloud.Notifications.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="subscription"> (optional)</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> CreateSubscriptionWithHttpInfo (Subscription subscription = null);
+        /// <returns>ApiResponse of Subscription</returns>
+        ApiResponse<Subscription> CreateSubscriptionWithHttpInfo (Subscription subscription = null);
         /// <summary>
         /// 
         /// </summary>
@@ -73,6 +73,25 @@ namespace Telestream.Cloud.Notifications.Api
         /// 
         /// </remarks>
         /// <exception cref="Telestream.Cloud.Notifications.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Subscription</returns>
+        Subscription GetSubscription ();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Telestream.Cloud.Notifications.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of Subscription</returns>
+        ApiResponse<Subscription> GetSubscriptionWithHttpInfo ();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Telestream.Cloud.Notifications.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>List&lt;Subscription&gt;</returns>
         List<Subscription> ListSubscriptions ();
 
@@ -85,6 +104,29 @@ namespace Telestream.Cloud.Notifications.Api
         /// <exception cref="Telestream.Cloud.Notifications.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of List&lt;Subscription&gt;</returns>
         ApiResponse<List<Subscription>> ListSubscriptionsWithHttpInfo ();
+        /// <summary>
+        /// Modify subscription
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Telestream.Cloud.Notifications.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="updateData"> (optional)</param>
+        /// <returns>Subscription</returns>
+        Subscription ModifySubscription (string id, UpdateData updateData = null);
+
+        /// <summary>
+        /// Modify subscription
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Telestream.Cloud.Notifications.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="updateData"> (optional)</param>
+        /// <returns>ApiResponse of Subscription</returns>
+        ApiResponse<Subscription> ModifySubscriptionWithHttpInfo (string id, UpdateData updateData = null);
         #endregion Synchronous Operations
         #region Asynchronous Operations
         /// <summary>
@@ -95,8 +137,8 @@ namespace Telestream.Cloud.Notifications.Api
         /// </remarks>
         /// <exception cref="Telestream.Cloud.Notifications.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="subscription"> (optional)</param>
-        /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task CreateSubscriptionAsync (Subscription subscription = null);
+        /// <returns>Task of Subscription</returns>
+        System.Threading.Tasks.Task<Subscription> CreateSubscriptionAsync (Subscription subscription = null);
 
         /// <summary>
         /// Create a new subscription
@@ -106,8 +148,8 @@ namespace Telestream.Cloud.Notifications.Api
         /// </remarks>
         /// <exception cref="Telestream.Cloud.Notifications.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="subscription"> (optional)</param>
-        /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> CreateSubscriptionAsyncWithHttpInfo (Subscription subscription = null);
+        /// <returns>Task of ApiResponse (Subscription)</returns>
+        System.Threading.Tasks.Task<ApiResponse<Subscription>> CreateSubscriptionAsyncWithHttpInfo (Subscription subscription = null);
         /// <summary>
         /// 
         /// </summary>
@@ -136,6 +178,25 @@ namespace Telestream.Cloud.Notifications.Api
         /// 
         /// </remarks>
         /// <exception cref="Telestream.Cloud.Notifications.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of Subscription</returns>
+        System.Threading.Tasks.Task<Subscription> GetSubscriptionAsync ();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Telestream.Cloud.Notifications.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiResponse (Subscription)</returns>
+        System.Threading.Tasks.Task<ApiResponse<Subscription>> GetSubscriptionAsyncWithHttpInfo ();
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Telestream.Cloud.Notifications.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>Task of List&lt;Subscription&gt;</returns>
         System.Threading.Tasks.Task<List<Subscription>> ListSubscriptionsAsync ();
 
@@ -148,6 +209,29 @@ namespace Telestream.Cloud.Notifications.Api
         /// <exception cref="Telestream.Cloud.Notifications.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>Task of ApiResponse (List&lt;Subscription&gt;)</returns>
         System.Threading.Tasks.Task<ApiResponse<List<Subscription>>> ListSubscriptionsAsyncWithHttpInfo ();
+        /// <summary>
+        /// Modify subscription
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Telestream.Cloud.Notifications.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="updateData"> (optional)</param>
+        /// <returns>Task of Subscription</returns>
+        System.Threading.Tasks.Task<Subscription> ModifySubscriptionAsync (string id, UpdateData updateData = null);
+
+        /// <summary>
+        /// Modify subscription
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Telestream.Cloud.Notifications.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="updateData"> (optional)</param>
+        /// <returns>Task of ApiResponse (Subscription)</returns>
+        System.Threading.Tasks.Task<ApiResponse<Subscription>> ModifySubscriptionAsyncWithHttpInfo (string id, UpdateData updateData = null);
         #endregion Asynchronous Operations
     }
 
@@ -253,10 +337,11 @@ namespace Telestream.Cloud.Notifications.Api
         /// </summary>
         /// <exception cref="Telestream.Cloud.Notifications.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="subscription"> (optional)</param>
-        /// <returns></returns>
-        public void CreateSubscription (Subscription subscription = null)
+        /// <returns>Subscription</returns>
+        public Subscription CreateSubscription (Subscription subscription = null)
         {
-             CreateSubscriptionWithHttpInfo(subscription);
+             ApiResponse<Subscription> localVarResponse = CreateSubscriptionWithHttpInfo(subscription);
+             return localVarResponse.Data;
         }
 
         /// <summary>
@@ -264,8 +349,8 @@ namespace Telestream.Cloud.Notifications.Api
         /// </summary>
         /// <exception cref="Telestream.Cloud.Notifications.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="subscription"> (optional)</param>
-        /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> CreateSubscriptionWithHttpInfo (Subscription subscription = null)
+        /// <returns>ApiResponse of Subscription</returns>
+        public ApiResponse< Subscription > CreateSubscriptionWithHttpInfo (Subscription subscription = null)
         {
 
             var localVarPath = "./subscriptions";
@@ -299,7 +384,7 @@ namespace Telestream.Cloud.Notifications.Api
                 localVarPostBody = subscription; // byte array
             }
 
-            // authentication (apiKey) required
+            // authentication (api_key) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
             {
                 localVarHeaderParams["X-Api-Key"] = Configuration.GetApiKeyWithPrefix("X-Api-Key");
@@ -318,9 +403,9 @@ namespace Telestream.Cloud.Notifications.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<Object>(localVarStatusCode,
+            return new ApiResponse<Subscription>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
-                null);
+                (Subscription) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Subscription)));
         }
 
         /// <summary>
@@ -328,10 +413,11 @@ namespace Telestream.Cloud.Notifications.Api
         /// </summary>
         /// <exception cref="Telestream.Cloud.Notifications.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="subscription"> (optional)</param>
-        /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task CreateSubscriptionAsync (Subscription subscription = null)
+        /// <returns>Task of Subscription</returns>
+        public async System.Threading.Tasks.Task<Subscription> CreateSubscriptionAsync (Subscription subscription = null)
         {
-             await CreateSubscriptionAsyncWithHttpInfo(subscription);
+             ApiResponse<Subscription> localVarResponse = await CreateSubscriptionAsyncWithHttpInfo(subscription);
+             return localVarResponse.Data;
 
         }
 
@@ -340,8 +426,8 @@ namespace Telestream.Cloud.Notifications.Api
         /// </summary>
         /// <exception cref="Telestream.Cloud.Notifications.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="subscription"> (optional)</param>
-        /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> CreateSubscriptionAsyncWithHttpInfo (Subscription subscription = null)
+        /// <returns>Task of ApiResponse (Subscription)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Subscription>> CreateSubscriptionAsyncWithHttpInfo (Subscription subscription = null)
         {
 
             var localVarPath = "./subscriptions";
@@ -375,7 +461,7 @@ namespace Telestream.Cloud.Notifications.Api
                 localVarPostBody = subscription; // byte array
             }
 
-            // authentication (apiKey) required
+            // authentication (api_key) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
             {
                 localVarHeaderParams["X-Api-Key"] = Configuration.GetApiKeyWithPrefix("X-Api-Key");
@@ -394,9 +480,9 @@ namespace Telestream.Cloud.Notifications.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<Object>(localVarStatusCode,
+            return new ApiResponse<Subscription>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
-                null);
+                (Subscription) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Subscription)));
         }
 
         /// <summary>
@@ -446,7 +532,7 @@ namespace Telestream.Cloud.Notifications.Api
 
             if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
 
-            // authentication (apiKey) required
+            // authentication (api_key) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
             {
                 localVarHeaderParams["X-Api-Key"] = Configuration.GetApiKeyWithPrefix("X-Api-Key");
@@ -518,7 +604,7 @@ namespace Telestream.Cloud.Notifications.Api
 
             if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
 
-            // authentication (apiKey) required
+            // authentication (api_key) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
             {
                 localVarHeaderParams["X-Api-Key"] = Configuration.GetApiKeyWithPrefix("X-Api-Key");
@@ -540,6 +626,139 @@ namespace Telestream.Cloud.Notifications.Api
             return new ApiResponse<Object>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
                 null);
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="Telestream.Cloud.Notifications.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Subscription</returns>
+        public Subscription GetSubscription ()
+        {
+             ApiResponse<Subscription> localVarResponse = GetSubscriptionWithHttpInfo();
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="Telestream.Cloud.Notifications.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>ApiResponse of Subscription</returns>
+        public ApiResponse< Subscription > GetSubscriptionWithHttpInfo ()
+        {
+
+            var localVarPath = "./subscriptions/{id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+
+            // authentication (api_key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
+            {
+                localVarHeaderParams["X-Api-Key"] = Configuration.GetApiKeyWithPrefix("X-Api-Key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetSubscription", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Subscription>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                (Subscription) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Subscription)));
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="Telestream.Cloud.Notifications.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of Subscription</returns>
+        public async System.Threading.Tasks.Task<Subscription> GetSubscriptionAsync ()
+        {
+             ApiResponse<Subscription> localVarResponse = await GetSubscriptionAsyncWithHttpInfo();
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <exception cref="Telestream.Cloud.Notifications.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <returns>Task of ApiResponse (Subscription)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Subscription>> GetSubscriptionAsyncWithHttpInfo ()
+        {
+
+            var localVarPath = "./subscriptions/{id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+
+            // authentication (api_key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
+            {
+                localVarHeaderParams["X-Api-Key"] = Configuration.GetApiKeyWithPrefix("X-Api-Key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("GetSubscription", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Subscription>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                (Subscription) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Subscription)));
         }
 
         /// <summary>
@@ -584,7 +803,7 @@ namespace Telestream.Cloud.Notifications.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
 
-            // authentication (apiKey) required
+            // authentication (api_key) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
             {
                 localVarHeaderParams["X-Api-Key"] = Configuration.GetApiKeyWithPrefix("X-Api-Key");
@@ -651,7 +870,7 @@ namespace Telestream.Cloud.Notifications.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
 
-            // authentication (apiKey) required
+            // authentication (api_key) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
             {
                 localVarHeaderParams["X-Api-Key"] = Configuration.GetApiKeyWithPrefix("X-Api-Key");
@@ -673,6 +892,171 @@ namespace Telestream.Cloud.Notifications.Api
             return new ApiResponse<List<Subscription>>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
                 (List<Subscription>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<Subscription>)));
+        }
+
+        /// <summary>
+        /// Modify subscription 
+        /// </summary>
+        /// <exception cref="Telestream.Cloud.Notifications.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="updateData"> (optional)</param>
+        /// <returns>Subscription</returns>
+        public Subscription ModifySubscription (string id, UpdateData updateData = null)
+        {
+             ApiResponse<Subscription> localVarResponse = ModifySubscriptionWithHttpInfo(id, updateData);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Modify subscription 
+        /// </summary>
+        /// <exception cref="Telestream.Cloud.Notifications.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="updateData"> (optional)</param>
+        /// <returns>ApiResponse of Subscription</returns>
+        public ApiResponse< Subscription > ModifySubscriptionWithHttpInfo (string id, UpdateData updateData = null)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new ApiException(400, "Missing required parameter 'id' when calling NotificationsApi->ModifySubscription");
+
+            var localVarPath = "./subscriptions/{id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
+            if (updateData != null && updateData.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(updateData); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = updateData; // byte array
+            }
+
+            // authentication (api_key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
+            {
+                localVarHeaderParams["X-Api-Key"] = Configuration.GetApiKeyWithPrefix("X-Api-Key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ModifySubscription", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Subscription>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                (Subscription) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Subscription)));
+        }
+
+        /// <summary>
+        /// Modify subscription 
+        /// </summary>
+        /// <exception cref="Telestream.Cloud.Notifications.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="updateData"> (optional)</param>
+        /// <returns>Task of Subscription</returns>
+        public async System.Threading.Tasks.Task<Subscription> ModifySubscriptionAsync (string id, UpdateData updateData = null)
+        {
+             ApiResponse<Subscription> localVarResponse = await ModifySubscriptionAsyncWithHttpInfo(id, updateData);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Modify subscription 
+        /// </summary>
+        /// <exception cref="Telestream.Cloud.Notifications.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id"></param>
+        /// <param name="updateData"> (optional)</param>
+        /// <returns>Task of ApiResponse (Subscription)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Subscription>> ModifySubscriptionAsyncWithHttpInfo (string id, UpdateData updateData = null)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new ApiException(400, "Missing required parameter 'id' when calling NotificationsApi->ModifySubscription");
+
+            var localVarPath = "./subscriptions/{id}";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
+            if (updateData != null && updateData.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(updateData); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = updateData; // byte array
+            }
+
+            // authentication (api_key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
+            {
+                localVarHeaderParams["X-Api-Key"] = Configuration.GetApiKeyWithPrefix("X-Api-Key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ModifySubscription", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<Subscription>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                (Subscription) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Subscription)));
         }
 
     }

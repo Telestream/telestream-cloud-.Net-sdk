@@ -97,7 +97,9 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *NotificationsApi* | [**CreateSubscription**](docs/NotificationsApi.md#createsubscription) | **POST** /subscriptions | Create a new subscription
 *NotificationsApi* | [**DeleteSubscription**](docs/NotificationsApi.md#deletesubscription) | **DELETE** /subscriptions/{id} | 
+*NotificationsApi* | [**GetSubscription**](docs/NotificationsApi.md#getsubscription) | **GET** /subscriptions/{id} | 
 *NotificationsApi* | [**ListSubscriptions**](docs/NotificationsApi.md#listsubscriptions) | **GET** /subscriptions | 
+*NotificationsApi* | [**ModifySubscription**](docs/NotificationsApi.md#modifysubscription) | **PUT** /subscriptions/{id} | Modify subscription
 
 
 <a name="documentation-for-models"></a>
@@ -106,13 +108,15 @@ Class | Method | HTTP request | Description
  - [Model.ModelParams](docs/ModelParams.md)
  - [Model.Subscription](docs/Subscription.md)
  - [Model.Topic](docs/Topic.md)
+ - [Model.UpdateData](docs/UpdateData.md)
+ - [Model.UpdateTopic](docs/UpdateTopic.md)
 
 
 <a name="documentation-for-authorization"></a>
 ## Documentation for Authorization
 
-<a name="apiKey"></a>
-### apiKey
+<a name="api_key"></a>
+### api_key
 
 - **Type**: API key
 - **API key parameter name**: X-Api-Key

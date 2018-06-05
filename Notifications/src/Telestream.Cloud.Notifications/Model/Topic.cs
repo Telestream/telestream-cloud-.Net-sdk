@@ -29,81 +29,36 @@ namespace Telestream.Cloud.Notifications.Model
     public partial class Topic :  IEquatable<Topic>
     {
         /// <summary>
-        /// [required] Name of service 
+        /// Initializes a new instance of the <see cref="Topic" /> class.
         /// </summary>
-        /// <value>[required] Name of service </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum ServiceEnum
-        {
-            
-            /// <summary>
-            /// Enum Qc for value: qc
-            /// </summary>
-            [EnumMember(Value = "qc")]
-            Qc = 1
-        }
-
-        /// <summary>
-        /// [required] Name of service 
-        /// </summary>
-        /// <value>[required] Name of service </value>
-        [DataMember(Name="service", EmitDefaultValue=false)]
-        public ServiceEnum? Service { get; set; }
-        /// <summary>
-        /// [required] Name of the event;  Quality Control (video-passed,  video-error,  video-warning,  video-rejected,  video-canceled) 
-        /// </summary>
-        /// <value>[required] Name of the event;  Quality Control (video-passed,  video-error,  video-warning,  video-rejected,  video-canceled) </value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum EventEnum
-        {
-            
-            /// <summary>
-            /// Enum Passed for value: video-passed
-            /// </summary>
-            [EnumMember(Value = "video-passed")]
-            Passed = 1,
-            
-            /// <summary>
-            /// Enum Error for value: video-error
-            /// </summary>
-            [EnumMember(Value = "video-error")]
-            Error = 2,
-            
-            /// <summary>
-            /// Enum Warning for value: video-warning
-            /// </summary>
-            [EnumMember(Value = "video-warning")]
-            Warning = 3,
-            
-            /// <summary>
-            /// Enum Rejected for value: video-rejected
-            /// </summary>
-            [EnumMember(Value = "video-rejected")]
-            Rejected = 4,
-            
-            /// <summary>
-            /// Enum Canceled for value: video-canceled
-            /// </summary>
-            [EnumMember(Value = "video-canceled")]
-            Canceled = 5
-        }
-
-        /// <summary>
-        /// [required] Name of the event;  Quality Control (video-passed,  video-error,  video-warning,  video-rejected,  video-canceled) 
-        /// </summary>
-        /// <value>[required] Name of the event;  Quality Control (video-passed,  video-error,  video-warning,  video-rejected,  video-canceled) </value>
-        [DataMember(Name="event", EmitDefaultValue=false)]
-        public EventEnum? _Event { get; set; }
+        [JsonConstructorAttribute]
+        protected Topic() { }
         /// <summary>
         /// Initializes a new instance of the <see cref="Topic" /> class.
         /// </summary>
-        /// <param name="Service">[required] Name of service .</param>
-        /// <param name="_Event">[required] Name of the event;  Quality Control (video-passed,  video-error,  video-warning,  video-rejected,  video-canceled) .</param>
-        /// <param name="Project">[required] Project ID .</param>
-        public Topic(ServiceEnum? Service = default(ServiceEnum?), EventEnum? _Event = default(EventEnum?), string Project = default(string))
+        /// <param name="Service">Name of service  (required).</param>
+        /// <param name="_Event">Name of the event;  Quality Control (media-passed,  media-error,  media-warning,  media-rejected,  media-canceled)  (required).</param>
+        /// <param name="Project">Project ID .</param>
+        public Topic(string Service = default(string), string _Event = default(string), string Project = default(string))
         {
-            this.Service = Service;
-            this._Event = _Event;
+            // to ensure "Service" is required (not null)
+            if (Service == null)
+            {
+                throw new InvalidDataException("Service is a required property for Topic and cannot be null");
+            }
+            else
+            {
+                this.Service = Service;
+            }
+            // to ensure "_Event" is required (not null)
+            if (_Event == null)
+            {
+                throw new InvalidDataException("_Event is a required property for Topic and cannot be null");
+            }
+            else
+            {
+                this._Event = _Event;
+            }
             this.Project = Project;
         }
         
@@ -114,12 +69,24 @@ namespace Telestream.Cloud.Notifications.Model
         [DataMember(Name="account", EmitDefaultValue=false)]
         public string Account { get; private set; }
 
-
+        /// <summary>
+        /// Name of service 
+        /// </summary>
+        /// <value>Name of service </value>
+        [DataMember(Name="service", EmitDefaultValue=false)]
+        public string Service { get; set; }
 
         /// <summary>
-        /// [required] Project ID 
+        /// Name of the event;  Quality Control (media-passed,  media-error,  media-warning,  media-rejected,  media-canceled) 
         /// </summary>
-        /// <value>[required] Project ID </value>
+        /// <value>Name of the event;  Quality Control (media-passed,  media-error,  media-warning,  media-rejected,  media-canceled) </value>
+        [DataMember(Name="event", EmitDefaultValue=false)]
+        public string _Event { get; set; }
+
+        /// <summary>
+        /// Project ID 
+        /// </summary>
+        /// <value>Project ID </value>
         [DataMember(Name="project", EmitDefaultValue=false)]
         public string Project { get; set; }
 

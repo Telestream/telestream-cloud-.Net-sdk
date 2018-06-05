@@ -29,9 +29,9 @@ namespace Telestream.Cloud.Notifications.Model
     public partial class Subscription :  IEquatable<Subscription>
     {
         /// <summary>
-        /// [required] Type of subscription (email, webhook) 
+        /// Type of subscription (email, webhook) 
         /// </summary>
-        /// <value>[required] Type of subscription (email, webhook) </value>
+        /// <value>Type of subscription (email, webhook) </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TypeEnum
         {
@@ -50,22 +50,51 @@ namespace Telestream.Cloud.Notifications.Model
         }
 
         /// <summary>
-        /// [required] Type of subscription (email, webhook) 
+        /// Type of subscription (email, webhook) 
         /// </summary>
-        /// <value>[required] Type of subscription (email, webhook) </value>
+        /// <value>Type of subscription (email, webhook) </value>
         [DataMember(Name="type", EmitDefaultValue=false)]
-        public TypeEnum? Type { get; set; }
+        public TypeEnum Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Subscription" /> class.
         /// </summary>
-        /// <param name="Type">[required] Type of subscription (email, webhook) .</param>
-        /// <param name="Topic">[required] .</param>
-        /// <param name="_Params">[required] .</param>
-        public Subscription(TypeEnum? Type = default(TypeEnum?), Topic Topic = default(Topic), ModelParams _Params = default(ModelParams))
+        [JsonConstructorAttribute]
+        protected Subscription() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Subscription" /> class.
+        /// </summary>
+        /// <param name="Type">Type of subscription (email, webhook)  (required).</param>
+        /// <param name="Topic">Topic (required).</param>
+        /// <param name="_Params">_Params (required).</param>
+        public Subscription(TypeEnum Type = default(TypeEnum), Topic Topic = default(Topic), ModelParams _Params = default(ModelParams))
         {
-            this.Type = Type;
-            this.Topic = Topic;
-            this._Params = _Params;
+            // to ensure "Type" is required (not null)
+            if (Type == null)
+            {
+                throw new InvalidDataException("Type is a required property for Subscription and cannot be null");
+            }
+            else
+            {
+                this.Type = Type;
+            }
+            // to ensure "Topic" is required (not null)
+            if (Topic == null)
+            {
+                throw new InvalidDataException("Topic is a required property for Subscription and cannot be null");
+            }
+            else
+            {
+                this.Topic = Topic;
+            }
+            // to ensure "_Params" is required (not null)
+            if (_Params == null)
+            {
+                throw new InvalidDataException("_Params is a required property for Subscription and cannot be null");
+            }
+            else
+            {
+                this._Params = _Params;
+            }
         }
         
         /// <summary>
@@ -77,16 +106,14 @@ namespace Telestream.Cloud.Notifications.Model
 
 
         /// <summary>
-        /// [required] 
+        /// Gets or Sets Topic
         /// </summary>
-        /// <value>[required] </value>
         [DataMember(Name="topic", EmitDefaultValue=false)]
         public Topic Topic { get; set; }
 
         /// <summary>
-        /// [required] 
+        /// Gets or Sets _Params
         /// </summary>
-        /// <value>[required] </value>
         [DataMember(Name="params", EmitDefaultValue=false)]
         public ModelParams _Params { get; set; }
 
