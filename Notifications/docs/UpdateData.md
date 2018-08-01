@@ -1,4 +1,4 @@
-# Telestream.Cloud.Notificationsv2.Model.UpdateData
+# Telestream.Cloud.Notifications.Model.UpdateData
 ## Properties
 
 Name | Type | Description | Notes

@@ -1,4 +1,4 @@
-# Telestream.Cloud.Notificationsv2.Model.UpdateTopic
+# Telestream.Cloud.Notifications.Model.UpdateTopic
 ## Properties
 
 Name | Type | Description | Notes
