@@ -43,6 +43,7 @@ Class | Method | HTTP request | Description
 *TtsApi* | [**DeleteJob**](docs/TtsApi.md#deletejob) | **DELETE** /projects/{projectID}/jobs/{jobID} | Deletes the Job
 *TtsApi* | [**DeleteProject**](docs/TtsApi.md#deleteproject) | **DELETE** /projects/{projectID} | Deletes the Project
 *TtsApi* | [**Job**](docs/TtsApi.md#job) | **GET** /projects/{projectID}/jobs/{jobID} | Returns the Job
+*TtsApi* | [**JobOutputs**](docs/TtsApi.md#joboutputs) | **GET** /projects/{projectID}/jobs/{jobID}/outputs | Returns the Job Outputs
 *TtsApi* | [**JobResult**](docs/TtsApi.md#jobresult) | **GET** /projects/{projectID}/jobs/{jobID}/result | Returns the Job Result
 *TtsApi* | [**Jobs**](docs/TtsApi.md#jobs) | **GET** /projects/{projectID}/jobs | Returns a collection of Jobs
 *TtsApi* | [**Project**](docs/TtsApi.md#project) | **GET** /projects/{projectID} | Returns the Project
@@ -62,6 +63,7 @@ Class | Method | HTTP request | Description
  - [Model.Fragment](docs/Fragment.md)
  - [Model.FragmentVariant](docs/FragmentVariant.md)
  - [Model.Job](docs/Job.md)
+ - [Model.JobOutput](docs/JobOutput.md)
  - [Model.JobResult](docs/JobResult.md)
  - [Model.JobsCollection](docs/JobsCollection.md)
  - [Model.Project](docs/Project.md)

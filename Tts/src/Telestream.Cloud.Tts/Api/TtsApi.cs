@@ -226,6 +226,29 @@ namespace Telestream.Cloud.Tts.Api
         /// <returns>ApiResponse of Job</returns>
         ApiResponse<Job> JobWithHttpInfo (string projectID, string jobID);
         /// <summary>
+        /// Returns the Job Outputs
+        /// </summary>
+        /// <remarks>
+        /// Returns the Job Outputs
+        /// </remarks>
+        /// <exception cref="Telestream.Cloud.Tts.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="projectID">ID of the Project</param>
+        /// <param name="jobID"></param>
+        /// <returns>List&lt;JobOutput&gt;</returns>
+        List<JobOutput> JobOutputs (string projectID, string jobID);
+
+        /// <summary>
+        /// Returns the Job Outputs
+        /// </summary>
+        /// <remarks>
+        /// Returns the Job Outputs
+        /// </remarks>
+        /// <exception cref="Telestream.Cloud.Tts.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="projectID">ID of the Project</param>
+        /// <param name="jobID"></param>
+        /// <returns>ApiResponse of List&lt;JobOutput&gt;</returns>
+        ApiResponse<List<JobOutput>> JobOutputsWithHttpInfo (string projectID, string jobID);
+        /// <summary>
         /// Returns the Job Result
         /// </summary>
         /// <remarks>
@@ -581,6 +604,29 @@ namespace Telestream.Cloud.Tts.Api
         /// <param name="jobID"></param>
         /// <returns>Task of ApiResponse (Job)</returns>
         System.Threading.Tasks.Task<ApiResponse<Job>> JobAsyncWithHttpInfo (string projectID, string jobID);
+        /// <summary>
+        /// Returns the Job Outputs
+        /// </summary>
+        /// <remarks>
+        /// Returns the Job Outputs
+        /// </remarks>
+        /// <exception cref="Telestream.Cloud.Tts.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="projectID">ID of the Project</param>
+        /// <param name="jobID"></param>
+        /// <returns>Task of List&lt;JobOutput&gt;</returns>
+        System.Threading.Tasks.Task<List<JobOutput>> JobOutputsAsync (string projectID, string jobID);
+
+        /// <summary>
+        /// Returns the Job Outputs
+        /// </summary>
+        /// <remarks>
+        /// Returns the Job Outputs
+        /// </remarks>
+        /// <exception cref="Telestream.Cloud.Tts.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="projectID">ID of the Project</param>
+        /// <param name="jobID"></param>
+        /// <returns>Task of ApiResponse (List&lt;JobOutput&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<JobOutput>>> JobOutputsAsyncWithHttpInfo (string projectID, string jobID);
         /// <summary>
         /// Returns the Job Result
         /// </summary>
@@ -2243,6 +2289,163 @@ namespace Telestream.Cloud.Tts.Api
             return new ApiResponse<Job>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
                 (Job) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Job)));
+        }
+
+        /// <summary>
+        /// Returns the Job Outputs Returns the Job Outputs
+        /// </summary>
+        /// <exception cref="Telestream.Cloud.Tts.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="projectID">ID of the Project</param>
+        /// <param name="jobID"></param>
+        /// <returns>List&lt;JobOutput&gt;</returns>
+        public List<JobOutput> JobOutputs (string projectID, string jobID)
+        {
+             ApiResponse<List<JobOutput>> localVarResponse = JobOutputsWithHttpInfo(projectID, jobID);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Returns the Job Outputs Returns the Job Outputs
+        /// </summary>
+        /// <exception cref="Telestream.Cloud.Tts.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="projectID">ID of the Project</param>
+        /// <param name="jobID"></param>
+        /// <returns>ApiResponse of List&lt;JobOutput&gt;</returns>
+        public ApiResponse< List<JobOutput> > JobOutputsWithHttpInfo (string projectID, string jobID)
+        {
+            // verify the required parameter 'projectID' is set
+            if (projectID == null)
+                throw new ApiException(400, "Missing required parameter 'projectID' when calling TtsApi->JobOutputs");
+            // verify the required parameter 'jobID' is set
+            if (jobID == null)
+                throw new ApiException(400, "Missing required parameter 'jobID' when calling TtsApi->JobOutputs");
+
+            var localVarPath = "./projects/{projectID}/jobs/{jobID}/outputs";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (projectID != null) localVarPathParams.Add("projectID", Configuration.ApiClient.ParameterToString(projectID)); // path parameter
+            if (jobID != null) localVarPathParams.Add("jobID", Configuration.ApiClient.ParameterToString(jobID)); // path parameter
+
+            // authentication (api_key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
+            {
+                localVarHeaderParams["X-Api-Key"] = Configuration.GetApiKeyWithPrefix("X-Api-Key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("JobOutputs", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<List<JobOutput>>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                (List<JobOutput>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<JobOutput>)));
+        }
+
+        /// <summary>
+        /// Returns the Job Outputs Returns the Job Outputs
+        /// </summary>
+        /// <exception cref="Telestream.Cloud.Tts.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="projectID">ID of the Project</param>
+        /// <param name="jobID"></param>
+        /// <returns>Task of List&lt;JobOutput&gt;</returns>
+        public async System.Threading.Tasks.Task<List<JobOutput>> JobOutputsAsync (string projectID, string jobID)
+        {
+             ApiResponse<List<JobOutput>> localVarResponse = await JobOutputsAsyncWithHttpInfo(projectID, jobID);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Returns the Job Outputs Returns the Job Outputs
+        /// </summary>
+        /// <exception cref="Telestream.Cloud.Tts.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="projectID">ID of the Project</param>
+        /// <param name="jobID"></param>
+        /// <returns>Task of ApiResponse (List&lt;JobOutput&gt;)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<List<JobOutput>>> JobOutputsAsyncWithHttpInfo (string projectID, string jobID)
+        {
+            // verify the required parameter 'projectID' is set
+            if (projectID == null)
+                throw new ApiException(400, "Missing required parameter 'projectID' when calling TtsApi->JobOutputs");
+            // verify the required parameter 'jobID' is set
+            if (jobID == null)
+                throw new ApiException(400, "Missing required parameter 'jobID' when calling TtsApi->JobOutputs");
+
+            var localVarPath = "./projects/{projectID}/jobs/{jobID}/outputs";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (projectID != null) localVarPathParams.Add("projectID", Configuration.ApiClient.ParameterToString(projectID)); // path parameter
+            if (jobID != null) localVarPathParams.Add("jobID", Configuration.ApiClient.ParameterToString(jobID)); // path parameter
+
+            // authentication (api_key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
+            {
+                localVarHeaderParams["X-Api-Key"] = Configuration.GetApiKeyWithPrefix("X-Api-Key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("JobOutputs", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<List<JobOutput>>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                (List<JobOutput>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<JobOutput>)));
         }
 
         /// <summary>

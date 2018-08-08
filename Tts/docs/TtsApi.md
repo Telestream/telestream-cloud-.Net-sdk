@@ -13,6 +13,7 @@ Method | HTTP request | Description
 [**DeleteJob**](TtsApi.md#deletejob) | **DELETE** /projects/{projectID}/jobs/{jobID} | Deletes the Job
 [**DeleteProject**](TtsApi.md#deleteproject) | **DELETE** /projects/{projectID} | Deletes the Project
 [**Job**](TtsApi.md#job) | **GET** /projects/{projectID}/jobs/{jobID} | Returns the Job
+[**JobOutputs**](TtsApi.md#joboutputs) | **GET** /projects/{projectID}/jobs/{jobID}/outputs | Returns the Job Outputs
 [**JobResult**](TtsApi.md#jobresult) | **GET** /projects/{projectID}/jobs/{jobID}/result | Returns the Job Result
 [**Jobs**](TtsApi.md#jobs) | **GET** /projects/{projectID}/jobs | Returns a collection of Jobs
 [**Project**](TtsApi.md#project) | **GET** /projects/{projectID} | Returns the Project
@@ -610,6 +611,74 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Job**](Job.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="joboutputs"></a>
+# **JobOutputs**
+> List<JobOutput> JobOutputs (string projectID, string jobID)
+
+Returns the Job Outputs
+
+Returns the Job Outputs
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using Telestream.Cloud.Tts.Api;
+using Telestream.Cloud.Tts.Client;
+using Telestream.Cloud.Tts.Model;
+
+namespace Example
+{
+    public class JobOutputsExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: api_key
+            Configuration.Default.AddApiKey("X-Api-Key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("X-Api-Key", "Bearer");
+
+            var apiInstance = new TtsApi();
+            var projectID = projectID_example;  // string | ID of the Project
+            var jobID = jobID_example;  // string | 
+
+            try
+            {
+                // Returns the Job Outputs
+                List&lt;JobOutput&gt; result = apiInstance.JobOutputs(projectID, jobID);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling TtsApi.JobOutputs: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **projectID** | **string**| ID of the Project | 
+ **jobID** | **string**|  | 
+
+### Return type
+
+[**List<JobOutput>**](JobOutput.md)
 
 ### Authorization
 
