@@ -36,7 +36,7 @@ namespace Telestream.Cloud.Notifications.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Subscription" /> class.
         /// </summary>
-        /// <param name="Type">Type of subscription (email, webhook, sns, aeg)  (required).</param>
+        /// <param name="Type">Type of subscription (email, webhook, sns, aeg, pubsub)  (required).</param>
         /// <param name="Topic">Topic (required).</param>
         /// <param name="_Params">_Params (required).</param>
         public Subscription(string Type = default(string), Topic Topic = default(Topic), ModelParams _Params = default(ModelParams))
@@ -78,9 +78,9 @@ namespace Telestream.Cloud.Notifications.Model
         public string Id { get; private set; }
 
         /// <summary>
-        /// Type of subscription (email, webhook, sns, aeg) 
+        /// Type of subscription (email, webhook, sns, aeg, pubsub) 
         /// </summary>
-        /// <value>Type of subscription (email, webhook, sns, aeg) </value>
+        /// <value>Type of subscription (email, webhook, sns, aeg, pubsub) </value>
         [DataMember(Name="type", EmitDefaultValue=false)]
         public string Type { get; set; }
 

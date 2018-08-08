@@ -227,7 +227,7 @@ namespace Example
 
             var apiInstance = new NotificationsApi();
             var serviceType = serviceType_example;  // string | Service type (qc, tts, flip) (optional) 
-            var type = type_example;  // string | Subscription type (email, webhook, sns, aeg) (optional) 
+            var type = type_example;  // string | Subscription type (email, webhook, sns, aeg, pubsub) (optional) 
 
             try
             {
@@ -248,7 +248,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **serviceType** | **string**| Service type (qc, tts, flip) | [optional] 
- **type** | **string**| Subscription type (email, webhook, sns, aeg) | [optional] 
+ **type** | **string**| Subscription type (email, webhook, sns, aeg, pubsub) | [optional] 
 
 ### Return type
 

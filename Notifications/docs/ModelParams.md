@@ -12,6 +12,8 @@ Name | Type | Description | Notes
 **RoleArn** | **string** | (for sns subscription type) identifier of an AWS IAM Role that will be used for authorization.  | [optional] 
 **TopicEndpoint** | **string** | (for aeg subscription type) address of an Azure Event Grid Topic that events will be posted to.  | [optional] 
 **AccessKey** | **string** | (for aeg subscription type) secret access key that authorizes Telestream Cloud to write to an Azure Event Grid Topic.  | [optional] 
+**ProjectId** | **string** | (for pubsub subscription type) id of a Google Cloud project that hosts the topic.  | [optional] 
+**TopicName** | **string** | (for pubsub subscription type) name of a Google Cloud Pub/Sub topic to which notifications will be published.  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

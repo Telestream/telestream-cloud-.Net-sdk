@@ -94,7 +94,9 @@ namespace Telestream.Cloud.Notifications.Model
         /// <param name="RoleArn">(for sns subscription type) identifier of an AWS IAM Role that will be used for authorization. .</param>
         /// <param name="TopicEndpoint">(for aeg subscription type) address of an Azure Event Grid Topic that events will be posted to. .</param>
         /// <param name="AccessKey">(for aeg subscription type) secret access key that authorizes Telestream Cloud to write to an Azure Event Grid Topic. .</param>
-        public ModelParams(List<string> Addresses = default(List<string>), string Url = default(string), MethodEnum? Method = default(MethodEnum?), int? Retries = default(int?), ContentTypeEnum? ContentType = default(ContentTypeEnum?), string TopicArn = default(string), string RoleArn = default(string), string TopicEndpoint = default(string), string AccessKey = default(string))
+        /// <param name="ProjectId">(for pubsub subscription type) id of a Google Cloud project that hosts the topic. .</param>
+        /// <param name="TopicName">(for pubsub subscription type) name of a Google Cloud Pub/Sub topic to which notifications will be published. .</param>
+        public ModelParams(List<string> Addresses = default(List<string>), string Url = default(string), MethodEnum? Method = default(MethodEnum?), int? Retries = default(int?), ContentTypeEnum? ContentType = default(ContentTypeEnum?), string TopicArn = default(string), string RoleArn = default(string), string TopicEndpoint = default(string), string AccessKey = default(string), string ProjectId = default(string), string TopicName = default(string))
         {
             this.Addresses = Addresses;
             this.Url = Url;
@@ -105,6 +107,8 @@ namespace Telestream.Cloud.Notifications.Model
             this.RoleArn = RoleArn;
             this.TopicEndpoint = TopicEndpoint;
             this.AccessKey = AccessKey;
+            this.ProjectId = ProjectId;
+            this.TopicName = TopicName;
         }
         
         /// <summary>
@@ -159,6 +163,20 @@ namespace Telestream.Cloud.Notifications.Model
         public string AccessKey { get; set; }
 
         /// <summary>
+        /// (for pubsub subscription type) id of a Google Cloud project that hosts the topic. 
+        /// </summary>
+        /// <value>(for pubsub subscription type) id of a Google Cloud project that hosts the topic. </value>
+        [DataMember(Name="project_id", EmitDefaultValue=false)]
+        public string ProjectId { get; set; }
+
+        /// <summary>
+        /// (for pubsub subscription type) name of a Google Cloud Pub/Sub topic to which notifications will be published. 
+        /// </summary>
+        /// <value>(for pubsub subscription type) name of a Google Cloud Pub/Sub topic to which notifications will be published. </value>
+        [DataMember(Name="topic_name", EmitDefaultValue=false)]
+        public string TopicName { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -175,6 +193,8 @@ namespace Telestream.Cloud.Notifications.Model
             sb.Append("  RoleArn: ").Append(RoleArn).Append("\n");
             sb.Append("  TopicEndpoint: ").Append(TopicEndpoint).Append("\n");
             sb.Append("  AccessKey: ").Append(AccessKey).Append("\n");
+            sb.Append("  ProjectId: ").Append(ProjectId).Append("\n");
+            sb.Append("  TopicName: ").Append(TopicName).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -253,6 +273,16 @@ namespace Telestream.Cloud.Notifications.Model
                     this.AccessKey == input.AccessKey ||
                     (this.AccessKey != null &&
                     this.AccessKey.Equals(input.AccessKey))
+                ) && 
+                (
+                    this.ProjectId == input.ProjectId ||
+                    (this.ProjectId != null &&
+                    this.ProjectId.Equals(input.ProjectId))
+                ) && 
+                (
+                    this.TopicName == input.TopicName ||
+                    (this.TopicName != null &&
+                    this.TopicName.Equals(input.TopicName))
                 );
         }
 
@@ -283,6 +313,10 @@ namespace Telestream.Cloud.Notifications.Model
                     hashCode = hashCode * 59 + this.TopicEndpoint.GetHashCode();
                 if (this.AccessKey != null)
                     hashCode = hashCode * 59 + this.AccessKey.GetHashCode();
+                if (this.ProjectId != null)
+                    hashCode = hashCode * 59 + this.ProjectId.GetHashCode();
+                if (this.TopicName != null)
+                    hashCode = hashCode * 59 + this.TopicName.GetHashCode();
                 return hashCode;
             }
         }

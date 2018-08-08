@@ -4,7 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | [read-only] Subscription identifier  | [optional] 
-**Type** | **string** | Type of subscription (email, webhook, sns, aeg)  | 
+**Type** | **string** | Type of subscription (email, webhook, sns, aeg, pubsub)  | 
 **Topic** | [**Topic**](Topic.md) |  | 
 **_Params** | [**ModelParams**](ModelParams.md) |  | 
 

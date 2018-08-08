@@ -95,7 +95,7 @@ namespace Telestream.Cloud.Notifications.Api
         /// </remarks>
         /// <exception cref="Telestream.Cloud.Notifications.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="serviceType">Service type (qc, tts, flip) (optional)</param>
-        /// <param name="type">Subscription type (email, webhook, sns, aeg) (optional)</param>
+        /// <param name="type">Subscription type (email, webhook, sns, aeg, pubsub) (optional)</param>
         /// <returns>List&lt;Subscription&gt;</returns>
         List<Subscription> ListSubscriptions (string serviceType = null, string type = null);
 
@@ -107,7 +107,7 @@ namespace Telestream.Cloud.Notifications.Api
         /// </remarks>
         /// <exception cref="Telestream.Cloud.Notifications.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="serviceType">Service type (qc, tts, flip) (optional)</param>
-        /// <param name="type">Subscription type (email, webhook, sns, aeg) (optional)</param>
+        /// <param name="type">Subscription type (email, webhook, sns, aeg, pubsub) (optional)</param>
         /// <returns>ApiResponse of List&lt;Subscription&gt;</returns>
         ApiResponse<List<Subscription>> ListSubscriptionsWithHttpInfo (string serviceType = null, string type = null);
         /// <summary>
@@ -206,7 +206,7 @@ namespace Telestream.Cloud.Notifications.Api
         /// </remarks>
         /// <exception cref="Telestream.Cloud.Notifications.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="serviceType">Service type (qc, tts, flip) (optional)</param>
-        /// <param name="type">Subscription type (email, webhook, sns, aeg) (optional)</param>
+        /// <param name="type">Subscription type (email, webhook, sns, aeg, pubsub) (optional)</param>
         /// <returns>Task of List&lt;Subscription&gt;</returns>
         System.Threading.Tasks.Task<List<Subscription>> ListSubscriptionsAsync (string serviceType = null, string type = null);
 
@@ -218,7 +218,7 @@ namespace Telestream.Cloud.Notifications.Api
         /// </remarks>
         /// <exception cref="Telestream.Cloud.Notifications.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="serviceType">Service type (qc, tts, flip) (optional)</param>
-        /// <param name="type">Subscription type (email, webhook, sns, aeg) (optional)</param>
+        /// <param name="type">Subscription type (email, webhook, sns, aeg, pubsub) (optional)</param>
         /// <returns>Task of ApiResponse (List&lt;Subscription&gt;)</returns>
         System.Threading.Tasks.Task<ApiResponse<List<Subscription>>> ListSubscriptionsAsyncWithHttpInfo (string serviceType = null, string type = null);
         /// <summary>
@@ -790,7 +790,7 @@ namespace Telestream.Cloud.Notifications.Api
         /// </summary>
         /// <exception cref="Telestream.Cloud.Notifications.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="serviceType">Service type (qc, tts, flip) (optional)</param>
-        /// <param name="type">Subscription type (email, webhook, sns, aeg) (optional)</param>
+        /// <param name="type">Subscription type (email, webhook, sns, aeg, pubsub) (optional)</param>
         /// <returns>List&lt;Subscription&gt;</returns>
         public List<Subscription> ListSubscriptions (string serviceType = null, string type = null)
         {
@@ -803,7 +803,7 @@ namespace Telestream.Cloud.Notifications.Api
         /// </summary>
         /// <exception cref="Telestream.Cloud.Notifications.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="serviceType">Service type (qc, tts, flip) (optional)</param>
-        /// <param name="type">Subscription type (email, webhook, sns, aeg) (optional)</param>
+        /// <param name="type">Subscription type (email, webhook, sns, aeg, pubsub) (optional)</param>
         /// <returns>ApiResponse of List&lt;Subscription&gt;</returns>
         public ApiResponse< List<Subscription> > ListSubscriptionsWithHttpInfo (string serviceType = null, string type = null)
         {
@@ -862,7 +862,7 @@ namespace Telestream.Cloud.Notifications.Api
         /// </summary>
         /// <exception cref="Telestream.Cloud.Notifications.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="serviceType">Service type (qc, tts, flip) (optional)</param>
-        /// <param name="type">Subscription type (email, webhook, sns, aeg) (optional)</param>
+        /// <param name="type">Subscription type (email, webhook, sns, aeg, pubsub) (optional)</param>
         /// <returns>Task of List&lt;Subscription&gt;</returns>
         public async System.Threading.Tasks.Task<List<Subscription>> ListSubscriptionsAsync (string serviceType = null, string type = null)
         {
@@ -876,7 +876,7 @@ namespace Telestream.Cloud.Notifications.Api
         /// </summary>
         /// <exception cref="Telestream.Cloud.Notifications.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="serviceType">Service type (qc, tts, flip) (optional)</param>
-        /// <param name="type">Subscription type (email, webhook, sns, aeg) (optional)</param>
+        /// <param name="type">Subscription type (email, webhook, sns, aeg, pubsub) (optional)</param>
         /// <returns>Task of ApiResponse (List&lt;Subscription&gt;)</returns>
         public async System.Threading.Tasks.Task<ApiResponse<List<Subscription>>> ListSubscriptionsAsyncWithHttpInfo (string serviceType = null, string type = null)
         {
