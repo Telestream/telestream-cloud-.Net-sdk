@@ -41,7 +41,8 @@ namespace Telestream.Cloud.Tts.Model
         /// <param name="Profiles">Profiles.</param>
         /// <param name="MultiChunk">MultiChunk (default to true).</param>
         /// <param name="ExtraFiles">A list of names of additional files that will be uploaded..</param>
-        public VideoUploadBody(long? FileSize = default(long?), string FileName = default(string), string Profiles = default(string), bool? MultiChunk = true, List<ExtraFile> ExtraFiles = default(List<ExtraFile>))
+        /// <param name="Job">Job.</param>
+        public VideoUploadBody(long? FileSize = default(long?), string FileName = default(string), string Profiles = default(string), bool? MultiChunk = true, List<ExtraFile> ExtraFiles = default(List<ExtraFile>), Job Job = default(Job))
         {
             // to ensure "FileSize" is required (not null)
             if (FileSize == null)
@@ -72,6 +73,7 @@ namespace Telestream.Cloud.Tts.Model
                 this.MultiChunk = MultiChunk;
             }
             this.ExtraFiles = ExtraFiles;
+            this.Job = Job;
         }
         
         /// <summary>
@@ -108,6 +110,12 @@ namespace Telestream.Cloud.Tts.Model
         public List<ExtraFile> ExtraFiles { get; set; }
 
         /// <summary>
+        /// Gets or Sets Job
+        /// </summary>
+        [DataMember(Name="job", EmitDefaultValue=false)]
+        public Job Job { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -120,6 +128,7 @@ namespace Telestream.Cloud.Tts.Model
             sb.Append("  Profiles: ").Append(Profiles).Append("\n");
             sb.Append("  MultiChunk: ").Append(MultiChunk).Append("\n");
             sb.Append("  ExtraFiles: ").Append(ExtraFiles).Append("\n");
+            sb.Append("  Job: ").Append(Job).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -178,6 +187,11 @@ namespace Telestream.Cloud.Tts.Model
                     this.ExtraFiles == input.ExtraFiles ||
                     this.ExtraFiles != null &&
                     this.ExtraFiles.SequenceEqual(input.ExtraFiles)
+                ) && 
+                (
+                    this.Job == input.Job ||
+                    (this.Job != null &&
+                    this.Job.Equals(input.Job))
                 );
         }
 
@@ -200,6 +214,8 @@ namespace Telestream.Cloud.Tts.Model
                     hashCode = hashCode * 59 + this.MultiChunk.GetHashCode();
                 if (this.ExtraFiles != null)
                     hashCode = hashCode * 59 + this.ExtraFiles.GetHashCode();
+                if (this.Job != null)
+                    hashCode = hashCode * 59 + this.Job.GetHashCode();
                 return hashCode;
             }
         }
