@@ -76,7 +76,7 @@ namespace Telestream.Cloud.Flip.Model
         /// <param name="OutputsPathFormat">OutputsPathFormat.</param>
         /// <param name="StorageProvider">Specifies which storage provider the factory should use. Available options: S3: 0, Google Cloud Storage: 1, FTP storage: 2, Google Cloud Interoperability Storage: 5, Flip storage: 7, FASP storage: 8, Azure Blob Storage: 9.</param>
         /// <param name="ProviderSpecificSettings">ProviderSpecificSettings.</param>
-        public Factory(string Id = default(string), string Name = default(string), string FactoryRegion = default(string), string OutputBucketName = default(string), AclEnum? Acl = default(AclEnum?), string CreatedAt = default(string), string UpdatedAt = default(string), string Url = default(string), bool? ServerSideEncryption = default(bool?), string InputBucketName = default(string), bool? InputBucketWatch = default(bool?), string InputBucketFilesMap = default(string), string InputBucketSyncEveryNMin = default(string), string InputBucketRecursive = default(string), string InputBucketFilePattern = default(string), string OutputsPathFormat = default(string), int? StorageProvider = default(int?), Object ProviderSpecificSettings = default(Object))
+        public Factory(string Id = default(string), string Name = default(string), string FactoryRegion = default(string), string OutputBucketName = default(string), AclEnum? Acl = default(AclEnum?), string CreatedAt = default(string), string UpdatedAt = default(string), string Url = default(string), bool? ServerSideEncryption = default(bool?), string InputBucketName = default(string), bool? InputBucketWatch = default(bool?), Object InputBucketFilesMap = default(Object), string InputBucketSyncEveryNMin = default(string), string InputBucketRecursive = default(string), string InputBucketFilePattern = default(string), string OutputsPathFormat = default(string), int? StorageProvider = default(int?), Object ProviderSpecificSettings = default(Object))
         {
             this.Id = Id;
             this.Name = Name;
@@ -173,7 +173,7 @@ namespace Telestream.Cloud.Flip.Model
         /// Gets or Sets InputBucketFilesMap
         /// </summary>
         [DataMember(Name="input_bucket_files_map", EmitDefaultValue=false)]
-        public string InputBucketFilesMap { get; set; }
+        public Object InputBucketFilesMap { get; set; }
 
         /// <summary>
         /// Determines how often the input bucket is synchronised.

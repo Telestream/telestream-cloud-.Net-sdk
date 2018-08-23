@@ -84,7 +84,8 @@ namespace Telestream.Cloud.Tts.Client
                     foreach (var chunkIndex in missingParts)
                     {
                         byte[] buffer = new byte[partSize];
-                        fileStream.Seek(chunkIndex * partSize, SeekOrigin.Begin);
+                        long seekIndex = ((long)chunkIndex * (long)partSize);
+                        fileStream.Seek(seekIndex, SeekOrigin.Begin);
                         var bytesRead = fileStream.Read(buffer, 0, buffer.Length);
                         var message = CreateChunkMessage(chunkIndex, buffer, bytesRead, location, tag);
 

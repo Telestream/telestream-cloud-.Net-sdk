@@ -56,63 +56,6 @@ namespace Telestream.Cloud.Flip.Model
         [DataMember(Name="advanced_fps_conversion", EmitDefaultValue=false)]
         public AdvancedFpsConversionEnum? AdvancedFpsConversion { get; set; }
         /// <summary>
-        /// Specifies an aspect mode for output videos. The following options are available:   - letterbox:   - pad: Add paddings to the input image. Default is \&quot;letterbox\&quot;.
-        /// </summary>
-        /// <value>Specifies an aspect mode for output videos. The following options are available:   - letterbox:   - pad: Add paddings to the input image. Default is \&quot;letterbox\&quot;.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum AspectModeEnum
-        {
-            
-            /// <summary>
-            /// Enum Preserve for value: preserve
-            /// </summary>
-            [EnumMember(Value = "preserve")]
-            Preserve = 1,
-            
-            /// <summary>
-            /// Enum Constrain for value: constrain
-            /// </summary>
-            [EnumMember(Value = "constrain")]
-            Constrain = 2,
-            
-            /// <summary>
-            /// Enum Letterbox for value: letterbox
-            /// </summary>
-            [EnumMember(Value = "letterbox")]
-            Letterbox = 3,
-            
-            /// <summary>
-            /// Enum Pad for value: pad
-            /// </summary>
-            [EnumMember(Value = "pad")]
-            Pad = 4,
-            
-            /// <summary>
-            /// Enum Fillcrop for value: fill (crop)
-            /// </summary>
-            [EnumMember(Value = "fill (crop)")]
-            Fillcrop = 5,
-            
-            /// <summary>
-            /// Enum Stretch for value: stretch
-            /// </summary>
-            [EnumMember(Value = "stretch")]
-            Stretch = 6,
-            
-            /// <summary>
-            /// Enum Center for value: center
-            /// </summary>
-            [EnumMember(Value = "center")]
-            Center = 7
-        }
-
-        /// <summary>
-        /// Specifies an aspect mode for output videos. The following options are available:   - letterbox:   - pad: Add paddings to the input image. Default is \&quot;letterbox\&quot;.
-        /// </summary>
-        /// <value>Specifies an aspect mode for output videos. The following options are available:   - letterbox:   - pad: Add paddings to the input image. Default is \&quot;letterbox\&quot;.</value>
-        [DataMember(Name="aspect_mode", EmitDefaultValue=false)]
-        public AspectModeEnum? AspectMode { get; set; }
-        /// <summary>
         /// A channel layout specifies the spatial disposition of the channels in a multi-channel audio stream.
         /// </summary>
         /// <value>A channel layout specifies the spatial disposition of the channels in a multi-channel audio stream.</value>
@@ -316,33 +259,6 @@ namespace Telestream.Cloud.Flip.Model
         /// <value>One of add (adds captions as a separate streams) or burn (burns captions on video stream using the first subtitle file). By default it is not set.</value>
         [DataMember(Name="closed_captions", EmitDefaultValue=false)]
         public ClosedCaptionsEnum? ClosedCaptions { get; set; }
-        /// <summary>
-        /// One of &#x60;keep_fps&#x60; or &#x60;double_fps&#x60;. By default it is not set.
-        /// </summary>
-        /// <value>One of &#x60;keep_fps&#x60; or &#x60;double_fps&#x60;. By default it is not set.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum DeinterlaceEnum
-        {
-            
-            /// <summary>
-            /// Enum Keepfps for value: keep_fps
-            /// </summary>
-            [EnumMember(Value = "keep_fps")]
-            Keepfps = 1,
-            
-            /// <summary>
-            /// Enum Doublefps for value: double_fps
-            /// </summary>
-            [EnumMember(Value = "double_fps")]
-            Doublefps = 2
-        }
-
-        /// <summary>
-        /// One of &#x60;keep_fps&#x60; or &#x60;double_fps&#x60;. By default it is not set.
-        /// </summary>
-        /// <value>One of &#x60;keep_fps&#x60; or &#x60;double_fps&#x60;. By default it is not set.</value>
-        [DataMember(Name="deinterlace", EmitDefaultValue=false)]
-        public DeinterlaceEnum? Deinterlace { get; set; }
         /// <summary>
         /// Defines DnxhdType
         /// </summary>
@@ -1387,7 +1303,7 @@ namespace Telestream.Cloud.Flip.Model
         /// Initializes a new instance of the <see cref="Profile" /> class.
         /// </summary>
         /// <param name="AdvancedFpsConversion">todo.</param>
-        /// <param name="AspectMode">Specifies an aspect mode for output videos. The following options are available:   - letterbox:   - pad: Add paddings to the input image. Default is \&quot;letterbox\&quot;..</param>
+        /// <param name="AspectMode">Specifies an aspect mode for output videos. The following options are available:   - preserve   - constrain   - letterbox   - pad   - fill (crop)   - stretch   - center Default is \&quot;letterbox\&quot;..</param>
         /// <param name="AspectRatio">A display aspect ratio. By default it is not set..</param>
         /// <param name="AudioBitrate">audio bitrate (in bits/s).</param>
         /// <param name="AudioChannels">A number of audio channels. By default it is not set..</param>
@@ -1515,7 +1431,7 @@ namespace Telestream.Cloud.Flip.Model
         /// <param name="Eac3MixingLevel">Minimum value is 80, maximum is 111..</param>
         /// <param name="Eac3CopyrightProtected">Indicates whether the encoded bitstream is copyright protected..</param>
         /// <param name="Eac3OriginalBitstream">Indicates whether the encoded bitstream is the master version, or a copy..</param>
-        public Profile(AdvancedFpsConversionEnum? AdvancedFpsConversion = default(AdvancedFpsConversionEnum?), AspectModeEnum? AspectMode = default(AspectModeEnum?), string AspectRatio = default(string), int? AudioBitrate = default(int?), int? AudioChannels = default(int?), AudioChannelsLayoutEnum? AudioChannelsLayout = default(AudioChannelsLayoutEnum?), int? AudioChannelsPerTrack = default(int?), string AudioCodec = default(string), AudioFormatEnum? AudioFormat = default(AudioFormatEnum?), string AudioMap = default(string), string AudioPid = default(string), string AudioProfile = default(string), string AudioSampleRate = default(string), int? AudioStreamId = default(int?), int? AudioStreams = default(int?), AvcintraClassEnum? AvcintraClass = default(AvcintraClassEnum?), string BufferSize = default(string), string BufferSizeInPackets = default(string), string Bumpers = default(string), bool? ByteRangeRequests = default(bool?), string ClipEnd = default(string), string ClipLength = default(string), string ClipOffset = default(string), ClosedCaptionsEnum? ClosedCaptions = default(ClosedCaptionsEnum?), bool? ColorMetadata = default(bool?), string CreatedAt = default(string), string CropInputBottom = default(string), string CropInputHeight = default(string), string CropInputLeft = default(string), string CropInputRight = default(string), string CropInputTop = default(string), string CropInputWidth = default(string), string DashProfile = default(string), DeinterlaceEnum? Deinterlace = default(DeinterlaceEnum?), string DeinterlaceFrames = default(string), string Description = default(string), DnxhdTypeEnum? DnxhdType = default(DnxhdTypeEnum?), bool? Encryption = default(bool?), string Extname = default(string), string Fps = default(string), string FrameCount = default(string), string FrameInterval = default(string), string FrameOffsets = default(string), H264LevelEnum? H264Level = default(H264LevelEnum?), H264ProfileEnum? H264Profile = default(H264ProfileEnum?), H264TuneEnum? H264Tune = default(H264TuneEnum?), string Height = default(string), string Id = default(string), string ImxType = default(string), string Inputs = default(string), string Interlace = default(string), string KeyframeInterval = default(string), string KeyframeRate = default(string), string Lang = default(string), string MaxRate = default(string), string MergeAudioStreams = default(string), bool? MuteAudioTracks = default(bool?), string Name = default(string), string Outputs = default(string), string OutputsPathFormat = default(string), PlaylistTypeEnum? PlaylistType = default(PlaylistTypeEnum?), string PmtPid = default(string), string PresetName = default(string), string ProresFormat = default(string), int? SegmentTime = default(int?), string Stack = default(string), TelestreamBlockSizeEnum? TelestreamBlockSize = default(TelestreamBlockSizeEnum?), decimal? TelestreamBlurScaler = default(decimal?), decimal? TelestreamCostScaler = default(decimal?), int? TelestreamSearchLengthScaler = default(int?), bool? TelestreamSubpelMode = default(bool?), string TimeCode = default(string), string Title = default(string), string Trailers = default(string), string TransportRate = default(string), string TsPids = default(string), string UpdatedAt = default(string), bool? Upscale = default(bool?), bool? UseEditlist = default(bool?), string Variants = default(string), string VideoBitrate = default(string), string VideoPid = default(string), string WatermarkBottom = default(string), bool? WatermarkBumpers = default(bool?), string WatermarkHeight = default(string), string WatermarkLeft = default(string), string WatermarkRight = default(string), string WatermarkTop = default(string), bool? WatermarkTrailers = default(bool?), string WatermarkUrl = default(string), string WatermarkWidth = default(string), string Width = default(string), string X264Options = default(string), string X265Options = default(string), string XdcamFormat = default(string), bool? TachyonAllowRemovePulldown = default(bool?), bool? TachyonEnablePostPulldownFilter = default(bool?), bool? TachyonMediaHintIsCartoon = default(bool?), bool? TachyonMediaHintHasChromaNoise = default(bool?), bool? TachyonMoreSensitiveRemovePulldown = default(bool?), bool? TachyonAllowAddStandardPd = default(bool?), bool? TachyonAllowAdd22pd = default(bool?), bool? TachyonAllowAdd44pd = default(bool?), bool? TachyonAllowAdd46pd = default(bool?), bool? TachyonAllowAddEuroPd = default(bool?), bool? TachyonAllowAddAdaptivePd = default(bool?), TachyonMotionAmountEnum? TachyonMotionAmount = default(TachyonMotionAmountEnum?), TachyonFallbackSizeEnum? TachyonFallbackSize = default(TachyonFallbackSizeEnum?), TachyonMblockSizeEnum? TachyonMblockSize = default(TachyonMblockSizeEnum?), decimal? TachyonCutDetectionSensitivity = default(decimal?), bool? Eac3EvolutionEnable = default(bool?), Eac3BitstreamModeEnum? Eac3BitstreamMode = default(Eac3BitstreamModeEnum?), bool? Eac3NinetyDegreePhaseShift = default(bool?), bool? Eac3ThreeDecibelAttenuation = default(bool?), bool? Eac3EnableLfeLowPassFilter = default(bool?), Eac3AnalogToDigitalConverterTypeEnum? Eac3AnalogToDigitalConverterType = default(Eac3AnalogToDigitalConverterTypeEnum?), Eac3StereoDownmixPreferenceEnum? Eac3StereoDownmixPreference = default(Eac3StereoDownmixPreferenceEnum?), Eac3LtRtCenterMixLevelEnum? Eac3LtRtCenterMixLevel = default(Eac3LtRtCenterMixLevelEnum?), Eac3LtRtSurroundMixLevelEnum? Eac3LtRtSurroundMixLevel = default(Eac3LtRtSurroundMixLevelEnum?), Eac3LoRoCenterMixLevelEnum? Eac3LoRoCenterMixLevel = default(Eac3LoRoCenterMixLevelEnum?), Eac3LoRoSurroundMixLevelEnum? Eac3LoRoSurroundMixLevel = default(Eac3LoRoSurroundMixLevelEnum?), Eac3SurroundExModeEnum? Eac3SurroundExMode = default(Eac3SurroundExModeEnum?), Eac3DrcLineModeProfileEnum? Eac3DrcLineModeProfile = default(Eac3DrcLineModeProfileEnum?), Eac3DrcRfModeProfileEnum? Eac3DrcRfModeProfile = default(Eac3DrcRfModeProfileEnum?), int? Eac3DialogNormalization = default(int?), Eac3RoomTypeEnum? Eac3RoomType = default(Eac3RoomTypeEnum?), int? Eac3MixingLevel = default(int?), bool? Eac3CopyrightProtected = default(bool?), bool? Eac3OriginalBitstream = default(bool?))
+        public Profile(AdvancedFpsConversionEnum? AdvancedFpsConversion = default(AdvancedFpsConversionEnum?), string AspectMode = default(string), string AspectRatio = default(string), int? AudioBitrate = default(int?), int? AudioChannels = default(int?), AudioChannelsLayoutEnum? AudioChannelsLayout = default(AudioChannelsLayoutEnum?), int? AudioChannelsPerTrack = default(int?), string AudioCodec = default(string), AudioFormatEnum? AudioFormat = default(AudioFormatEnum?), string AudioMap = default(string), string AudioPid = default(string), string AudioProfile = default(string), string AudioSampleRate = default(string), int? AudioStreamId = default(int?), int? AudioStreams = default(int?), AvcintraClassEnum? AvcintraClass = default(AvcintraClassEnum?), string BufferSize = default(string), string BufferSizeInPackets = default(string), Object Bumpers = default(Object), bool? ByteRangeRequests = default(bool?), string ClipEnd = default(string), string ClipLength = default(string), string ClipOffset = default(string), ClosedCaptionsEnum? ClosedCaptions = default(ClosedCaptionsEnum?), bool? ColorMetadata = default(bool?), string CreatedAt = default(string), string CropInputBottom = default(string), string CropInputHeight = default(string), string CropInputLeft = default(string), string CropInputRight = default(string), string CropInputTop = default(string), string CropInputWidth = default(string), string DashProfile = default(string), string Deinterlace = default(string), string DeinterlaceFrames = default(string), string Description = default(string), DnxhdTypeEnum? DnxhdType = default(DnxhdTypeEnum?), bool? Encryption = default(bool?), string Extname = default(string), string Fps = default(string), string FrameCount = default(string), string FrameInterval = default(string), string FrameOffsets = default(string), H264LevelEnum? H264Level = default(H264LevelEnum?), H264ProfileEnum? H264Profile = default(H264ProfileEnum?), H264TuneEnum? H264Tune = default(H264TuneEnum?), string Height = default(string), string Id = default(string), string ImxType = default(string), Object Inputs = default(Object), string Interlace = default(string), string KeyframeInterval = default(string), string KeyframeRate = default(string), string Lang = default(string), string MaxRate = default(string), string MergeAudioStreams = default(string), bool? MuteAudioTracks = default(bool?), string Name = default(string), Object Outputs = default(Object), string OutputsPathFormat = default(string), PlaylistTypeEnum? PlaylistType = default(PlaylistTypeEnum?), string PmtPid = default(string), string PresetName = default(string), string ProresFormat = default(string), int? SegmentTime = default(int?), string Stack = default(string), TelestreamBlockSizeEnum? TelestreamBlockSize = default(TelestreamBlockSizeEnum?), decimal? TelestreamBlurScaler = default(decimal?), decimal? TelestreamCostScaler = default(decimal?), int? TelestreamSearchLengthScaler = default(int?), bool? TelestreamSubpelMode = default(bool?), string TimeCode = default(string), string Title = default(string), Object Trailers = default(Object), string TransportRate = default(string), string TsPids = default(string), string UpdatedAt = default(string), bool? Upscale = default(bool?), bool? UseEditlist = default(bool?), string Variants = default(string), string VideoBitrate = default(string), string VideoPid = default(string), string WatermarkBottom = default(string), bool? WatermarkBumpers = default(bool?), string WatermarkHeight = default(string), string WatermarkLeft = default(string), string WatermarkRight = default(string), string WatermarkTop = default(string), bool? WatermarkTrailers = default(bool?), string WatermarkUrl = default(string), string WatermarkWidth = default(string), string Width = default(string), string X264Options = default(string), string X265Options = default(string), string XdcamFormat = default(string), bool? TachyonAllowRemovePulldown = default(bool?), bool? TachyonEnablePostPulldownFilter = default(bool?), bool? TachyonMediaHintIsCartoon = default(bool?), bool? TachyonMediaHintHasChromaNoise = default(bool?), bool? TachyonMoreSensitiveRemovePulldown = default(bool?), bool? TachyonAllowAddStandardPd = default(bool?), bool? TachyonAllowAdd22pd = default(bool?), bool? TachyonAllowAdd44pd = default(bool?), bool? TachyonAllowAdd46pd = default(bool?), bool? TachyonAllowAddEuroPd = default(bool?), bool? TachyonAllowAddAdaptivePd = default(bool?), TachyonMotionAmountEnum? TachyonMotionAmount = default(TachyonMotionAmountEnum?), TachyonFallbackSizeEnum? TachyonFallbackSize = default(TachyonFallbackSizeEnum?), TachyonMblockSizeEnum? TachyonMblockSize = default(TachyonMblockSizeEnum?), decimal? TachyonCutDetectionSensitivity = default(decimal?), bool? Eac3EvolutionEnable = default(bool?), Eac3BitstreamModeEnum? Eac3BitstreamMode = default(Eac3BitstreamModeEnum?), bool? Eac3NinetyDegreePhaseShift = default(bool?), bool? Eac3ThreeDecibelAttenuation = default(bool?), bool? Eac3EnableLfeLowPassFilter = default(bool?), Eac3AnalogToDigitalConverterTypeEnum? Eac3AnalogToDigitalConverterType = default(Eac3AnalogToDigitalConverterTypeEnum?), Eac3StereoDownmixPreferenceEnum? Eac3StereoDownmixPreference = default(Eac3StereoDownmixPreferenceEnum?), Eac3LtRtCenterMixLevelEnum? Eac3LtRtCenterMixLevel = default(Eac3LtRtCenterMixLevelEnum?), Eac3LtRtSurroundMixLevelEnum? Eac3LtRtSurroundMixLevel = default(Eac3LtRtSurroundMixLevelEnum?), Eac3LoRoCenterMixLevelEnum? Eac3LoRoCenterMixLevel = default(Eac3LoRoCenterMixLevelEnum?), Eac3LoRoSurroundMixLevelEnum? Eac3LoRoSurroundMixLevel = default(Eac3LoRoSurroundMixLevelEnum?), Eac3SurroundExModeEnum? Eac3SurroundExMode = default(Eac3SurroundExModeEnum?), Eac3DrcLineModeProfileEnum? Eac3DrcLineModeProfile = default(Eac3DrcLineModeProfileEnum?), Eac3DrcRfModeProfileEnum? Eac3DrcRfModeProfile = default(Eac3DrcRfModeProfileEnum?), int? Eac3DialogNormalization = default(int?), Eac3RoomTypeEnum? Eac3RoomType = default(Eac3RoomTypeEnum?), int? Eac3MixingLevel = default(int?), bool? Eac3CopyrightProtected = default(bool?), bool? Eac3OriginalBitstream = default(bool?))
         {
             this.AdvancedFpsConversion = AdvancedFpsConversion;
             this.AspectMode = AspectMode;
@@ -1649,6 +1565,12 @@ namespace Telestream.Cloud.Flip.Model
         }
         
 
+        /// <summary>
+        /// Specifies an aspect mode for output videos. The following options are available:   - preserve   - constrain   - letterbox   - pad   - fill (crop)   - stretch   - center Default is \&quot;letterbox\&quot;.
+        /// </summary>
+        /// <value>Specifies an aspect mode for output videos. The following options are available:   - preserve   - constrain   - letterbox   - pad   - fill (crop)   - stretch   - center Default is \&quot;letterbox\&quot;.</value>
+        [DataMember(Name="aspect_mode", EmitDefaultValue=false)]
+        public string AspectMode { get; set; }
 
         /// <summary>
         /// A display aspect ratio. By default it is not set.
@@ -1746,7 +1668,7 @@ namespace Telestream.Cloud.Flip.Model
         /// Gets or Sets Bumpers
         /// </summary>
         [DataMember(Name="bumpers", EmitDefaultValue=false)]
-        public string Bumpers { get; set; }
+        public Object Bumpers { get; set; }
 
         /// <summary>
         /// Gets or Sets ByteRangeRequests
@@ -1837,6 +1759,12 @@ namespace Telestream.Cloud.Flip.Model
         [DataMember(Name="dash_profile", EmitDefaultValue=false)]
         public string DashProfile { get; set; }
 
+        /// <summary>
+        /// One of &#x60;keep_fps&#x60; or &#x60;double_fps&#x60;. By default it is not set.
+        /// </summary>
+        /// <value>One of &#x60;keep_fps&#x60; or &#x60;double_fps&#x60;. By default it is not set.</value>
+        [DataMember(Name="deinterlace", EmitDefaultValue=false)]
+        public string Deinterlace { get; set; }
 
         /// <summary>
         /// Gets or Sets DeinterlaceFrames
@@ -1919,7 +1847,7 @@ namespace Telestream.Cloud.Flip.Model
         /// Gets or Sets Inputs
         /// </summary>
         [DataMember(Name="inputs", EmitDefaultValue=false)]
-        public string Inputs { get; set; }
+        public Object Inputs { get; set; }
 
         /// <summary>
         /// Gets or Sets Interlace
@@ -1978,7 +1906,7 @@ namespace Telestream.Cloud.Flip.Model
         /// Gets or Sets Outputs
         /// </summary>
         [DataMember(Name="outputs", EmitDefaultValue=false)]
-        public string Outputs { get; set; }
+        public Object Outputs { get; set; }
 
         /// <summary>
         /// Specify the directory where the output files should be stored. By default it is not set. More information about this [here](https://cloud.telestream.net/docs#path-format- --know-how).
@@ -2066,7 +1994,7 @@ namespace Telestream.Cloud.Flip.Model
         /// Gets or Sets Trailers
         /// </summary>
         [DataMember(Name="trailers", EmitDefaultValue=false)]
-        public string Trailers { get; set; }
+        public Object Trailers { get; set; }
 
         /// <summary>
         /// Gets or Sets TransportRate
