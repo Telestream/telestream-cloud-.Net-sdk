@@ -77,24 +77,35 @@ namespace Telestream.Cloud.Flip.Client
             private async Task<bool> upload(FileStream fileStream, string location, string tag, int partSize, int parts, int connections, IProgress<double> progress = null, CancellationToken cancelToken = default(CancellationToken))
             {
                     var tasks = new List<Task>();
+                    var buffers = new List<byte[]>();
+                      var queue = new Queue<byte[]>();
+
                     var uploaded = 0;
 
                     var missingParts = await GetMissingParts(location, tag);
+            //byte[] buffer = new byte[partSize];
 
-                    foreach (var chunkIndex in missingParts)
+            for (var i = 0; i < connections; ++i)
+            {
+                queue.Enqueue(new byte[partSize]);
+            }
+            byte[] buffer;
+            foreach (var chunkIndex in missingParts)
                     {
-                        byte[] buffer = new byte[partSize];
-                        long seekIndex = ((long)chunkIndex * (long)partSize);
-                        fileStream.Seek(seekIndex, SeekOrigin.Begin);
-                        var bytesRead = fileStream.Read(buffer, 0, buffer.Length);
-                        var message = CreateChunkMessage(chunkIndex, buffer, bytesRead, location, tag);
+
+                
+
 
                         if (tasks.Count == connections)
                         {
                             try
                             {
                                 var id = Task.WaitAny(tasks.ToArray(), cancelToken);
+                              
                                 tasks.Remove(tasks[id]);
+                            buffer = buffers[id];
+                        buffers.Remove(buffers[id]);
+                        queue.Enqueue(buffer);
                                 uploaded++;
 
                                 if (progress != null)
@@ -107,9 +118,14 @@ namespace Telestream.Cloud.Flip.Client
                                 return true;
                             }
                         }
+                buffer = queue.Dequeue();
+                long seekIndex = ((long)chunkIndex * (long)partSize);
+                fileStream.Seek(seekIndex, SeekOrigin.Begin);
+                var bytesRead = fileStream.Read(buffer, 0, buffer.Length);
+                var message = CreateChunkMessage(chunkIndex, buffer, bytesRead, location, tag);
 
-                        var task = SendMessage(message);
-
+                var task = SendMessage(message);
+                buffers.Add(buffer);
                         tasks.Add(task);
                     }
 
