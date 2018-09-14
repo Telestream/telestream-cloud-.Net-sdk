@@ -61,7 +61,7 @@ namespace Telestream.Cloud.Tts.Client
 
                 private async Task PerformUpload(string filePath, string location, int partSize, int parts, int connections = 8, string tag = null, IProgress<double> progress = null, CancellationToken cancelToken = default(CancellationToken))
                 {
-                        using (var fileStream = File.Open(filePath, FileMode.Open, FileAccess.Read, FileShare.Read))
+                        using (var fileStream = File.Open(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
                         {
                                 var retries = 3;
 
