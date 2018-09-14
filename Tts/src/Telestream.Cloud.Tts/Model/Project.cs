@@ -79,10 +79,9 @@ namespace Telestream.Cloud.Tts.Model
         /// <param name="ProfanityFilter">If true, the service replaces profanity from output with asterisks..</param>
         /// <param name="GenerateProxy">Indicates whether video preview should be generated..</param>
         /// <param name="CustomWords">Words used for model training, separated by space..</param>
-        /// <param name="Capabilities">Capabilities.</param>
         /// <param name="CreatedAt">A date and time when the project was created.</param>
         /// <param name="UpdatedAt">A date and time when the project was updated.</param>
-        public Project(string Id = default(string), string Name = default(string), string Description = default(string), StatusEnum? Status = default(StatusEnum?), string Language = default(string), int? SampleRate = default(int?), bool? ProfanityFilter = default(bool?), bool? GenerateProxy = default(bool?), string CustomWords = default(string), List<string> Capabilities = default(List<string>), string CreatedAt = default(string), string UpdatedAt = default(string))
+        public Project(string Id = default(string), string Name = default(string), string Description = default(string), StatusEnum? Status = default(StatusEnum?), string Language = default(string), int? SampleRate = default(int?), bool? ProfanityFilter = default(bool?), bool? GenerateProxy = default(bool?), string CustomWords = default(string), string CreatedAt = default(string), string UpdatedAt = default(string))
         {
             this.Id = Id;
             this.Name = Name;
@@ -93,7 +92,6 @@ namespace Telestream.Cloud.Tts.Model
             this.ProfanityFilter = ProfanityFilter;
             this.GenerateProxy = GenerateProxy;
             this.CustomWords = CustomWords;
-            this.Capabilities = Capabilities;
             this.CreatedAt = CreatedAt;
             this.UpdatedAt = UpdatedAt;
         }
@@ -156,12 +154,6 @@ namespace Telestream.Cloud.Tts.Model
         public string CustomWords { get; set; }
 
         /// <summary>
-        /// Gets or Sets Capabilities
-        /// </summary>
-        [DataMember(Name="capabilities", EmitDefaultValue=false)]
-        public List<string> Capabilities { get; set; }
-
-        /// <summary>
         /// A date and time when the project was created
         /// </summary>
         /// <value>A date and time when the project was created</value>
@@ -192,7 +184,6 @@ namespace Telestream.Cloud.Tts.Model
             sb.Append("  ProfanityFilter: ").Append(ProfanityFilter).Append("\n");
             sb.Append("  GenerateProxy: ").Append(GenerateProxy).Append("\n");
             sb.Append("  CustomWords: ").Append(CustomWords).Append("\n");
-            sb.Append("  Capabilities: ").Append(Capabilities).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
             sb.Append("}\n");
@@ -275,11 +266,6 @@ namespace Telestream.Cloud.Tts.Model
                     this.CustomWords.Equals(input.CustomWords))
                 ) && 
                 (
-                    this.Capabilities == input.Capabilities ||
-                    this.Capabilities != null &&
-                    this.Capabilities.SequenceEqual(input.Capabilities)
-                ) && 
-                (
                     this.CreatedAt == input.CreatedAt ||
                     (this.CreatedAt != null &&
                     this.CreatedAt.Equals(input.CreatedAt))
@@ -318,8 +304,6 @@ namespace Telestream.Cloud.Tts.Model
                     hashCode = hashCode * 59 + this.GenerateProxy.GetHashCode();
                 if (this.CustomWords != null)
                     hashCode = hashCode * 59 + this.CustomWords.GetHashCode();
-                if (this.Capabilities != null)
-                    hashCode = hashCode * 59 + this.Capabilities.GetHashCode();
                 if (this.CreatedAt != null)
                     hashCode = hashCode * 59 + this.CreatedAt.GetHashCode();
                 if (this.UpdatedAt != null)

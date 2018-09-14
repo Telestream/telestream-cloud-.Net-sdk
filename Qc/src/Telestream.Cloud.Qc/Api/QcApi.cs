@@ -136,6 +136,29 @@ namespace Telestream.Cloud.Qc.Api
         /// <returns>ApiResponse of Project</returns>
         ApiResponse<Project> GetProjectWithHttpInfo (string projectId);
         /// <summary>
+        /// Import Vidchecker template
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Telestream.Cloud.Qc.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="name"> (optional)</param>
+        /// <param name="file"> (optional)</param>
+        /// <returns>List&lt;InlineResponse200&gt;</returns>
+        List<InlineResponse200> ImportTemplate (string name = null,  file = null);
+
+        /// <summary>
+        /// Import Vidchecker template
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Telestream.Cloud.Qc.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="name"> (optional)</param>
+        /// <param name="file"> (optional)</param>
+        /// <returns>ApiResponse of List&lt;InlineResponse200&gt;</returns>
+        ApiResponse<List<InlineResponse200>> ImportTemplateWithHttpInfo (string name = null,  file = null);
+        /// <summary>
         /// Get jobs form projects
         /// </summary>
         /// <remarks>
@@ -451,6 +474,29 @@ namespace Telestream.Cloud.Qc.Api
         /// <param name="projectId">A unique identifier of a Project.</param>
         /// <returns>Task of ApiResponse (Project)</returns>
         System.Threading.Tasks.Task<ApiResponse<Project>> GetProjectAsyncWithHttpInfo (string projectId);
+        /// <summary>
+        /// Import Vidchecker template
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Telestream.Cloud.Qc.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="name"> (optional)</param>
+        /// <param name="file"> (optional)</param>
+        /// <returns>Task of List&lt;InlineResponse200&gt;</returns>
+        System.Threading.Tasks.Task<List<InlineResponse200>> ImportTemplateAsync (string name = null,  file = null);
+
+        /// <summary>
+        /// Import Vidchecker template
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Telestream.Cloud.Qc.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="name"> (optional)</param>
+        /// <param name="file"> (optional)</param>
+        /// <returns>Task of ApiResponse (List&lt;InlineResponse200&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<InlineResponse200>>> ImportTemplateAsyncWithHttpInfo (string name = null,  file = null);
         /// <summary>
         /// Get jobs form projects
         /// </summary>
@@ -1533,6 +1579,165 @@ namespace Telestream.Cloud.Qc.Api
             return new ApiResponse<Project>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
                 (Project) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Project)));
+        }
+
+        /// <summary>
+        /// Import Vidchecker template 
+        /// </summary>
+        /// <exception cref="Telestream.Cloud.Qc.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="name"> (optional)</param>
+        /// <param name="file"> (optional)</param>
+        /// <returns>List&lt;InlineResponse200&gt;</returns>
+        public List<InlineResponse200> ImportTemplate (string name = null,  file = null)
+        {
+             ApiResponse<List<InlineResponse200>> localVarResponse = ImportTemplateWithHttpInfo(name, file);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Import Vidchecker template 
+        /// </summary>
+        /// <exception cref="Telestream.Cloud.Qc.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="name"> (optional)</param>
+        /// <param name="file"> (optional)</param>
+        /// <returns>ApiResponse of List&lt;InlineResponse200&gt;</returns>
+        public ApiResponse< List<InlineResponse200> > ImportTemplateWithHttpInfo (string name = null,  file = null)
+        {
+
+            var localVarPath = "./projects/import.json";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "text/xml"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (name != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "name", name)); // query parameter
+            if (file != null && file.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(file); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = file; // byte array
+            }
+
+            // authentication (api_key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
+            {
+                localVarHeaderParams["X-Api-Key"] = Configuration.GetApiKeyWithPrefix("X-Api-Key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ImportTemplate", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<List<InlineResponse200>>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                (List<InlineResponse200>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<InlineResponse200>)));
+        }
+
+        /// <summary>
+        /// Import Vidchecker template 
+        /// </summary>
+        /// <exception cref="Telestream.Cloud.Qc.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="name"> (optional)</param>
+        /// <param name="file"> (optional)</param>
+        /// <returns>Task of List&lt;InlineResponse200&gt;</returns>
+        public async System.Threading.Tasks.Task<List<InlineResponse200>> ImportTemplateAsync (string name = null,  file = null)
+        {
+             ApiResponse<List<InlineResponse200>> localVarResponse = await ImportTemplateAsyncWithHttpInfo(name, file);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Import Vidchecker template 
+        /// </summary>
+        /// <exception cref="Telestream.Cloud.Qc.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="name"> (optional)</param>
+        /// <param name="file"> (optional)</param>
+        /// <returns>Task of ApiResponse (List&lt;InlineResponse200&gt;)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<List<InlineResponse200>>> ImportTemplateAsyncWithHttpInfo (string name = null,  file = null)
+        {
+
+            var localVarPath = "./projects/import.json";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "text/xml"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (name != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "name", name)); // query parameter
+            if (file != null && file.GetType() != typeof(byte[]))
+            {
+                localVarPostBody = Configuration.ApiClient.Serialize(file); // http body (model) parameter
+            }
+            else
+            {
+                localVarPostBody = file; // byte array
+            }
+
+            // authentication (api_key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
+            {
+                localVarHeaderParams["X-Api-Key"] = Configuration.GetApiKeyWithPrefix("X-Api-Key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("ImportTemplate", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<List<InlineResponse200>>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                (List<InlineResponse200>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<InlineResponse200>)));
         }
 
         /// <summary>

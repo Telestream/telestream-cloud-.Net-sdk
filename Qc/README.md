@@ -39,6 +39,7 @@ Class | Method | HTTP request | Description
 *QcApi* | [**CreateProject**](docs/QcApi.md#createproject) | **POST** /projects.json | Create a new project
 *QcApi* | [**GetJob**](docs/QcApi.md#getjob) | **GET** /projects/{project_id}/jobs/{job_id}.json | Get QC job
 *QcApi* | [**GetProject**](docs/QcApi.md#getproject) | **GET** /projects/{project_id}.json | Get project by Id
+*QcApi* | [**ImportTemplate**](docs/QcApi.md#importtemplate) | **POST** /projects/import.json | Import Vidchecker template
 *QcApi* | [**ListJobs**](docs/QcApi.md#listjobs) | **GET** /projects/{project_id}/jobs.json | Get jobs form projects
 *QcApi* | [**ListProjects**](docs/QcApi.md#listprojects) | **GET** /projects.json | List all projects for an account
 *QcApi* | [**ModifyProject**](docs/QcApi.md#modifyproject) | **PUT** /projects/{project_id}.json | Modify project
@@ -59,6 +60,8 @@ Class | Method | HTTP request | Description
  - [Model.Data](docs/Data.md)
  - [Model.Data1](docs/Data1.md)
  - [Model.ExtraFile](docs/ExtraFile.md)
+ - [Model.InlineResponse200](docs/InlineResponse200.md)
+ - [Model.InlineResponse422](docs/InlineResponse422.md)
  - [Model.Job](docs/Job.md)
  - [Model.JobData](docs/JobData.md)
  - [Model.JobDetails](docs/JobDetails.md)

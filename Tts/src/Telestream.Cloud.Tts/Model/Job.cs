@@ -90,10 +90,9 @@ namespace Telestream.Cloud.Tts.Model
         /// <param name="SampleRate">The sample rate of the input audio..</param>
         /// <param name="Format">The format of the input audio..</param>
         /// <param name="FileSize">The file size of the input file..</param>
-        /// <param name="CustomWords">Words used for model training, separated by space..</param>
         /// <param name="CreatedAt">A date and time when the job was created.</param>
         /// <param name="UpdatedAt">A date and time when the job was updated.</param>
-        public Job(string Id = default(string), string Name = default(string), string OriginalFilename = default(string), string ProjectId = default(string), string SourceUrl = default(string), StatusEnum? Status = default(StatusEnum?), string Error = default(string), int? Progress = default(int?), int? Confidence = default(int?), int? Duration = default(int?), int? Bitrate = default(int?), int? SampleRate = default(int?), string Format = default(string), int? FileSize = default(int?), string CustomWords = default(string), string CreatedAt = default(string), string UpdatedAt = default(string))
+        public Job(string Id = default(string), string Name = default(string), string OriginalFilename = default(string), string ProjectId = default(string), string SourceUrl = default(string), StatusEnum? Status = default(StatusEnum?), string Error = default(string), int? Progress = default(int?), int? Confidence = default(int?), int? Duration = default(int?), int? Bitrate = default(int?), int? SampleRate = default(int?), string Format = default(string), long? FileSize = default(long?), string CreatedAt = default(string), string UpdatedAt = default(string))
         {
             this.Id = Id;
             this.Name = Name;
@@ -109,7 +108,6 @@ namespace Telestream.Cloud.Tts.Model
             this.SampleRate = SampleRate;
             this.Format = Format;
             this.FileSize = FileSize;
-            this.CustomWords = CustomWords;
             this.CreatedAt = CreatedAt;
             this.UpdatedAt = UpdatedAt;
         }
@@ -204,14 +202,7 @@ namespace Telestream.Cloud.Tts.Model
         /// </summary>
         /// <value>The file size of the input file.</value>
         [DataMember(Name="file_size", EmitDefaultValue=false)]
-        public int? FileSize { get; set; }
-
-        /// <summary>
-        /// Words used for model training, separated by space.
-        /// </summary>
-        /// <value>Words used for model training, separated by space.</value>
-        [DataMember(Name="custom_words", EmitDefaultValue=false)]
-        public string CustomWords { get; set; }
+        public long? FileSize { get; set; }
 
         /// <summary>
         /// A date and time when the job was created
@@ -249,7 +240,6 @@ namespace Telestream.Cloud.Tts.Model
             sb.Append("  SampleRate: ").Append(SampleRate).Append("\n");
             sb.Append("  Format: ").Append(Format).Append("\n");
             sb.Append("  FileSize: ").Append(FileSize).Append("\n");
-            sb.Append("  CustomWords: ").Append(CustomWords).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
             sb.Append("}\n");
@@ -357,11 +347,6 @@ namespace Telestream.Cloud.Tts.Model
                     this.FileSize.Equals(input.FileSize))
                 ) && 
                 (
-                    this.CustomWords == input.CustomWords ||
-                    (this.CustomWords != null &&
-                    this.CustomWords.Equals(input.CustomWords))
-                ) && 
-                (
                     this.CreatedAt == input.CreatedAt ||
                     (this.CreatedAt != null &&
                     this.CreatedAt.Equals(input.CreatedAt))
@@ -410,8 +395,6 @@ namespace Telestream.Cloud.Tts.Model
                     hashCode = hashCode * 59 + this.Format.GetHashCode();
                 if (this.FileSize != null)
                     hashCode = hashCode * 59 + this.FileSize.GetHashCode();
-                if (this.CustomWords != null)
-                    hashCode = hashCode * 59 + this.CustomWords.GetHashCode();
                 if (this.CreatedAt != null)
                     hashCode = hashCode * 59 + this.CreatedAt.GetHashCode();
                 if (this.UpdatedAt != null)

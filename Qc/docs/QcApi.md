@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**CreateProject**](QcApi.md#createproject) | **POST** /projects.json | Create a new project
 [**GetJob**](QcApi.md#getjob) | **GET** /projects/{project_id}/jobs/{job_id}.json | Get QC job
 [**GetProject**](QcApi.md#getproject) | **GET** /projects/{project_id}.json | Get project by Id
+[**ImportTemplate**](QcApi.md#importtemplate) | **POST** /projects/import.json | Import Vidchecker template
 [**ListJobs**](QcApi.md#listjobs) | **GET** /projects/{project_id}/jobs.json | Get jobs form projects
 [**ListProjects**](QcApi.md#listprojects) | **GET** /projects.json | List all projects for an account
 [**ModifyProject**](QcApi.md#modifyproject) | **PUT** /projects/{project_id}.json | Modify project
@@ -340,6 +341,72 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="importtemplate"></a>
+# **ImportTemplate**
+> List<InlineResponse200> ImportTemplate (string name = null,  file = null)
+
+Import Vidchecker template
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using Telestream.Cloud.Qc.Api;
+using Telestream.Cloud.Qc.Client;
+using Telestream.Cloud.Qc.Model;
+
+namespace Example
+{
+    public class ImportTemplateExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: api_key
+            Configuration.Default.AddApiKey("X-Api-Key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("X-Api-Key", "Bearer");
+
+            var apiInstance = new QcApi();
+            var name = name_example;  // string |  (optional) 
+            var file = new (); //  |  (optional) 
+
+            try
+            {
+                // Import Vidchecker template
+                List&lt;InlineResponse200&gt; result = apiInstance.ImportTemplate(name, file);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling QcApi.ImportTemplate: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **name** | **string**|  | [optional] 
+ **file** | [****](.md)|  | [optional] 
+
+### Return type
+
+[**List<InlineResponse200>**](InlineResponse200.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: text/xml
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

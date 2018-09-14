@@ -61,7 +61,7 @@ namespace Telestream.Cloud.Qc.Client
 
                 private async Task PerformUpload(string filePath, string location, int partSize, int parts, int connections = 8, string tag = null, IProgress<double> progress = null, CancellationToken cancelToken = default(CancellationToken))
                 {
-                        using (var fileStream = File.Open(filePath, FileMode.Open))
+                        using (var fileStream = File.Open(filePath, FileMode.Open, FileAccess.Read, FileShare.Read))
                         {
                                 var retries = 3;
 
@@ -77,17 +77,20 @@ namespace Telestream.Cloud.Qc.Client
             private async Task<bool> upload(FileStream fileStream, string location, string tag, int partSize, int parts, int connections, IProgress<double> progress = null, CancellationToken cancelToken = default(CancellationToken))
             {
                     var tasks = new List<Task>();
+                    var buffers = new List<byte[]>();
+                    var queue = new Queue<byte[]>();
                     var uploaded = 0;
-
                     var missingParts = await GetMissingParts(location, tag);
+                    byte[] buffer;
+
+                    for (var i = 0; i < connections; ++i)
+                    {
+                        queue.Enqueue(new byte[partSize]);
+                    }
+
 
                     foreach (var chunkIndex in missingParts)
                     {
-                        byte[] buffer = new byte[partSize];
-                        long seekIndex = ((long)chunkIndex * (long)partSize);
-                        fileStream.Seek(seekIndex, SeekOrigin.Begin);
-                        var bytesRead = fileStream.Read(buffer, 0, buffer.Length);
-                        var message = CreateChunkMessage(chunkIndex, buffer, bytesRead, location, tag);
 
                         if (tasks.Count == connections)
                         {
@@ -95,6 +98,10 @@ namespace Telestream.Cloud.Qc.Client
                             {
                                 var id = Task.WaitAny(tasks.ToArray(), cancelToken);
                                 tasks.Remove(tasks[id]);
+                                buffer = buffers[id];
+                                buffers.Remove(buffers[id]);
+                                queue.Enqueue(buffer);
+
                                 uploaded++;
 
                                 if (progress != null)
@@ -108,8 +115,14 @@ namespace Telestream.Cloud.Qc.Client
                             }
                         }
 
+                        buffer = queue.Dequeue();
+                        long seekIndex = ((long)chunkIndex * (long)partSize);
+                        fileStream.Seek(seekIndex, SeekOrigin.Begin);
+                        var bytesRead = fileStream.Read(buffer, 0, buffer.Length);
+                        var message = CreateChunkMessage(chunkIndex, buffer, bytesRead, location, tag);
                         var task = SendMessage(message);
 
+                        buffers.Add(buffer);
                         tasks.Add(task);
                     }
 

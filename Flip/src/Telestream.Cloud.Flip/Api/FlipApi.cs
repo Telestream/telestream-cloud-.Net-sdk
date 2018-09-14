@@ -604,8 +604,9 @@ namespace Telestream.Cloud.Flip.Api
         /// <exception cref="Telestream.Cloud.Flip.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Id of an Encoding.</param>
         /// <param name="factoryId">Id of a Factory.</param>
+        /// <param name="expires">Duration in seconds for validity period. (optional)</param>
         /// <returns>EncodingSignedUrl</returns>
-        EncodingSignedUrl SignedEncodingUrl (string id, string factoryId);
+        EncodingSignedUrl SignedEncodingUrl (string id, string factoryId, int? expires = null);
 
         /// <summary>
         /// Returns a signed url pointing to an Encoding.
@@ -616,8 +617,9 @@ namespace Telestream.Cloud.Flip.Api
         /// <exception cref="Telestream.Cloud.Flip.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Id of an Encoding.</param>
         /// <param name="factoryId">Id of a Factory.</param>
+        /// <param name="expires">Duration in seconds for validity period. (optional)</param>
         /// <returns>ApiResponse of EncodingSignedUrl</returns>
-        ApiResponse<EncodingSignedUrl> SignedEncodingUrlWithHttpInfo (string id, string factoryId);
+        ApiResponse<EncodingSignedUrl> SignedEncodingUrlWithHttpInfo (string id, string factoryId, int? expires = null);
         /// <summary>
         /// Returns a list of signed urls pointing to an Encoding&#39;s outputs.
         /// </summary>
@@ -1525,8 +1527,9 @@ namespace Telestream.Cloud.Flip.Api
         /// <exception cref="Telestream.Cloud.Flip.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Id of an Encoding.</param>
         /// <param name="factoryId">Id of a Factory.</param>
+        /// <param name="expires">Duration in seconds for validity period. (optional)</param>
         /// <returns>Task of EncodingSignedUrl</returns>
-        System.Threading.Tasks.Task<EncodingSignedUrl> SignedEncodingUrlAsync (string id, string factoryId);
+        System.Threading.Tasks.Task<EncodingSignedUrl> SignedEncodingUrlAsync (string id, string factoryId, int? expires = null);
 
         /// <summary>
         /// Returns a signed url pointing to an Encoding.
@@ -1537,8 +1540,9 @@ namespace Telestream.Cloud.Flip.Api
         /// <exception cref="Telestream.Cloud.Flip.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Id of an Encoding.</param>
         /// <param name="factoryId">Id of a Factory.</param>
+        /// <param name="expires">Duration in seconds for validity period. (optional)</param>
         /// <returns>Task of ApiResponse (EncodingSignedUrl)</returns>
-        System.Threading.Tasks.Task<ApiResponse<EncodingSignedUrl>> SignedEncodingUrlAsyncWithHttpInfo (string id, string factoryId);
+        System.Threading.Tasks.Task<ApiResponse<EncodingSignedUrl>> SignedEncodingUrlAsyncWithHttpInfo (string id, string factoryId, int? expires = null);
         /// <summary>
         /// Returns a list of signed urls pointing to an Encoding&#39;s outputs.
         /// </summary>
@@ -5733,10 +5737,11 @@ namespace Telestream.Cloud.Flip.Api
         /// <exception cref="Telestream.Cloud.Flip.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Id of an Encoding.</param>
         /// <param name="factoryId">Id of a Factory.</param>
+        /// <param name="expires">Duration in seconds for validity period. (optional)</param>
         /// <returns>EncodingSignedUrl</returns>
-        public EncodingSignedUrl SignedEncodingUrl (string id, string factoryId)
+        public EncodingSignedUrl SignedEncodingUrl (string id, string factoryId, int? expires = null)
         {
-             ApiResponse<EncodingSignedUrl> localVarResponse = SignedEncodingUrlWithHttpInfo(id, factoryId);
+             ApiResponse<EncodingSignedUrl> localVarResponse = SignedEncodingUrlWithHttpInfo(id, factoryId, expires);
              return localVarResponse.Data;
         }
 
@@ -5746,8 +5751,9 @@ namespace Telestream.Cloud.Flip.Api
         /// <exception cref="Telestream.Cloud.Flip.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Id of an Encoding.</param>
         /// <param name="factoryId">Id of a Factory.</param>
+        /// <param name="expires">Duration in seconds for validity period. (optional)</param>
         /// <returns>ApiResponse of EncodingSignedUrl</returns>
-        public ApiResponse< EncodingSignedUrl > SignedEncodingUrlWithHttpInfo (string id, string factoryId)
+        public ApiResponse< EncodingSignedUrl > SignedEncodingUrlWithHttpInfo (string id, string factoryId, int? expires = null)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -5780,6 +5786,7 @@ namespace Telestream.Cloud.Flip.Api
 
             if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
             if (factoryId != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "factory_id", factoryId)); // query parameter
+            if (expires != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "expires", expires)); // query parameter
 
             // authentication (api_key) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
@@ -5811,10 +5818,11 @@ namespace Telestream.Cloud.Flip.Api
         /// <exception cref="Telestream.Cloud.Flip.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Id of an Encoding.</param>
         /// <param name="factoryId">Id of a Factory.</param>
+        /// <param name="expires">Duration in seconds for validity period. (optional)</param>
         /// <returns>Task of EncodingSignedUrl</returns>
-        public async System.Threading.Tasks.Task<EncodingSignedUrl> SignedEncodingUrlAsync (string id, string factoryId)
+        public async System.Threading.Tasks.Task<EncodingSignedUrl> SignedEncodingUrlAsync (string id, string factoryId, int? expires = null)
         {
-             ApiResponse<EncodingSignedUrl> localVarResponse = await SignedEncodingUrlAsyncWithHttpInfo(id, factoryId);
+             ApiResponse<EncodingSignedUrl> localVarResponse = await SignedEncodingUrlAsyncWithHttpInfo(id, factoryId, expires);
              return localVarResponse.Data;
 
         }
@@ -5825,8 +5833,9 @@ namespace Telestream.Cloud.Flip.Api
         /// <exception cref="Telestream.Cloud.Flip.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">Id of an Encoding.</param>
         /// <param name="factoryId">Id of a Factory.</param>
+        /// <param name="expires">Duration in seconds for validity period. (optional)</param>
         /// <returns>Task of ApiResponse (EncodingSignedUrl)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<EncodingSignedUrl>> SignedEncodingUrlAsyncWithHttpInfo (string id, string factoryId)
+        public async System.Threading.Tasks.Task<ApiResponse<EncodingSignedUrl>> SignedEncodingUrlAsyncWithHttpInfo (string id, string factoryId, int? expires = null)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -5859,6 +5868,7 @@ namespace Telestream.Cloud.Flip.Api
 
             if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
             if (factoryId != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "factory_id", factoryId)); // query parameter
+            if (expires != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "expires", expires)); // query parameter
 
             // authentication (api_key) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
