@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **ProfanityFilter** | **bool?** | If true, the service replaces profanity from output with asterisks. | [optional] 
 **GenerateProxy** | **bool?** | Indicates whether video preview should be generated. | [optional] 
 **CustomWords** | **string** | Words used for model training, separated by space. | [optional] 
+**Capabilities** | **List&lt;string&gt;** |  | [optional] 
 **CreatedAt** | **string** | A date and time when the project was created | [optional] 
 **UpdatedAt** | **string** | A date and time when the project was updated | [optional] 
 

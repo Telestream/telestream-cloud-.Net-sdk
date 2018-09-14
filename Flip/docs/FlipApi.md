@@ -1609,7 +1609,7 @@ Name | Type | Description  | Notes
 
 <a name="signedencodingurl"></a>
 # **SignedEncodingUrl**
-> EncodingSignedUrl SignedEncodingUrl (string id, string factoryId, int? expires = null)
+> EncodingSignedUrl SignedEncodingUrl (string id, string factoryId)
 
 Returns a signed url pointing to an Encoding.
 
@@ -1635,12 +1635,11 @@ namespace Example
             var apiInstance = new FlipApi();
             var id = id_example;  // string | Id of an Encoding.
             var factoryId = factoryId_example;  // string | Id of a Factory.
-            var expires = 56;  // int? | Duration in seconds for validity period. (optional) 
 
             try
             {
                 // Returns a signed url pointing to an Encoding.
-                EncodingSignedUrl result = apiInstance.SignedEncodingUrl(id, factoryId, expires);
+                EncodingSignedUrl result = apiInstance.SignedEncodingUrl(id, factoryId);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1658,7 +1657,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string**| Id of an Encoding. | 
  **factoryId** | **string**| Id of a Factory. | 
- **expires** | **int?**| Duration in seconds for validity period. | [optional] 
 
 ### Return type
 
