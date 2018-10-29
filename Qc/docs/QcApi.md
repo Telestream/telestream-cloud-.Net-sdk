@@ -347,7 +347,7 @@ Name | Type | Description  | Notes
 
 <a name="importtemplate"></a>
 # **ImportTemplate**
-> List<InlineResponse200> ImportTemplate (string name = null,  file = null)
+> List<InlineResponse200> ImportTemplate (string name = null, System.IO.Stream file = null)
 
 Import Vidchecker template
 
@@ -372,7 +372,7 @@ namespace Example
 
             var apiInstance = new QcApi();
             var name = name_example;  // string |  (optional) 
-            var file = new (); //  |  (optional) 
+            var file = new System.IO.Stream(); // System.IO.Stream |  (optional) 
 
             try
             {
@@ -394,7 +394,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **string**|  | [optional] 
- **file** | [****](.md)|  | [optional] 
+ **file** | **System.IO.Stream**|  | [optional] 
 
 ### Return type
 

@@ -42,7 +42,8 @@ namespace Telestream.Cloud.Flip.Model
         /// <param name="ClipEnd">Clip ends at a specific time..</param>
         /// <param name="ClipLength">A clip’s duration..</param>
         /// <param name="ClipOffset">Clip starts at a specific offset..</param>
-        public CreateVideoBody(string SourceUrl = default(string), string Profiles = default(string), string Payload = default(string), string Pipeline = default(string), List<string> SubtitleFiles = default(List<string>), Dictionary<string, List<string>> ExtraFiles = default(Dictionary<string, List<string>>), Dictionary<string, string> ExtraVariables = default(Dictionary<string, string>), string PathFormat = default(string), string ClipEnd = default(string), string ClipLength = default(string), string ClipOffset = default(string))
+        /// <param name="StartingTimecode">StartingTimecode.</param>
+        public CreateVideoBody(string SourceUrl = default(string), string Profiles = default(string), string Payload = default(string), string Pipeline = default(string), List<string> SubtitleFiles = default(List<string>), Dictionary<string, List<string>> ExtraFiles = default(Dictionary<string, List<string>>), Dictionary<string, string> ExtraVariables = default(Dictionary<string, string>), string PathFormat = default(string), string ClipEnd = default(string), string ClipLength = default(string), string ClipOffset = default(string), string StartingTimecode = default(string))
         {
             this.SourceUrl = SourceUrl;
             this.Profiles = Profiles;
@@ -55,6 +56,7 @@ namespace Telestream.Cloud.Flip.Model
             this.ClipEnd = ClipEnd;
             this.ClipLength = ClipLength;
             this.ClipOffset = ClipOffset;
+            this.StartingTimecode = StartingTimecode;
         }
         
         /// <summary>
@@ -132,6 +134,12 @@ namespace Telestream.Cloud.Flip.Model
         public string ClipOffset { get; set; }
 
         /// <summary>
+        /// Gets or Sets StartingTimecode
+        /// </summary>
+        [DataMember(Name="starting_timecode", EmitDefaultValue=false)]
+        public string StartingTimecode { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -150,6 +158,7 @@ namespace Telestream.Cloud.Flip.Model
             sb.Append("  ClipEnd: ").Append(ClipEnd).Append("\n");
             sb.Append("  ClipLength: ").Append(ClipLength).Append("\n");
             sb.Append("  ClipOffset: ").Append(ClipOffset).Append("\n");
+            sb.Append("  StartingTimecode: ").Append(StartingTimecode).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -238,6 +247,11 @@ namespace Telestream.Cloud.Flip.Model
                     this.ClipOffset == input.ClipOffset ||
                     (this.ClipOffset != null &&
                     this.ClipOffset.Equals(input.ClipOffset))
+                ) && 
+                (
+                    this.StartingTimecode == input.StartingTimecode ||
+                    (this.StartingTimecode != null &&
+                    this.StartingTimecode.Equals(input.StartingTimecode))
                 );
         }
 
@@ -272,6 +286,8 @@ namespace Telestream.Cloud.Flip.Model
                     hashCode = hashCode * 59 + this.ClipLength.GetHashCode();
                 if (this.ClipOffset != null)
                     hashCode = hashCode * 59 + this.ClipOffset.GetHashCode();
+                if (this.StartingTimecode != null)
+                    hashCode = hashCode * 59 + this.StartingTimecode.GetHashCode();
                 return hashCode;
             }
         }

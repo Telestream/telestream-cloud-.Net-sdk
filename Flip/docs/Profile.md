@@ -69,6 +69,7 @@ Name | Type | Description | Notes
 **ProresFormat** | **string** |  | [optional] 
 **SegmentTime** | **int?** | Minimum value is 2, maximum is 60. | [optional] 
 **Stack** | **string** |  | [optional] 
+**StartingTimecode** | **string** |  | [optional] 
 **TelestreamBlockSize** | **string** |  | [optional] 
 **TelestreamBlurScaler** | **decimal?** | Minimum value is 0, maximum is 4. | [optional] 
 **TelestreamCostScaler** | **decimal?** | Minimum value is 0, maximum is 4. | [optional] 

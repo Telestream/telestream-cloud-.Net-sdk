@@ -31,22 +31,14 @@ namespace Telestream.Cloud.Qc.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="InlineResponse200" /> class.
         /// </summary>
-        /// <param name="OriginalName">OriginalName.</param>
         /// <param name="ProjectName">ProjectName.</param>
         /// <param name="ProjectId">ProjectId.</param>
-        public InlineResponse200(string OriginalName = default(string), string ProjectName = default(string), string ProjectId = default(string))
+        public InlineResponse200(string ProjectName = default(string), string ProjectId = default(string))
         {
-            this.OriginalName = OriginalName;
             this.ProjectName = ProjectName;
             this.ProjectId = ProjectId;
         }
         
-        /// <summary>
-        /// Gets or Sets OriginalName
-        /// </summary>
-        [DataMember(Name="original_name", EmitDefaultValue=false)]
-        public string OriginalName { get; set; }
-
         /// <summary>
         /// Gets or Sets ProjectName
         /// </summary>
@@ -67,7 +59,6 @@ namespace Telestream.Cloud.Qc.Model
         {
             var sb = new StringBuilder();
             sb.Append("class InlineResponse200 {\n");
-            sb.Append("  OriginalName: ").Append(OriginalName).Append("\n");
             sb.Append("  ProjectName: ").Append(ProjectName).Append("\n");
             sb.Append("  ProjectId: ").Append(ProjectId).Append("\n");
             sb.Append("}\n");
@@ -105,11 +96,6 @@ namespace Telestream.Cloud.Qc.Model
 
             return 
                 (
-                    this.OriginalName == input.OriginalName ||
-                    (this.OriginalName != null &&
-                    this.OriginalName.Equals(input.OriginalName))
-                ) && 
-                (
                     this.ProjectName == input.ProjectName ||
                     (this.ProjectName != null &&
                     this.ProjectName.Equals(input.ProjectName))
@@ -130,8 +116,6 @@ namespace Telestream.Cloud.Qc.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.OriginalName != null)
-                    hashCode = hashCode * 59 + this.OriginalName.GetHashCode();
                 if (this.ProjectName != null)
                     hashCode = hashCode * 59 + this.ProjectName.GetHashCode();
                 if (this.ProjectId != null)

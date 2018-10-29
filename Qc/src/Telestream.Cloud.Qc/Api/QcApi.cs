@@ -145,7 +145,7 @@ namespace Telestream.Cloud.Qc.Api
         /// <param name="name"> (optional)</param>
         /// <param name="file"> (optional)</param>
         /// <returns>List&lt;InlineResponse200&gt;</returns>
-        List<InlineResponse200> ImportTemplate (string name = null,  file = null);
+        List<InlineResponse200> ImportTemplate (string name = null, System.IO.Stream file = null);
 
         /// <summary>
         /// Import Vidchecker template
@@ -157,7 +157,7 @@ namespace Telestream.Cloud.Qc.Api
         /// <param name="name"> (optional)</param>
         /// <param name="file"> (optional)</param>
         /// <returns>ApiResponse of List&lt;InlineResponse200&gt;</returns>
-        ApiResponse<List<InlineResponse200>> ImportTemplateWithHttpInfo (string name = null,  file = null);
+        ApiResponse<List<InlineResponse200>> ImportTemplateWithHttpInfo (string name = null, System.IO.Stream file = null);
         /// <summary>
         /// Get jobs form projects
         /// </summary>
@@ -484,7 +484,7 @@ namespace Telestream.Cloud.Qc.Api
         /// <param name="name"> (optional)</param>
         /// <param name="file"> (optional)</param>
         /// <returns>Task of List&lt;InlineResponse200&gt;</returns>
-        System.Threading.Tasks.Task<List<InlineResponse200>> ImportTemplateAsync (string name = null,  file = null);
+        System.Threading.Tasks.Task<List<InlineResponse200>> ImportTemplateAsync (string name = null, System.IO.Stream file = null);
 
         /// <summary>
         /// Import Vidchecker template
@@ -496,7 +496,7 @@ namespace Telestream.Cloud.Qc.Api
         /// <param name="name"> (optional)</param>
         /// <param name="file"> (optional)</param>
         /// <returns>Task of ApiResponse (List&lt;InlineResponse200&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<InlineResponse200>>> ImportTemplateAsyncWithHttpInfo (string name = null,  file = null);
+        System.Threading.Tasks.Task<ApiResponse<List<InlineResponse200>>> ImportTemplateAsyncWithHttpInfo (string name = null, System.IO.Stream file = null);
         /// <summary>
         /// Get jobs form projects
         /// </summary>
@@ -1588,7 +1588,7 @@ namespace Telestream.Cloud.Qc.Api
         /// <param name="name"> (optional)</param>
         /// <param name="file"> (optional)</param>
         /// <returns>List&lt;InlineResponse200&gt;</returns>
-        public List<InlineResponse200> ImportTemplate (string name = null,  file = null)
+        public List<InlineResponse200> ImportTemplate (string name = null, System.IO.Stream file = null)
         {
              ApiResponse<List<InlineResponse200>> localVarResponse = ImportTemplateWithHttpInfo(name, file);
              return localVarResponse.Data;
@@ -1601,7 +1601,7 @@ namespace Telestream.Cloud.Qc.Api
         /// <param name="name"> (optional)</param>
         /// <param name="file"> (optional)</param>
         /// <returns>ApiResponse of List&lt;InlineResponse200&gt;</returns>
-        public ApiResponse< List<InlineResponse200> > ImportTemplateWithHttpInfo (string name = null,  file = null)
+        public ApiResponse< List<InlineResponse200> > ImportTemplateWithHttpInfo (string name = null, System.IO.Stream file = null)
         {
 
             var localVarPath = "./projects/import.json";
@@ -1627,14 +1627,7 @@ namespace Telestream.Cloud.Qc.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             if (name != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "name", name)); // query parameter
-            if (file != null && file.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(file); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = file; // byte array
-            }
+            if (file != null) localVarFileParams.Add("file", Configuration.ApiClient.ParameterToFile("file", file));
 
             // authentication (api_key) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
@@ -1667,7 +1660,7 @@ namespace Telestream.Cloud.Qc.Api
         /// <param name="name"> (optional)</param>
         /// <param name="file"> (optional)</param>
         /// <returns>Task of List&lt;InlineResponse200&gt;</returns>
-        public async System.Threading.Tasks.Task<List<InlineResponse200>> ImportTemplateAsync (string name = null,  file = null)
+        public async System.Threading.Tasks.Task<List<InlineResponse200>> ImportTemplateAsync (string name = null, System.IO.Stream file = null)
         {
              ApiResponse<List<InlineResponse200>> localVarResponse = await ImportTemplateAsyncWithHttpInfo(name, file);
              return localVarResponse.Data;
@@ -1681,7 +1674,7 @@ namespace Telestream.Cloud.Qc.Api
         /// <param name="name"> (optional)</param>
         /// <param name="file"> (optional)</param>
         /// <returns>Task of ApiResponse (List&lt;InlineResponse200&gt;)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<List<InlineResponse200>>> ImportTemplateAsyncWithHttpInfo (string name = null,  file = null)
+        public async System.Threading.Tasks.Task<ApiResponse<List<InlineResponse200>>> ImportTemplateAsyncWithHttpInfo (string name = null, System.IO.Stream file = null)
         {
 
             var localVarPath = "./projects/import.json";
@@ -1707,14 +1700,7 @@ namespace Telestream.Cloud.Qc.Api
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
             if (name != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "name", name)); // query parameter
-            if (file != null && file.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(file); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = file; // byte array
-            }
+            if (file != null) localVarFileParams.Add("file", Configuration.ApiClient.ParameterToFile("file", file));
 
             // authentication (api_key) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))

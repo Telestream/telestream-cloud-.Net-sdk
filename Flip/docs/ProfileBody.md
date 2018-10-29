@@ -49,6 +49,7 @@ Name | Type | Description | Notes
 **ProresFormat** | **string** |  | [optional] 
 **SegmentTime** | **string** |  | [optional] 
 **Size** | **string** |  | [optional] 
+**StartingTimecode** | **string** |  | [optional] 
 **Tar** | **bool?** |  | [optional] 
 **TransportRate** | **string** |  | [optional] 
 **TsPids** | **string** |  | [optional] 

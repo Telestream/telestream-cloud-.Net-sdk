@@ -164,7 +164,7 @@ namespace Telestream.Cloud.Tts.Client
                         var id = Task.WaitAny(tasks.ToArray(), cancelToken);
                         try
                         {
-                            if (tasks[id].Result.IsSuccessStatusCode)
+                            if (tasks[id].IsCompleted && tasks[id].Result.IsSuccessStatusCode)
                             {
                                 uploaded++;
                             }

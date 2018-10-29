@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **ClipEnd** | **string** | Clip ends at a specific time. | [optional] 
 **ClipLength** | **string** | A clip’s duration. | [optional] 
 **ClipOffset** | **string** | Clip starts at a specific offset. | [optional] 
+**StartingTimecode** | **string** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -3,7 +3,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**OriginalName** | **string** |  | [optional] 
 **ProjectName** | **string** |  | [optional] 
 **ProjectId** | **string** |  | [optional] 
 
