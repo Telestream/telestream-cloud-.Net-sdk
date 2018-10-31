@@ -5,6 +5,7 @@ All URIs are relative to *https://api.cloud.telestream.net/flip/3.1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CancelEncoding**](FlipApi.md#cancelencoding) | **POST** /encodings/{id}/cancel.json | Cancels an Encoding.
+[**CancelVideo**](FlipApi.md#cancelvideo) | **POST** /videos/{id}/cancel.json | Cancel video and all encodings
 [**CopyProfile**](FlipApi.md#copyprofile) | **POST** /profiles/{id}/copy.json | Copies a given Profile
 [**CreateEncoding**](FlipApi.md#createencoding) | **POST** /encodings.json | Creates an Encoding
 [**CreateFactory**](FlipApi.md#createfactory) | **POST** /factories.json | Creates a new factory
@@ -92,6 +93,72 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string**| Id of an Encoding. | 
+ **factoryId** | **string**| Id of a Factory. | 
+
+### Return type
+
+[**CanceledResponse**](CanceledResponse.md)
+
+### Authorization
+
+[api_key](../README.md#api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="cancelvideo"></a>
+# **CancelVideo**
+> CanceledResponse CancelVideo (string id, string factoryId)
+
+Cancel video and all encodings
+
+### Example
+```csharp
+using System;
+using System.Diagnostics;
+using Telestream.Cloud.Flip.Api;
+using Telestream.Cloud.Flip.Client;
+using Telestream.Cloud.Flip.Model;
+
+namespace Example
+{
+    public class CancelVideoExample
+    {
+        public void main()
+        {
+            // Configure API key authorization: api_key
+            Configuration.Default.AddApiKey("X-Api-Key", "YOUR_API_KEY");
+            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+            // Configuration.Default.AddApiKeyPrefix("X-Api-Key", "Bearer");
+
+            var apiInstance = new FlipApi();
+            var id = id_example;  // string | Id of a Video.
+            var factoryId = factoryId_example;  // string | Id of a Factory.
+
+            try
+            {
+                // Cancel video and all encodings
+                CanceledResponse result = apiInstance.CancelVideo(id, factoryId);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling FlipApi.CancelVideo: " + e.Message );
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **string**| Id of a Video. | 
  **factoryId** | **string**| Id of a Factory. | 
 
 ### Return type

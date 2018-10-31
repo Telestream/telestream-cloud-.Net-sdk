@@ -84,7 +84,7 @@ Name | Type | Description | Notes
 **Upscale** | **bool?** | Upscale the video resolution to match your profile. Default is &#x60;true&#x60;. | [optional] 
 **UseEditlist** | **bool?** |  | [optional] 
 **Variants** | **string** | Pattern utilised to match HLS.Variant presets by name. Default is hls.*. | [optional] 
-**VideoBitrate** | **string** |  | [optional] 
+**VideoBitrate** | **int?** |  | [optional] 
 **VideoPid** | **string** |  | [optional] 
 **WatermarkBottom** | **string** | Distance from the bottom of the video frame in pixels or percentage of video frame height. Works like CSS. Default is &#x60;0&#x60;. | [optional] 
 **WatermarkBumpers** | **bool?** |  | [optional] 

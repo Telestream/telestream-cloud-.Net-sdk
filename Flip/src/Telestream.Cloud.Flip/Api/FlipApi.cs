@@ -48,6 +48,29 @@ namespace Telestream.Cloud.Flip.Api
         /// <returns>ApiResponse of CanceledResponse</returns>
         ApiResponse<CanceledResponse> CancelEncodingWithHttpInfo (string id, string factoryId);
         /// <summary>
+        /// Cancel video and all encodings
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Telestream.Cloud.Flip.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Id of a Video.</param>
+        /// <param name="factoryId">Id of a Factory.</param>
+        /// <returns>CanceledResponse</returns>
+        CanceledResponse CancelVideo (string id, string factoryId);
+
+        /// <summary>
+        /// Cancel video and all encodings
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Telestream.Cloud.Flip.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Id of a Video.</param>
+        /// <param name="factoryId">Id of a Factory.</param>
+        /// <returns>ApiResponse of CanceledResponse</returns>
+        ApiResponse<CanceledResponse> CancelVideoWithHttpInfo (string id, string factoryId);
+        /// <summary>
         /// Copies a given Profile
         /// </summary>
         /// <remarks>
@@ -970,6 +993,29 @@ namespace Telestream.Cloud.Flip.Api
         /// <param name="factoryId">Id of a Factory.</param>
         /// <returns>Task of ApiResponse (CanceledResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<CanceledResponse>> CancelEncodingAsyncWithHttpInfo (string id, string factoryId);
+        /// <summary>
+        /// Cancel video and all encodings
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Telestream.Cloud.Flip.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Id of a Video.</param>
+        /// <param name="factoryId">Id of a Factory.</param>
+        /// <returns>Task of CanceledResponse</returns>
+        System.Threading.Tasks.Task<CanceledResponse> CancelVideoAsync (string id, string factoryId);
+
+        /// <summary>
+        /// Cancel video and all encodings
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Telestream.Cloud.Flip.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Id of a Video.</param>
+        /// <param name="factoryId">Id of a Factory.</param>
+        /// <returns>Task of ApiResponse (CanceledResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<CanceledResponse>> CancelVideoAsyncWithHttpInfo (string id, string factoryId);
         /// <summary>
         /// Copies a given Profile
         /// </summary>
@@ -2117,6 +2163,163 @@ namespace Telestream.Cloud.Flip.Api
             if (ExceptionFactory != null)
             {
                 Exception exception = ExceptionFactory("CancelEncoding", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<CanceledResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                (CanceledResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(CanceledResponse)));
+        }
+
+        /// <summary>
+        /// Cancel video and all encodings 
+        /// </summary>
+        /// <exception cref="Telestream.Cloud.Flip.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Id of a Video.</param>
+        /// <param name="factoryId">Id of a Factory.</param>
+        /// <returns>CanceledResponse</returns>
+        public CanceledResponse CancelVideo (string id, string factoryId)
+        {
+             ApiResponse<CanceledResponse> localVarResponse = CancelVideoWithHttpInfo(id, factoryId);
+             return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Cancel video and all encodings 
+        /// </summary>
+        /// <exception cref="Telestream.Cloud.Flip.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Id of a Video.</param>
+        /// <param name="factoryId">Id of a Factory.</param>
+        /// <returns>ApiResponse of CanceledResponse</returns>
+        public ApiResponse< CanceledResponse > CancelVideoWithHttpInfo (string id, string factoryId)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new ApiException(400, "Missing required parameter 'id' when calling FlipApi->CancelVideo");
+            // verify the required parameter 'factoryId' is set
+            if (factoryId == null)
+                throw new ApiException(400, "Missing required parameter 'factoryId' when calling FlipApi->CancelVideo");
+
+            var localVarPath = "./videos/{id}/cancel.json";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
+            if (factoryId != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "factory_id", factoryId)); // query parameter
+
+            // authentication (api_key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
+            {
+                localVarHeaderParams["X-Api-Key"] = Configuration.GetApiKeyWithPrefix("X-Api-Key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("CancelVideo", localVarResponse);
+                if (exception != null) throw exception;
+            }
+
+            return new ApiResponse<CanceledResponse>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                (CanceledResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(CanceledResponse)));
+        }
+
+        /// <summary>
+        /// Cancel video and all encodings 
+        /// </summary>
+        /// <exception cref="Telestream.Cloud.Flip.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Id of a Video.</param>
+        /// <param name="factoryId">Id of a Factory.</param>
+        /// <returns>Task of CanceledResponse</returns>
+        public async System.Threading.Tasks.Task<CanceledResponse> CancelVideoAsync (string id, string factoryId)
+        {
+             ApiResponse<CanceledResponse> localVarResponse = await CancelVideoAsyncWithHttpInfo(id, factoryId);
+             return localVarResponse.Data;
+
+        }
+
+        /// <summary>
+        /// Cancel video and all encodings 
+        /// </summary>
+        /// <exception cref="Telestream.Cloud.Flip.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">Id of a Video.</param>
+        /// <param name="factoryId">Id of a Factory.</param>
+        /// <returns>Task of ApiResponse (CanceledResponse)</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<CanceledResponse>> CancelVideoAsyncWithHttpInfo (string id, string factoryId)
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new ApiException(400, "Missing required parameter 'id' when calling FlipApi->CancelVideo");
+            // verify the required parameter 'factoryId' is set
+            if (factoryId == null)
+                throw new ApiException(400, "Missing required parameter 'factoryId' when calling FlipApi->CancelVideo");
+
+            var localVarPath = "./videos/{id}/cancel.json";
+            var localVarPathParams = new Dictionary<String, String>();
+            var localVarQueryParams = new List<KeyValuePair<String, String>>();
+            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
+            var localVarFormParams = new Dictionary<String, String>();
+            var localVarFileParams = new Dictionary<String, FileParameter>();
+            Object localVarPostBody = null;
+
+            // to determine the Content-Type header
+            String[] localVarHttpContentTypes = new String[] {
+                "application/json"
+            };
+            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
+
+            // to determine the Accept header
+            String[] localVarHttpHeaderAccepts = new String[] {
+                "application/json"
+            };
+            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
+            if (localVarHttpHeaderAccept != null)
+                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
+
+            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
+            if (factoryId != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "factory_id", factoryId)); // query parameter
+
+            // authentication (api_key) required
+            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
+            {
+                localVarHeaderParams["X-Api-Key"] = Configuration.GetApiKeyWithPrefix("X-Api-Key");
+            }
+
+            // make the HTTP request
+            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
+                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
+                localVarPathParams, localVarHttpContentType);
+
+            int localVarStatusCode = (int) localVarResponse.StatusCode;
+
+            if (ExceptionFactory != null)
+            {
+                Exception exception = ExceptionFactory("CancelVideo", localVarResponse);
                 if (exception != null) throw exception;
             }
 

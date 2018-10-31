@@ -35,6 +35,7 @@ All URIs are relative to *https://api.cloud.telestream.net/flip/3.1*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *FlipApi* | [**CancelEncoding**](docs/FlipApi.md#cancelencoding) | **POST** /encodings/{id}/cancel.json | Cancels an Encoding.
+*FlipApi* | [**CancelVideo**](docs/FlipApi.md#cancelvideo) | **POST** /videos/{id}/cancel.json | Cancel video and all encodings
 *FlipApi* | [**CopyProfile**](docs/FlipApi.md#copyprofile) | **POST** /profiles/{id}/copy.json | Copies a given Profile
 *FlipApi* | [**CreateEncoding**](docs/FlipApi.md#createencoding) | **POST** /encodings.json | Creates an Encoding
 *FlipApi* | [**CreateFactory**](docs/FlipApi.md#createfactory) | **POST** /factories.json | Creates a new factory
