@@ -15,7 +15,7 @@ namespace Telestream.Cloud.Flip.Api
 
                 }
 
-                public async Task UploadFile(string filePath, string contextId, IProgress<double> progress = null, CancellationToken cancelToken = default(CancellationToken), List<ExtraFileMetadata> extraFiles = default(List<ExtraFileMetadata>), string profiles = default(string), string pathFormat = default(string), string payload = default(string), Dictionary<string, string> extraVariables = default(Dictionary<string, string>), string watermarkUrl = default(string), string watermarkLeft = default(string), string watermarkTop = default(string), string watermarkRight = default(string), string watermarkBottom = default(string), string watermarkWidth = default(string), string watermarkHeight = default(string), string clipLength = default(string), string clipOffset = default(string))
+                public async Task UploadFile(string filePath, string contextId, IProgress<double> progress = null, CancellationToken cancelToken = default(CancellationToken), List<ExtraFileMetadata> extraFiles = default(List<ExtraFileMetadata>), string profiles = default(string), string pathFormat = default(string), string payload = default(string), Dictionary<string, string> extraVariables = default(Dictionary<string, string>), string watermarkUrl = default(string), string watermarkLeft = default(string), string watermarkTop = default(string), string watermarkRight = default(string), string watermarkBottom = default(string), string watermarkWidth = default(string), string watermarkHeight = default(string), string clipLength = default(string), string clipOffset = default(string), string storeId = default(string))
                 {
                         var fileName = Path.GetFileName(filePath);
                         var fileInfo = new FileInfo(filePath);
@@ -35,12 +35,13 @@ namespace Telestream.Cloud.Flip.Api
                                                                                                          watermarkWidth,
                                                                                                          watermarkHeight,
                                                                                                          clipLength,
-                                                                                                         clipOffset);
+                                                                                                         clipOffset,
+                                                                                                         storeId);
                         await UploadFile(filePath, videoSession, extraFilesData, progress, cancelToken);
 
                 }
 
-                private Task<UploadSession> PrepareMainFile(string filePath, string contextId, List<ExtraFile> extraFiles = default(List<ExtraFile>), string profiles = default(string), string pathFormat = default(string), string payload = default(string), Dictionary<string, string> extraVariables = default(Dictionary<string, string>), string watermarkUrl = default(string), string watermarkLeft = default(string), string watermarkTop = default(string), string watermarkRight = default(string), string watermarkBottom = default(string), string watermarkWidth = default(string), string watermarkHeight = default(string), string clipLength = default(string), string clipOffset = default(string))
+                private Task<UploadSession> PrepareMainFile(string filePath, string contextId, List<ExtraFile> extraFiles = default(List<ExtraFile>), string profiles = default(string), string pathFormat = default(string), string payload = default(string), Dictionary<string, string> extraVariables = default(Dictionary<string, string>), string watermarkUrl = default(string), string watermarkLeft = default(string), string watermarkTop = default(string), string watermarkRight = default(string), string watermarkBottom = default(string), string watermarkWidth = default(string), string watermarkHeight = default(string), string clipLength = default(string), string clipOffset = default(string), string storeId = default(string))
                 {
                         var fileInfo = new FileInfo(filePath);
                         var uploadBody = new VideoUploadBody(fileInfo.Length,
@@ -59,7 +60,8 @@ namespace Telestream.Cloud.Flip.Api
                                                                                                  watermarkHeight,
                                                                                                  clipLength,
                                                                                                  clipOffset,
-                                                                                                 true);
+                                                                                                 true,
+                                                                                                 storeId);
 
                         return _apiClient.UploadVideoAsync(contextId, uploadBody);
                 }

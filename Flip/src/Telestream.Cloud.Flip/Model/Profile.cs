@@ -1322,7 +1322,7 @@ namespace Telestream.Cloud.Flip.Model
         /// <param name="BufferSizeInPackets">todo.</param>
         /// <param name="Bumpers">Bumpers.</param>
         /// <param name="ByteRangeRequests">ByteRangeRequests.</param>
-        /// <param name="ClipEnd">Clip ends at a specific time..</param>
+        /// <param name="ClipEnd">Clip ends at a specific time (timecode)..</param>
         /// <param name="ClipLength">A clip’s duration..</param>
         /// <param name="ClipOffset">Clip starts at a specific offset..</param>
         /// <param name="ClosedCaptions">One of add (adds captions as a separate streams) or burn (burns captions on video stream using the first subtitle file). By default it is not set..</param>
@@ -1679,9 +1679,9 @@ namespace Telestream.Cloud.Flip.Model
         public bool? ByteRangeRequests { get; set; }
 
         /// <summary>
-        /// Clip ends at a specific time.
+        /// Clip ends at a specific time (timecode).
         /// </summary>
-        /// <value>Clip ends at a specific time.</value>
+        /// <value>Clip ends at a specific time (timecode).</value>
         [DataMember(Name="clip_end", EmitDefaultValue=false)]
         public string ClipEnd { get; set; }
 

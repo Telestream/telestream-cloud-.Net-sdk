@@ -53,7 +53,8 @@ namespace Telestream.Cloud.Flip.Model
         /// <param name="ClipLength">Length of the uploaded video. Should be formatted as follows: HH:MM:SS.</param>
         /// <param name="ClipOffset">Clip starts at a specific offset..</param>
         /// <param name="MultiChunk">MultiChunk (default to true).</param>
-        public VideoUploadBody(long? FileSize = default(long?), string FileName = default(string), List<ExtraFile> ExtraFiles = default(List<ExtraFile>), string Profiles = default(string), string PathFormat = default(string), string Payload = default(string), Dictionary<string, string> ExtraVariables = default(Dictionary<string, string>), string WatermarkUrl = default(string), string WatermarkLeft = default(string), string WatermarkTop = default(string), string WatermarkRight = default(string), string WatermarkBottom = default(string), string WatermarkWidth = default(string), string WatermarkHeight = default(string), string ClipLength = default(string), string ClipOffset = default(string), bool? MultiChunk = true)
+        /// <param name="StoreId">An individual store_id for this video processing. If provided will replace store_id from cloud factory but must match underlying cloud provider and region..</param>
+        public VideoUploadBody(long? FileSize = default(long?), string FileName = default(string), List<ExtraFile> ExtraFiles = default(List<ExtraFile>), string Profiles = default(string), string PathFormat = default(string), string Payload = default(string), Dictionary<string, string> ExtraVariables = default(Dictionary<string, string>), string WatermarkUrl = default(string), string WatermarkLeft = default(string), string WatermarkTop = default(string), string WatermarkRight = default(string), string WatermarkBottom = default(string), string WatermarkWidth = default(string), string WatermarkHeight = default(string), string ClipLength = default(string), string ClipOffset = default(string), bool? MultiChunk = true, string StoreId = default(string))
         {
             // to ensure "FileSize" is required (not null)
             if (FileSize == null)
@@ -96,6 +97,7 @@ namespace Telestream.Cloud.Flip.Model
             {
                 this.MultiChunk = MultiChunk;
             }
+            this.StoreId = StoreId;
         }
         
         /// <summary>
@@ -215,6 +217,13 @@ namespace Telestream.Cloud.Flip.Model
         public bool? MultiChunk { get; set; }
 
         /// <summary>
+        /// An individual store_id for this video processing. If provided will replace store_id from cloud factory but must match underlying cloud provider and region.
+        /// </summary>
+        /// <value>An individual store_id for this video processing. If provided will replace store_id from cloud factory but must match underlying cloud provider and region.</value>
+        [DataMember(Name="store_id", EmitDefaultValue=false)]
+        public string StoreId { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -239,6 +248,7 @@ namespace Telestream.Cloud.Flip.Model
             sb.Append("  ClipLength: ").Append(ClipLength).Append("\n");
             sb.Append("  ClipOffset: ").Append(ClipOffset).Append("\n");
             sb.Append("  MultiChunk: ").Append(MultiChunk).Append("\n");
+            sb.Append("  StoreId: ").Append(StoreId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -357,6 +367,11 @@ namespace Telestream.Cloud.Flip.Model
                     this.MultiChunk == input.MultiChunk ||
                     (this.MultiChunk != null &&
                     this.MultiChunk.Equals(input.MultiChunk))
+                ) && 
+                (
+                    this.StoreId == input.StoreId ||
+                    (this.StoreId != null &&
+                    this.StoreId.Equals(input.StoreId))
                 );
         }
 
@@ -403,6 +418,8 @@ namespace Telestream.Cloud.Flip.Model
                     hashCode = hashCode * 59 + this.ClipOffset.GetHashCode();
                 if (this.MultiChunk != null)
                     hashCode = hashCode * 59 + this.MultiChunk.GetHashCode();
+                if (this.StoreId != null)
+                    hashCode = hashCode * 59 + this.StoreId.GetHashCode();
                 return hashCode;
             }
         }

@@ -39,11 +39,12 @@ namespace Telestream.Cloud.Flip.Model
         /// <param name="ExtraFiles">ExtraFiles.</param>
         /// <param name="ExtraVariables">ExtraVariables.</param>
         /// <param name="PathFormat">PathFormat.</param>
-        /// <param name="ClipEnd">Clip ends at a specific time..</param>
+        /// <param name="ClipEnd">Clip ends at a specific time (timecode)..</param>
         /// <param name="ClipLength">A clip’s duration..</param>
         /// <param name="ClipOffset">Clip starts at a specific offset..</param>
         /// <param name="StartingTimecode">StartingTimecode.</param>
-        public CreateVideoBody(string SourceUrl = default(string), string Profiles = default(string), string Payload = default(string), string Pipeline = default(string), List<string> SubtitleFiles = default(List<string>), Dictionary<string, List<string>> ExtraFiles = default(Dictionary<string, List<string>>), Dictionary<string, string> ExtraVariables = default(Dictionary<string, string>), string PathFormat = default(string), string ClipEnd = default(string), string ClipLength = default(string), string ClipOffset = default(string), string StartingTimecode = default(string))
+        /// <param name="StoreId">An individual store_id for this video processing. If provided will replace store_id from cloud factory but must match underlying cloud provider and region..</param>
+        public CreateVideoBody(string SourceUrl = default(string), string Profiles = default(string), string Payload = default(string), string Pipeline = default(string), List<string> SubtitleFiles = default(List<string>), Dictionary<string, List<string>> ExtraFiles = default(Dictionary<string, List<string>>), Dictionary<string, string> ExtraVariables = default(Dictionary<string, string>), string PathFormat = default(string), string ClipEnd = default(string), string ClipLength = default(string), string ClipOffset = default(string), string StartingTimecode = default(string), string StoreId = default(string))
         {
             this.SourceUrl = SourceUrl;
             this.Profiles = Profiles;
@@ -57,6 +58,7 @@ namespace Telestream.Cloud.Flip.Model
             this.ClipLength = ClipLength;
             this.ClipOffset = ClipOffset;
             this.StartingTimecode = StartingTimecode;
+            this.StoreId = StoreId;
         }
         
         /// <summary>
@@ -113,9 +115,9 @@ namespace Telestream.Cloud.Flip.Model
         public string PathFormat { get; set; }
 
         /// <summary>
-        /// Clip ends at a specific time.
+        /// Clip ends at a specific time (timecode).
         /// </summary>
-        /// <value>Clip ends at a specific time.</value>
+        /// <value>Clip ends at a specific time (timecode).</value>
         [DataMember(Name="clip_end", EmitDefaultValue=false)]
         public string ClipEnd { get; set; }
 
@@ -140,6 +142,13 @@ namespace Telestream.Cloud.Flip.Model
         public string StartingTimecode { get; set; }
 
         /// <summary>
+        /// An individual store_id for this video processing. If provided will replace store_id from cloud factory but must match underlying cloud provider and region.
+        /// </summary>
+        /// <value>An individual store_id for this video processing. If provided will replace store_id from cloud factory but must match underlying cloud provider and region.</value>
+        [DataMember(Name="store_id", EmitDefaultValue=false)]
+        public string StoreId { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -159,6 +168,7 @@ namespace Telestream.Cloud.Flip.Model
             sb.Append("  ClipLength: ").Append(ClipLength).Append("\n");
             sb.Append("  ClipOffset: ").Append(ClipOffset).Append("\n");
             sb.Append("  StartingTimecode: ").Append(StartingTimecode).Append("\n");
+            sb.Append("  StoreId: ").Append(StoreId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -252,6 +262,11 @@ namespace Telestream.Cloud.Flip.Model
                     this.StartingTimecode == input.StartingTimecode ||
                     (this.StartingTimecode != null &&
                     this.StartingTimecode.Equals(input.StartingTimecode))
+                ) && 
+                (
+                    this.StoreId == input.StoreId ||
+                    (this.StoreId != null &&
+                    this.StoreId.Equals(input.StoreId))
                 );
         }
 
@@ -288,6 +303,8 @@ namespace Telestream.Cloud.Flip.Model
                     hashCode = hashCode * 59 + this.ClipOffset.GetHashCode();
                 if (this.StartingTimecode != null)
                     hashCode = hashCode * 59 + this.StartingTimecode.GetHashCode();
+                if (this.StoreId != null)
+                    hashCode = hashCode * 59 + this.StoreId.GetHashCode();
                 return hashCode;
             }
         }

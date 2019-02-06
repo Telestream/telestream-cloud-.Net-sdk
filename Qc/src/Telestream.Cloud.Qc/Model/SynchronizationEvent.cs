@@ -23,41 +23,41 @@ using SwaggerDateConverter = Telestream.Cloud.Qc.Client.SwaggerDateConverter;
 namespace Telestream.Cloud.Qc.Model
 {
     /// <summary>
-    /// Description of the processed media file.
+    /// SynchronizationEvent
     /// </summary>
     [DataContract]
-    public partial class Media :  IEquatable<Media>
+    public partial class SynchronizationEvent :  IEquatable<SynchronizationEvent>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Media" /> class.
+        /// Initializes a new instance of the <see cref="SynchronizationEvent" /> class.
         /// </summary>
-        /// <param name="Audio">Audio.</param>
-        /// <param name="Video">Video.</param>
-        /// <param name="Container">Container.</param>
-        public Media(List<AudioStream> Audio = default(List<AudioStream>), List<VideoStream> Video = default(List<VideoStream>), Container Container = default(Container))
+        /// <param name="Timestamp">Timestamp.</param>
+        /// <param name="Skew">Skew.</param>
+        /// <param name="Result">Result.</param>
+        public SynchronizationEvent(string Timestamp = default(string), int? Skew = default(int?), string Result = default(string))
         {
-            this.Audio = Audio;
-            this.Video = Video;
-            this.Container = Container;
+            this.Timestamp = Timestamp;
+            this.Skew = Skew;
+            this.Result = Result;
         }
         
         /// <summary>
-        /// Gets or Sets Audio
+        /// Gets or Sets Timestamp
         /// </summary>
-        [DataMember(Name="audio", EmitDefaultValue=false)]
-        public List<AudioStream> Audio { get; set; }
+        [DataMember(Name="timestamp", EmitDefaultValue=false)]
+        public string Timestamp { get; set; }
 
         /// <summary>
-        /// Gets or Sets Video
+        /// Gets or Sets Skew
         /// </summary>
-        [DataMember(Name="video", EmitDefaultValue=false)]
-        public List<VideoStream> Video { get; set; }
+        [DataMember(Name="skew", EmitDefaultValue=false)]
+        public int? Skew { get; set; }
 
         /// <summary>
-        /// Gets or Sets Container
+        /// Gets or Sets Result
         /// </summary>
-        [DataMember(Name="container", EmitDefaultValue=false)]
-        public Container Container { get; set; }
+        [DataMember(Name="result", EmitDefaultValue=false)]
+        public string Result { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -66,10 +66,10 @@ namespace Telestream.Cloud.Qc.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class Media {\n");
-            sb.Append("  Audio: ").Append(Audio).Append("\n");
-            sb.Append("  Video: ").Append(Video).Append("\n");
-            sb.Append("  Container: ").Append(Container).Append("\n");
+            sb.Append("class SynchronizationEvent {\n");
+            sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
+            sb.Append("  Skew: ").Append(Skew).Append("\n");
+            sb.Append("  Result: ").Append(Result).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -90,34 +90,34 @@ namespace Telestream.Cloud.Qc.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Media);
+            return this.Equals(input as SynchronizationEvent);
         }
 
         /// <summary>
-        /// Returns true if Media instances are equal
+        /// Returns true if SynchronizationEvent instances are equal
         /// </summary>
-        /// <param name="input">Instance of Media to be compared</param>
+        /// <param name="input">Instance of SynchronizationEvent to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Media input)
+        public bool Equals(SynchronizationEvent input)
         {
             if (input == null)
                 return false;
 
             return 
                 (
-                    this.Audio == input.Audio ||
-                    this.Audio != null &&
-                    this.Audio.SequenceEqual(input.Audio)
+                    this.Timestamp == input.Timestamp ||
+                    (this.Timestamp != null &&
+                    this.Timestamp.Equals(input.Timestamp))
                 ) && 
                 (
-                    this.Video == input.Video ||
-                    this.Video != null &&
-                    this.Video.SequenceEqual(input.Video)
+                    this.Skew == input.Skew ||
+                    (this.Skew != null &&
+                    this.Skew.Equals(input.Skew))
                 ) && 
                 (
-                    this.Container == input.Container ||
-                    (this.Container != null &&
-                    this.Container.Equals(input.Container))
+                    this.Result == input.Result ||
+                    (this.Result != null &&
+                    this.Result.Equals(input.Result))
                 );
         }
 
@@ -130,12 +130,12 @@ namespace Telestream.Cloud.Qc.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Audio != null)
-                    hashCode = hashCode * 59 + this.Audio.GetHashCode();
-                if (this.Video != null)
-                    hashCode = hashCode * 59 + this.Video.GetHashCode();
-                if (this.Container != null)
-                    hashCode = hashCode * 59 + this.Container.GetHashCode();
+                if (this.Timestamp != null)
+                    hashCode = hashCode * 59 + this.Timestamp.GetHashCode();
+                if (this.Skew != null)
+                    hashCode = hashCode * 59 + this.Skew.GetHashCode();
+                if (this.Result != null)
+                    hashCode = hashCode * 59 + this.Result.GetHashCode();
                 return hashCode;
             }
         }

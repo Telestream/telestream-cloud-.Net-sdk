@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **ClipLength** | **string** | Length of the uploaded video. Should be formatted as follows: HH:MM:SS | [optional] 
 **ClipOffset** | **string** | Clip starts at a specific offset. | [optional] 
 **MultiChunk** | **bool?** |  | [optional] [default to true]
+**StoreId** | **string** | An individual store_id for this video processing. If provided will replace store_id from cloud factory but must match underlying cloud provider and region. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
