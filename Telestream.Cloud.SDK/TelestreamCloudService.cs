@@ -64,6 +64,22 @@ namespace Telestream.Cloud.SDK
                         return InvokeDelete(factoryId, string.Format("profiles/{0}.json", profileId));
                 }
 
+            public Task<Video> CreateVideo(string factoryId, string url, string[] profiles, string storeId = "")
+            {
+                return InvokePost<Video>(
+                                         factoryId,
+                                         "videos.json",
+                                         QueryParamList.New()
+                                         .AddNonEmpty("profiles", String.Join(",", profiles))
+                                         .AddNonEmpty("source_url", url)
+                                         .AddNonEmpty("store_id", storeId)
+                                         );
+            }
+
+            public Task<Video> CreateVideo(string factoryId, Video video)
+            {
+                return InvokePost<Video>(factoryId, "videos.json", video);
+            }
                 public Task<List<Video>> GetVideos(string factoryId)
                 {
                         ValidateFactoryId(factoryId);
