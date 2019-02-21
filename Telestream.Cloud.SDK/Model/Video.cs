@@ -81,8 +81,11 @@ namespace Telestream.Cloud.SDK.Model
         [JsonProperty("profiles")]
         public string Profiles { get; set; }
 
-		[JsonProperty("input_path")]
-		public string InputPath { get; set; }
+        [JsonProperty("input_path")]
+        public string InputPath { get; set; }
+
+        [JsonProperty("store_id")]
+        public string StoreId {get; set;}
 
         [JsonProperty("extra_variables")]
         public Dictionary<String, String> ExtraVariables { get; set; }
