@@ -12,12 +12,14 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
 using SwaggerDateConverter = Telestream.Cloud.Tts.Client.SwaggerDateConverter;
 
 namespace Telestream.Cloud.Tts.Model
@@ -26,7 +28,7 @@ namespace Telestream.Cloud.Tts.Model
     /// VideoUploadBody
     /// </summary>
     [DataContract]
-    public partial class VideoUploadBody :  IEquatable<VideoUploadBody>
+    public partial class VideoUploadBody :  IEquatable<VideoUploadBody>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="VideoUploadBody" /> class.
@@ -40,7 +42,7 @@ namespace Telestream.Cloud.Tts.Model
         /// <param name="FileName">Name of the file that will be uploaded. (required).</param>
         /// <param name="Profiles">Profiles.</param>
         /// <param name="MultiChunk">MultiChunk (default to true).</param>
-        /// <param name="ExtraFiles">A list of names of additional files that will be uploaded..</param>
+        /// <param name="ExtraFiles">ExtraFiles.</param>
         /// <param name="Job">Job.</param>
         public VideoUploadBody(long? FileSize = default(long?), string FileName = default(string), string Profiles = default(string), bool? MultiChunk = true, List<ExtraFile> ExtraFiles = default(List<ExtraFile>), Job Job = default(Job))
         {
@@ -103,9 +105,8 @@ namespace Telestream.Cloud.Tts.Model
         public bool? MultiChunk { get; set; }
 
         /// <summary>
-        /// A list of names of additional files that will be uploaded.
+        /// Gets or Sets ExtraFiles
         /// </summary>
-        /// <value>A list of names of additional files that will be uploaded.</value>
         [DataMember(Name="extra_files", EmitDefaultValue=false)]
         public List<ExtraFile> ExtraFiles { get; set; }
 
@@ -218,6 +219,16 @@ namespace Telestream.Cloud.Tts.Model
                     hashCode = hashCode * 59 + this.Job.GetHashCode();
                 return hashCode;
             }
+        }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            yield break;
         }
     }
 

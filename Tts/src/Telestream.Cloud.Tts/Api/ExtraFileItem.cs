@@ -19,7 +19,7 @@ namespace Telestream.Cloud.Tts.Api
 
 		public ExtraFile ToExtraFile()
 		{
-			return new ExtraFile(Tag, FileSize, FileName);
+			return new ExtraFile(Tag, FileSize.Value, FileName);
 		}
 	}
 }

@@ -1,8 +1,10 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
+VisualStudioVersion = 12.0.0.0
+MinimumVisualStudioVersion = 10.0.0.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Telestream.Cloud.Iam", "src\Telestream.Cloud.Iam\Telestream.Cloud.Iam.csproj", "0A7DFF87-F130-414C-9291-CF040EBE392A"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Telestream.Cloud.Iam.Test", "src\Telestream.Cloud.Iam.Test\Telestream.Cloud.Iam.Test.csproj", "{19F1DEBC-DE5E-4517-8062-F000CD499087}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

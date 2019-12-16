@@ -12,12 +12,14 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
 using SwaggerDateConverter = Telestream.Cloud.Flip.Client.SwaggerDateConverter;
 
 namespace Telestream.Cloud.Flip.Model
@@ -26,7 +28,7 @@ namespace Telestream.Cloud.Flip.Model
     /// Profile
     /// </summary>
     [DataContract]
-    public partial class Profile :  IEquatable<Profile>
+    public partial class Profile :  IEquatable<Profile>, IValidatableObject
     {
         /// <summary>
         /// todo
@@ -1323,6 +1325,7 @@ namespace Telestream.Cloud.Flip.Model
         /// <param name="Bumpers">Bumpers.</param>
         /// <param name="ByteRangeRequests">ByteRangeRequests.</param>
         /// <param name="ClipEnd">Clip ends at a specific time (timecode)..</param>
+        /// <param name="PixelFormat">PixelFormat.</param>
         /// <param name="ClipLength">A clip’s duration..</param>
         /// <param name="ClipOffset">Clip starts at a specific offset..</param>
         /// <param name="ClosedCaptions">One of add (adds captions as a separate streams) or burn (burns captions on video stream using the first subtitle file). By default it is not set..</param>
@@ -1432,7 +1435,7 @@ namespace Telestream.Cloud.Flip.Model
         /// <param name="Eac3MixingLevel">Minimum value is 80, maximum is 111..</param>
         /// <param name="Eac3CopyrightProtected">Indicates whether the encoded bitstream is copyright protected..</param>
         /// <param name="Eac3OriginalBitstream">Indicates whether the encoded bitstream is the master version, or a copy..</param>
-        public Profile(AdvancedFpsConversionEnum? AdvancedFpsConversion = default(AdvancedFpsConversionEnum?), string AspectMode = default(string), string AspectRatio = default(string), int? AudioBitrate = default(int?), int? AudioChannels = default(int?), AudioChannelsLayoutEnum? AudioChannelsLayout = default(AudioChannelsLayoutEnum?), int? AudioChannelsPerTrack = default(int?), string AudioCodec = default(string), AudioFormatEnum? AudioFormat = default(AudioFormatEnum?), string AudioMap = default(string), string AudioPid = default(string), string AudioProfile = default(string), string AudioSampleRate = default(string), int? AudioStreamId = default(int?), int? AudioStreams = default(int?), AvcintraClassEnum? AvcintraClass = default(AvcintraClassEnum?), string BufferSize = default(string), string BufferSizeInPackets = default(string), Object Bumpers = default(Object), bool? ByteRangeRequests = default(bool?), string ClipEnd = default(string), string ClipLength = default(string), string ClipOffset = default(string), ClosedCaptionsEnum? ClosedCaptions = default(ClosedCaptionsEnum?), bool? ColorMetadata = default(bool?), string CreatedAt = default(string), string CropInputBottom = default(string), string CropInputHeight = default(string), string CropInputLeft = default(string), string CropInputRight = default(string), string CropInputTop = default(string), string CropInputWidth = default(string), string DashProfile = default(string), string Deinterlace = default(string), string DeinterlaceFrames = default(string), string Description = default(string), DnxhdTypeEnum? DnxhdType = default(DnxhdTypeEnum?), bool? Encryption = default(bool?), string Extname = default(string), string Fps = default(string), string FrameCount = default(string), string FrameInterval = default(string), string FrameOffsets = default(string), H264LevelEnum? H264Level = default(H264LevelEnum?), H264ProfileEnum? H264Profile = default(H264ProfileEnum?), H264TuneEnum? H264Tune = default(H264TuneEnum?), string Height = default(string), string Id = default(string), string ImxType = default(string), Object Inputs = default(Object), string Interlace = default(string), string KeyframeInterval = default(string), string KeyframeRate = default(string), string Lang = default(string), string MaxRate = default(string), string MergeAudioStreams = default(string), bool? MuteAudioTracks = default(bool?), string Name = default(string), Object Outputs = default(Object), string OutputsPathFormat = default(string), PlaylistTypeEnum? PlaylistType = default(PlaylistTypeEnum?), string PmtPid = default(string), string PresetName = default(string), string ProresFormat = default(string), int? SegmentTime = default(int?), string Stack = default(string), string StartingTimecode = default(string), TelestreamBlockSizeEnum? TelestreamBlockSize = default(TelestreamBlockSizeEnum?), decimal? TelestreamBlurScaler = default(decimal?), decimal? TelestreamCostScaler = default(decimal?), int? TelestreamSearchLengthScaler = default(int?), bool? TelestreamSubpelMode = default(bool?), string TimeCode = default(string), string Title = default(string), Object Trailers = default(Object), string TransportRate = default(string), string TsPids = default(string), string UpdatedAt = default(string), bool? Upscale = default(bool?), bool? UseEditlist = default(bool?), string Variants = default(string), int? VideoBitrate = default(int?), string VideoPid = default(string), string WatermarkBottom = default(string), bool? WatermarkBumpers = default(bool?), string WatermarkHeight = default(string), string WatermarkLeft = default(string), string WatermarkRight = default(string), string WatermarkTop = default(string), bool? WatermarkTrailers = default(bool?), string WatermarkUrl = default(string), string WatermarkWidth = default(string), string Width = default(string), string X264Options = default(string), string X265Options = default(string), string XdcamFormat = default(string), bool? TachyonAllowRemovePulldown = default(bool?), bool? TachyonEnablePostPulldownFilter = default(bool?), bool? TachyonMediaHintIsCartoon = default(bool?), bool? TachyonMediaHintHasChromaNoise = default(bool?), bool? TachyonMoreSensitiveRemovePulldown = default(bool?), bool? TachyonAllowAddStandardPd = default(bool?), bool? TachyonAllowAdd22pd = default(bool?), bool? TachyonAllowAdd44pd = default(bool?), bool? TachyonAllowAdd46pd = default(bool?), bool? TachyonAllowAddEuroPd = default(bool?), bool? TachyonAllowAddAdaptivePd = default(bool?), TachyonMotionAmountEnum? TachyonMotionAmount = default(TachyonMotionAmountEnum?), TachyonFallbackSizeEnum? TachyonFallbackSize = default(TachyonFallbackSizeEnum?), TachyonMblockSizeEnum? TachyonMblockSize = default(TachyonMblockSizeEnum?), decimal? TachyonCutDetectionSensitivity = default(decimal?), bool? Eac3EvolutionEnable = default(bool?), Eac3BitstreamModeEnum? Eac3BitstreamMode = default(Eac3BitstreamModeEnum?), bool? Eac3NinetyDegreePhaseShift = default(bool?), bool? Eac3ThreeDecibelAttenuation = default(bool?), bool? Eac3EnableLfeLowPassFilter = default(bool?), Eac3AnalogToDigitalConverterTypeEnum? Eac3AnalogToDigitalConverterType = default(Eac3AnalogToDigitalConverterTypeEnum?), Eac3StereoDownmixPreferenceEnum? Eac3StereoDownmixPreference = default(Eac3StereoDownmixPreferenceEnum?), Eac3LtRtCenterMixLevelEnum? Eac3LtRtCenterMixLevel = default(Eac3LtRtCenterMixLevelEnum?), Eac3LtRtSurroundMixLevelEnum? Eac3LtRtSurroundMixLevel = default(Eac3LtRtSurroundMixLevelEnum?), Eac3LoRoCenterMixLevelEnum? Eac3LoRoCenterMixLevel = default(Eac3LoRoCenterMixLevelEnum?), Eac3LoRoSurroundMixLevelEnum? Eac3LoRoSurroundMixLevel = default(Eac3LoRoSurroundMixLevelEnum?), Eac3SurroundExModeEnum? Eac3SurroundExMode = default(Eac3SurroundExModeEnum?), Eac3DrcLineModeProfileEnum? Eac3DrcLineModeProfile = default(Eac3DrcLineModeProfileEnum?), Eac3DrcRfModeProfileEnum? Eac3DrcRfModeProfile = default(Eac3DrcRfModeProfileEnum?), int? Eac3DialogNormalization = default(int?), Eac3RoomTypeEnum? Eac3RoomType = default(Eac3RoomTypeEnum?), int? Eac3MixingLevel = default(int?), bool? Eac3CopyrightProtected = default(bool?), bool? Eac3OriginalBitstream = default(bool?))
+        public Profile(AdvancedFpsConversionEnum? AdvancedFpsConversion = default(AdvancedFpsConversionEnum?), string AspectMode = default(string), string AspectRatio = default(string), int? AudioBitrate = default(int?), int? AudioChannels = default(int?), AudioChannelsLayoutEnum? AudioChannelsLayout = default(AudioChannelsLayoutEnum?), int? AudioChannelsPerTrack = default(int?), string AudioCodec = default(string), AudioFormatEnum? AudioFormat = default(AudioFormatEnum?), string AudioMap = default(string), string AudioPid = default(string), string AudioProfile = default(string), int? AudioSampleRate = default(int?), int? AudioStreamId = default(int?), int? AudioStreams = default(int?), AvcintraClassEnum? AvcintraClass = default(AvcintraClassEnum?), int? BufferSize = default(int?), string BufferSizeInPackets = default(string), Object Bumpers = default(Object), bool? ByteRangeRequests = default(bool?), string ClipEnd = default(string), string PixelFormat = default(string), string ClipLength = default(string), string ClipOffset = default(string), ClosedCaptionsEnum? ClosedCaptions = default(ClosedCaptionsEnum?), bool? ColorMetadata = default(bool?), string CreatedAt = default(string), string CropInputBottom = default(string), string CropInputHeight = default(string), string CropInputLeft = default(string), string CropInputRight = default(string), string CropInputTop = default(string), decimal? CropInputWidth = default(decimal?), string DashProfile = default(string), string Deinterlace = default(string), string DeinterlaceFrames = default(string), string Description = default(string), DnxhdTypeEnum? DnxhdType = default(DnxhdTypeEnum?), bool? Encryption = default(bool?), string Extname = default(string), decimal? Fps = default(decimal?), int? FrameCount = default(int?), string FrameInterval = default(string), string FrameOffsets = default(string), H264LevelEnum? H264Level = default(H264LevelEnum?), H264ProfileEnum? H264Profile = default(H264ProfileEnum?), H264TuneEnum? H264Tune = default(H264TuneEnum?), int? Height = default(int?), string Id = default(string), string ImxType = default(string), Object Inputs = default(Object), string Interlace = default(string), int? KeyframeInterval = default(int?), string KeyframeRate = default(string), string Lang = default(string), int? MaxRate = default(int?), string MergeAudioStreams = default(string), bool? MuteAudioTracks = default(bool?), string Name = default(string), Object Outputs = default(Object), string OutputsPathFormat = default(string), PlaylistTypeEnum? PlaylistType = default(PlaylistTypeEnum?), string PmtPid = default(string), string PresetName = default(string), string ProresFormat = default(string), int? SegmentTime = default(int?), string Stack = default(string), string StartingTimecode = default(string), TelestreamBlockSizeEnum? TelestreamBlockSize = default(TelestreamBlockSizeEnum?), decimal? TelestreamBlurScaler = default(decimal?), decimal? TelestreamCostScaler = default(decimal?), int? TelestreamSearchLengthScaler = default(int?), bool? TelestreamSubpelMode = default(bool?), string TimeCode = default(string), string Title = default(string), Object Trailers = default(Object), string TransportRate = default(string), string TsPids = default(string), string UpdatedAt = default(string), bool? Upscale = default(bool?), bool? UseEditlist = default(bool?), string Variants = default(string), int? VideoBitrate = default(int?), string VideoPid = default(string), string WatermarkBottom = default(string), bool? WatermarkBumpers = default(bool?), string WatermarkHeight = default(string), string WatermarkLeft = default(string), string WatermarkRight = default(string), string WatermarkTop = default(string), bool? WatermarkTrailers = default(bool?), string WatermarkUrl = default(string), string WatermarkWidth = default(string), int? Width = default(int?), string X264Options = default(string), string X265Options = default(string), string XdcamFormat = default(string), bool? TachyonAllowRemovePulldown = default(bool?), bool? TachyonEnablePostPulldownFilter = default(bool?), bool? TachyonMediaHintIsCartoon = default(bool?), bool? TachyonMediaHintHasChromaNoise = default(bool?), bool? TachyonMoreSensitiveRemovePulldown = default(bool?), bool? TachyonAllowAddStandardPd = default(bool?), bool? TachyonAllowAdd22pd = default(bool?), bool? TachyonAllowAdd44pd = default(bool?), bool? TachyonAllowAdd46pd = default(bool?), bool? TachyonAllowAddEuroPd = default(bool?), bool? TachyonAllowAddAdaptivePd = default(bool?), TachyonMotionAmountEnum? TachyonMotionAmount = default(TachyonMotionAmountEnum?), TachyonFallbackSizeEnum? TachyonFallbackSize = default(TachyonFallbackSizeEnum?), TachyonMblockSizeEnum? TachyonMblockSize = default(TachyonMblockSizeEnum?), decimal? TachyonCutDetectionSensitivity = default(decimal?), bool? Eac3EvolutionEnable = default(bool?), Eac3BitstreamModeEnum? Eac3BitstreamMode = default(Eac3BitstreamModeEnum?), bool? Eac3NinetyDegreePhaseShift = default(bool?), bool? Eac3ThreeDecibelAttenuation = default(bool?), bool? Eac3EnableLfeLowPassFilter = default(bool?), Eac3AnalogToDigitalConverterTypeEnum? Eac3AnalogToDigitalConverterType = default(Eac3AnalogToDigitalConverterTypeEnum?), Eac3StereoDownmixPreferenceEnum? Eac3StereoDownmixPreference = default(Eac3StereoDownmixPreferenceEnum?), Eac3LtRtCenterMixLevelEnum? Eac3LtRtCenterMixLevel = default(Eac3LtRtCenterMixLevelEnum?), Eac3LtRtSurroundMixLevelEnum? Eac3LtRtSurroundMixLevel = default(Eac3LtRtSurroundMixLevelEnum?), Eac3LoRoCenterMixLevelEnum? Eac3LoRoCenterMixLevel = default(Eac3LoRoCenterMixLevelEnum?), Eac3LoRoSurroundMixLevelEnum? Eac3LoRoSurroundMixLevel = default(Eac3LoRoSurroundMixLevelEnum?), Eac3SurroundExModeEnum? Eac3SurroundExMode = default(Eac3SurroundExModeEnum?), Eac3DrcLineModeProfileEnum? Eac3DrcLineModeProfile = default(Eac3DrcLineModeProfileEnum?), Eac3DrcRfModeProfileEnum? Eac3DrcRfModeProfile = default(Eac3DrcRfModeProfileEnum?), int? Eac3DialogNormalization = default(int?), Eac3RoomTypeEnum? Eac3RoomType = default(Eac3RoomTypeEnum?), int? Eac3MixingLevel = default(int?), bool? Eac3CopyrightProtected = default(bool?), bool? Eac3OriginalBitstream = default(bool?))
         {
             this.AdvancedFpsConversion = AdvancedFpsConversion;
             this.AspectMode = AspectMode;
@@ -1455,6 +1458,7 @@ namespace Telestream.Cloud.Flip.Model
             this.Bumpers = Bumpers;
             this.ByteRangeRequests = ByteRangeRequests;
             this.ClipEnd = ClipEnd;
+            this.PixelFormat = PixelFormat;
             this.ClipLength = ClipLength;
             this.ClipOffset = ClipOffset;
             this.ClosedCaptions = ClosedCaptions;
@@ -1636,7 +1640,7 @@ namespace Telestream.Cloud.Flip.Model
         /// </summary>
         /// <value>The number of samples of audio carried per second.</value>
         [DataMember(Name="audio_sample_rate", EmitDefaultValue=false)]
-        public string AudioSampleRate { get; set; }
+        public int? AudioSampleRate { get; set; }
 
         /// <summary>
         /// Gets or Sets AudioStreamId
@@ -1657,7 +1661,7 @@ namespace Telestream.Cloud.Flip.Model
         /// </summary>
         /// <value>Determines the size of the PulseAudio buffer. by default it is not set.</value>
         [DataMember(Name="buffer_size", EmitDefaultValue=false)]
-        public string BufferSize { get; set; }
+        public int? BufferSize { get; set; }
 
         /// <summary>
         /// todo
@@ -1684,6 +1688,12 @@ namespace Telestream.Cloud.Flip.Model
         /// <value>Clip ends at a specific time (timecode).</value>
         [DataMember(Name="clip_end", EmitDefaultValue=false)]
         public string ClipEnd { get; set; }
+
+        /// <summary>
+        /// Gets or Sets PixelFormat
+        /// </summary>
+        [DataMember(Name="pixel_format", EmitDefaultValue=false)]
+        public string PixelFormat { get; set; }
 
         /// <summary>
         /// A clip’s duration.
@@ -1753,7 +1763,7 @@ namespace Telestream.Cloud.Flip.Model
         /// </summary>
         /// <value>Height of the cropped image in pixels.</value>
         [DataMember(Name="crop_input_width", EmitDefaultValue=false)]
-        public string CropInputWidth { get; set; }
+        public decimal? CropInputWidth { get; set; }
 
         /// <summary>
         /// Gets or Sets DashProfile
@@ -1800,14 +1810,14 @@ namespace Telestream.Cloud.Flip.Model
         /// </summary>
         /// <value>Null value copy the original fps. By default it is not set.</value>
         [DataMember(Name="fps", EmitDefaultValue=false)]
-        public string Fps { get; set; }
+        public decimal? Fps { get; set; }
 
         /// <summary>
         /// Evenly spaced number of generated screenshots. By default it is not set.
         /// </summary>
         /// <value>Evenly spaced number of generated screenshots. By default it is not set.</value>
         [DataMember(Name="frame_count", EmitDefaultValue=false)]
-        public string FrameCount { get; set; }
+        public int? FrameCount { get; set; }
 
         /// <summary>
         /// Thumbnail interval (Frames or seconds).
@@ -1831,7 +1841,7 @@ namespace Telestream.Cloud.Flip.Model
         /// </summary>
         /// <value>Height in pixels.</value>
         [DataMember(Name="height", EmitDefaultValue=false)]
-        public string Height { get; set; }
+        public int? Height { get; set; }
 
         /// <summary>
         /// Gets or Sets Id
@@ -1862,7 +1872,7 @@ namespace Telestream.Cloud.Flip.Model
         /// </summary>
         /// <value>Adds a key frame every N frames. Default is 250, adds a key frame every 250 frames.</value>
         [DataMember(Name="keyframe_interval", EmitDefaultValue=false)]
-        public string KeyframeInterval { get; set; }
+        public int? KeyframeInterval { get; set; }
 
         /// <summary>
         /// todo
@@ -1882,7 +1892,7 @@ namespace Telestream.Cloud.Flip.Model
         /// </summary>
         /// <value>A max bitrate tolerance (in bits/s). By default this is not set.</value>
         [DataMember(Name="max_rate", EmitDefaultValue=false)]
-        public string MaxRate { get; set; }
+        public int? MaxRate { get; set; }
 
         /// <summary>
         /// Gets or Sets MergeAudioStreams
@@ -2120,7 +2130,7 @@ namespace Telestream.Cloud.Flip.Model
         /// </summary>
         /// <value>Width in pixels.</value>
         [DataMember(Name="width", EmitDefaultValue=false)]
-        public string Width { get; set; }
+        public int? Width { get; set; }
 
         /// <summary>
         /// Gets or Sets X264Options
@@ -2320,6 +2330,7 @@ namespace Telestream.Cloud.Flip.Model
             sb.Append("  Bumpers: ").Append(Bumpers).Append("\n");
             sb.Append("  ByteRangeRequests: ").Append(ByteRangeRequests).Append("\n");
             sb.Append("  ClipEnd: ").Append(ClipEnd).Append("\n");
+            sb.Append("  PixelFormat: ").Append(PixelFormat).Append("\n");
             sb.Append("  ClipLength: ").Append(ClipLength).Append("\n");
             sb.Append("  ClipOffset: ").Append(ClipOffset).Append("\n");
             sb.Append("  ClosedCaptions: ").Append(ClosedCaptions).Append("\n");
@@ -2567,6 +2578,11 @@ namespace Telestream.Cloud.Flip.Model
                     this.ClipEnd == input.ClipEnd ||
                     (this.ClipEnd != null &&
                     this.ClipEnd.Equals(input.ClipEnd))
+                ) && 
+                (
+                    this.PixelFormat == input.PixelFormat ||
+                    (this.PixelFormat != null &&
+                    this.PixelFormat.Equals(input.PixelFormat))
                 ) && 
                 (
                     this.ClipLength == input.ClipLength ||
@@ -3166,6 +3182,8 @@ namespace Telestream.Cloud.Flip.Model
                     hashCode = hashCode * 59 + this.ByteRangeRequests.GetHashCode();
                 if (this.ClipEnd != null)
                     hashCode = hashCode * 59 + this.ClipEnd.GetHashCode();
+                if (this.PixelFormat != null)
+                    hashCode = hashCode * 59 + this.PixelFormat.GetHashCode();
                 if (this.ClipLength != null)
                     hashCode = hashCode * 59 + this.ClipLength.GetHashCode();
                 if (this.ClipOffset != null)
@@ -3386,6 +3404,16 @@ namespace Telestream.Cloud.Flip.Model
                     hashCode = hashCode * 59 + this.Eac3OriginalBitstream.GetHashCode();
                 return hashCode;
             }
+        }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            yield break;
         }
     }
 

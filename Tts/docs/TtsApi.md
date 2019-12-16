@@ -496,7 +496,7 @@ void (empty response body)
 
 <a name="deleteproject"></a>
 # **DeleteProject**
-> void DeleteProject ()
+> void DeleteProject (string projectID)
 
 Deletes the Project
 
@@ -522,11 +522,12 @@ namespace Example
             // Configuration.Default.AddApiKeyPrefix("X-Api-Key", "Bearer");
 
             var apiInstance = new TtsApi();
+            var projectID = projectID_example;  // string | ID of the Project
 
             try
             {
                 // Deletes the Project
-                apiInstance.DeleteProject();
+                apiInstance.DeleteProject(projectID);
             }
             catch (Exception e)
             {
@@ -538,7 +539,10 @@ namespace Example
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **projectID** | **string**| ID of the Project | 
 
 ### Return type
 
@@ -1024,7 +1028,7 @@ void (empty response body)
 
 <a name="updateproject"></a>
 # **UpdateProject**
-> Project UpdateProject (Project project)
+> Project UpdateProject (string projectID, Project project)
 
 Updates an existing Project
 
@@ -1050,12 +1054,13 @@ namespace Example
             // Configuration.Default.AddApiKeyPrefix("X-Api-Key", "Bearer");
 
             var apiInstance = new TtsApi();
+            var projectID = projectID_example;  // string | ID of the Project
             var project = new Project(); // Project | 
 
             try
             {
                 // Updates an existing Project
-                Project result = apiInstance.UpdateProject(project);
+                Project result = apiInstance.UpdateProject(projectID, project);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -1071,6 +1076,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **projectID** | **string**| ID of the Project | 
  **project** | [**Project**](Project.md)|  | 
 
 ### Return type

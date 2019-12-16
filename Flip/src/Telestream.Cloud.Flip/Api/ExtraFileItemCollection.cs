@@ -25,7 +25,7 @@ namespace Telestream.Cloud.Flip.Api
 					for (int i = 0; i < extraFileGroup.Count(); i++)
 					{
 						var eff = extraFileGroup.ElementAt(i);
-						Add(CreateItem($"{tag}.index-{i}", eff.FilePath));
+						Add(CreateItem(tag + ".index-" + i, eff.FilePath));
 					}
 				}
 			}

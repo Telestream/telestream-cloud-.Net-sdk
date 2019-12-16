@@ -10,8 +10,7 @@ using Telestream.Cloud.Tts.Client;
 using Telestream.Cloud.Tts.Api;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
-using RestSharp.Portable;
-using RestSharp.Portable.HttpClient;
+using RestSharp;
 
 namespace Telestream.Cloud.Tts.Client
 {
@@ -288,13 +287,13 @@ namespace Telestream.Cloud.Tts.Client
         private async Task<int[]> GetMissingParts(string location, string tag)
         {
             var request = new RestRequest(location, Method.GET);
-            request.Serializer = null;
+            request.JsonSerializer = null;
             var restClient = new RestClient(location);
             if (!string.IsNullOrEmpty(tag))
             {
                 request.AddHeader("X-Extra-File-Tag", tag);
             }
-            var response = await restClient.Execute(request);
+            var response = await restClient.ExecuteTaskAsync(request);
             var parsed = (MissingPartsResponse)_apiClient.Configuration.ApiClient.Deserialize(response, typeof(MissingPartsResponse));
             return parsed.MissingParts;
         }
@@ -302,9 +301,9 @@ namespace Telestream.Cloud.Tts.Client
         private async Task<string> GetMediaId(string location)
         {
             var request = new RestRequest(location, Method.GET);
-            request.Serializer = null;
+            request.JsonSerializer = null;
             var restClient = new RestClient(location);
-            var response = await restClient.Execute(request);
+            var response = await restClient.ExecuteTaskAsync(request);
             var parsed = (MissingPartsResponse)_apiClient.Configuration.ApiClient.Deserialize(response, typeof(MissingPartsResponse));
             return parsed.MediaId;
         }

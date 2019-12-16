@@ -57,7 +57,11 @@ namespace Telestream.Cloud.Flip.Client
                     string.Format("Error calling {0}: {1}", methodName, response.Content),
                     response.Content);
             }
-            
+            if (status == 0)
+            {
+                return new ApiException(status,
+                    string.Format("Error calling {0}: {1}", methodName, response.ErrorMessage), response.ErrorMessage);
+            }
             return null;
         };
 
@@ -244,8 +248,9 @@ namespace Telestream.Cloud.Flip.Client
         /// </summary>
         public virtual int Timeout
         {
-            get { return (int)ApiClient.RestClient.Timeout.GetValueOrDefault(TimeSpan.FromSeconds(0)).TotalMilliseconds; }
-            set { ApiClient.RestClient.Timeout = TimeSpan.FromMilliseconds(value); }
+            
+            get { return ApiClient.RestClient.Timeout; }
+            set { ApiClient.RestClient.Timeout = value; }
         }
 
         /// <summary>
@@ -414,7 +419,8 @@ namespace Telestream.Cloud.Flip.Client
         public static String ToDebugReport()
         {
             String report = "C# SDK (Telestream.Cloud.Flip) Debug Report:\n";
-            report += "    OS: " + System.Runtime.InteropServices.RuntimeInformation.OSDescription + "\n";
+            report += "    OS: " + System.Environment.OSVersion + "\n";
+            report += "    .NET Framework Version: " + System.Environment.Version  + "\n";
             report += "    Version of the API: 2.0.1\n";
             report += "    SDK Package Version: 1.0.0\n";
 

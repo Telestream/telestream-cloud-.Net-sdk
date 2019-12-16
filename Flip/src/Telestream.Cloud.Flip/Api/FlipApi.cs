@@ -12,7 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using RestSharp.Portable;
+using RestSharp;
 using Telestream.Cloud.Flip.Client;
 using Telestream.Cloud.Flip.Model;
 
@@ -134,7 +134,7 @@ namespace Telestream.Cloud.Flip.Api
         /// <param name="createFactoryBody"></param>
         /// <param name="withStorageProvider">if set to &#x60;true&#x60;, results will include a storage provider&#39;s id (optional)</param>
         /// <returns>Factory</returns>
-        Factory CreateFactory (FactoryBody createFactoryBody, bool? withStorageProvider = null);
+        Factory CreateFactory (Factory createFactoryBody, bool? withStorageProvider = null);
 
         /// <summary>
         /// Creates a new factory
@@ -146,7 +146,7 @@ namespace Telestream.Cloud.Flip.Api
         /// <param name="createFactoryBody"></param>
         /// <param name="withStorageProvider">if set to &#x60;true&#x60;, results will include a storage provider&#39;s id (optional)</param>
         /// <returns>ApiResponse of Factory</returns>
-        ApiResponse<Factory> CreateFactoryWithHttpInfo (FactoryBody createFactoryBody, bool? withStorageProvider = null);
+        ApiResponse<Factory> CreateFactoryWithHttpInfo (Factory createFactoryBody, bool? withStorageProvider = null);
         /// <summary>
         /// Creates a Profile
         /// </summary>
@@ -450,27 +450,6 @@ namespace Telestream.Cloud.Flip.Api
         /// <returns>ApiResponse of Factory</returns>
         ApiResponse<Factory> FactoryWithHttpInfo (string id, bool? withStorageProvider = null);
         /// <summary>
-        /// Returns a Factory&#39;s notification settings.
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="Telestream.Cloud.Flip.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="factoryId">Id of a Factory.</param>
-        /// <returns>CloudNotificationSettings</returns>
-        CloudNotificationSettings Notifications (string factoryId);
-
-        /// <summary>
-        /// Returns a Factory&#39;s notification settings.
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="Telestream.Cloud.Flip.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="factoryId">Id of a Factory.</param>
-        /// <returns>ApiResponse of CloudNotificationSettings</returns>
-        ApiResponse<CloudNotificationSettings> NotificationsWithHttpInfo (string factoryId);
-        /// <summary>
         /// Returns a Profile object.
         /// </summary>
         /// <remarks>
@@ -690,29 +669,6 @@ namespace Telestream.Cloud.Flip.Api
         /// <returns>ApiResponse of SignedVideoUrl</returns>
         ApiResponse<SignedVideoUrl> SignedVideoUrlWithHttpInfo (string id, string factoryId);
         /// <summary>
-        /// Toggles synchronisation settings.
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="Telestream.Cloud.Flip.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">id of the factory</param>
-        /// <param name="factorySyncBody"></param>
-        /// <returns>FactorySync</returns>
-        FactorySync ToggleFactorySync (string id, FactorySyncBody factorySyncBody);
-
-        /// <summary>
-        /// Toggles synchronisation settings.
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="Telestream.Cloud.Flip.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">id of the factory</param>
-        /// <param name="factorySyncBody"></param>
-        /// <returns>ApiResponse of FactorySync</returns>
-        ApiResponse<FactorySync> ToggleFactorySyncWithHttpInfo (string id, FactorySyncBody factorySyncBody);
-        /// <summary>
         /// Updates an Encoding
         /// </summary>
         /// <remarks>
@@ -752,7 +708,7 @@ namespace Telestream.Cloud.Flip.Api
         /// <param name="updateFactoryBody"></param>
         /// <param name="withStorageProvider">if set to &#x60;true&#x60;, results will include a storage provider&#39;s id (optional)</param>
         /// <returns>Factory</returns>
-        Factory UpdateFactory (string id, FactoryBody updateFactoryBody, bool? withStorageProvider = null);
+        Factory UpdateFactory (string id, Factory updateFactoryBody, bool? withStorageProvider = null);
 
         /// <summary>
         /// Updates a Factory&#39;s settings. Returns a Factory object.
@@ -765,30 +721,7 @@ namespace Telestream.Cloud.Flip.Api
         /// <param name="updateFactoryBody"></param>
         /// <param name="withStorageProvider">if set to &#x60;true&#x60;, results will include a storage provider&#39;s id (optional)</param>
         /// <returns>ApiResponse of Factory</returns>
-        ApiResponse<Factory> UpdateFactoryWithHttpInfo (string id, FactoryBody updateFactoryBody, bool? withStorageProvider = null);
-        /// <summary>
-        /// Updates a Factory&#39;s notification settings.
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="Telestream.Cloud.Flip.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="factoryId">Id of a Factory.</param>
-        /// <param name="cloudNotificationSettingsBody"></param>
-        /// <returns>CloudNotificationSettings</returns>
-        CloudNotificationSettings UpdateNotifications (string factoryId, CloudNotificationSettings cloudNotificationSettingsBody);
-
-        /// <summary>
-        /// Updates a Factory&#39;s notification settings.
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="Telestream.Cloud.Flip.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="factoryId">Id of a Factory.</param>
-        /// <param name="cloudNotificationSettingsBody"></param>
-        /// <returns>ApiResponse of CloudNotificationSettings</returns>
-        ApiResponse<CloudNotificationSettings> UpdateNotificationsWithHttpInfo (string factoryId, CloudNotificationSettings cloudNotificationSettingsBody);
+        ApiResponse<Factory> UpdateFactoryWithHttpInfo (string id, Factory updateFactoryBody, bool? withStorageProvider = null);
         /// <summary>
         /// Updates a given Profile
         /// </summary>
@@ -1080,7 +1013,7 @@ namespace Telestream.Cloud.Flip.Api
         /// <param name="createFactoryBody"></param>
         /// <param name="withStorageProvider">if set to &#x60;true&#x60;, results will include a storage provider&#39;s id (optional)</param>
         /// <returns>Task of Factory</returns>
-        System.Threading.Tasks.Task<Factory> CreateFactoryAsync (FactoryBody createFactoryBody, bool? withStorageProvider = null);
+        System.Threading.Tasks.Task<Factory> CreateFactoryAsync (Factory createFactoryBody, bool? withStorageProvider = null);
 
         /// <summary>
         /// Creates a new factory
@@ -1092,7 +1025,7 @@ namespace Telestream.Cloud.Flip.Api
         /// <param name="createFactoryBody"></param>
         /// <param name="withStorageProvider">if set to &#x60;true&#x60;, results will include a storage provider&#39;s id (optional)</param>
         /// <returns>Task of ApiResponse (Factory)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Factory>> CreateFactoryAsyncWithHttpInfo (FactoryBody createFactoryBody, bool? withStorageProvider = null);
+        System.Threading.Tasks.Task<ApiResponse<Factory>> CreateFactoryAsyncWithHttpInfo (Factory createFactoryBody, bool? withStorageProvider = null);
         /// <summary>
         /// Creates a Profile
         /// </summary>
@@ -1396,27 +1329,6 @@ namespace Telestream.Cloud.Flip.Api
         /// <returns>Task of ApiResponse (Factory)</returns>
         System.Threading.Tasks.Task<ApiResponse<Factory>> FactoryAsyncWithHttpInfo (string id, bool? withStorageProvider = null);
         /// <summary>
-        /// Returns a Factory&#39;s notification settings.
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="Telestream.Cloud.Flip.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="factoryId">Id of a Factory.</param>
-        /// <returns>Task of CloudNotificationSettings</returns>
-        System.Threading.Tasks.Task<CloudNotificationSettings> NotificationsAsync (string factoryId);
-
-        /// <summary>
-        /// Returns a Factory&#39;s notification settings.
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="Telestream.Cloud.Flip.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="factoryId">Id of a Factory.</param>
-        /// <returns>Task of ApiResponse (CloudNotificationSettings)</returns>
-        System.Threading.Tasks.Task<ApiResponse<CloudNotificationSettings>> NotificationsAsyncWithHttpInfo (string factoryId);
-        /// <summary>
         /// Returns a Profile object.
         /// </summary>
         /// <remarks>
@@ -1636,29 +1548,6 @@ namespace Telestream.Cloud.Flip.Api
         /// <returns>Task of ApiResponse (SignedVideoUrl)</returns>
         System.Threading.Tasks.Task<ApiResponse<SignedVideoUrl>> SignedVideoUrlAsyncWithHttpInfo (string id, string factoryId);
         /// <summary>
-        /// Toggles synchronisation settings.
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="Telestream.Cloud.Flip.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">id of the factory</param>
-        /// <param name="factorySyncBody"></param>
-        /// <returns>Task of FactorySync</returns>
-        System.Threading.Tasks.Task<FactorySync> ToggleFactorySyncAsync (string id, FactorySyncBody factorySyncBody);
-
-        /// <summary>
-        /// Toggles synchronisation settings.
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="Telestream.Cloud.Flip.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">id of the factory</param>
-        /// <param name="factorySyncBody"></param>
-        /// <returns>Task of ApiResponse (FactorySync)</returns>
-        System.Threading.Tasks.Task<ApiResponse<FactorySync>> ToggleFactorySyncAsyncWithHttpInfo (string id, FactorySyncBody factorySyncBody);
-        /// <summary>
         /// Updates an Encoding
         /// </summary>
         /// <remarks>
@@ -1698,7 +1587,7 @@ namespace Telestream.Cloud.Flip.Api
         /// <param name="updateFactoryBody"></param>
         /// <param name="withStorageProvider">if set to &#x60;true&#x60;, results will include a storage provider&#39;s id (optional)</param>
         /// <returns>Task of Factory</returns>
-        System.Threading.Tasks.Task<Factory> UpdateFactoryAsync (string id, FactoryBody updateFactoryBody, bool? withStorageProvider = null);
+        System.Threading.Tasks.Task<Factory> UpdateFactoryAsync (string id, Factory updateFactoryBody, bool? withStorageProvider = null);
 
         /// <summary>
         /// Updates a Factory&#39;s settings. Returns a Factory object.
@@ -1711,30 +1600,7 @@ namespace Telestream.Cloud.Flip.Api
         /// <param name="updateFactoryBody"></param>
         /// <param name="withStorageProvider">if set to &#x60;true&#x60;, results will include a storage provider&#39;s id (optional)</param>
         /// <returns>Task of ApiResponse (Factory)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Factory>> UpdateFactoryAsyncWithHttpInfo (string id, FactoryBody updateFactoryBody, bool? withStorageProvider = null);
-        /// <summary>
-        /// Updates a Factory&#39;s notification settings.
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="Telestream.Cloud.Flip.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="factoryId">Id of a Factory.</param>
-        /// <param name="cloudNotificationSettingsBody"></param>
-        /// <returns>Task of CloudNotificationSettings</returns>
-        System.Threading.Tasks.Task<CloudNotificationSettings> UpdateNotificationsAsync (string factoryId, CloudNotificationSettings cloudNotificationSettingsBody);
-
-        /// <summary>
-        /// Updates a Factory&#39;s notification settings.
-        /// </summary>
-        /// <remarks>
-        /// 
-        /// </remarks>
-        /// <exception cref="Telestream.Cloud.Flip.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="factoryId">Id of a Factory.</param>
-        /// <param name="cloudNotificationSettingsBody"></param>
-        /// <returns>Task of ApiResponse (CloudNotificationSettings)</returns>
-        System.Threading.Tasks.Task<ApiResponse<CloudNotificationSettings>> UpdateNotificationsAsyncWithHttpInfo (string factoryId, CloudNotificationSettings cloudNotificationSettingsBody);
+        System.Threading.Tasks.Task<ApiResponse<Factory>> UpdateFactoryAsyncWithHttpInfo (string id, Factory updateFactoryBody, bool? withStorageProvider = null);
         /// <summary>
         /// Updates a given Profile
         /// </summary>
@@ -2043,7 +1909,7 @@ namespace Telestream.Cloud.Flip.Api
             if (factoryId == null)
                 throw new ApiException(400, "Missing required parameter 'factoryId' when calling FlipApi->CancelEncoding");
 
-            var localVarPath = "./encodings/{id}/cancel.json";
+            var localVarPath = "/encodings/{id}/cancel.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2088,7 +1954,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<CanceledResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (CanceledResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(CanceledResponse)));
         }
 
@@ -2122,7 +1988,7 @@ namespace Telestream.Cloud.Flip.Api
             if (factoryId == null)
                 throw new ApiException(400, "Missing required parameter 'factoryId' when calling FlipApi->CancelEncoding");
 
-            var localVarPath = "./encodings/{id}/cancel.json";
+            var localVarPath = "/encodings/{id}/cancel.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2167,7 +2033,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<CanceledResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (CanceledResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(CanceledResponse)));
         }
 
@@ -2200,7 +2066,7 @@ namespace Telestream.Cloud.Flip.Api
             if (factoryId == null)
                 throw new ApiException(400, "Missing required parameter 'factoryId' when calling FlipApi->CancelVideo");
 
-            var localVarPath = "./videos/{id}/cancel.json";
+            var localVarPath = "/videos/{id}/cancel.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2245,7 +2111,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<CanceledResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (CanceledResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(CanceledResponse)));
         }
 
@@ -2279,7 +2145,7 @@ namespace Telestream.Cloud.Flip.Api
             if (factoryId == null)
                 throw new ApiException(400, "Missing required parameter 'factoryId' when calling FlipApi->CancelVideo");
 
-            var localVarPath = "./videos/{id}/cancel.json";
+            var localVarPath = "/videos/{id}/cancel.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2324,7 +2190,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<CanceledResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (CanceledResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(CanceledResponse)));
         }
 
@@ -2364,7 +2230,7 @@ namespace Telestream.Cloud.Flip.Api
             if (copyProfileBody == null)
                 throw new ApiException(400, "Missing required parameter 'copyProfileBody' when calling FlipApi->CopyProfile");
 
-            var localVarPath = "./profiles/{id}/copy.json";
+            var localVarPath = "/profiles/{id}/copy.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2418,7 +2284,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<Profile>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Profile) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Profile)));
         }
 
@@ -2459,7 +2325,7 @@ namespace Telestream.Cloud.Flip.Api
             if (copyProfileBody == null)
                 throw new ApiException(400, "Missing required parameter 'copyProfileBody' when calling FlipApi->CopyProfile");
 
-            var localVarPath = "./profiles/{id}/copy.json";
+            var localVarPath = "/profiles/{id}/copy.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2513,7 +2379,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<Profile>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Profile) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Profile)));
         }
 
@@ -2550,7 +2416,7 @@ namespace Telestream.Cloud.Flip.Api
             if (createEncodingBody == null)
                 throw new ApiException(400, "Missing required parameter 'createEncodingBody' when calling FlipApi->CreateEncoding");
 
-            var localVarPath = "./encodings.json";
+            var localVarPath = "/encodings.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2604,7 +2470,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<Encoding>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Encoding) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Encoding)));
         }
 
@@ -2642,7 +2508,7 @@ namespace Telestream.Cloud.Flip.Api
             if (createEncodingBody == null)
                 throw new ApiException(400, "Missing required parameter 'createEncodingBody' when calling FlipApi->CreateEncoding");
 
-            var localVarPath = "./encodings.json";
+            var localVarPath = "/encodings.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2696,7 +2562,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<Encoding>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Encoding) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Encoding)));
         }
 
@@ -2707,7 +2573,7 @@ namespace Telestream.Cloud.Flip.Api
         /// <param name="createFactoryBody"></param>
         /// <param name="withStorageProvider">if set to &#x60;true&#x60;, results will include a storage provider&#39;s id (optional)</param>
         /// <returns>Factory</returns>
-        public Factory CreateFactory (FactoryBody createFactoryBody, bool? withStorageProvider = null)
+        public Factory CreateFactory (Factory createFactoryBody, bool? withStorageProvider = null)
         {
              ApiResponse<Factory> localVarResponse = CreateFactoryWithHttpInfo(createFactoryBody, withStorageProvider);
              return localVarResponse.Data;
@@ -2720,13 +2586,13 @@ namespace Telestream.Cloud.Flip.Api
         /// <param name="createFactoryBody"></param>
         /// <param name="withStorageProvider">if set to &#x60;true&#x60;, results will include a storage provider&#39;s id (optional)</param>
         /// <returns>ApiResponse of Factory</returns>
-        public ApiResponse< Factory > CreateFactoryWithHttpInfo (FactoryBody createFactoryBody, bool? withStorageProvider = null)
+        public ApiResponse< Factory > CreateFactoryWithHttpInfo (Factory createFactoryBody, bool? withStorageProvider = null)
         {
             // verify the required parameter 'createFactoryBody' is set
             if (createFactoryBody == null)
                 throw new ApiException(400, "Missing required parameter 'createFactoryBody' when calling FlipApi->CreateFactory");
 
-            var localVarPath = "./factories.json";
+            var localVarPath = "/factories.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2778,7 +2644,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<Factory>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Factory) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Factory)));
         }
 
@@ -2789,7 +2655,7 @@ namespace Telestream.Cloud.Flip.Api
         /// <param name="createFactoryBody"></param>
         /// <param name="withStorageProvider">if set to &#x60;true&#x60;, results will include a storage provider&#39;s id (optional)</param>
         /// <returns>Task of Factory</returns>
-        public async System.Threading.Tasks.Task<Factory> CreateFactoryAsync (FactoryBody createFactoryBody, bool? withStorageProvider = null)
+        public async System.Threading.Tasks.Task<Factory> CreateFactoryAsync (Factory createFactoryBody, bool? withStorageProvider = null)
         {
              ApiResponse<Factory> localVarResponse = await CreateFactoryAsyncWithHttpInfo(createFactoryBody, withStorageProvider);
              return localVarResponse.Data;
@@ -2803,13 +2669,13 @@ namespace Telestream.Cloud.Flip.Api
         /// <param name="createFactoryBody"></param>
         /// <param name="withStorageProvider">if set to &#x60;true&#x60;, results will include a storage provider&#39;s id (optional)</param>
         /// <returns>Task of ApiResponse (Factory)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Factory>> CreateFactoryAsyncWithHttpInfo (FactoryBody createFactoryBody, bool? withStorageProvider = null)
+        public async System.Threading.Tasks.Task<ApiResponse<Factory>> CreateFactoryAsyncWithHttpInfo (Factory createFactoryBody, bool? withStorageProvider = null)
         {
             // verify the required parameter 'createFactoryBody' is set
             if (createFactoryBody == null)
                 throw new ApiException(400, "Missing required parameter 'createFactoryBody' when calling FlipApi->CreateFactory");
 
-            var localVarPath = "./factories.json";
+            var localVarPath = "/factories.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2861,7 +2727,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<Factory>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Factory) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Factory)));
         }
 
@@ -2898,7 +2764,7 @@ namespace Telestream.Cloud.Flip.Api
             if (createProfileBody == null)
                 throw new ApiException(400, "Missing required parameter 'createProfileBody' when calling FlipApi->CreateProfile");
 
-            var localVarPath = "./profiles.json";
+            var localVarPath = "/profiles.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2952,7 +2818,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<Profile>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Profile) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Profile)));
         }
 
@@ -2990,7 +2856,7 @@ namespace Telestream.Cloud.Flip.Api
             if (createProfileBody == null)
                 throw new ApiException(400, "Missing required parameter 'createProfileBody' when calling FlipApi->CreateProfile");
 
-            var localVarPath = "./profiles.json";
+            var localVarPath = "/profiles.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3044,7 +2910,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<Profile>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Profile) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Profile)));
         }
 
@@ -3077,7 +2943,7 @@ namespace Telestream.Cloud.Flip.Api
             if (createVideoBody == null)
                 throw new ApiException(400, "Missing required parameter 'createVideoBody' when calling FlipApi->CreateVideo");
 
-            var localVarPath = "./videos.json";
+            var localVarPath = "/videos.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3129,7 +2995,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<Video>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Video) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Video)));
         }
 
@@ -3163,7 +3029,7 @@ namespace Telestream.Cloud.Flip.Api
             if (createVideoBody == null)
                 throw new ApiException(400, "Missing required parameter 'createVideoBody' when calling FlipApi->CreateVideo");
 
-            var localVarPath = "./videos.json";
+            var localVarPath = "/videos.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3215,7 +3081,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<Video>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Video) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Video)));
         }
 
@@ -3248,7 +3114,7 @@ namespace Telestream.Cloud.Flip.Api
             if (factoryId == null)
                 throw new ApiException(400, "Missing required parameter 'factoryId' when calling FlipApi->CreateWorkorder");
 
-            var localVarPath = "./workorders.json";
+            var localVarPath = "/workorders.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3295,7 +3161,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 
@@ -3329,7 +3195,7 @@ namespace Telestream.Cloud.Flip.Api
             if (factoryId == null)
                 throw new ApiException(400, "Missing required parameter 'factoryId' when calling FlipApi->CreateWorkorder");
 
-            var localVarPath = "./workorders.json";
+            var localVarPath = "/workorders.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3376,7 +3242,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 
@@ -3409,7 +3275,7 @@ namespace Telestream.Cloud.Flip.Api
             if (factoryId == null)
                 throw new ApiException(400, "Missing required parameter 'factoryId' when calling FlipApi->DeleteEncoding");
 
-            var localVarPath = "./encodings/{id}.json";
+            var localVarPath = "/encodings/{id}.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3454,7 +3320,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<DeletedResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (DeletedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeletedResponse)));
         }
 
@@ -3488,7 +3354,7 @@ namespace Telestream.Cloud.Flip.Api
             if (factoryId == null)
                 throw new ApiException(400, "Missing required parameter 'factoryId' when calling FlipApi->DeleteEncoding");
 
-            var localVarPath = "./encodings/{id}.json";
+            var localVarPath = "/encodings/{id}.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3533,7 +3399,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<DeletedResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (DeletedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeletedResponse)));
         }
 
@@ -3566,7 +3432,7 @@ namespace Telestream.Cloud.Flip.Api
             if (factoryId == null)
                 throw new ApiException(400, "Missing required parameter 'factoryId' when calling FlipApi->DeleteProfile");
 
-            var localVarPath = "./profiles/{id}.json";
+            var localVarPath = "/profiles/{id}.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3611,7 +3477,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<DeletedResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (DeletedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeletedResponse)));
         }
 
@@ -3645,7 +3511,7 @@ namespace Telestream.Cloud.Flip.Api
             if (factoryId == null)
                 throw new ApiException(400, "Missing required parameter 'factoryId' when calling FlipApi->DeleteProfile");
 
-            var localVarPath = "./profiles/{id}.json";
+            var localVarPath = "/profiles/{id}.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3690,7 +3556,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<DeletedResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (DeletedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeletedResponse)));
         }
 
@@ -3723,7 +3589,7 @@ namespace Telestream.Cloud.Flip.Api
             if (factoryId == null)
                 throw new ApiException(400, "Missing required parameter 'factoryId' when calling FlipApi->DeleteVideo");
 
-            var localVarPath = "./videos/{id}.json";
+            var localVarPath = "/videos/{id}.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3768,7 +3634,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<DeletedResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (DeletedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeletedResponse)));
         }
 
@@ -3802,7 +3668,7 @@ namespace Telestream.Cloud.Flip.Api
             if (factoryId == null)
                 throw new ApiException(400, "Missing required parameter 'factoryId' when calling FlipApi->DeleteVideo");
 
-            var localVarPath = "./videos/{id}.json";
+            var localVarPath = "/videos/{id}.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3847,7 +3713,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<DeletedResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (DeletedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeletedResponse)));
         }
 
@@ -3880,7 +3746,7 @@ namespace Telestream.Cloud.Flip.Api
             if (factoryId == null)
                 throw new ApiException(400, "Missing required parameter 'factoryId' when calling FlipApi->DeleteVideoSource");
 
-            var localVarPath = "./videos/{id}/source.json";
+            var localVarPath = "/videos/{id}/source.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3925,7 +3791,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<DeletedResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (DeletedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeletedResponse)));
         }
 
@@ -3959,7 +3825,7 @@ namespace Telestream.Cloud.Flip.Api
             if (factoryId == null)
                 throw new ApiException(400, "Missing required parameter 'factoryId' when calling FlipApi->DeleteVideoSource");
 
-            var localVarPath = "./videos/{id}/source.json";
+            var localVarPath = "/videos/{id}/source.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -4004,7 +3870,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<DeletedResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (DeletedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(DeletedResponse)));
         }
 
@@ -4041,7 +3907,7 @@ namespace Telestream.Cloud.Flip.Api
             if (factoryId == null)
                 throw new ApiException(400, "Missing required parameter 'factoryId' when calling FlipApi->Encoding");
 
-            var localVarPath = "./encodings/{id}.json";
+            var localVarPath = "/encodings/{id}.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -4088,7 +3954,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<Encoding>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Encoding) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Encoding)));
         }
 
@@ -4126,7 +3992,7 @@ namespace Telestream.Cloud.Flip.Api
             if (factoryId == null)
                 throw new ApiException(400, "Missing required parameter 'factoryId' when calling FlipApi->Encoding");
 
-            var localVarPath = "./encodings/{id}.json";
+            var localVarPath = "/encodings/{id}.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -4173,7 +4039,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<Encoding>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Encoding) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Encoding)));
         }
 
@@ -4217,7 +4083,7 @@ namespace Telestream.Cloud.Flip.Api
             if (factoryId == null)
                 throw new ApiException(400, "Missing required parameter 'factoryId' when calling FlipApi->Encodings");
 
-            var localVarPath = "./encodings.json";
+            var localVarPath = "/encodings.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -4269,7 +4135,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<PaginatedEncodingsCollection>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (PaginatedEncodingsCollection) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PaginatedEncodingsCollection)));
         }
 
@@ -4314,7 +4180,7 @@ namespace Telestream.Cloud.Flip.Api
             if (factoryId == null)
                 throw new ApiException(400, "Missing required parameter 'factoryId' when calling FlipApi->Encodings");
 
-            var localVarPath = "./encodings.json";
+            var localVarPath = "/encodings.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -4366,7 +4232,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<PaginatedEncodingsCollection>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (PaginatedEncodingsCollection) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PaginatedEncodingsCollection)));
         }
 
@@ -4394,7 +4260,7 @@ namespace Telestream.Cloud.Flip.Api
             if (factoryId == null)
                 throw new ApiException(400, "Missing required parameter 'factoryId' when calling FlipApi->EncodingsCount");
 
-            var localVarPath = "./encodings/count.json";
+            var localVarPath = "/encodings/count.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -4438,7 +4304,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<CountResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (CountResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(CountResponse)));
         }
 
@@ -4467,7 +4333,7 @@ namespace Telestream.Cloud.Flip.Api
             if (factoryId == null)
                 throw new ApiException(400, "Missing required parameter 'factoryId' when calling FlipApi->EncodingsCount");
 
-            var localVarPath = "./encodings/count.json";
+            var localVarPath = "/encodings/count.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -4511,7 +4377,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<CountResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (CountResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(CountResponse)));
         }
 
@@ -4540,7 +4406,7 @@ namespace Telestream.Cloud.Flip.Api
         public ApiResponse< PaginatedFactoryCollection > FactoriesWithHttpInfo (int? page = null, int? perPage = null, bool? withStorageProvider = null)
         {
 
-            var localVarPath = "./factories.json";
+            var localVarPath = "/factories.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -4586,7 +4452,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<PaginatedFactoryCollection>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (PaginatedFactoryCollection) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PaginatedFactoryCollection)));
         }
 
@@ -4616,7 +4482,7 @@ namespace Telestream.Cloud.Flip.Api
         public async System.Threading.Tasks.Task<ApiResponse<PaginatedFactoryCollection>> FactoriesAsyncWithHttpInfo (int? page = null, int? perPage = null, bool? withStorageProvider = null)
         {
 
-            var localVarPath = "./factories.json";
+            var localVarPath = "/factories.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -4662,7 +4528,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<PaginatedFactoryCollection>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (PaginatedFactoryCollection) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PaginatedFactoryCollection)));
         }
 
@@ -4692,7 +4558,7 @@ namespace Telestream.Cloud.Flip.Api
             if (id == null)
                 throw new ApiException(400, "Missing required parameter 'id' when calling FlipApi->Factory");
 
-            var localVarPath = "./factories/{id}.json";
+            var localVarPath = "/factories/{id}.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -4737,7 +4603,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<Factory>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Factory) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Factory)));
         }
 
@@ -4768,7 +4634,7 @@ namespace Telestream.Cloud.Flip.Api
             if (id == null)
                 throw new ApiException(400, "Missing required parameter 'id' when calling FlipApi->Factory");
 
-            var localVarPath = "./factories/{id}.json";
+            var localVarPath = "/factories/{id}.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -4813,153 +4679,8 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<Factory>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Factory) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Factory)));
-        }
-
-        /// <summary>
-        /// Returns a Factory&#39;s notification settings. 
-        /// </summary>
-        /// <exception cref="Telestream.Cloud.Flip.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="factoryId">Id of a Factory.</param>
-        /// <returns>CloudNotificationSettings</returns>
-        public CloudNotificationSettings Notifications (string factoryId)
-        {
-             ApiResponse<CloudNotificationSettings> localVarResponse = NotificationsWithHttpInfo(factoryId);
-             return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Returns a Factory&#39;s notification settings. 
-        /// </summary>
-        /// <exception cref="Telestream.Cloud.Flip.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="factoryId">Id of a Factory.</param>
-        /// <returns>ApiResponse of CloudNotificationSettings</returns>
-        public ApiResponse< CloudNotificationSettings > NotificationsWithHttpInfo (string factoryId)
-        {
-            // verify the required parameter 'factoryId' is set
-            if (factoryId == null)
-                throw new ApiException(400, "Missing required parameter 'factoryId' when calling FlipApi->Notifications");
-
-            var localVarPath = "./notifications.json";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json"
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (factoryId != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "factory_id", factoryId)); // query parameter
-
-            // authentication (api_key) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
-            {
-                localVarHeaderParams["X-Api-Key"] = Configuration.GetApiKeyWithPrefix("X-Api-Key");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("Notifications", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<CloudNotificationSettings>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
-                (CloudNotificationSettings) Configuration.ApiClient.Deserialize(localVarResponse, typeof(CloudNotificationSettings)));
-        }
-
-        /// <summary>
-        /// Returns a Factory&#39;s notification settings. 
-        /// </summary>
-        /// <exception cref="Telestream.Cloud.Flip.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="factoryId">Id of a Factory.</param>
-        /// <returns>Task of CloudNotificationSettings</returns>
-        public async System.Threading.Tasks.Task<CloudNotificationSettings> NotificationsAsync (string factoryId)
-        {
-             ApiResponse<CloudNotificationSettings> localVarResponse = await NotificationsAsyncWithHttpInfo(factoryId);
-             return localVarResponse.Data;
-
-        }
-
-        /// <summary>
-        /// Returns a Factory&#39;s notification settings. 
-        /// </summary>
-        /// <exception cref="Telestream.Cloud.Flip.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="factoryId">Id of a Factory.</param>
-        /// <returns>Task of ApiResponse (CloudNotificationSettings)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<CloudNotificationSettings>> NotificationsAsyncWithHttpInfo (string factoryId)
-        {
-            // verify the required parameter 'factoryId' is set
-            if (factoryId == null)
-                throw new ApiException(400, "Missing required parameter 'factoryId' when calling FlipApi->Notifications");
-
-            var localVarPath = "./notifications.json";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json"
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (factoryId != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "factory_id", factoryId)); // query parameter
-
-            // authentication (api_key) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
-            {
-                localVarHeaderParams["X-Api-Key"] = Configuration.GetApiKeyWithPrefix("X-Api-Key");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.GET, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("Notifications", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<CloudNotificationSettings>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
-                (CloudNotificationSettings) Configuration.ApiClient.Deserialize(localVarResponse, typeof(CloudNotificationSettings)));
         }
 
         /// <summary>
@@ -4993,7 +4714,7 @@ namespace Telestream.Cloud.Flip.Api
             if (factoryId == null)
                 throw new ApiException(400, "Missing required parameter 'factoryId' when calling FlipApi->Profile");
 
-            var localVarPath = "./profiles/{id_or_name}.json";
+            var localVarPath = "/profiles/{id_or_name}.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -5039,7 +4760,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<Profile>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Profile) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Profile)));
         }
 
@@ -5075,7 +4796,7 @@ namespace Telestream.Cloud.Flip.Api
             if (factoryId == null)
                 throw new ApiException(400, "Missing required parameter 'factoryId' when calling FlipApi->Profile");
 
-            var localVarPath = "./profiles/{id_or_name}.json";
+            var localVarPath = "/profiles/{id_or_name}.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -5121,7 +4842,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<Profile>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Profile) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Profile)));
         }
 
@@ -5154,7 +4875,7 @@ namespace Telestream.Cloud.Flip.Api
             if (factoryId == null)
                 throw new ApiException(400, "Missing required parameter 'factoryId' when calling FlipApi->ProfileEncodings");
 
-            var localVarPath = "./profiles/{id_or_name}/encodings.json";
+            var localVarPath = "/profiles/{id_or_name}/encodings.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -5199,7 +4920,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<PaginatedEncodingsCollection>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (PaginatedEncodingsCollection) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PaginatedEncodingsCollection)));
         }
 
@@ -5233,7 +4954,7 @@ namespace Telestream.Cloud.Flip.Api
             if (factoryId == null)
                 throw new ApiException(400, "Missing required parameter 'factoryId' when calling FlipApi->ProfileEncodings");
 
-            var localVarPath = "./profiles/{id_or_name}/encodings.json";
+            var localVarPath = "/profiles/{id_or_name}/encodings.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -5278,7 +4999,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<PaginatedEncodingsCollection>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (PaginatedEncodingsCollection) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PaginatedEncodingsCollection)));
         }
 
@@ -5314,7 +5035,7 @@ namespace Telestream.Cloud.Flip.Api
             if (factoryId == null)
                 throw new ApiException(400, "Missing required parameter 'factoryId' when calling FlipApi->Profiles");
 
-            var localVarPath = "./profiles.json";
+            var localVarPath = "/profiles.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -5362,7 +5083,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<PaginatedProfilesCollection>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (PaginatedProfilesCollection) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PaginatedProfilesCollection)));
         }
 
@@ -5399,7 +5120,7 @@ namespace Telestream.Cloud.Flip.Api
             if (factoryId == null)
                 throw new ApiException(400, "Missing required parameter 'factoryId' when calling FlipApi->Profiles");
 
-            var localVarPath = "./profiles.json";
+            var localVarPath = "/profiles.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -5447,7 +5168,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<PaginatedProfilesCollection>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (PaginatedProfilesCollection) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PaginatedProfilesCollection)));
         }
 
@@ -5479,7 +5200,7 @@ namespace Telestream.Cloud.Flip.Api
             if (factoryId == null)
                 throw new ApiException(400, "Missing required parameter 'factoryId' when calling FlipApi->QueuedVideos");
 
-            var localVarPath = "./videos/queued.json";
+            var localVarPath = "/videos/queued.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -5525,7 +5246,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<PaginatedVideoCollection>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (PaginatedVideoCollection) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PaginatedVideoCollection)));
         }
 
@@ -5558,7 +5279,7 @@ namespace Telestream.Cloud.Flip.Api
             if (factoryId == null)
                 throw new ApiException(400, "Missing required parameter 'factoryId' when calling FlipApi->QueuedVideos");
 
-            var localVarPath = "./videos/queued.json";
+            var localVarPath = "/videos/queued.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -5604,7 +5325,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<PaginatedVideoCollection>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (PaginatedVideoCollection) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PaginatedVideoCollection)));
         }
 
@@ -5636,7 +5357,7 @@ namespace Telestream.Cloud.Flip.Api
             if (resubmitVideoBody == null)
                 throw new ApiException(400, "Missing required parameter 'resubmitVideoBody' when calling FlipApi->ResubmitVideo");
 
-            var localVarPath = "./videos/resubmit.json";
+            var localVarPath = "/videos/resubmit.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -5688,7 +5409,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 
@@ -5721,7 +5442,7 @@ namespace Telestream.Cloud.Flip.Api
             if (resubmitVideoBody == null)
                 throw new ApiException(400, "Missing required parameter 'resubmitVideoBody' when calling FlipApi->ResubmitVideo");
 
-            var localVarPath = "./videos/resubmit.json";
+            var localVarPath = "/videos/resubmit.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -5773,7 +5494,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 
@@ -5806,7 +5527,7 @@ namespace Telestream.Cloud.Flip.Api
             if (factoryId == null)
                 throw new ApiException(400, "Missing required parameter 'factoryId' when calling FlipApi->RetryEncoding");
 
-            var localVarPath = "./encodings/{id}/retry.json";
+            var localVarPath = "/encodings/{id}/retry.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -5851,7 +5572,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<RetriedResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (RetriedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(RetriedResponse)));
         }
 
@@ -5885,7 +5606,7 @@ namespace Telestream.Cloud.Flip.Api
             if (factoryId == null)
                 throw new ApiException(400, "Missing required parameter 'factoryId' when calling FlipApi->RetryEncoding");
 
-            var localVarPath = "./encodings/{id}/retry.json";
+            var localVarPath = "/encodings/{id}/retry.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -5930,7 +5651,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<RetriedResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (RetriedResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(RetriedResponse)));
         }
 
@@ -5965,7 +5686,7 @@ namespace Telestream.Cloud.Flip.Api
             if (factoryId == null)
                 throw new ApiException(400, "Missing required parameter 'factoryId' when calling FlipApi->SignedEncodingUrl");
 
-            var localVarPath = "./encodings/{id}/signed-url.json";
+            var localVarPath = "/encodings/{id}/signed-url.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -6011,7 +5732,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<EncodingSignedUrl>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (EncodingSignedUrl) Configuration.ApiClient.Deserialize(localVarResponse, typeof(EncodingSignedUrl)));
         }
 
@@ -6047,7 +5768,7 @@ namespace Telestream.Cloud.Flip.Api
             if (factoryId == null)
                 throw new ApiException(400, "Missing required parameter 'factoryId' when calling FlipApi->SignedEncodingUrl");
 
-            var localVarPath = "./encodings/{id}/signed-url.json";
+            var localVarPath = "/encodings/{id}/signed-url.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -6093,7 +5814,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<EncodingSignedUrl>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (EncodingSignedUrl) Configuration.ApiClient.Deserialize(localVarResponse, typeof(EncodingSignedUrl)));
         }
 
@@ -6126,7 +5847,7 @@ namespace Telestream.Cloud.Flip.Api
             if (factoryId == null)
                 throw new ApiException(400, "Missing required parameter 'factoryId' when calling FlipApi->SignedEncodingUrls");
 
-            var localVarPath = "./encodings/{id}/signed-urls.json";
+            var localVarPath = "/encodings/{id}/signed-urls.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -6171,7 +5892,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<EncodingSignedUrls>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (EncodingSignedUrls) Configuration.ApiClient.Deserialize(localVarResponse, typeof(EncodingSignedUrls)));
         }
 
@@ -6205,7 +5926,7 @@ namespace Telestream.Cloud.Flip.Api
             if (factoryId == null)
                 throw new ApiException(400, "Missing required parameter 'factoryId' when calling FlipApi->SignedEncodingUrls");
 
-            var localVarPath = "./encodings/{id}/signed-urls.json";
+            var localVarPath = "/encodings/{id}/signed-urls.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -6250,7 +5971,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<EncodingSignedUrls>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (EncodingSignedUrls) Configuration.ApiClient.Deserialize(localVarResponse, typeof(EncodingSignedUrls)));
         }
 
@@ -6283,7 +6004,7 @@ namespace Telestream.Cloud.Flip.Api
             if (factoryId == null)
                 throw new ApiException(400, "Missing required parameter 'factoryId' when calling FlipApi->SignedVideoUrl");
 
-            var localVarPath = "./videos/{id}/signed-url.json";
+            var localVarPath = "/videos/{id}/signed-url.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -6328,7 +6049,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<SignedVideoUrl>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (SignedVideoUrl) Configuration.ApiClient.Deserialize(localVarResponse, typeof(SignedVideoUrl)));
         }
 
@@ -6362,7 +6083,7 @@ namespace Telestream.Cloud.Flip.Api
             if (factoryId == null)
                 throw new ApiException(400, "Missing required parameter 'factoryId' when calling FlipApi->SignedVideoUrl");
 
-            var localVarPath = "./videos/{id}/signed-url.json";
+            var localVarPath = "/videos/{id}/signed-url.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -6407,179 +6128,8 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<SignedVideoUrl>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (SignedVideoUrl) Configuration.ApiClient.Deserialize(localVarResponse, typeof(SignedVideoUrl)));
-        }
-
-        /// <summary>
-        /// Toggles synchronisation settings. 
-        /// </summary>
-        /// <exception cref="Telestream.Cloud.Flip.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">id of the factory</param>
-        /// <param name="factorySyncBody"></param>
-        /// <returns>FactorySync</returns>
-        public FactorySync ToggleFactorySync (string id, FactorySyncBody factorySyncBody)
-        {
-             ApiResponse<FactorySync> localVarResponse = ToggleFactorySyncWithHttpInfo(id, factorySyncBody);
-             return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Toggles synchronisation settings. 
-        /// </summary>
-        /// <exception cref="Telestream.Cloud.Flip.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">id of the factory</param>
-        /// <param name="factorySyncBody"></param>
-        /// <returns>ApiResponse of FactorySync</returns>
-        public ApiResponse< FactorySync > ToggleFactorySyncWithHttpInfo (string id, FactorySyncBody factorySyncBody)
-        {
-            // verify the required parameter 'id' is set
-            if (id == null)
-                throw new ApiException(400, "Missing required parameter 'id' when calling FlipApi->ToggleFactorySync");
-            // verify the required parameter 'factorySyncBody' is set
-            if (factorySyncBody == null)
-                throw new ApiException(400, "Missing required parameter 'factorySyncBody' when calling FlipApi->ToggleFactorySync");
-
-            var localVarPath = "./factories/{id}/sync.json";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json"
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
-            if (factorySyncBody != null && factorySyncBody.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(factorySyncBody); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = factorySyncBody; // byte array
-            }
-
-            // authentication (api_key) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
-            {
-                localVarHeaderParams["X-Api-Key"] = Configuration.GetApiKeyWithPrefix("X-Api-Key");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("ToggleFactorySync", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<FactorySync>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
-                (FactorySync) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FactorySync)));
-        }
-
-        /// <summary>
-        /// Toggles synchronisation settings. 
-        /// </summary>
-        /// <exception cref="Telestream.Cloud.Flip.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">id of the factory</param>
-        /// <param name="factorySyncBody"></param>
-        /// <returns>Task of FactorySync</returns>
-        public async System.Threading.Tasks.Task<FactorySync> ToggleFactorySyncAsync (string id, FactorySyncBody factorySyncBody)
-        {
-             ApiResponse<FactorySync> localVarResponse = await ToggleFactorySyncAsyncWithHttpInfo(id, factorySyncBody);
-             return localVarResponse.Data;
-
-        }
-
-        /// <summary>
-        /// Toggles synchronisation settings. 
-        /// </summary>
-        /// <exception cref="Telestream.Cloud.Flip.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="id">id of the factory</param>
-        /// <param name="factorySyncBody"></param>
-        /// <returns>Task of ApiResponse (FactorySync)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<FactorySync>> ToggleFactorySyncAsyncWithHttpInfo (string id, FactorySyncBody factorySyncBody)
-        {
-            // verify the required parameter 'id' is set
-            if (id == null)
-                throw new ApiException(400, "Missing required parameter 'id' when calling FlipApi->ToggleFactorySync");
-            // verify the required parameter 'factorySyncBody' is set
-            if (factorySyncBody == null)
-                throw new ApiException(400, "Missing required parameter 'factorySyncBody' when calling FlipApi->ToggleFactorySync");
-
-            var localVarPath = "./factories/{id}/sync.json";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json"
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (id != null) localVarPathParams.Add("id", Configuration.ApiClient.ParameterToString(id)); // path parameter
-            if (factorySyncBody != null && factorySyncBody.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(factorySyncBody); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = factorySyncBody; // byte array
-            }
-
-            // authentication (api_key) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
-            {
-                localVarHeaderParams["X-Api-Key"] = Configuration.GetApiKeyWithPrefix("X-Api-Key");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.POST, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("ToggleFactorySync", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<FactorySync>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
-                (FactorySync) Configuration.ApiClient.Deserialize(localVarResponse, typeof(FactorySync)));
         }
 
         /// <summary>
@@ -6620,7 +6170,7 @@ namespace Telestream.Cloud.Flip.Api
             if (updateEncodingBody == null)
                 throw new ApiException(400, "Missing required parameter 'updateEncodingBody' when calling FlipApi->UpdateEncoding");
 
-            var localVarPath = "./encodings/{id}.json";
+            var localVarPath = "/encodings/{id}.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -6675,7 +6225,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<Encoding>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Encoding) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Encoding)));
         }
 
@@ -6718,7 +6268,7 @@ namespace Telestream.Cloud.Flip.Api
             if (updateEncodingBody == null)
                 throw new ApiException(400, "Missing required parameter 'updateEncodingBody' when calling FlipApi->UpdateEncoding");
 
-            var localVarPath = "./encodings/{id}.json";
+            var localVarPath = "/encodings/{id}.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -6773,7 +6323,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<Encoding>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Encoding) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Encoding)));
         }
 
@@ -6785,7 +6335,7 @@ namespace Telestream.Cloud.Flip.Api
         /// <param name="updateFactoryBody"></param>
         /// <param name="withStorageProvider">if set to &#x60;true&#x60;, results will include a storage provider&#39;s id (optional)</param>
         /// <returns>Factory</returns>
-        public Factory UpdateFactory (string id, FactoryBody updateFactoryBody, bool? withStorageProvider = null)
+        public Factory UpdateFactory (string id, Factory updateFactoryBody, bool? withStorageProvider = null)
         {
              ApiResponse<Factory> localVarResponse = UpdateFactoryWithHttpInfo(id, updateFactoryBody, withStorageProvider);
              return localVarResponse.Data;
@@ -6799,7 +6349,7 @@ namespace Telestream.Cloud.Flip.Api
         /// <param name="updateFactoryBody"></param>
         /// <param name="withStorageProvider">if set to &#x60;true&#x60;, results will include a storage provider&#39;s id (optional)</param>
         /// <returns>ApiResponse of Factory</returns>
-        public ApiResponse< Factory > UpdateFactoryWithHttpInfo (string id, FactoryBody updateFactoryBody, bool? withStorageProvider = null)
+        public ApiResponse< Factory > UpdateFactoryWithHttpInfo (string id, Factory updateFactoryBody, bool? withStorageProvider = null)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -6808,7 +6358,7 @@ namespace Telestream.Cloud.Flip.Api
             if (updateFactoryBody == null)
                 throw new ApiException(400, "Missing required parameter 'updateFactoryBody' when calling FlipApi->UpdateFactory");
 
-            var localVarPath = "./factories/{id}.json";
+            var localVarPath = "/factories/{id}.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -6861,7 +6411,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<Factory>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Factory) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Factory)));
         }
 
@@ -6873,7 +6423,7 @@ namespace Telestream.Cloud.Flip.Api
         /// <param name="updateFactoryBody"></param>
         /// <param name="withStorageProvider">if set to &#x60;true&#x60;, results will include a storage provider&#39;s id (optional)</param>
         /// <returns>Task of Factory</returns>
-        public async System.Threading.Tasks.Task<Factory> UpdateFactoryAsync (string id, FactoryBody updateFactoryBody, bool? withStorageProvider = null)
+        public async System.Threading.Tasks.Task<Factory> UpdateFactoryAsync (string id, Factory updateFactoryBody, bool? withStorageProvider = null)
         {
              ApiResponse<Factory> localVarResponse = await UpdateFactoryAsyncWithHttpInfo(id, updateFactoryBody, withStorageProvider);
              return localVarResponse.Data;
@@ -6888,7 +6438,7 @@ namespace Telestream.Cloud.Flip.Api
         /// <param name="updateFactoryBody"></param>
         /// <param name="withStorageProvider">if set to &#x60;true&#x60;, results will include a storage provider&#39;s id (optional)</param>
         /// <returns>Task of ApiResponse (Factory)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Factory>> UpdateFactoryAsyncWithHttpInfo (string id, FactoryBody updateFactoryBody, bool? withStorageProvider = null)
+        public async System.Threading.Tasks.Task<ApiResponse<Factory>> UpdateFactoryAsyncWithHttpInfo (string id, Factory updateFactoryBody, bool? withStorageProvider = null)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -6897,7 +6447,7 @@ namespace Telestream.Cloud.Flip.Api
             if (updateFactoryBody == null)
                 throw new ApiException(400, "Missing required parameter 'updateFactoryBody' when calling FlipApi->UpdateFactory");
 
-            var localVarPath = "./factories/{id}.json";
+            var localVarPath = "/factories/{id}.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -6950,179 +6500,8 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<Factory>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Factory) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Factory)));
-        }
-
-        /// <summary>
-        /// Updates a Factory&#39;s notification settings. 
-        /// </summary>
-        /// <exception cref="Telestream.Cloud.Flip.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="factoryId">Id of a Factory.</param>
-        /// <param name="cloudNotificationSettingsBody"></param>
-        /// <returns>CloudNotificationSettings</returns>
-        public CloudNotificationSettings UpdateNotifications (string factoryId, CloudNotificationSettings cloudNotificationSettingsBody)
-        {
-             ApiResponse<CloudNotificationSettings> localVarResponse = UpdateNotificationsWithHttpInfo(factoryId, cloudNotificationSettingsBody);
-             return localVarResponse.Data;
-        }
-
-        /// <summary>
-        /// Updates a Factory&#39;s notification settings. 
-        /// </summary>
-        /// <exception cref="Telestream.Cloud.Flip.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="factoryId">Id of a Factory.</param>
-        /// <param name="cloudNotificationSettingsBody"></param>
-        /// <returns>ApiResponse of CloudNotificationSettings</returns>
-        public ApiResponse< CloudNotificationSettings > UpdateNotificationsWithHttpInfo (string factoryId, CloudNotificationSettings cloudNotificationSettingsBody)
-        {
-            // verify the required parameter 'factoryId' is set
-            if (factoryId == null)
-                throw new ApiException(400, "Missing required parameter 'factoryId' when calling FlipApi->UpdateNotifications");
-            // verify the required parameter 'cloudNotificationSettingsBody' is set
-            if (cloudNotificationSettingsBody == null)
-                throw new ApiException(400, "Missing required parameter 'cloudNotificationSettingsBody' when calling FlipApi->UpdateNotifications");
-
-            var localVarPath = "./notifications.json";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json"
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (factoryId != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "factory_id", factoryId)); // query parameter
-            if (cloudNotificationSettingsBody != null && cloudNotificationSettingsBody.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(cloudNotificationSettingsBody); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = cloudNotificationSettingsBody; // byte array
-            }
-
-            // authentication (api_key) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
-            {
-                localVarHeaderParams["X-Api-Key"] = Configuration.GetApiKeyWithPrefix("X-Api-Key");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) Configuration.ApiClient.CallApi(localVarPath,
-                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("UpdateNotifications", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<CloudNotificationSettings>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
-                (CloudNotificationSettings) Configuration.ApiClient.Deserialize(localVarResponse, typeof(CloudNotificationSettings)));
-        }
-
-        /// <summary>
-        /// Updates a Factory&#39;s notification settings. 
-        /// </summary>
-        /// <exception cref="Telestream.Cloud.Flip.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="factoryId">Id of a Factory.</param>
-        /// <param name="cloudNotificationSettingsBody"></param>
-        /// <returns>Task of CloudNotificationSettings</returns>
-        public async System.Threading.Tasks.Task<CloudNotificationSettings> UpdateNotificationsAsync (string factoryId, CloudNotificationSettings cloudNotificationSettingsBody)
-        {
-             ApiResponse<CloudNotificationSettings> localVarResponse = await UpdateNotificationsAsyncWithHttpInfo(factoryId, cloudNotificationSettingsBody);
-             return localVarResponse.Data;
-
-        }
-
-        /// <summary>
-        /// Updates a Factory&#39;s notification settings. 
-        /// </summary>
-        /// <exception cref="Telestream.Cloud.Flip.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="factoryId">Id of a Factory.</param>
-        /// <param name="cloudNotificationSettingsBody"></param>
-        /// <returns>Task of ApiResponse (CloudNotificationSettings)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<CloudNotificationSettings>> UpdateNotificationsAsyncWithHttpInfo (string factoryId, CloudNotificationSettings cloudNotificationSettingsBody)
-        {
-            // verify the required parameter 'factoryId' is set
-            if (factoryId == null)
-                throw new ApiException(400, "Missing required parameter 'factoryId' when calling FlipApi->UpdateNotifications");
-            // verify the required parameter 'cloudNotificationSettingsBody' is set
-            if (cloudNotificationSettingsBody == null)
-                throw new ApiException(400, "Missing required parameter 'cloudNotificationSettingsBody' when calling FlipApi->UpdateNotifications");
-
-            var localVarPath = "./notifications.json";
-            var localVarPathParams = new Dictionary<String, String>();
-            var localVarQueryParams = new List<KeyValuePair<String, String>>();
-            var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
-            var localVarFormParams = new Dictionary<String, String>();
-            var localVarFileParams = new Dictionary<String, FileParameter>();
-            Object localVarPostBody = null;
-
-            // to determine the Content-Type header
-            String[] localVarHttpContentTypes = new String[] {
-                "application/json"
-            };
-            String localVarHttpContentType = Configuration.ApiClient.SelectHeaderContentType(localVarHttpContentTypes);
-
-            // to determine the Accept header
-            String[] localVarHttpHeaderAccepts = new String[] {
-                "application/json"
-            };
-            String localVarHttpHeaderAccept = Configuration.ApiClient.SelectHeaderAccept(localVarHttpHeaderAccepts);
-            if (localVarHttpHeaderAccept != null)
-                localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
-
-            if (factoryId != null) localVarQueryParams.AddRange(Configuration.ApiClient.ParameterToKeyValuePairs("", "factory_id", factoryId)); // query parameter
-            if (cloudNotificationSettingsBody != null && cloudNotificationSettingsBody.GetType() != typeof(byte[]))
-            {
-                localVarPostBody = Configuration.ApiClient.Serialize(cloudNotificationSettingsBody); // http body (model) parameter
-            }
-            else
-            {
-                localVarPostBody = cloudNotificationSettingsBody; // byte array
-            }
-
-            // authentication (api_key) required
-            if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
-            {
-                localVarHeaderParams["X-Api-Key"] = Configuration.GetApiKeyWithPrefix("X-Api-Key");
-            }
-
-            // make the HTTP request
-            IRestResponse localVarResponse = (IRestResponse) await Configuration.ApiClient.CallApiAsync(localVarPath,
-                Method.PUT, localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarFileParams,
-                localVarPathParams, localVarHttpContentType);
-
-            int localVarStatusCode = (int) localVarResponse.StatusCode;
-
-            if (ExceptionFactory != null)
-            {
-                Exception exception = ExceptionFactory("UpdateNotifications", localVarResponse);
-                if (exception != null) throw exception;
-            }
-
-            return new ApiResponse<CloudNotificationSettings>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
-                (CloudNotificationSettings) Configuration.ApiClient.Deserialize(localVarResponse, typeof(CloudNotificationSettings)));
         }
 
         /// <summary>
@@ -7163,7 +6542,7 @@ namespace Telestream.Cloud.Flip.Api
             if (updateProfileBody == null)
                 throw new ApiException(400, "Missing required parameter 'updateProfileBody' when calling FlipApi->UpdateProfile");
 
-            var localVarPath = "./profiles/{id}.json";
+            var localVarPath = "/profiles/{id}.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -7218,7 +6597,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<Profile>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Profile) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Profile)));
         }
 
@@ -7261,7 +6640,7 @@ namespace Telestream.Cloud.Flip.Api
             if (updateProfileBody == null)
                 throw new ApiException(400, "Missing required parameter 'updateProfileBody' when calling FlipApi->UpdateProfile");
 
-            var localVarPath = "./profiles/{id}.json";
+            var localVarPath = "/profiles/{id}.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -7316,7 +6695,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<Profile>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Profile) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Profile)));
         }
 
@@ -7349,7 +6728,7 @@ namespace Telestream.Cloud.Flip.Api
             if (videoUploadBody == null)
                 throw new ApiException(400, "Missing required parameter 'videoUploadBody' when calling FlipApi->UploadVideo");
 
-            var localVarPath = "./videos/upload.json";
+            var localVarPath = "/videos/upload.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -7401,7 +6780,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<UploadSession>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (UploadSession) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UploadSession)));
         }
 
@@ -7435,7 +6814,7 @@ namespace Telestream.Cloud.Flip.Api
             if (videoUploadBody == null)
                 throw new ApiException(400, "Missing required parameter 'videoUploadBody' when calling FlipApi->UploadVideo");
 
-            var localVarPath = "./videos/upload.json";
+            var localVarPath = "/videos/upload.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -7487,7 +6866,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<UploadSession>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (UploadSession) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UploadSession)));
         }
 
@@ -7520,7 +6899,7 @@ namespace Telestream.Cloud.Flip.Api
             if (factoryId == null)
                 throw new ApiException(400, "Missing required parameter 'factoryId' when calling FlipApi->Video");
 
-            var localVarPath = "./videos/{id}.json";
+            var localVarPath = "/videos/{id}.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -7565,7 +6944,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<Video>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Video) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Video)));
         }
 
@@ -7599,7 +6978,7 @@ namespace Telestream.Cloud.Flip.Api
             if (factoryId == null)
                 throw new ApiException(400, "Missing required parameter 'factoryId' when calling FlipApi->Video");
 
-            var localVarPath = "./videos/{id}.json";
+            var localVarPath = "/videos/{id}.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -7644,7 +7023,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<Video>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Video) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Video)));
         }
 
@@ -7685,7 +7064,7 @@ namespace Telestream.Cloud.Flip.Api
             if (factoryId == null)
                 throw new ApiException(400, "Missing required parameter 'factoryId' when calling FlipApi->VideoEncodings");
 
-            var localVarPath = "./videos/{id}/encodings.json";
+            var localVarPath = "/videos/{id}/encodings.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -7734,7 +7113,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<PaginatedEncodingsCollection>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (PaginatedEncodingsCollection) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PaginatedEncodingsCollection)));
         }
 
@@ -7776,7 +7155,7 @@ namespace Telestream.Cloud.Flip.Api
             if (factoryId == null)
                 throw new ApiException(400, "Missing required parameter 'factoryId' when calling FlipApi->VideoEncodings");
 
-            var localVarPath = "./videos/{id}/encodings.json";
+            var localVarPath = "/videos/{id}/encodings.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -7825,7 +7204,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<PaginatedEncodingsCollection>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (PaginatedEncodingsCollection) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PaginatedEncodingsCollection)));
         }
 
@@ -7858,7 +7237,7 @@ namespace Telestream.Cloud.Flip.Api
             if (factoryId == null)
                 throw new ApiException(400, "Missing required parameter 'factoryId' when calling FlipApi->VideoMetadata");
 
-            var localVarPath = "./videos/{id}/metadata.json";
+            var localVarPath = "/videos/{id}/metadata.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -7903,7 +7282,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<VideoMetadata>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (VideoMetadata) Configuration.ApiClient.Deserialize(localVarResponse, typeof(VideoMetadata)));
         }
 
@@ -7937,7 +7316,7 @@ namespace Telestream.Cloud.Flip.Api
             if (factoryId == null)
                 throw new ApiException(400, "Missing required parameter 'factoryId' when calling FlipApi->VideoMetadata");
 
-            var localVarPath = "./videos/{id}/metadata.json";
+            var localVarPath = "/videos/{id}/metadata.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -7982,7 +7361,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<VideoMetadata>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (VideoMetadata) Configuration.ApiClient.Deserialize(localVarResponse, typeof(VideoMetadata)));
         }
 
@@ -8014,7 +7393,7 @@ namespace Telestream.Cloud.Flip.Api
             if (factoryId == null)
                 throw new ApiException(400, "Missing required parameter 'factoryId' when calling FlipApi->Videos");
 
-            var localVarPath = "./videos.json";
+            var localVarPath = "/videos.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -8060,7 +7439,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<PaginatedVideoCollection>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (PaginatedVideoCollection) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PaginatedVideoCollection)));
         }
 
@@ -8093,7 +7472,7 @@ namespace Telestream.Cloud.Flip.Api
             if (factoryId == null)
                 throw new ApiException(400, "Missing required parameter 'factoryId' when calling FlipApi->Videos");
 
-            var localVarPath = "./videos.json";
+            var localVarPath = "/videos.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -8139,7 +7518,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<PaginatedVideoCollection>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (PaginatedVideoCollection) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PaginatedVideoCollection)));
         }
 
@@ -8171,7 +7550,7 @@ namespace Telestream.Cloud.Flip.Api
             if (factoryId == null)
                 throw new ApiException(400, "Missing required parameter 'factoryId' when calling FlipApi->Workflows");
 
-            var localVarPath = "./workflows.json";
+            var localVarPath = "/workflows.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -8217,7 +7596,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<PaginatedWorkflowsCollection>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (PaginatedWorkflowsCollection) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PaginatedWorkflowsCollection)));
         }
 
@@ -8250,7 +7629,7 @@ namespace Telestream.Cloud.Flip.Api
             if (factoryId == null)
                 throw new ApiException(400, "Missing required parameter 'factoryId' when calling FlipApi->Workflows");
 
-            var localVarPath = "./workflows.json";
+            var localVarPath = "/workflows.json";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -8296,7 +7675,7 @@ namespace Telestream.Cloud.Flip.Api
             }
 
             return new ApiResponse<PaginatedWorkflowsCollection>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (PaginatedWorkflowsCollection) Configuration.ApiClient.Deserialize(localVarResponse, typeof(PaginatedWorkflowsCollection)));
         }
 

@@ -12,12 +12,14 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
 using SwaggerDateConverter = Telestream.Cloud.Stores.Client.SwaggerDateConverter;
 
 namespace Telestream.Cloud.Stores.Model
@@ -26,7 +28,7 @@ namespace Telestream.Cloud.Stores.Model
     /// Store
     /// </summary>
     [DataContract]
-    public partial class Store :  IEquatable<Store>
+    public partial class Store :  IEquatable<Store>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Store" /> class.
@@ -34,7 +36,6 @@ namespace Telestream.Cloud.Stores.Model
         /// <param name="Id">Id.</param>
         /// <param name="Name">Name.</param>
         /// <param name="Provider">Provider.</param>
-        /// <param name="AccountId">AccountId.</param>
         /// <param name="BucketName">BucketName.</param>
         /// <param name="InputStore">InputStore.</param>
         /// <param name="WatchInterval">WatchInterval.</param>
@@ -42,14 +43,12 @@ namespace Telestream.Cloud.Stores.Model
         /// <param name="PrivateAccess">PrivateAccess.</param>
         /// <param name="AccessKey">AccessKey.</param>
         /// <param name="SecretKey">SecretKey.</param>
-        /// <param name="BaseUploadUrl">BaseUploadUrl.</param>
         /// <param name="ProviderSpecificSettings">ProviderSpecificSettings.</param>
-        public Store(string Id = default(string), string Name = default(string), string Provider = default(string), string AccountId = default(string), string BucketName = default(string), bool? InputStore = default(bool?), int? WatchInterval = default(int?), string Region = default(string), bool? PrivateAccess = default(bool?), string AccessKey = default(string), string SecretKey = default(string), string BaseUploadUrl = default(string), StoreBodyProviderSpecificSettings ProviderSpecificSettings = default(StoreBodyProviderSpecificSettings))
+        public Store(string Id = default(string), string Name = default(string), string Provider = default(string), string BucketName = default(string), bool? InputStore = default(bool?), int? WatchInterval = default(int?), string Region = default(string), bool? PrivateAccess = default(bool?), string AccessKey = default(string), string SecretKey = default(string), StoreProviderSpecificSettings ProviderSpecificSettings = default(StoreProviderSpecificSettings))
         {
             this.Id = Id;
             this.Name = Name;
             this.Provider = Provider;
-            this.AccountId = AccountId;
             this.BucketName = BucketName;
             this.InputStore = InputStore;
             this.WatchInterval = WatchInterval;
@@ -57,7 +56,6 @@ namespace Telestream.Cloud.Stores.Model
             this.PrivateAccess = PrivateAccess;
             this.AccessKey = AccessKey;
             this.SecretKey = SecretKey;
-            this.BaseUploadUrl = BaseUploadUrl;
             this.ProviderSpecificSettings = ProviderSpecificSettings;
         }
         
@@ -78,12 +76,6 @@ namespace Telestream.Cloud.Stores.Model
         /// </summary>
         [DataMember(Name="provider", EmitDefaultValue=false)]
         public string Provider { get; set; }
-
-        /// <summary>
-        /// Gets or Sets AccountId
-        /// </summary>
-        [DataMember(Name="account_id", EmitDefaultValue=false)]
-        public string AccountId { get; set; }
 
         /// <summary>
         /// Gets or Sets BucketName
@@ -128,16 +120,10 @@ namespace Telestream.Cloud.Stores.Model
         public string SecretKey { get; set; }
 
         /// <summary>
-        /// Gets or Sets BaseUploadUrl
-        /// </summary>
-        [DataMember(Name="base_upload_url", EmitDefaultValue=false)]
-        public string BaseUploadUrl { get; set; }
-
-        /// <summary>
         /// Gets or Sets ProviderSpecificSettings
         /// </summary>
         [DataMember(Name="provider_specific_settings", EmitDefaultValue=false)]
-        public StoreBodyProviderSpecificSettings ProviderSpecificSettings { get; set; }
+        public StoreProviderSpecificSettings ProviderSpecificSettings { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -150,7 +136,6 @@ namespace Telestream.Cloud.Stores.Model
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Provider: ").Append(Provider).Append("\n");
-            sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  BucketName: ").Append(BucketName).Append("\n");
             sb.Append("  InputStore: ").Append(InputStore).Append("\n");
             sb.Append("  WatchInterval: ").Append(WatchInterval).Append("\n");
@@ -158,7 +143,6 @@ namespace Telestream.Cloud.Stores.Model
             sb.Append("  PrivateAccess: ").Append(PrivateAccess).Append("\n");
             sb.Append("  AccessKey: ").Append(AccessKey).Append("\n");
             sb.Append("  SecretKey: ").Append(SecretKey).Append("\n");
-            sb.Append("  BaseUploadUrl: ").Append(BaseUploadUrl).Append("\n");
             sb.Append("  ProviderSpecificSettings: ").Append(ProviderSpecificSettings).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -210,11 +194,6 @@ namespace Telestream.Cloud.Stores.Model
                     this.Provider.Equals(input.Provider))
                 ) && 
                 (
-                    this.AccountId == input.AccountId ||
-                    (this.AccountId != null &&
-                    this.AccountId.Equals(input.AccountId))
-                ) && 
-                (
                     this.BucketName == input.BucketName ||
                     (this.BucketName != null &&
                     this.BucketName.Equals(input.BucketName))
@@ -250,11 +229,6 @@ namespace Telestream.Cloud.Stores.Model
                     this.SecretKey.Equals(input.SecretKey))
                 ) && 
                 (
-                    this.BaseUploadUrl == input.BaseUploadUrl ||
-                    (this.BaseUploadUrl != null &&
-                    this.BaseUploadUrl.Equals(input.BaseUploadUrl))
-                ) && 
-                (
                     this.ProviderSpecificSettings == input.ProviderSpecificSettings ||
                     (this.ProviderSpecificSettings != null &&
                     this.ProviderSpecificSettings.Equals(input.ProviderSpecificSettings))
@@ -276,8 +250,6 @@ namespace Telestream.Cloud.Stores.Model
                     hashCode = hashCode * 59 + this.Name.GetHashCode();
                 if (this.Provider != null)
                     hashCode = hashCode * 59 + this.Provider.GetHashCode();
-                if (this.AccountId != null)
-                    hashCode = hashCode * 59 + this.AccountId.GetHashCode();
                 if (this.BucketName != null)
                     hashCode = hashCode * 59 + this.BucketName.GetHashCode();
                 if (this.InputStore != null)
@@ -292,12 +264,20 @@ namespace Telestream.Cloud.Stores.Model
                     hashCode = hashCode * 59 + this.AccessKey.GetHashCode();
                 if (this.SecretKey != null)
                     hashCode = hashCode * 59 + this.SecretKey.GetHashCode();
-                if (this.BaseUploadUrl != null)
-                    hashCode = hashCode * 59 + this.BaseUploadUrl.GetHashCode();
                 if (this.ProviderSpecificSettings != null)
                     hashCode = hashCode * 59 + this.ProviderSpecificSettings.GetHashCode();
                 return hashCode;
             }
+        }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            yield break;
         }
     }
 

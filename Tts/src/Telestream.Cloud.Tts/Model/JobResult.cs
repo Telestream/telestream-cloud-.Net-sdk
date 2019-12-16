@@ -12,12 +12,14 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
 using SwaggerDateConverter = Telestream.Cloud.Tts.Client.SwaggerDateConverter;
 
 namespace Telestream.Cloud.Tts.Model
@@ -26,7 +28,7 @@ namespace Telestream.Cloud.Tts.Model
     /// JobResult
     /// </summary>
     [DataContract]
-    public partial class JobResult :  IEquatable<JobResult>
+    public partial class JobResult :  IEquatable<JobResult>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="JobResult" /> class.
@@ -107,6 +109,16 @@ namespace Telestream.Cloud.Tts.Model
                     hashCode = hashCode * 59 + this.Results.GetHashCode();
                 return hashCode;
             }
+        }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            yield break;
         }
     }
 

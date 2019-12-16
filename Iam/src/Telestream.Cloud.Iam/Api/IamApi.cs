@@ -12,7 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using RestSharp.Portable;
+using RestSharp;
 using Telestream.Cloud.Iam.Client;
 using Telestream.Cloud.Iam.Model;
 
@@ -401,7 +401,7 @@ namespace Telestream.Cloud.Iam.Api
             if (id == null)
                 throw new ApiException(400, "Missing required parameter 'id' when calling IamApi->DeleteCredential");
 
-            var localVarPath = "./credentials/{id}";
+            var localVarPath = "/credentials/{id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -445,7 +445,7 @@ namespace Telestream.Cloud.Iam.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 
@@ -473,7 +473,7 @@ namespace Telestream.Cloud.Iam.Api
             if (id == null)
                 throw new ApiException(400, "Missing required parameter 'id' when calling IamApi->DeleteCredential");
 
-            var localVarPath = "./credentials/{id}";
+            var localVarPath = "/credentials/{id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -517,7 +517,7 @@ namespace Telestream.Cloud.Iam.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 
@@ -545,7 +545,7 @@ namespace Telestream.Cloud.Iam.Api
             if (id == null)
                 throw new ApiException(400, "Missing required parameter 'id' when calling IamApi->GetCredential");
 
-            var localVarPath = "./credentials/{id}";
+            var localVarPath = "/credentials/{id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -589,7 +589,7 @@ namespace Telestream.Cloud.Iam.Api
             }
 
             return new ApiResponse<Credential>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Credential) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Credential)));
         }
 
@@ -618,7 +618,7 @@ namespace Telestream.Cloud.Iam.Api
             if (id == null)
                 throw new ApiException(400, "Missing required parameter 'id' when calling IamApi->GetCredential");
 
-            var localVarPath = "./credentials/{id}";
+            var localVarPath = "/credentials/{id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -662,7 +662,7 @@ namespace Telestream.Cloud.Iam.Api
             }
 
             return new ApiResponse<Credential>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Credential) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Credential)));
         }
 
@@ -685,7 +685,7 @@ namespace Telestream.Cloud.Iam.Api
         public ApiResponse< CredentialsResponse > GetCredentialsWithHttpInfo ()
         {
 
-            var localVarPath = "./credentials";
+            var localVarPath = "/credentials";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -728,7 +728,7 @@ namespace Telestream.Cloud.Iam.Api
             }
 
             return new ApiResponse<CredentialsResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (CredentialsResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(CredentialsResponse)));
         }
 
@@ -752,7 +752,7 @@ namespace Telestream.Cloud.Iam.Api
         public async System.Threading.Tasks.Task<ApiResponse<CredentialsResponse>> GetCredentialsAsyncWithHttpInfo ()
         {
 
-            var localVarPath = "./credentials";
+            var localVarPath = "/credentials";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -795,7 +795,7 @@ namespace Telestream.Cloud.Iam.Api
             }
 
             return new ApiResponse<CredentialsResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (CredentialsResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(CredentialsResponse)));
         }
 
@@ -823,7 +823,7 @@ namespace Telestream.Cloud.Iam.Api
             if (policy == null)
                 throw new ApiException(400, "Missing required parameter 'policy' when calling IamApi->GetPolicy");
 
-            var localVarPath = "./credentials/policy";
+            var localVarPath = "/credentials/policy";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -874,7 +874,7 @@ namespace Telestream.Cloud.Iam.Api
             }
 
             return new ApiResponse<Dictionary<string, bool?>>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Dictionary<string, bool?>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Dictionary<string, bool?>)));
         }
 
@@ -903,7 +903,7 @@ namespace Telestream.Cloud.Iam.Api
             if (policy == null)
                 throw new ApiException(400, "Missing required parameter 'policy' when calling IamApi->GetPolicy");
 
-            var localVarPath = "./credentials/policy";
+            var localVarPath = "/credentials/policy";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -954,7 +954,7 @@ namespace Telestream.Cloud.Iam.Api
             }
 
             return new ApiResponse<Dictionary<string, bool?>>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Dictionary<string, bool?>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Dictionary<string, bool?>)));
         }
 
@@ -982,7 +982,7 @@ namespace Telestream.Cloud.Iam.Api
             if (createCredential == null)
                 throw new ApiException(400, "Missing required parameter 'createCredential' when calling IamApi->PostCredentials");
 
-            var localVarPath = "./credentials";
+            var localVarPath = "/credentials";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1033,7 +1033,7 @@ namespace Telestream.Cloud.Iam.Api
             }
 
             return new ApiResponse<Credential>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Credential) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Credential)));
         }
 
@@ -1062,7 +1062,7 @@ namespace Telestream.Cloud.Iam.Api
             if (createCredential == null)
                 throw new ApiException(400, "Missing required parameter 'createCredential' when calling IamApi->PostCredentials");
 
-            var localVarPath = "./credentials";
+            var localVarPath = "/credentials";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1113,7 +1113,7 @@ namespace Telestream.Cloud.Iam.Api
             }
 
             return new ApiResponse<Credential>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Credential) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Credential)));
         }
 
@@ -1146,7 +1146,7 @@ namespace Telestream.Cloud.Iam.Api
             if (updateCredential == null)
                 throw new ApiException(400, "Missing required parameter 'updateCredential' when calling IamApi->UpdateCredential");
 
-            var localVarPath = "./credentials/{id}";
+            var localVarPath = "/credentials/{id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1198,7 +1198,7 @@ namespace Telestream.Cloud.Iam.Api
             }
 
             return new ApiResponse<Credential>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Credential) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Credential)));
         }
 
@@ -1232,7 +1232,7 @@ namespace Telestream.Cloud.Iam.Api
             if (updateCredential == null)
                 throw new ApiException(400, "Missing required parameter 'updateCredential' when calling IamApi->UpdateCredential");
 
-            var localVarPath = "./credentials/{id}";
+            var localVarPath = "/credentials/{id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1284,7 +1284,7 @@ namespace Telestream.Cloud.Iam.Api
             }
 
             return new ApiResponse<Credential>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Credential) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Credential)));
         }
 

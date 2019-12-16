@@ -24,7 +24,7 @@ Method | HTTP request | Description
 
 <a name="createstore"></a>
 # **CreateStore**
-> Store CreateStore (StoreBody storeBody)
+> Store CreateStore (Store storeBody)
 
 
 
@@ -48,7 +48,7 @@ namespace Example
             // Configuration.Default.AddApiKeyPrefix("X-Api-Key", "Bearer");
 
             var apiInstance = new StoresApi();
-            var storeBody = new StoreBody(); // StoreBody | 
+            var storeBody = new Store(); // Store | 
 
             try
             {
@@ -68,7 +68,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **storeBody** | [**StoreBody**](StoreBody.md)|  | 
+ **storeBody** | [**Store**](Store.md)|  | 
 
 ### Return type
 
@@ -216,7 +216,7 @@ Name | Type | Description  | Notes
 
 <a name="deletestore"></a>
 # **DeleteStore**
-> Store DeleteStore (string id)
+> void DeleteStore (string id)
 
 
 
@@ -244,8 +244,7 @@ namespace Example
 
             try
             {
-                Store result = apiInstance.DeleteStore(id);
-                Debug.WriteLine(result);
+                apiInstance.DeleteStore(id);
             }
             catch (Exception e)
             {
@@ -264,7 +263,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Store**](Store.md)
+void (empty response body)
 
 ### Authorization
 
@@ -345,7 +344,7 @@ void (empty response body)
 
 <a name="deletewatchrule"></a>
 # **DeleteWatchRule**
-> WatchRule DeleteWatchRule (string id)
+> void DeleteWatchRule (string id)
 
 
 
@@ -373,8 +372,7 @@ namespace Example
 
             try
             {
-                WatchRule result = apiInstance.DeleteWatchRule(id);
-                Debug.WriteLine(result);
+                apiInstance.DeleteWatchRule(id);
             }
             catch (Exception e)
             {
@@ -393,7 +391,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**WatchRule**](WatchRule.md)
+void (empty response body)
 
 ### Authorization
 
@@ -858,7 +856,7 @@ void (empty response body)
 
 <a name="updatestore"></a>
 # **UpdateStore**
-> Store UpdateStore (string id, StoreBody storeBody)
+> Store UpdateStore (string id, Store storeBody)
 
 
 
@@ -883,7 +881,7 @@ namespace Example
 
             var apiInstance = new StoresApi();
             var id = id_example;  // string | an id of a store
-            var storeBody = new StoreBody(); // StoreBody | 
+            var storeBody = new Store(); // Store | 
 
             try
             {
@@ -904,7 +902,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string**| an id of a store | 
- **storeBody** | [**StoreBody**](StoreBody.md)|  | 
+ **storeBody** | [**Store**](Store.md)|  | 
 
 ### Return type
 

@@ -12,7 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using RestSharp.Portable;
+using RestSharp;
 using Telestream.Cloud.Stores.Client;
 using Telestream.Cloud.Stores.Model;
 
@@ -33,7 +33,7 @@ namespace Telestream.Cloud.Stores.Api
         /// <exception cref="Telestream.Cloud.Stores.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="storeBody"></param>
         /// <returns>Store</returns>
-        Store CreateStore (StoreBody storeBody);
+        Store CreateStore (Store storeBody);
 
         /// <summary>
         /// 
@@ -44,7 +44,7 @@ namespace Telestream.Cloud.Stores.Api
         /// <exception cref="Telestream.Cloud.Stores.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="storeBody"></param>
         /// <returns>ApiResponse of Store</returns>
-        ApiResponse<Store> CreateStoreWithHttpInfo (StoreBody storeBody);
+        ApiResponse<Store> CreateStoreWithHttpInfo (Store storeBody);
         /// <summary>
         /// 
         /// </summary>
@@ -99,8 +99,8 @@ namespace Telestream.Cloud.Stores.Api
         /// </remarks>
         /// <exception cref="Telestream.Cloud.Stores.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">an id of a store</param>
-        /// <returns>Store</returns>
-        Store DeleteStore (string id);
+        /// <returns></returns>
+        void DeleteStore (string id);
 
         /// <summary>
         /// 
@@ -110,8 +110,8 @@ namespace Telestream.Cloud.Stores.Api
         /// </remarks>
         /// <exception cref="Telestream.Cloud.Stores.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">an id of a store</param>
-        /// <returns>ApiResponse of Store</returns>
-        ApiResponse<Store> DeleteStoreWithHttpInfo (string id);
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> DeleteStoreWithHttpInfo (string id);
         /// <summary>
         /// 
         /// </summary>
@@ -145,8 +145,8 @@ namespace Telestream.Cloud.Stores.Api
         /// </remarks>
         /// <exception cref="Telestream.Cloud.Stores.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">an id of a resource</param>
-        /// <returns>WatchRule</returns>
-        WatchRule DeleteWatchRule (string id);
+        /// <returns></returns>
+        void DeleteWatchRule (string id);
 
         /// <summary>
         /// 
@@ -156,8 +156,8 @@ namespace Telestream.Cloud.Stores.Api
         /// </remarks>
         /// <exception cref="Telestream.Cloud.Stores.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">an id of a resource</param>
-        /// <returns>ApiResponse of WatchRule</returns>
-        ApiResponse<WatchRule> DeleteWatchRuleWithHttpInfo (string id);
+        /// <returns>ApiResponse of Object(void)</returns>
+        ApiResponse<Object> DeleteWatchRuleWithHttpInfo (string id);
         /// <summary>
         /// 
         /// </summary>
@@ -325,7 +325,7 @@ namespace Telestream.Cloud.Stores.Api
         /// <param name="id">an id of a store</param>
         /// <param name="storeBody"></param>
         /// <returns>Store</returns>
-        Store UpdateStore (string id, StoreBody storeBody);
+        Store UpdateStore (string id, Store storeBody);
 
         /// <summary>
         /// 
@@ -337,7 +337,7 @@ namespace Telestream.Cloud.Stores.Api
         /// <param name="id">an id of a store</param>
         /// <param name="storeBody"></param>
         /// <returns>ApiResponse of Store</returns>
-        ApiResponse<Store> UpdateStoreWithHttpInfo (string id, StoreBody storeBody);
+        ApiResponse<Store> UpdateStoreWithHttpInfo (string id, Store storeBody);
         /// <summary>
         /// 
         /// </summary>
@@ -393,7 +393,7 @@ namespace Telestream.Cloud.Stores.Api
         /// <exception cref="Telestream.Cloud.Stores.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="storeBody"></param>
         /// <returns>Task of Store</returns>
-        System.Threading.Tasks.Task<Store> CreateStoreAsync (StoreBody storeBody);
+        System.Threading.Tasks.Task<Store> CreateStoreAsync (Store storeBody);
 
         /// <summary>
         /// 
@@ -404,7 +404,7 @@ namespace Telestream.Cloud.Stores.Api
         /// <exception cref="Telestream.Cloud.Stores.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="storeBody"></param>
         /// <returns>Task of ApiResponse (Store)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Store>> CreateStoreAsyncWithHttpInfo (StoreBody storeBody);
+        System.Threading.Tasks.Task<ApiResponse<Store>> CreateStoreAsyncWithHttpInfo (Store storeBody);
         /// <summary>
         /// 
         /// </summary>
@@ -459,8 +459,8 @@ namespace Telestream.Cloud.Stores.Api
         /// </remarks>
         /// <exception cref="Telestream.Cloud.Stores.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">an id of a store</param>
-        /// <returns>Task of Store</returns>
-        System.Threading.Tasks.Task<Store> DeleteStoreAsync (string id);
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task DeleteStoreAsync (string id);
 
         /// <summary>
         /// 
@@ -470,8 +470,8 @@ namespace Telestream.Cloud.Stores.Api
         /// </remarks>
         /// <exception cref="Telestream.Cloud.Stores.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">an id of a store</param>
-        /// <returns>Task of ApiResponse (Store)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Store>> DeleteStoreAsyncWithHttpInfo (string id);
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> DeleteStoreAsyncWithHttpInfo (string id);
         /// <summary>
         /// 
         /// </summary>
@@ -505,8 +505,8 @@ namespace Telestream.Cloud.Stores.Api
         /// </remarks>
         /// <exception cref="Telestream.Cloud.Stores.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">an id of a resource</param>
-        /// <returns>Task of WatchRule</returns>
-        System.Threading.Tasks.Task<WatchRule> DeleteWatchRuleAsync (string id);
+        /// <returns>Task of void</returns>
+        System.Threading.Tasks.Task DeleteWatchRuleAsync (string id);
 
         /// <summary>
         /// 
@@ -516,8 +516,8 @@ namespace Telestream.Cloud.Stores.Api
         /// </remarks>
         /// <exception cref="Telestream.Cloud.Stores.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">an id of a resource</param>
-        /// <returns>Task of ApiResponse (WatchRule)</returns>
-        System.Threading.Tasks.Task<ApiResponse<WatchRule>> DeleteWatchRuleAsyncWithHttpInfo (string id);
+        /// <returns>Task of ApiResponse</returns>
+        System.Threading.Tasks.Task<ApiResponse<Object>> DeleteWatchRuleAsyncWithHttpInfo (string id);
         /// <summary>
         /// 
         /// </summary>
@@ -685,7 +685,7 @@ namespace Telestream.Cloud.Stores.Api
         /// <param name="id">an id of a store</param>
         /// <param name="storeBody"></param>
         /// <returns>Task of Store</returns>
-        System.Threading.Tasks.Task<Store> UpdateStoreAsync (string id, StoreBody storeBody);
+        System.Threading.Tasks.Task<Store> UpdateStoreAsync (string id, Store storeBody);
 
         /// <summary>
         /// 
@@ -697,7 +697,7 @@ namespace Telestream.Cloud.Stores.Api
         /// <param name="id">an id of a store</param>
         /// <param name="storeBody"></param>
         /// <returns>Task of ApiResponse (Store)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Store>> UpdateStoreAsyncWithHttpInfo (string id, StoreBody storeBody);
+        System.Threading.Tasks.Task<ApiResponse<Store>> UpdateStoreAsyncWithHttpInfo (string id, Store storeBody);
         /// <summary>
         /// 
         /// </summary>
@@ -848,7 +848,7 @@ namespace Telestream.Cloud.Stores.Api
         /// <exception cref="Telestream.Cloud.Stores.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="storeBody"></param>
         /// <returns>Store</returns>
-        public Store CreateStore (StoreBody storeBody)
+        public Store CreateStore (Store storeBody)
         {
              ApiResponse<Store> localVarResponse = CreateStoreWithHttpInfo(storeBody);
              return localVarResponse.Data;
@@ -860,13 +860,13 @@ namespace Telestream.Cloud.Stores.Api
         /// <exception cref="Telestream.Cloud.Stores.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="storeBody"></param>
         /// <returns>ApiResponse of Store</returns>
-        public ApiResponse< Store > CreateStoreWithHttpInfo (StoreBody storeBody)
+        public ApiResponse< Store > CreateStoreWithHttpInfo (Store storeBody)
         {
             // verify the required parameter 'storeBody' is set
             if (storeBody == null)
                 throw new ApiException(400, "Missing required parameter 'storeBody' when calling StoresApi->CreateStore");
 
-            var localVarPath = "./stores";
+            var localVarPath = "/stores";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -917,7 +917,7 @@ namespace Telestream.Cloud.Stores.Api
             }
 
             return new ApiResponse<Store>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Store) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Store)));
         }
 
@@ -927,7 +927,7 @@ namespace Telestream.Cloud.Stores.Api
         /// <exception cref="Telestream.Cloud.Stores.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="storeBody"></param>
         /// <returns>Task of Store</returns>
-        public async System.Threading.Tasks.Task<Store> CreateStoreAsync (StoreBody storeBody)
+        public async System.Threading.Tasks.Task<Store> CreateStoreAsync (Store storeBody)
         {
              ApiResponse<Store> localVarResponse = await CreateStoreAsyncWithHttpInfo(storeBody);
              return localVarResponse.Data;
@@ -940,13 +940,13 @@ namespace Telestream.Cloud.Stores.Api
         /// <exception cref="Telestream.Cloud.Stores.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="storeBody"></param>
         /// <returns>Task of ApiResponse (Store)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Store>> CreateStoreAsyncWithHttpInfo (StoreBody storeBody)
+        public async System.Threading.Tasks.Task<ApiResponse<Store>> CreateStoreAsyncWithHttpInfo (Store storeBody)
         {
             // verify the required parameter 'storeBody' is set
             if (storeBody == null)
                 throw new ApiException(400, "Missing required parameter 'storeBody' when calling StoresApi->CreateStore");
 
-            var localVarPath = "./stores";
+            var localVarPath = "/stores";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -997,7 +997,7 @@ namespace Telestream.Cloud.Stores.Api
             }
 
             return new ApiResponse<Store>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Store) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Store)));
         }
 
@@ -1034,7 +1034,7 @@ namespace Telestream.Cloud.Stores.Api
             if (serviceId == null)
                 throw new ApiException(400, "Missing required parameter 'serviceId' when calling StoresApi->CreateStoreClientLink");
 
-            var localVarPath = "./stores/{store_id}/service/{service_name}/id/{service_id}";
+            var localVarPath = "/stores/{store_id}/service/{service_name}/id/{service_id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1080,7 +1080,7 @@ namespace Telestream.Cloud.Stores.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 
@@ -1118,7 +1118,7 @@ namespace Telestream.Cloud.Stores.Api
             if (serviceId == null)
                 throw new ApiException(400, "Missing required parameter 'serviceId' when calling StoresApi->CreateStoreClientLink");
 
-            var localVarPath = "./stores/{store_id}/service/{service_name}/id/{service_id}";
+            var localVarPath = "/stores/{store_id}/service/{service_name}/id/{service_id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1164,7 +1164,7 @@ namespace Telestream.Cloud.Stores.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 
@@ -1192,7 +1192,7 @@ namespace Telestream.Cloud.Stores.Api
             if (watchRuleBody == null)
                 throw new ApiException(400, "Missing required parameter 'watchRuleBody' when calling StoresApi->CreateWatchRule");
 
-            var localVarPath = "./watch_rules";
+            var localVarPath = "/watch_rules";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1243,7 +1243,7 @@ namespace Telestream.Cloud.Stores.Api
             }
 
             return new ApiResponse<WatchRule>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (WatchRule) Configuration.ApiClient.Deserialize(localVarResponse, typeof(WatchRule)));
         }
 
@@ -1272,7 +1272,7 @@ namespace Telestream.Cloud.Stores.Api
             if (watchRuleBody == null)
                 throw new ApiException(400, "Missing required parameter 'watchRuleBody' when calling StoresApi->CreateWatchRule");
 
-            var localVarPath = "./watch_rules";
+            var localVarPath = "/watch_rules";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1323,7 +1323,7 @@ namespace Telestream.Cloud.Stores.Api
             }
 
             return new ApiResponse<WatchRule>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (WatchRule) Configuration.ApiClient.Deserialize(localVarResponse, typeof(WatchRule)));
         }
 
@@ -1332,11 +1332,10 @@ namespace Telestream.Cloud.Stores.Api
         /// </summary>
         /// <exception cref="Telestream.Cloud.Stores.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">an id of a store</param>
-        /// <returns>Store</returns>
-        public Store DeleteStore (string id)
+        /// <returns></returns>
+        public void DeleteStore (string id)
         {
-             ApiResponse<Store> localVarResponse = DeleteStoreWithHttpInfo(id);
-             return localVarResponse.Data;
+             DeleteStoreWithHttpInfo(id);
         }
 
         /// <summary>
@@ -1344,14 +1343,14 @@ namespace Telestream.Cloud.Stores.Api
         /// </summary>
         /// <exception cref="Telestream.Cloud.Stores.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">an id of a store</param>
-        /// <returns>ApiResponse of Store</returns>
-        public ApiResponse< Store > DeleteStoreWithHttpInfo (string id)
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> DeleteStoreWithHttpInfo (string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
                 throw new ApiException(400, "Missing required parameter 'id' when calling StoresApi->DeleteStore");
 
-            var localVarPath = "./stores/{id}";
+            var localVarPath = "/stores/{id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1394,9 +1393,9 @@ namespace Telestream.Cloud.Stores.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<Store>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
-                (Store) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Store)));
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
         }
 
         /// <summary>
@@ -1404,11 +1403,10 @@ namespace Telestream.Cloud.Stores.Api
         /// </summary>
         /// <exception cref="Telestream.Cloud.Stores.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">an id of a store</param>
-        /// <returns>Task of Store</returns>
-        public async System.Threading.Tasks.Task<Store> DeleteStoreAsync (string id)
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task DeleteStoreAsync (string id)
         {
-             ApiResponse<Store> localVarResponse = await DeleteStoreAsyncWithHttpInfo(id);
-             return localVarResponse.Data;
+             await DeleteStoreAsyncWithHttpInfo(id);
 
         }
 
@@ -1417,14 +1415,14 @@ namespace Telestream.Cloud.Stores.Api
         /// </summary>
         /// <exception cref="Telestream.Cloud.Stores.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">an id of a store</param>
-        /// <returns>Task of ApiResponse (Store)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Store>> DeleteStoreAsyncWithHttpInfo (string id)
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> DeleteStoreAsyncWithHttpInfo (string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
                 throw new ApiException(400, "Missing required parameter 'id' when calling StoresApi->DeleteStore");
 
-            var localVarPath = "./stores/{id}";
+            var localVarPath = "/stores/{id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1467,9 +1465,9 @@ namespace Telestream.Cloud.Stores.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<Store>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
-                (Store) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Store)));
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
         }
 
         /// <summary>
@@ -1505,7 +1503,7 @@ namespace Telestream.Cloud.Stores.Api
             if (serviceId == null)
                 throw new ApiException(400, "Missing required parameter 'serviceId' when calling StoresApi->DeleteStoreClientLink");
 
-            var localVarPath = "./stores/{store_id}/service/{service_name}/id/{service_id}";
+            var localVarPath = "/stores/{store_id}/service/{service_name}/id/{service_id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1551,7 +1549,7 @@ namespace Telestream.Cloud.Stores.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 
@@ -1589,7 +1587,7 @@ namespace Telestream.Cloud.Stores.Api
             if (serviceId == null)
                 throw new ApiException(400, "Missing required parameter 'serviceId' when calling StoresApi->DeleteStoreClientLink");
 
-            var localVarPath = "./stores/{store_id}/service/{service_name}/id/{service_id}";
+            var localVarPath = "/stores/{store_id}/service/{service_name}/id/{service_id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1635,7 +1633,7 @@ namespace Telestream.Cloud.Stores.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 
@@ -1644,11 +1642,10 @@ namespace Telestream.Cloud.Stores.Api
         /// </summary>
         /// <exception cref="Telestream.Cloud.Stores.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">an id of a resource</param>
-        /// <returns>WatchRule</returns>
-        public WatchRule DeleteWatchRule (string id)
+        /// <returns></returns>
+        public void DeleteWatchRule (string id)
         {
-             ApiResponse<WatchRule> localVarResponse = DeleteWatchRuleWithHttpInfo(id);
-             return localVarResponse.Data;
+             DeleteWatchRuleWithHttpInfo(id);
         }
 
         /// <summary>
@@ -1656,14 +1653,14 @@ namespace Telestream.Cloud.Stores.Api
         /// </summary>
         /// <exception cref="Telestream.Cloud.Stores.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">an id of a resource</param>
-        /// <returns>ApiResponse of WatchRule</returns>
-        public ApiResponse< WatchRule > DeleteWatchRuleWithHttpInfo (string id)
+        /// <returns>ApiResponse of Object(void)</returns>
+        public ApiResponse<Object> DeleteWatchRuleWithHttpInfo (string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
                 throw new ApiException(400, "Missing required parameter 'id' when calling StoresApi->DeleteWatchRule");
 
-            var localVarPath = "./watch_rules/{id}";
+            var localVarPath = "/watch_rules/{id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1706,9 +1703,9 @@ namespace Telestream.Cloud.Stores.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<WatchRule>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
-                (WatchRule) Configuration.ApiClient.Deserialize(localVarResponse, typeof(WatchRule)));
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
         }
 
         /// <summary>
@@ -1716,11 +1713,10 @@ namespace Telestream.Cloud.Stores.Api
         /// </summary>
         /// <exception cref="Telestream.Cloud.Stores.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">an id of a resource</param>
-        /// <returns>Task of WatchRule</returns>
-        public async System.Threading.Tasks.Task<WatchRule> DeleteWatchRuleAsync (string id)
+        /// <returns>Task of void</returns>
+        public async System.Threading.Tasks.Task DeleteWatchRuleAsync (string id)
         {
-             ApiResponse<WatchRule> localVarResponse = await DeleteWatchRuleAsyncWithHttpInfo(id);
-             return localVarResponse.Data;
+             await DeleteWatchRuleAsyncWithHttpInfo(id);
 
         }
 
@@ -1729,14 +1725,14 @@ namespace Telestream.Cloud.Stores.Api
         /// </summary>
         /// <exception cref="Telestream.Cloud.Stores.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">an id of a resource</param>
-        /// <returns>Task of ApiResponse (WatchRule)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<WatchRule>> DeleteWatchRuleAsyncWithHttpInfo (string id)
+        /// <returns>Task of ApiResponse</returns>
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> DeleteWatchRuleAsyncWithHttpInfo (string id)
         {
             // verify the required parameter 'id' is set
             if (id == null)
                 throw new ApiException(400, "Missing required parameter 'id' when calling StoresApi->DeleteWatchRule");
 
-            var localVarPath = "./watch_rules/{id}";
+            var localVarPath = "/watch_rules/{id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1779,9 +1775,9 @@ namespace Telestream.Cloud.Stores.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<WatchRule>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
-                (WatchRule) Configuration.ApiClient.Deserialize(localVarResponse, typeof(WatchRule)));
+            return new ApiResponse<Object>(localVarStatusCode,
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                null);
         }
 
         /// <summary>
@@ -1818,7 +1814,7 @@ namespace Telestream.Cloud.Stores.Api
             if (expiresIn == null)
                 throw new ApiException(400, "Missing required parameter 'expiresIn' when calling StoresApi->GetObjectUrl");
 
-            var localVarPath = "./stores/{id}/object_url";
+            var localVarPath = "/stores/{id}/object_url";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1864,7 +1860,7 @@ namespace Telestream.Cloud.Stores.Api
             }
 
             return new ApiResponse<ObjectURL>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (ObjectURL) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ObjectURL)));
         }
 
@@ -1903,7 +1899,7 @@ namespace Telestream.Cloud.Stores.Api
             if (expiresIn == null)
                 throw new ApiException(400, "Missing required parameter 'expiresIn' when calling StoresApi->GetObjectUrl");
 
-            var localVarPath = "./stores/{id}/object_url";
+            var localVarPath = "/stores/{id}/object_url";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1949,7 +1945,7 @@ namespace Telestream.Cloud.Stores.Api
             }
 
             return new ApiResponse<ObjectURL>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (ObjectURL) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ObjectURL)));
         }
 
@@ -1977,7 +1973,7 @@ namespace Telestream.Cloud.Stores.Api
             if (id == null)
                 throw new ApiException(400, "Missing required parameter 'id' when calling StoresApi->GetStore");
 
-            var localVarPath = "./stores/{id}";
+            var localVarPath = "/stores/{id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2021,7 +2017,7 @@ namespace Telestream.Cloud.Stores.Api
             }
 
             return new ApiResponse<Store>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Store) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Store)));
         }
 
@@ -2050,7 +2046,7 @@ namespace Telestream.Cloud.Stores.Api
             if (id == null)
                 throw new ApiException(400, "Missing required parameter 'id' when calling StoresApi->GetStore");
 
-            var localVarPath = "./stores/{id}";
+            var localVarPath = "/stores/{id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2094,7 +2090,7 @@ namespace Telestream.Cloud.Stores.Api
             }
 
             return new ApiResponse<Store>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Store) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Store)));
         }
 
@@ -2127,7 +2123,7 @@ namespace Telestream.Cloud.Stores.Api
             if (serviceId == null)
                 throw new ApiException(400, "Missing required parameter 'serviceId' when calling StoresApi->GetStoreIdsForClient");
 
-            var localVarPath = "./stores/service/{service_name}/id/{service_id}";
+            var localVarPath = "/stores/service/{service_name}/id/{service_id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2172,7 +2168,7 @@ namespace Telestream.Cloud.Stores.Api
             }
 
             return new ApiResponse<List<string>>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (List<string>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<string>)));
         }
 
@@ -2206,7 +2202,7 @@ namespace Telestream.Cloud.Stores.Api
             if (serviceId == null)
                 throw new ApiException(400, "Missing required parameter 'serviceId' when calling StoresApi->GetStoreIdsForClient");
 
-            var localVarPath = "./stores/service/{service_name}/id/{service_id}";
+            var localVarPath = "/stores/service/{service_name}/id/{service_id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2251,7 +2247,7 @@ namespace Telestream.Cloud.Stores.Api
             }
 
             return new ApiResponse<List<string>>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (List<string>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<string>)));
         }
 
@@ -2278,7 +2274,7 @@ namespace Telestream.Cloud.Stores.Api
         public ApiResponse< List<Store> > GetStoresWithHttpInfo (string bucketName = null, string provider = null)
         {
 
-            var localVarPath = "./stores";
+            var localVarPath = "/stores";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2323,7 +2319,7 @@ namespace Telestream.Cloud.Stores.Api
             }
 
             return new ApiResponse<List<Store>>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (List<Store>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<Store>)));
         }
 
@@ -2351,7 +2347,7 @@ namespace Telestream.Cloud.Stores.Api
         public async System.Threading.Tasks.Task<ApiResponse<List<Store>>> GetStoresAsyncWithHttpInfo (string bucketName = null, string provider = null)
         {
 
-            var localVarPath = "./stores";
+            var localVarPath = "/stores";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2396,7 +2392,7 @@ namespace Telestream.Cloud.Stores.Api
             }
 
             return new ApiResponse<List<Store>>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (List<Store>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<Store>)));
         }
 
@@ -2424,7 +2420,7 @@ namespace Telestream.Cloud.Stores.Api
             if (id == null)
                 throw new ApiException(400, "Missing required parameter 'id' when calling StoresApi->GetWatchRule");
 
-            var localVarPath = "./watch_rules/{id}";
+            var localVarPath = "/watch_rules/{id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2468,7 +2464,7 @@ namespace Telestream.Cloud.Stores.Api
             }
 
             return new ApiResponse<WatchRule>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (WatchRule) Configuration.ApiClient.Deserialize(localVarResponse, typeof(WatchRule)));
         }
 
@@ -2497,7 +2493,7 @@ namespace Telestream.Cloud.Stores.Api
             if (id == null)
                 throw new ApiException(400, "Missing required parameter 'id' when calling StoresApi->GetWatchRule");
 
-            var localVarPath = "./watch_rules/{id}";
+            var localVarPath = "/watch_rules/{id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2541,7 +2537,7 @@ namespace Telestream.Cloud.Stores.Api
             }
 
             return new ApiResponse<WatchRule>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (WatchRule) Configuration.ApiClient.Deserialize(localVarResponse, typeof(WatchRule)));
         }
 
@@ -2568,7 +2564,7 @@ namespace Telestream.Cloud.Stores.Api
         public ApiResponse< List<WatchRule> > GetWatchRulesWithHttpInfo (string serviceId = null, string storeId = null)
         {
 
-            var localVarPath = "./watch_rules";
+            var localVarPath = "/watch_rules";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2613,7 +2609,7 @@ namespace Telestream.Cloud.Stores.Api
             }
 
             return new ApiResponse<List<WatchRule>>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (List<WatchRule>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<WatchRule>)));
         }
 
@@ -2641,7 +2637,7 @@ namespace Telestream.Cloud.Stores.Api
         public async System.Threading.Tasks.Task<ApiResponse<List<WatchRule>>> GetWatchRulesAsyncWithHttpInfo (string serviceId = null, string storeId = null)
         {
 
-            var localVarPath = "./watch_rules";
+            var localVarPath = "/watch_rules";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2686,7 +2682,7 @@ namespace Telestream.Cloud.Stores.Api
             }
 
             return new ApiResponse<List<WatchRule>>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (List<WatchRule>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<WatchRule>)));
         }
 
@@ -2713,7 +2709,7 @@ namespace Telestream.Cloud.Stores.Api
             if (id == null)
                 throw new ApiException(400, "Missing required parameter 'id' when calling StoresApi->SyncWatchRule");
 
-            var localVarPath = "./watch_rules/{id}/sync";
+            var localVarPath = "/watch_rules/{id}/sync";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2757,7 +2753,7 @@ namespace Telestream.Cloud.Stores.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 
@@ -2785,7 +2781,7 @@ namespace Telestream.Cloud.Stores.Api
             if (id == null)
                 throw new ApiException(400, "Missing required parameter 'id' when calling StoresApi->SyncWatchRule");
 
-            var localVarPath = "./watch_rules/{id}/sync";
+            var localVarPath = "/watch_rules/{id}/sync";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2829,7 +2825,7 @@ namespace Telestream.Cloud.Stores.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 
@@ -2840,7 +2836,7 @@ namespace Telestream.Cloud.Stores.Api
         /// <param name="id">an id of a store</param>
         /// <param name="storeBody"></param>
         /// <returns>Store</returns>
-        public Store UpdateStore (string id, StoreBody storeBody)
+        public Store UpdateStore (string id, Store storeBody)
         {
              ApiResponse<Store> localVarResponse = UpdateStoreWithHttpInfo(id, storeBody);
              return localVarResponse.Data;
@@ -2853,7 +2849,7 @@ namespace Telestream.Cloud.Stores.Api
         /// <param name="id">an id of a store</param>
         /// <param name="storeBody"></param>
         /// <returns>ApiResponse of Store</returns>
-        public ApiResponse< Store > UpdateStoreWithHttpInfo (string id, StoreBody storeBody)
+        public ApiResponse< Store > UpdateStoreWithHttpInfo (string id, Store storeBody)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -2862,7 +2858,7 @@ namespace Telestream.Cloud.Stores.Api
             if (storeBody == null)
                 throw new ApiException(400, "Missing required parameter 'storeBody' when calling StoresApi->UpdateStore");
 
-            var localVarPath = "./stores/{id}";
+            var localVarPath = "/stores/{id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2914,7 +2910,7 @@ namespace Telestream.Cloud.Stores.Api
             }
 
             return new ApiResponse<Store>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Store) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Store)));
         }
 
@@ -2925,7 +2921,7 @@ namespace Telestream.Cloud.Stores.Api
         /// <param name="id">an id of a store</param>
         /// <param name="storeBody"></param>
         /// <returns>Task of Store</returns>
-        public async System.Threading.Tasks.Task<Store> UpdateStoreAsync (string id, StoreBody storeBody)
+        public async System.Threading.Tasks.Task<Store> UpdateStoreAsync (string id, Store storeBody)
         {
              ApiResponse<Store> localVarResponse = await UpdateStoreAsyncWithHttpInfo(id, storeBody);
              return localVarResponse.Data;
@@ -2939,7 +2935,7 @@ namespace Telestream.Cloud.Stores.Api
         /// <param name="id">an id of a store</param>
         /// <param name="storeBody"></param>
         /// <returns>Task of ApiResponse (Store)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Store>> UpdateStoreAsyncWithHttpInfo (string id, StoreBody storeBody)
+        public async System.Threading.Tasks.Task<ApiResponse<Store>> UpdateStoreAsyncWithHttpInfo (string id, Store storeBody)
         {
             // verify the required parameter 'id' is set
             if (id == null)
@@ -2948,7 +2944,7 @@ namespace Telestream.Cloud.Stores.Api
             if (storeBody == null)
                 throw new ApiException(400, "Missing required parameter 'storeBody' when calling StoresApi->UpdateStore");
 
-            var localVarPath = "./stores/{id}";
+            var localVarPath = "/stores/{id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3000,7 +2996,7 @@ namespace Telestream.Cloud.Stores.Api
             }
 
             return new ApiResponse<Store>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Store) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Store)));
         }
 
@@ -3033,7 +3029,7 @@ namespace Telestream.Cloud.Stores.Api
             if (watchRuleBody == null)
                 throw new ApiException(400, "Missing required parameter 'watchRuleBody' when calling StoresApi->UpdateWatchRule");
 
-            var localVarPath = "./watch_rules/{id}";
+            var localVarPath = "/watch_rules/{id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3085,7 +3081,7 @@ namespace Telestream.Cloud.Stores.Api
             }
 
             return new ApiResponse<WatchRule>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (WatchRule) Configuration.ApiClient.Deserialize(localVarResponse, typeof(WatchRule)));
         }
 
@@ -3119,7 +3115,7 @@ namespace Telestream.Cloud.Stores.Api
             if (watchRuleBody == null)
                 throw new ApiException(400, "Missing required parameter 'watchRuleBody' when calling StoresApi->UpdateWatchRule");
 
-            var localVarPath = "./watch_rules/{id}";
+            var localVarPath = "/watch_rules/{id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3171,7 +3167,7 @@ namespace Telestream.Cloud.Stores.Api
             }
 
             return new ApiResponse<WatchRule>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (WatchRule) Configuration.ApiClient.Deserialize(localVarResponse, typeof(WatchRule)));
         }
 
@@ -3199,7 +3195,7 @@ namespace Telestream.Cloud.Stores.Api
             if (validateBucketBody == null)
                 throw new ApiException(400, "Missing required parameter 'validateBucketBody' when calling StoresApi->ValidateBucket");
 
-            var localVarPath = "./validate_bucket";
+            var localVarPath = "/validate_bucket";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3250,7 +3246,7 @@ namespace Telestream.Cloud.Stores.Api
             }
 
             return new ApiResponse<ValidateBucketResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (ValidateBucketResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ValidateBucketResponse)));
         }
 
@@ -3279,7 +3275,7 @@ namespace Telestream.Cloud.Stores.Api
             if (validateBucketBody == null)
                 throw new ApiException(400, "Missing required parameter 'validateBucketBody' when calling StoresApi->ValidateBucket");
 
-            var localVarPath = "./validate_bucket";
+            var localVarPath = "/validate_bucket";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3330,7 +3326,7 @@ namespace Telestream.Cloud.Stores.Api
             }
 
             return new ApiResponse<ValidateBucketResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (ValidateBucketResponse) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ValidateBucketResponse)));
         }
 

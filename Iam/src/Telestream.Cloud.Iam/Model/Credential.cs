@@ -12,12 +12,14 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
 using SwaggerDateConverter = Telestream.Cloud.Iam.Client.SwaggerDateConverter;
 
 namespace Telestream.Cloud.Iam.Model
@@ -26,7 +28,7 @@ namespace Telestream.Cloud.Iam.Model
     /// Credential
     /// </summary>
     [DataContract]
-    public partial class Credential :  IEquatable<Credential>
+    public partial class Credential :  IEquatable<Credential>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Credential" /> class.
@@ -170,6 +172,16 @@ namespace Telestream.Cloud.Iam.Model
                     hashCode = hashCode * 59 + this.ParentCredentialId.GetHashCode();
                 return hashCode;
             }
+        }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            yield break;
         }
     }
 

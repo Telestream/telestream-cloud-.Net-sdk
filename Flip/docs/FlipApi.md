@@ -21,7 +21,6 @@ Method | HTTP request | Description
 [**EncodingsCount**](FlipApi.md#encodingscount) | **GET** /encodings/count.json | Returns a number of Encoding objects created using a given factory.
 [**Factories**](FlipApi.md#factories) | **GET** /factories.json | Returns a collection of Factory objects.
 [**Factory**](FlipApi.md#factory) | **GET** /factories/{id}.json | Returns a Factory object.
-[**Notifications**](FlipApi.md#notifications) | **GET** /notifications.json | Returns a Factory&#39;s notification settings.
 [**Profile**](FlipApi.md#profile) | **GET** /profiles/{id_or_name}.json | Returns a Profile object.
 [**ProfileEncodings**](FlipApi.md#profileencodings) | **GET** /profiles/{id_or_name}/encodings.json | Returns a list of Encodings that belong to a Profile.
 [**Profiles**](FlipApi.md#profiles) | **GET** /profiles.json | Returns a collection of Profile objects.
@@ -31,10 +30,8 @@ Method | HTTP request | Description
 [**SignedEncodingUrl**](FlipApi.md#signedencodingurl) | **GET** /encodings/{id}/signed-url.json | Returns a signed url pointing to an Encoding.
 [**SignedEncodingUrls**](FlipApi.md#signedencodingurls) | **GET** /encodings/{id}/signed-urls.json | Returns a list of signed urls pointing to an Encoding&#39;s outputs.
 [**SignedVideoUrl**](FlipApi.md#signedvideourl) | **GET** /videos/{id}/signed-url.json | Returns a signed url pointing to a Video.
-[**ToggleFactorySync**](FlipApi.md#togglefactorysync) | **POST** /factories/{id}/sync.json | Toggles synchronisation settings.
 [**UpdateEncoding**](FlipApi.md#updateencoding) | **PUT** /encodings/{id}.json | Updates an Encoding
 [**UpdateFactory**](FlipApi.md#updatefactory) | **PATCH** /factories/{id}.json | Updates a Factory&#39;s settings. Returns a Factory object.
-[**UpdateNotifications**](FlipApi.md#updatenotifications) | **PUT** /notifications.json | Updates a Factory&#39;s notification settings.
 [**UpdateProfile**](FlipApi.md#updateprofile) | **PUT** /profiles/{id}.json | Updates a given Profile
 [**UploadVideo**](FlipApi.md#uploadvideo) | **POST** /videos/upload.json | Creates an upload session.
 [**Video**](FlipApi.md#video) | **GET** /videos/{id}.json | Returns a Video object.
@@ -318,7 +315,7 @@ Name | Type | Description  | Notes
 
 <a name="createfactory"></a>
 # **CreateFactory**
-> Factory CreateFactory (FactoryBody createFactoryBody, bool? withStorageProvider = null)
+> Factory CreateFactory (Factory createFactoryBody, bool? withStorageProvider = null)
 
 Creates a new factory
 
@@ -342,7 +339,7 @@ namespace Example
             // Configuration.Default.AddApiKeyPrefix("X-Api-Key", "Bearer");
 
             var apiInstance = new FlipApi();
-            var createFactoryBody = new FactoryBody(); // FactoryBody | 
+            var createFactoryBody = new Factory(); // Factory | 
             var withStorageProvider = true;  // bool? | if set to `true`, results will include a storage provider's id (optional) 
 
             try
@@ -364,7 +361,7 @@ namespace Example
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createFactoryBody** | [**FactoryBody**](FactoryBody.md)|  | 
+ **createFactoryBody** | [**Factory**](Factory.md)|  | 
  **withStorageProvider** | **bool?**| if set to &#x60;true&#x60;, results will include a storage provider&#39;s id | [optional] 
 
 ### Return type
@@ -1203,70 +1200,6 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="notifications"></a>
-# **Notifications**
-> CloudNotificationSettings Notifications (string factoryId)
-
-Returns a Factory's notification settings.
-
-### Example
-```csharp
-using System;
-using System.Diagnostics;
-using Telestream.Cloud.Flip.Api;
-using Telestream.Cloud.Flip.Client;
-using Telestream.Cloud.Flip.Model;
-
-namespace Example
-{
-    public class NotificationsExample
-    {
-        public void main()
-        {
-            // Configure API key authorization: api_key
-            Configuration.Default.AddApiKey("X-Api-Key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("X-Api-Key", "Bearer");
-
-            var apiInstance = new FlipApi();
-            var factoryId = factoryId_example;  // string | Id of a Factory.
-
-            try
-            {
-                // Returns a Factory's notification settings.
-                CloudNotificationSettings result = apiInstance.Notifications(factoryId);
-                Debug.WriteLine(result);
-            }
-            catch (Exception e)
-            {
-                Debug.Print("Exception when calling FlipApi.Notifications: " + e.Message );
-            }
-        }
-    }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **factoryId** | **string**| Id of a Factory. | 
-
-### Return type
-
-[**CloudNotificationSettings**](CloudNotificationSettings.md)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 <a name="profile"></a>
 # **Profile**
 > Profile Profile (string idOrName, string factoryId, bool? expand = null)
@@ -1874,72 +1807,6 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-<a name="togglefactorysync"></a>
-# **ToggleFactorySync**
-> FactorySync ToggleFactorySync (string id, FactorySyncBody factorySyncBody)
-
-Toggles synchronisation settings.
-
-### Example
-```csharp
-using System;
-using System.Diagnostics;
-using Telestream.Cloud.Flip.Api;
-using Telestream.Cloud.Flip.Client;
-using Telestream.Cloud.Flip.Model;
-
-namespace Example
-{
-    public class ToggleFactorySyncExample
-    {
-        public void main()
-        {
-            // Configure API key authorization: api_key
-            Configuration.Default.AddApiKey("X-Api-Key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("X-Api-Key", "Bearer");
-
-            var apiInstance = new FlipApi();
-            var id = id_example;  // string | id of the factory
-            var factorySyncBody = new FactorySyncBody(); // FactorySyncBody | 
-
-            try
-            {
-                // Toggles synchronisation settings.
-                FactorySync result = apiInstance.ToggleFactorySync(id, factorySyncBody);
-                Debug.WriteLine(result);
-            }
-            catch (Exception e)
-            {
-                Debug.Print("Exception when calling FlipApi.ToggleFactorySync: " + e.Message );
-            }
-        }
-    }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **string**| id of the factory | 
- **factorySyncBody** | [**FactorySyncBody**](FactorySyncBody.md)|  | 
-
-### Return type
-
-[**FactorySync**](FactorySync.md)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 <a name="updateencoding"></a>
 # **UpdateEncoding**
 > Encoding UpdateEncoding (string id, string factoryId, UpdateEncodingBody updateEncodingBody, bool? screenshots = null, bool? preciseStatus = null)
@@ -2014,7 +1881,7 @@ Name | Type | Description  | Notes
 
 <a name="updatefactory"></a>
 # **UpdateFactory**
-> Factory UpdateFactory (string id, FactoryBody updateFactoryBody, bool? withStorageProvider = null)
+> Factory UpdateFactory (string id, Factory updateFactoryBody, bool? withStorageProvider = null)
 
 Updates a Factory's settings. Returns a Factory object.
 
@@ -2039,7 +1906,7 @@ namespace Example
 
             var apiInstance = new FlipApi();
             var id = id_example;  // string | id of the factory
-            var updateFactoryBody = new FactoryBody(); // FactoryBody | 
+            var updateFactoryBody = new Factory(); // Factory | 
             var withStorageProvider = true;  // bool? | if set to `true`, results will include a storage provider's id (optional) 
 
             try
@@ -2062,78 +1929,12 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **string**| id of the factory | 
- **updateFactoryBody** | [**FactoryBody**](FactoryBody.md)|  | 
+ **updateFactoryBody** | [**Factory**](Factory.md)|  | 
  **withStorageProvider** | **bool?**| if set to &#x60;true&#x60;, results will include a storage provider&#39;s id | [optional] 
 
 ### Return type
 
 [**Factory**](Factory.md)
-
-### Authorization
-
-[api_key](../README.md#api_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-<a name="updatenotifications"></a>
-# **UpdateNotifications**
-> CloudNotificationSettings UpdateNotifications (string factoryId, CloudNotificationSettings cloudNotificationSettingsBody)
-
-Updates a Factory's notification settings.
-
-### Example
-```csharp
-using System;
-using System.Diagnostics;
-using Telestream.Cloud.Flip.Api;
-using Telestream.Cloud.Flip.Client;
-using Telestream.Cloud.Flip.Model;
-
-namespace Example
-{
-    public class UpdateNotificationsExample
-    {
-        public void main()
-        {
-            // Configure API key authorization: api_key
-            Configuration.Default.AddApiKey("X-Api-Key", "YOUR_API_KEY");
-            // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-            // Configuration.Default.AddApiKeyPrefix("X-Api-Key", "Bearer");
-
-            var apiInstance = new FlipApi();
-            var factoryId = factoryId_example;  // string | Id of a Factory.
-            var cloudNotificationSettingsBody = new CloudNotificationSettings(); // CloudNotificationSettings | 
-
-            try
-            {
-                // Updates a Factory's notification settings.
-                CloudNotificationSettings result = apiInstance.UpdateNotifications(factoryId, cloudNotificationSettingsBody);
-                Debug.WriteLine(result);
-            }
-            catch (Exception e)
-            {
-                Debug.Print("Exception when calling FlipApi.UpdateNotifications: " + e.Message );
-            }
-        }
-    }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **factoryId** | **string**| Id of a Factory. | 
- **cloudNotificationSettingsBody** | [**CloudNotificationSettings**](CloudNotificationSettings.md)|  | 
-
-### Return type
-
-[**CloudNotificationSettings**](CloudNotificationSettings.md)
 
 ### Authorization
 

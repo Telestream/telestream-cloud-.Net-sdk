@@ -12,7 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using RestSharp.Portable;
+using RestSharp;
 using Telestream.Cloud.Tts.Client;
 using Telestream.Cloud.Tts.Model;
 
@@ -190,8 +190,9 @@ namespace Telestream.Cloud.Tts.Api
         /// Deletes the Project
         /// </remarks>
         /// <exception cref="Telestream.Cloud.Tts.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="projectID">ID of the Project</param>
         /// <returns></returns>
-        void DeleteProject ();
+        void DeleteProject (string projectID);
 
         /// <summary>
         /// Deletes the Project
@@ -200,8 +201,9 @@ namespace Telestream.Cloud.Tts.Api
         /// Deletes the Project
         /// </remarks>
         /// <exception cref="Telestream.Cloud.Tts.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="projectID">ID of the Project</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        ApiResponse<Object> DeleteProjectWithHttpInfo ();
+        ApiResponse<Object> DeleteProjectWithHttpInfo (string projectID);
         /// <summary>
         /// Returns the Job
         /// </summary>
@@ -364,9 +366,10 @@ namespace Telestream.Cloud.Tts.Api
         /// Updates an existing Project
         /// </remarks>
         /// <exception cref="Telestream.Cloud.Tts.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="projectID">ID of the Project</param>
         /// <param name="project"></param>
         /// <returns>Project</returns>
-        Project UpdateProject (Project project);
+        Project UpdateProject (string projectID, Project project);
 
         /// <summary>
         /// Updates an existing Project
@@ -375,9 +378,10 @@ namespace Telestream.Cloud.Tts.Api
         /// Updates an existing Project
         /// </remarks>
         /// <exception cref="Telestream.Cloud.Tts.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="projectID">ID of the Project</param>
         /// <param name="project"></param>
         /// <returns>ApiResponse of Project</returns>
-        ApiResponse<Project> UpdateProjectWithHttpInfo (Project project);
+        ApiResponse<Project> UpdateProjectWithHttpInfo (string projectID, Project project);
         /// <summary>
         /// Creates an upload session
         /// </summary>
@@ -569,8 +573,9 @@ namespace Telestream.Cloud.Tts.Api
         /// Deletes the Project
         /// </remarks>
         /// <exception cref="Telestream.Cloud.Tts.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="projectID">ID of the Project</param>
         /// <returns>Task of void</returns>
-        System.Threading.Tasks.Task DeleteProjectAsync ();
+        System.Threading.Tasks.Task DeleteProjectAsync (string projectID);
 
         /// <summary>
         /// Deletes the Project
@@ -579,8 +584,9 @@ namespace Telestream.Cloud.Tts.Api
         /// Deletes the Project
         /// </remarks>
         /// <exception cref="Telestream.Cloud.Tts.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="projectID">ID of the Project</param>
         /// <returns>Task of ApiResponse</returns>
-        System.Threading.Tasks.Task<ApiResponse<Object>> DeleteProjectAsyncWithHttpInfo ();
+        System.Threading.Tasks.Task<ApiResponse<Object>> DeleteProjectAsyncWithHttpInfo (string projectID);
         /// <summary>
         /// Returns the Job
         /// </summary>
@@ -743,9 +749,10 @@ namespace Telestream.Cloud.Tts.Api
         /// Updates an existing Project
         /// </remarks>
         /// <exception cref="Telestream.Cloud.Tts.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="projectID">ID of the Project</param>
         /// <param name="project"></param>
         /// <returns>Task of Project</returns>
-        System.Threading.Tasks.Task<Project> UpdateProjectAsync (Project project);
+        System.Threading.Tasks.Task<Project> UpdateProjectAsync (string projectID, Project project);
 
         /// <summary>
         /// Updates an existing Project
@@ -754,9 +761,10 @@ namespace Telestream.Cloud.Tts.Api
         /// Updates an existing Project
         /// </remarks>
         /// <exception cref="Telestream.Cloud.Tts.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="projectID">ID of the Project</param>
         /// <param name="project"></param>
         /// <returns>Task of ApiResponse (Project)</returns>
-        System.Threading.Tasks.Task<ApiResponse<Project>> UpdateProjectAsyncWithHttpInfo (Project project);
+        System.Threading.Tasks.Task<ApiResponse<Project>> UpdateProjectAsyncWithHttpInfo (string projectID, Project project);
         /// <summary>
         /// Creates an upload session
         /// </summary>
@@ -904,7 +912,7 @@ namespace Telestream.Cloud.Tts.Api
             if (projectID == null)
                 throw new ApiException(400, "Missing required parameter 'projectID' when calling TtsApi->Corpora");
 
-            var localVarPath = "./projects/{projectID}/corpora";
+            var localVarPath = "/projects/{projectID}/corpora";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -948,7 +956,7 @@ namespace Telestream.Cloud.Tts.Api
             }
 
             return new ApiResponse<CorporaCollection>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (CorporaCollection) Configuration.ApiClient.Deserialize(localVarResponse, typeof(CorporaCollection)));
         }
 
@@ -977,7 +985,7 @@ namespace Telestream.Cloud.Tts.Api
             if (projectID == null)
                 throw new ApiException(400, "Missing required parameter 'projectID' when calling TtsApi->Corpora");
 
-            var localVarPath = "./projects/{projectID}/corpora";
+            var localVarPath = "/projects/{projectID}/corpora";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1021,7 +1029,7 @@ namespace Telestream.Cloud.Tts.Api
             }
 
             return new ApiResponse<CorporaCollection>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (CorporaCollection) Configuration.ApiClient.Deserialize(localVarResponse, typeof(CorporaCollection)));
         }
 
@@ -1054,7 +1062,7 @@ namespace Telestream.Cloud.Tts.Api
             if (name == null)
                 throw new ApiException(400, "Missing required parameter 'name' when calling TtsApi->Corpus");
 
-            var localVarPath = "./projects/{projectID}/corpora/{name}";
+            var localVarPath = "/projects/{projectID}/corpora/{name}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1099,7 +1107,7 @@ namespace Telestream.Cloud.Tts.Api
             }
 
             return new ApiResponse<Corpus>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Corpus) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Corpus)));
         }
 
@@ -1133,7 +1141,7 @@ namespace Telestream.Cloud.Tts.Api
             if (name == null)
                 throw new ApiException(400, "Missing required parameter 'name' when calling TtsApi->Corpus");
 
-            var localVarPath = "./projects/{projectID}/corpora/{name}";
+            var localVarPath = "/projects/{projectID}/corpora/{name}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1178,7 +1186,7 @@ namespace Telestream.Cloud.Tts.Api
             }
 
             return new ApiResponse<Corpus>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Corpus) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Corpus)));
         }
 
@@ -1215,7 +1223,7 @@ namespace Telestream.Cloud.Tts.Api
             if (body == null)
                 throw new ApiException(400, "Missing required parameter 'body' when calling TtsApi->CreateCorpus");
 
-            var localVarPath = "./projects/{projectID}/corpora/{name}";
+            var localVarPath = "/projects/{projectID}/corpora/{name}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1268,7 +1276,7 @@ namespace Telestream.Cloud.Tts.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 
@@ -1306,7 +1314,7 @@ namespace Telestream.Cloud.Tts.Api
             if (body == null)
                 throw new ApiException(400, "Missing required parameter 'body' when calling TtsApi->CreateCorpus");
 
-            var localVarPath = "./projects/{projectID}/corpora/{name}";
+            var localVarPath = "/projects/{projectID}/corpora/{name}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1359,7 +1367,7 @@ namespace Telestream.Cloud.Tts.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 
@@ -1392,7 +1400,7 @@ namespace Telestream.Cloud.Tts.Api
             if (job == null)
                 throw new ApiException(400, "Missing required parameter 'job' when calling TtsApi->CreateJob");
 
-            var localVarPath = "./projects/{projectID}/jobs";
+            var localVarPath = "/projects/{projectID}/jobs";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1444,7 +1452,7 @@ namespace Telestream.Cloud.Tts.Api
             }
 
             return new ApiResponse<Job>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Job) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Job)));
         }
 
@@ -1478,7 +1486,7 @@ namespace Telestream.Cloud.Tts.Api
             if (job == null)
                 throw new ApiException(400, "Missing required parameter 'job' when calling TtsApi->CreateJob");
 
-            var localVarPath = "./projects/{projectID}/jobs";
+            var localVarPath = "/projects/{projectID}/jobs";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1530,7 +1538,7 @@ namespace Telestream.Cloud.Tts.Api
             }
 
             return new ApiResponse<Job>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Job) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Job)));
         }
 
@@ -1558,7 +1566,7 @@ namespace Telestream.Cloud.Tts.Api
             if (project == null)
                 throw new ApiException(400, "Missing required parameter 'project' when calling TtsApi->CreateProject");
 
-            var localVarPath = "./projects";
+            var localVarPath = "/projects";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1609,7 +1617,7 @@ namespace Telestream.Cloud.Tts.Api
             }
 
             return new ApiResponse<Project>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Project) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Project)));
         }
 
@@ -1638,7 +1646,7 @@ namespace Telestream.Cloud.Tts.Api
             if (project == null)
                 throw new ApiException(400, "Missing required parameter 'project' when calling TtsApi->CreateProject");
 
-            var localVarPath = "./projects";
+            var localVarPath = "/projects";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1689,7 +1697,7 @@ namespace Telestream.Cloud.Tts.Api
             }
 
             return new ApiResponse<Project>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Project) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Project)));
         }
 
@@ -1721,7 +1729,7 @@ namespace Telestream.Cloud.Tts.Api
             if (name == null)
                 throw new ApiException(400, "Missing required parameter 'name' when calling TtsApi->DeleteCorpus");
 
-            var localVarPath = "./projects/{projectID}/corpora/{name}";
+            var localVarPath = "/projects/{projectID}/corpora/{name}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1766,7 +1774,7 @@ namespace Telestream.Cloud.Tts.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 
@@ -1799,7 +1807,7 @@ namespace Telestream.Cloud.Tts.Api
             if (name == null)
                 throw new ApiException(400, "Missing required parameter 'name' when calling TtsApi->DeleteCorpus");
 
-            var localVarPath = "./projects/{projectID}/corpora/{name}";
+            var localVarPath = "/projects/{projectID}/corpora/{name}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1844,7 +1852,7 @@ namespace Telestream.Cloud.Tts.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 
@@ -1876,7 +1884,7 @@ namespace Telestream.Cloud.Tts.Api
             if (jobID == null)
                 throw new ApiException(400, "Missing required parameter 'jobID' when calling TtsApi->DeleteJob");
 
-            var localVarPath = "./projects/{projectID}/jobs/{jobID}";
+            var localVarPath = "/projects/{projectID}/jobs/{jobID}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1921,7 +1929,7 @@ namespace Telestream.Cloud.Tts.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 
@@ -1954,7 +1962,7 @@ namespace Telestream.Cloud.Tts.Api
             if (jobID == null)
                 throw new ApiException(400, "Missing required parameter 'jobID' when calling TtsApi->DeleteJob");
 
-            var localVarPath = "./projects/{projectID}/jobs/{jobID}";
+            var localVarPath = "/projects/{projectID}/jobs/{jobID}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1999,7 +2007,7 @@ namespace Telestream.Cloud.Tts.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 
@@ -2007,21 +2015,26 @@ namespace Telestream.Cloud.Tts.Api
         /// Deletes the Project Deletes the Project
         /// </summary>
         /// <exception cref="Telestream.Cloud.Tts.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="projectID">ID of the Project</param>
         /// <returns></returns>
-        public void DeleteProject ()
+        public void DeleteProject (string projectID)
         {
-             DeleteProjectWithHttpInfo();
+             DeleteProjectWithHttpInfo(projectID);
         }
 
         /// <summary>
         /// Deletes the Project Deletes the Project
         /// </summary>
         /// <exception cref="Telestream.Cloud.Tts.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="projectID">ID of the Project</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public ApiResponse<Object> DeleteProjectWithHttpInfo ()
+        public ApiResponse<Object> DeleteProjectWithHttpInfo (string projectID)
         {
+            // verify the required parameter 'projectID' is set
+            if (projectID == null)
+                throw new ApiException(400, "Missing required parameter 'projectID' when calling TtsApi->DeleteProject");
 
-            var localVarPath = "./projects/{projectID}";
+            var localVarPath = "/projects/{projectID}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2043,6 +2056,7 @@ namespace Telestream.Cloud.Tts.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            if (projectID != null) localVarPathParams.Add("projectID", Configuration.ApiClient.ParameterToString(projectID)); // path parameter
 
             // authentication (api_key) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
@@ -2064,7 +2078,7 @@ namespace Telestream.Cloud.Tts.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 
@@ -2072,10 +2086,11 @@ namespace Telestream.Cloud.Tts.Api
         /// Deletes the Project Deletes the Project
         /// </summary>
         /// <exception cref="Telestream.Cloud.Tts.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="projectID">ID of the Project</param>
         /// <returns>Task of void</returns>
-        public async System.Threading.Tasks.Task DeleteProjectAsync ()
+        public async System.Threading.Tasks.Task DeleteProjectAsync (string projectID)
         {
-             await DeleteProjectAsyncWithHttpInfo();
+             await DeleteProjectAsyncWithHttpInfo(projectID);
 
         }
 
@@ -2083,11 +2098,15 @@ namespace Telestream.Cloud.Tts.Api
         /// Deletes the Project Deletes the Project
         /// </summary>
         /// <exception cref="Telestream.Cloud.Tts.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="projectID">ID of the Project</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Object>> DeleteProjectAsyncWithHttpInfo ()
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> DeleteProjectAsyncWithHttpInfo (string projectID)
         {
+            // verify the required parameter 'projectID' is set
+            if (projectID == null)
+                throw new ApiException(400, "Missing required parameter 'projectID' when calling TtsApi->DeleteProject");
 
-            var localVarPath = "./projects/{projectID}";
+            var localVarPath = "/projects/{projectID}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2109,6 +2128,7 @@ namespace Telestream.Cloud.Tts.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            if (projectID != null) localVarPathParams.Add("projectID", Configuration.ApiClient.ParameterToString(projectID)); // path parameter
 
             // authentication (api_key) required
             if (!String.IsNullOrEmpty(Configuration.GetApiKeyWithPrefix("X-Api-Key")))
@@ -2130,7 +2150,7 @@ namespace Telestream.Cloud.Tts.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 
@@ -2163,7 +2183,7 @@ namespace Telestream.Cloud.Tts.Api
             if (jobID == null)
                 throw new ApiException(400, "Missing required parameter 'jobID' when calling TtsApi->Job");
 
-            var localVarPath = "./projects/{projectID}/jobs/{jobID}";
+            var localVarPath = "/projects/{projectID}/jobs/{jobID}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2208,7 +2228,7 @@ namespace Telestream.Cloud.Tts.Api
             }
 
             return new ApiResponse<Job>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Job) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Job)));
         }
 
@@ -2242,7 +2262,7 @@ namespace Telestream.Cloud.Tts.Api
             if (jobID == null)
                 throw new ApiException(400, "Missing required parameter 'jobID' when calling TtsApi->Job");
 
-            var localVarPath = "./projects/{projectID}/jobs/{jobID}";
+            var localVarPath = "/projects/{projectID}/jobs/{jobID}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2287,7 +2307,7 @@ namespace Telestream.Cloud.Tts.Api
             }
 
             return new ApiResponse<Job>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Job) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Job)));
         }
 
@@ -2320,7 +2340,7 @@ namespace Telestream.Cloud.Tts.Api
             if (jobID == null)
                 throw new ApiException(400, "Missing required parameter 'jobID' when calling TtsApi->JobOutputs");
 
-            var localVarPath = "./projects/{projectID}/jobs/{jobID}/outputs";
+            var localVarPath = "/projects/{projectID}/jobs/{jobID}/outputs";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2365,7 +2385,7 @@ namespace Telestream.Cloud.Tts.Api
             }
 
             return new ApiResponse<List<JobOutput>>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (List<JobOutput>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<JobOutput>)));
         }
 
@@ -2399,7 +2419,7 @@ namespace Telestream.Cloud.Tts.Api
             if (jobID == null)
                 throw new ApiException(400, "Missing required parameter 'jobID' when calling TtsApi->JobOutputs");
 
-            var localVarPath = "./projects/{projectID}/jobs/{jobID}/outputs";
+            var localVarPath = "/projects/{projectID}/jobs/{jobID}/outputs";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2444,7 +2464,7 @@ namespace Telestream.Cloud.Tts.Api
             }
 
             return new ApiResponse<List<JobOutput>>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (List<JobOutput>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<JobOutput>)));
         }
 
@@ -2477,7 +2497,7 @@ namespace Telestream.Cloud.Tts.Api
             if (jobID == null)
                 throw new ApiException(400, "Missing required parameter 'jobID' when calling TtsApi->JobResult");
 
-            var localVarPath = "./projects/{projectID}/jobs/{jobID}/result";
+            var localVarPath = "/projects/{projectID}/jobs/{jobID}/result";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2522,7 +2542,7 @@ namespace Telestream.Cloud.Tts.Api
             }
 
             return new ApiResponse<JobResult>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (JobResult) Configuration.ApiClient.Deserialize(localVarResponse, typeof(JobResult)));
         }
 
@@ -2556,7 +2576,7 @@ namespace Telestream.Cloud.Tts.Api
             if (jobID == null)
                 throw new ApiException(400, "Missing required parameter 'jobID' when calling TtsApi->JobResult");
 
-            var localVarPath = "./projects/{projectID}/jobs/{jobID}/result";
+            var localVarPath = "/projects/{projectID}/jobs/{jobID}/result";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2601,7 +2621,7 @@ namespace Telestream.Cloud.Tts.Api
             }
 
             return new ApiResponse<JobResult>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (JobResult) Configuration.ApiClient.Deserialize(localVarResponse, typeof(JobResult)));
         }
 
@@ -2633,7 +2653,7 @@ namespace Telestream.Cloud.Tts.Api
             if (projectID == null)
                 throw new ApiException(400, "Missing required parameter 'projectID' when calling TtsApi->Jobs");
 
-            var localVarPath = "./projects/{projectID}/jobs";
+            var localVarPath = "/projects/{projectID}/jobs";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2679,7 +2699,7 @@ namespace Telestream.Cloud.Tts.Api
             }
 
             return new ApiResponse<JobsCollection>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (JobsCollection) Configuration.ApiClient.Deserialize(localVarResponse, typeof(JobsCollection)));
         }
 
@@ -2712,7 +2732,7 @@ namespace Telestream.Cloud.Tts.Api
             if (projectID == null)
                 throw new ApiException(400, "Missing required parameter 'projectID' when calling TtsApi->Jobs");
 
-            var localVarPath = "./projects/{projectID}/jobs";
+            var localVarPath = "/projects/{projectID}/jobs";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2758,7 +2778,7 @@ namespace Telestream.Cloud.Tts.Api
             }
 
             return new ApiResponse<JobsCollection>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (JobsCollection) Configuration.ApiClient.Deserialize(localVarResponse, typeof(JobsCollection)));
         }
 
@@ -2786,7 +2806,7 @@ namespace Telestream.Cloud.Tts.Api
             if (projectID == null)
                 throw new ApiException(400, "Missing required parameter 'projectID' when calling TtsApi->Project");
 
-            var localVarPath = "./projects/{projectID}";
+            var localVarPath = "/projects/{projectID}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2830,7 +2850,7 @@ namespace Telestream.Cloud.Tts.Api
             }
 
             return new ApiResponse<Project>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Project) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Project)));
         }
 
@@ -2859,7 +2879,7 @@ namespace Telestream.Cloud.Tts.Api
             if (projectID == null)
                 throw new ApiException(400, "Missing required parameter 'projectID' when calling TtsApi->Project");
 
-            var localVarPath = "./projects/{projectID}";
+            var localVarPath = "/projects/{projectID}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2903,7 +2923,7 @@ namespace Telestream.Cloud.Tts.Api
             }
 
             return new ApiResponse<Project>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Project) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Project)));
         }
 
@@ -2926,7 +2946,7 @@ namespace Telestream.Cloud.Tts.Api
         public ApiResponse< ProjectsCollection > ProjectsWithHttpInfo ()
         {
 
-            var localVarPath = "./projects";
+            var localVarPath = "/projects";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -2969,7 +2989,7 @@ namespace Telestream.Cloud.Tts.Api
             }
 
             return new ApiResponse<ProjectsCollection>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (ProjectsCollection) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ProjectsCollection)));
         }
 
@@ -2993,7 +3013,7 @@ namespace Telestream.Cloud.Tts.Api
         public async System.Threading.Tasks.Task<ApiResponse<ProjectsCollection>> ProjectsAsyncWithHttpInfo ()
         {
 
-            var localVarPath = "./projects";
+            var localVarPath = "/projects";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3036,7 +3056,7 @@ namespace Telestream.Cloud.Tts.Api
             }
 
             return new ApiResponse<ProjectsCollection>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (ProjectsCollection) Configuration.ApiClient.Deserialize(localVarResponse, typeof(ProjectsCollection)));
         }
 
@@ -3063,7 +3083,7 @@ namespace Telestream.Cloud.Tts.Api
             if (projectID == null)
                 throw new ApiException(400, "Missing required parameter 'projectID' when calling TtsApi->TrainProject");
 
-            var localVarPath = "./projects/{projectID}/train";
+            var localVarPath = "/projects/{projectID}/train";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3107,7 +3127,7 @@ namespace Telestream.Cloud.Tts.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 
@@ -3135,7 +3155,7 @@ namespace Telestream.Cloud.Tts.Api
             if (projectID == null)
                 throw new ApiException(400, "Missing required parameter 'projectID' when calling TtsApi->TrainProject");
 
-            var localVarPath = "./projects/{projectID}/train";
+            var localVarPath = "/projects/{projectID}/train";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3179,7 +3199,7 @@ namespace Telestream.Cloud.Tts.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 
@@ -3187,11 +3207,12 @@ namespace Telestream.Cloud.Tts.Api
         /// Updates an existing Project Updates an existing Project
         /// </summary>
         /// <exception cref="Telestream.Cloud.Tts.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="projectID">ID of the Project</param>
         /// <param name="project"></param>
         /// <returns>Project</returns>
-        public Project UpdateProject (Project project)
+        public Project UpdateProject (string projectID, Project project)
         {
-             ApiResponse<Project> localVarResponse = UpdateProjectWithHttpInfo(project);
+             ApiResponse<Project> localVarResponse = UpdateProjectWithHttpInfo(projectID, project);
              return localVarResponse.Data;
         }
 
@@ -3199,15 +3220,19 @@ namespace Telestream.Cloud.Tts.Api
         /// Updates an existing Project Updates an existing Project
         /// </summary>
         /// <exception cref="Telestream.Cloud.Tts.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="projectID">ID of the Project</param>
         /// <param name="project"></param>
         /// <returns>ApiResponse of Project</returns>
-        public ApiResponse< Project > UpdateProjectWithHttpInfo (Project project)
+        public ApiResponse< Project > UpdateProjectWithHttpInfo (string projectID, Project project)
         {
+            // verify the required parameter 'projectID' is set
+            if (projectID == null)
+                throw new ApiException(400, "Missing required parameter 'projectID' when calling TtsApi->UpdateProject");
             // verify the required parameter 'project' is set
             if (project == null)
                 throw new ApiException(400, "Missing required parameter 'project' when calling TtsApi->UpdateProject");
 
-            var localVarPath = "./projects/{projectID}";
+            var localVarPath = "/projects/{projectID}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3229,6 +3254,7 @@ namespace Telestream.Cloud.Tts.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            if (projectID != null) localVarPathParams.Add("projectID", Configuration.ApiClient.ParameterToString(projectID)); // path parameter
             if (project != null && project.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(project); // http body (model) parameter
@@ -3258,7 +3284,7 @@ namespace Telestream.Cloud.Tts.Api
             }
 
             return new ApiResponse<Project>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Project) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Project)));
         }
 
@@ -3266,11 +3292,12 @@ namespace Telestream.Cloud.Tts.Api
         /// Updates an existing Project Updates an existing Project
         /// </summary>
         /// <exception cref="Telestream.Cloud.Tts.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="projectID">ID of the Project</param>
         /// <param name="project"></param>
         /// <returns>Task of Project</returns>
-        public async System.Threading.Tasks.Task<Project> UpdateProjectAsync (Project project)
+        public async System.Threading.Tasks.Task<Project> UpdateProjectAsync (string projectID, Project project)
         {
-             ApiResponse<Project> localVarResponse = await UpdateProjectAsyncWithHttpInfo(project);
+             ApiResponse<Project> localVarResponse = await UpdateProjectAsyncWithHttpInfo(projectID, project);
              return localVarResponse.Data;
 
         }
@@ -3279,15 +3306,19 @@ namespace Telestream.Cloud.Tts.Api
         /// Updates an existing Project Updates an existing Project
         /// </summary>
         /// <exception cref="Telestream.Cloud.Tts.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="projectID">ID of the Project</param>
         /// <param name="project"></param>
         /// <returns>Task of ApiResponse (Project)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Project>> UpdateProjectAsyncWithHttpInfo (Project project)
+        public async System.Threading.Tasks.Task<ApiResponse<Project>> UpdateProjectAsyncWithHttpInfo (string projectID, Project project)
         {
+            // verify the required parameter 'projectID' is set
+            if (projectID == null)
+                throw new ApiException(400, "Missing required parameter 'projectID' when calling TtsApi->UpdateProject");
             // verify the required parameter 'project' is set
             if (project == null)
                 throw new ApiException(400, "Missing required parameter 'project' when calling TtsApi->UpdateProject");
 
-            var localVarPath = "./projects/{projectID}";
+            var localVarPath = "/projects/{projectID}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3309,6 +3340,7 @@ namespace Telestream.Cloud.Tts.Api
             if (localVarHttpHeaderAccept != null)
                 localVarHeaderParams.Add("Accept", localVarHttpHeaderAccept);
 
+            if (projectID != null) localVarPathParams.Add("projectID", Configuration.ApiClient.ParameterToString(projectID)); // path parameter
             if (project != null && project.GetType() != typeof(byte[]))
             {
                 localVarPostBody = Configuration.ApiClient.Serialize(project); // http body (model) parameter
@@ -3338,7 +3370,7 @@ namespace Telestream.Cloud.Tts.Api
             }
 
             return new ApiResponse<Project>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Project) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Project)));
         }
 
@@ -3371,7 +3403,7 @@ namespace Telestream.Cloud.Tts.Api
             if (videoUploadBody == null)
                 throw new ApiException(400, "Missing required parameter 'videoUploadBody' when calling TtsApi->UploadVideo");
 
-            var localVarPath = "./projects/{projectID}/jobs/upload";
+            var localVarPath = "/projects/{projectID}/jobs/upload";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3423,7 +3455,7 @@ namespace Telestream.Cloud.Tts.Api
             }
 
             return new ApiResponse<UploadSession>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (UploadSession) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UploadSession)));
         }
 
@@ -3457,7 +3489,7 @@ namespace Telestream.Cloud.Tts.Api
             if (videoUploadBody == null)
                 throw new ApiException(400, "Missing required parameter 'videoUploadBody' when calling TtsApi->UploadVideo");
 
-            var localVarPath = "./projects/{projectID}/jobs/upload";
+            var localVarPath = "/projects/{projectID}/jobs/upload";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -3509,7 +3541,7 @@ namespace Telestream.Cloud.Tts.Api
             }
 
             return new ApiResponse<UploadSession>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (UploadSession) Configuration.ApiClient.Deserialize(localVarResponse, typeof(UploadSession)));
         }
 

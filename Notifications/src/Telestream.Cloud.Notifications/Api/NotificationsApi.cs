@@ -12,7 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using RestSharp.Portable;
+using RestSharp;
 using Telestream.Cloud.Notifications.Client;
 using Telestream.Cloud.Notifications.Model;
 
@@ -365,7 +365,7 @@ namespace Telestream.Cloud.Notifications.Api
         public ApiResponse< Subscription > CreateSubscriptionWithHttpInfo (Subscription subscription = null)
         {
 
-            var localVarPath = "./subscriptions";
+            var localVarPath = "/subscriptions";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -416,7 +416,7 @@ namespace Telestream.Cloud.Notifications.Api
             }
 
             return new ApiResponse<Subscription>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Subscription) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Subscription)));
         }
 
@@ -442,7 +442,7 @@ namespace Telestream.Cloud.Notifications.Api
         public async System.Threading.Tasks.Task<ApiResponse<Subscription>> CreateSubscriptionAsyncWithHttpInfo (Subscription subscription = null)
         {
 
-            var localVarPath = "./subscriptions";
+            var localVarPath = "/subscriptions";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -493,7 +493,7 @@ namespace Telestream.Cloud.Notifications.Api
             }
 
             return new ApiResponse<Subscription>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Subscription) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Subscription)));
         }
 
@@ -520,7 +520,7 @@ namespace Telestream.Cloud.Notifications.Api
             if (id == null)
                 throw new ApiException(400, "Missing required parameter 'id' when calling NotificationsApi->DeleteSubscription");
 
-            var localVarPath = "./subscriptions/{id}";
+            var localVarPath = "/subscriptions/{id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -564,7 +564,7 @@ namespace Telestream.Cloud.Notifications.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 
@@ -592,7 +592,7 @@ namespace Telestream.Cloud.Notifications.Api
             if (id == null)
                 throw new ApiException(400, "Missing required parameter 'id' when calling NotificationsApi->DeleteSubscription");
 
-            var localVarPath = "./subscriptions/{id}";
+            var localVarPath = "/subscriptions/{id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -636,7 +636,7 @@ namespace Telestream.Cloud.Notifications.Api
             }
 
             return new ApiResponse<Object>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 null);
         }
 
@@ -664,7 +664,7 @@ namespace Telestream.Cloud.Notifications.Api
             if (id == null)
                 throw new ApiException(400, "Missing required parameter 'id' when calling NotificationsApi->GetSubscription");
 
-            var localVarPath = "./subscriptions/{id}";
+            var localVarPath = "/subscriptions/{id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -708,7 +708,7 @@ namespace Telestream.Cloud.Notifications.Api
             }
 
             return new ApiResponse<Subscription>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Subscription) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Subscription)));
         }
 
@@ -737,7 +737,7 @@ namespace Telestream.Cloud.Notifications.Api
             if (id == null)
                 throw new ApiException(400, "Missing required parameter 'id' when calling NotificationsApi->GetSubscription");
 
-            var localVarPath = "./subscriptions/{id}";
+            var localVarPath = "/subscriptions/{id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -781,7 +781,7 @@ namespace Telestream.Cloud.Notifications.Api
             }
 
             return new ApiResponse<Subscription>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Subscription) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Subscription)));
         }
 
@@ -808,7 +808,7 @@ namespace Telestream.Cloud.Notifications.Api
         public ApiResponse< List<Subscription> > ListSubscriptionsWithHttpInfo (string serviceType = null, string type = null)
         {
 
-            var localVarPath = "./subscriptions";
+            var localVarPath = "/subscriptions";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -853,7 +853,7 @@ namespace Telestream.Cloud.Notifications.Api
             }
 
             return new ApiResponse<List<Subscription>>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (List<Subscription>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<Subscription>)));
         }
 
@@ -881,7 +881,7 @@ namespace Telestream.Cloud.Notifications.Api
         public async System.Threading.Tasks.Task<ApiResponse<List<Subscription>>> ListSubscriptionsAsyncWithHttpInfo (string serviceType = null, string type = null)
         {
 
-            var localVarPath = "./subscriptions";
+            var localVarPath = "/subscriptions";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -926,7 +926,7 @@ namespace Telestream.Cloud.Notifications.Api
             }
 
             return new ApiResponse<List<Subscription>>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (List<Subscription>) Configuration.ApiClient.Deserialize(localVarResponse, typeof(List<Subscription>)));
         }
 
@@ -956,7 +956,7 @@ namespace Telestream.Cloud.Notifications.Api
             if (id == null)
                 throw new ApiException(400, "Missing required parameter 'id' when calling NotificationsApi->ModifySubscription");
 
-            var localVarPath = "./subscriptions/{id}";
+            var localVarPath = "/subscriptions/{id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1008,7 +1008,7 @@ namespace Telestream.Cloud.Notifications.Api
             }
 
             return new ApiResponse<Subscription>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Subscription) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Subscription)));
         }
 
@@ -1039,7 +1039,7 @@ namespace Telestream.Cloud.Notifications.Api
             if (id == null)
                 throw new ApiException(400, "Missing required parameter 'id' when calling NotificationsApi->ModifySubscription");
 
-            var localVarPath = "./subscriptions/{id}";
+            var localVarPath = "/subscriptions/{id}";
             var localVarPathParams = new Dictionary<String, String>();
             var localVarQueryParams = new List<KeyValuePair<String, String>>();
             var localVarHeaderParams = new Dictionary<String, String>(Configuration.DefaultHeader);
@@ -1091,7 +1091,7 @@ namespace Telestream.Cloud.Notifications.Api
             }
 
             return new ApiResponse<Subscription>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Key, x => x.Value.ToString()),
+                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
                 (Subscription) Configuration.ApiClient.Deserialize(localVarResponse, typeof(Subscription)));
         }
 

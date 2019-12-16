@@ -12,12 +12,14 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
 using SwaggerDateConverter = Telestream.Cloud.Flip.Client.SwaggerDateConverter;
 
 namespace Telestream.Cloud.Flip.Model
@@ -26,76 +28,29 @@ namespace Telestream.Cloud.Flip.Model
     /// Factory
     /// </summary>
     [DataContract]
-    public partial class Factory :  IEquatable<Factory>
+    public partial class Factory :  IEquatable<Factory>, IValidatableObject
     {
-        /// <summary>
-        /// Specify if your files are public or private (private files need authorization url to access). By default this is not set.
-        /// </summary>
-        /// <value>Specify if your files are public or private (private files need authorization url to access). By default this is not set.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum AclEnum
-        {
-            
-            /// <summary>
-            /// Enum Public for value: public
-            /// </summary>
-            [EnumMember(Value = "public")]
-            Public = 1,
-            
-            /// <summary>
-            /// Enum Private for value: private
-            /// </summary>
-            [EnumMember(Value = "private")]
-            Private = 2
-        }
-
-        /// <summary>
-        /// Specify if your files are public or private (private files need authorization url to access). By default this is not set.
-        /// </summary>
-        /// <value>Specify if your files are public or private (private files need authorization url to access). By default this is not set.</value>
-        [DataMember(Name="acl", EmitDefaultValue=false)]
-        public AclEnum? Acl { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Factory" /> class.
         /// </summary>
         /// <param name="Id">A unique identifier of a Factory..</param>
         /// <param name="Name">Human-readable identifier of a Factory..</param>
-        /// <param name="FactoryRegion">A region where the factory is located..</param>
-        /// <param name="OutputBucketName">A bucket where processed files will be stored..</param>
-        /// <param name="Acl">Specify if your files are public or private (private files need authorization url to access). By default this is not set..</param>
         /// <param name="CreatedAt">A date and time when a Factory has been created..</param>
         /// <param name="UpdatedAt">A date and time when a Factory has been updated last time..</param>
         /// <param name="Url">An URL pointing to the output_bucket_name..</param>
         /// <param name="ServerSideEncryption">Specify if you want to use multi-factor server-side 256-bit AES-256 data encryption with Amazon S3-managed encryption keys (SSE-S3). Each object is encrypted using a unique key which as an additional safeguard is encrypted itself with a master key that S3 regularly rotates. By default this is not set..</param>
-        /// <param name="InputBucketName">A name of an input bucket..</param>
-        /// <param name="InputBucketWatch">Determines whether the Factory should be notified about new files added to the input bucket..</param>
-        /// <param name="InputBucketFilesMap">InputBucketFilesMap.</param>
-        /// <param name="InputBucketSyncEveryNMin">Determines how often the input bucket is synchronised..</param>
-        /// <param name="InputBucketRecursive">InputBucketRecursive.</param>
-        /// <param name="InputBucketFilePattern">A pattern that will be used to locate files in the input bucket. Valid wildcards might be used..</param>
-        /// <param name="OutputsPathFormat">OutputsPathFormat.</param>
-        /// <param name="StorageProvider">Specifies which storage provider the factory should use. Available options: S3: 0, Google Cloud Storage: 1, FTP storage: 2, Google Cloud Interoperability Storage: 5, Flip storage: 7, FASP storage: 8, Azure Blob Storage: 9.</param>
-        /// <param name="ProviderSpecificSettings">ProviderSpecificSettings.</param>
-        public Factory(string Id = default(string), string Name = default(string), string FactoryRegion = default(string), string OutputBucketName = default(string), AclEnum? Acl = default(AclEnum?), string CreatedAt = default(string), string UpdatedAt = default(string), string Url = default(string), bool? ServerSideEncryption = default(bool?), string InputBucketName = default(string), bool? InputBucketWatch = default(bool?), Object InputBucketFilesMap = default(Object), string InputBucketSyncEveryNMin = default(string), string InputBucketRecursive = default(string), string InputBucketFilePattern = default(string), string OutputsPathFormat = default(string), int? StorageProvider = default(int?), Object ProviderSpecificSettings = default(Object))
+        /// <param name="OutputsPathFormat">Specify the directory where the output files should be stored. By default it is not set. More info [here](https://cloud.telestream.net/docs#path-format- --know-how)..</param>
+        /// <param name="StoreId">Unique ID of a store defined in the stores service that will be used as a destination for all of the outputs created.</param>
+        public Factory(string Id = default(string), string Name = default(string), string CreatedAt = default(string), string UpdatedAt = default(string), string Url = default(string), bool? ServerSideEncryption = default(bool?), string OutputsPathFormat = default(string), string StoreId = default(string))
         {
             this.Id = Id;
             this.Name = Name;
-            this.FactoryRegion = FactoryRegion;
-            this.OutputBucketName = OutputBucketName;
-            this.Acl = Acl;
             this.CreatedAt = CreatedAt;
             this.UpdatedAt = UpdatedAt;
             this.Url = Url;
             this.ServerSideEncryption = ServerSideEncryption;
-            this.InputBucketName = InputBucketName;
-            this.InputBucketWatch = InputBucketWatch;
-            this.InputBucketFilesMap = InputBucketFilesMap;
-            this.InputBucketSyncEveryNMin = InputBucketSyncEveryNMin;
-            this.InputBucketRecursive = InputBucketRecursive;
-            this.InputBucketFilePattern = InputBucketFilePattern;
             this.OutputsPathFormat = OutputsPathFormat;
-            this.StorageProvider = StorageProvider;
-            this.ProviderSpecificSettings = ProviderSpecificSettings;
+            this.StoreId = StoreId;
         }
         
         /// <summary>
@@ -111,21 +66,6 @@ namespace Telestream.Cloud.Flip.Model
         /// <value>Human-readable identifier of a Factory.</value>
         [DataMember(Name="name", EmitDefaultValue=false)]
         public string Name { get; set; }
-
-        /// <summary>
-        /// A region where the factory is located.
-        /// </summary>
-        /// <value>A region where the factory is located.</value>
-        [DataMember(Name="factory_region", EmitDefaultValue=false)]
-        public string FactoryRegion { get; set; }
-
-        /// <summary>
-        /// A bucket where processed files will be stored.
-        /// </summary>
-        /// <value>A bucket where processed files will be stored.</value>
-        [DataMember(Name="output_bucket_name", EmitDefaultValue=false)]
-        public string OutputBucketName { get; set; }
-
 
         /// <summary>
         /// A date and time when a Factory has been created.
@@ -156,63 +96,18 @@ namespace Telestream.Cloud.Flip.Model
         public bool? ServerSideEncryption { get; set; }
 
         /// <summary>
-        /// A name of an input bucket.
+        /// Specify the directory where the output files should be stored. By default it is not set. More info [here](https://cloud.telestream.net/docs#path-format- --know-how).
         /// </summary>
-        /// <value>A name of an input bucket.</value>
-        [DataMember(Name="input_bucket_name", EmitDefaultValue=false)]
-        public string InputBucketName { get; set; }
-
-        /// <summary>
-        /// Determines whether the Factory should be notified about new files added to the input bucket.
-        /// </summary>
-        /// <value>Determines whether the Factory should be notified about new files added to the input bucket.</value>
-        [DataMember(Name="input_bucket_watch", EmitDefaultValue=false)]
-        public bool? InputBucketWatch { get; set; }
-
-        /// <summary>
-        /// Gets or Sets InputBucketFilesMap
-        /// </summary>
-        [DataMember(Name="input_bucket_files_map", EmitDefaultValue=false)]
-        public Object InputBucketFilesMap { get; set; }
-
-        /// <summary>
-        /// Determines how often the input bucket is synchronised.
-        /// </summary>
-        /// <value>Determines how often the input bucket is synchronised.</value>
-        [DataMember(Name="input_bucket_sync_every_n_min", EmitDefaultValue=false)]
-        public string InputBucketSyncEveryNMin { get; set; }
-
-        /// <summary>
-        /// Gets or Sets InputBucketRecursive
-        /// </summary>
-        [DataMember(Name="input_bucket_recursive", EmitDefaultValue=false)]
-        public string InputBucketRecursive { get; set; }
-
-        /// <summary>
-        /// A pattern that will be used to locate files in the input bucket. Valid wildcards might be used.
-        /// </summary>
-        /// <value>A pattern that will be used to locate files in the input bucket. Valid wildcards might be used.</value>
-        [DataMember(Name="input_bucket_file_pattern", EmitDefaultValue=false)]
-        public string InputBucketFilePattern { get; set; }
-
-        /// <summary>
-        /// Gets or Sets OutputsPathFormat
-        /// </summary>
+        /// <value>Specify the directory where the output files should be stored. By default it is not set. More info [here](https://cloud.telestream.net/docs#path-format- --know-how).</value>
         [DataMember(Name="outputs_path_format", EmitDefaultValue=false)]
         public string OutputsPathFormat { get; set; }
 
         /// <summary>
-        /// Specifies which storage provider the factory should use. Available options: S3: 0, Google Cloud Storage: 1, FTP storage: 2, Google Cloud Interoperability Storage: 5, Flip storage: 7, FASP storage: 8, Azure Blob Storage: 9
+        /// Unique ID of a store defined in the stores service that will be used as a destination for all of the outputs created
         /// </summary>
-        /// <value>Specifies which storage provider the factory should use. Available options: S3: 0, Google Cloud Storage: 1, FTP storage: 2, Google Cloud Interoperability Storage: 5, Flip storage: 7, FASP storage: 8, Azure Blob Storage: 9</value>
-        [DataMember(Name="storage_provider", EmitDefaultValue=false)]
-        public int? StorageProvider { get; set; }
-
-        /// <summary>
-        /// Gets or Sets ProviderSpecificSettings
-        /// </summary>
-        [DataMember(Name="provider_specific_settings", EmitDefaultValue=false)]
-        public Object ProviderSpecificSettings { get; set; }
+        /// <value>Unique ID of a store defined in the stores service that will be used as a destination for all of the outputs created</value>
+        [DataMember(Name="store_id", EmitDefaultValue=false)]
+        public string StoreId { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -224,22 +119,12 @@ namespace Telestream.Cloud.Flip.Model
             sb.Append("class Factory {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  FactoryRegion: ").Append(FactoryRegion).Append("\n");
-            sb.Append("  OutputBucketName: ").Append(OutputBucketName).Append("\n");
-            sb.Append("  Acl: ").Append(Acl).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
             sb.Append("  Url: ").Append(Url).Append("\n");
             sb.Append("  ServerSideEncryption: ").Append(ServerSideEncryption).Append("\n");
-            sb.Append("  InputBucketName: ").Append(InputBucketName).Append("\n");
-            sb.Append("  InputBucketWatch: ").Append(InputBucketWatch).Append("\n");
-            sb.Append("  InputBucketFilesMap: ").Append(InputBucketFilesMap).Append("\n");
-            sb.Append("  InputBucketSyncEveryNMin: ").Append(InputBucketSyncEveryNMin).Append("\n");
-            sb.Append("  InputBucketRecursive: ").Append(InputBucketRecursive).Append("\n");
-            sb.Append("  InputBucketFilePattern: ").Append(InputBucketFilePattern).Append("\n");
             sb.Append("  OutputsPathFormat: ").Append(OutputsPathFormat).Append("\n");
-            sb.Append("  StorageProvider: ").Append(StorageProvider).Append("\n");
-            sb.Append("  ProviderSpecificSettings: ").Append(ProviderSpecificSettings).Append("\n");
+            sb.Append("  StoreId: ").Append(StoreId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -285,21 +170,6 @@ namespace Telestream.Cloud.Flip.Model
                     this.Name.Equals(input.Name))
                 ) && 
                 (
-                    this.FactoryRegion == input.FactoryRegion ||
-                    (this.FactoryRegion != null &&
-                    this.FactoryRegion.Equals(input.FactoryRegion))
-                ) && 
-                (
-                    this.OutputBucketName == input.OutputBucketName ||
-                    (this.OutputBucketName != null &&
-                    this.OutputBucketName.Equals(input.OutputBucketName))
-                ) && 
-                (
-                    this.Acl == input.Acl ||
-                    (this.Acl != null &&
-                    this.Acl.Equals(input.Acl))
-                ) && 
-                (
                     this.CreatedAt == input.CreatedAt ||
                     (this.CreatedAt != null &&
                     this.CreatedAt.Equals(input.CreatedAt))
@@ -320,49 +190,14 @@ namespace Telestream.Cloud.Flip.Model
                     this.ServerSideEncryption.Equals(input.ServerSideEncryption))
                 ) && 
                 (
-                    this.InputBucketName == input.InputBucketName ||
-                    (this.InputBucketName != null &&
-                    this.InputBucketName.Equals(input.InputBucketName))
-                ) && 
-                (
-                    this.InputBucketWatch == input.InputBucketWatch ||
-                    (this.InputBucketWatch != null &&
-                    this.InputBucketWatch.Equals(input.InputBucketWatch))
-                ) && 
-                (
-                    this.InputBucketFilesMap == input.InputBucketFilesMap ||
-                    (this.InputBucketFilesMap != null &&
-                    this.InputBucketFilesMap.Equals(input.InputBucketFilesMap))
-                ) && 
-                (
-                    this.InputBucketSyncEveryNMin == input.InputBucketSyncEveryNMin ||
-                    (this.InputBucketSyncEveryNMin != null &&
-                    this.InputBucketSyncEveryNMin.Equals(input.InputBucketSyncEveryNMin))
-                ) && 
-                (
-                    this.InputBucketRecursive == input.InputBucketRecursive ||
-                    (this.InputBucketRecursive != null &&
-                    this.InputBucketRecursive.Equals(input.InputBucketRecursive))
-                ) && 
-                (
-                    this.InputBucketFilePattern == input.InputBucketFilePattern ||
-                    (this.InputBucketFilePattern != null &&
-                    this.InputBucketFilePattern.Equals(input.InputBucketFilePattern))
-                ) && 
-                (
                     this.OutputsPathFormat == input.OutputsPathFormat ||
                     (this.OutputsPathFormat != null &&
                     this.OutputsPathFormat.Equals(input.OutputsPathFormat))
                 ) && 
                 (
-                    this.StorageProvider == input.StorageProvider ||
-                    (this.StorageProvider != null &&
-                    this.StorageProvider.Equals(input.StorageProvider))
-                ) && 
-                (
-                    this.ProviderSpecificSettings == input.ProviderSpecificSettings ||
-                    (this.ProviderSpecificSettings != null &&
-                    this.ProviderSpecificSettings.Equals(input.ProviderSpecificSettings))
+                    this.StoreId == input.StoreId ||
+                    (this.StoreId != null &&
+                    this.StoreId.Equals(input.StoreId))
                 );
         }
 
@@ -379,12 +214,6 @@ namespace Telestream.Cloud.Flip.Model
                     hashCode = hashCode * 59 + this.Id.GetHashCode();
                 if (this.Name != null)
                     hashCode = hashCode * 59 + this.Name.GetHashCode();
-                if (this.FactoryRegion != null)
-                    hashCode = hashCode * 59 + this.FactoryRegion.GetHashCode();
-                if (this.OutputBucketName != null)
-                    hashCode = hashCode * 59 + this.OutputBucketName.GetHashCode();
-                if (this.Acl != null)
-                    hashCode = hashCode * 59 + this.Acl.GetHashCode();
                 if (this.CreatedAt != null)
                     hashCode = hashCode * 59 + this.CreatedAt.GetHashCode();
                 if (this.UpdatedAt != null)
@@ -393,26 +222,22 @@ namespace Telestream.Cloud.Flip.Model
                     hashCode = hashCode * 59 + this.Url.GetHashCode();
                 if (this.ServerSideEncryption != null)
                     hashCode = hashCode * 59 + this.ServerSideEncryption.GetHashCode();
-                if (this.InputBucketName != null)
-                    hashCode = hashCode * 59 + this.InputBucketName.GetHashCode();
-                if (this.InputBucketWatch != null)
-                    hashCode = hashCode * 59 + this.InputBucketWatch.GetHashCode();
-                if (this.InputBucketFilesMap != null)
-                    hashCode = hashCode * 59 + this.InputBucketFilesMap.GetHashCode();
-                if (this.InputBucketSyncEveryNMin != null)
-                    hashCode = hashCode * 59 + this.InputBucketSyncEveryNMin.GetHashCode();
-                if (this.InputBucketRecursive != null)
-                    hashCode = hashCode * 59 + this.InputBucketRecursive.GetHashCode();
-                if (this.InputBucketFilePattern != null)
-                    hashCode = hashCode * 59 + this.InputBucketFilePattern.GetHashCode();
                 if (this.OutputsPathFormat != null)
                     hashCode = hashCode * 59 + this.OutputsPathFormat.GetHashCode();
-                if (this.StorageProvider != null)
-                    hashCode = hashCode * 59 + this.StorageProvider.GetHashCode();
-                if (this.ProviderSpecificSettings != null)
-                    hashCode = hashCode * 59 + this.ProviderSpecificSettings.GetHashCode();
+                if (this.StoreId != null)
+                    hashCode = hashCode * 59 + this.StoreId.GetHashCode();
                 return hashCode;
             }
+        }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            yield break;
         }
     }
 
