@@ -56,6 +56,7 @@ Name | Type | Description | Notes
 **TransportRate** | **string** |  | [optional] 
 **TsPids** | **string** |  | [optional] 
 **Upscale** | **bool?** | Upscale the video resolution to match your profile. Default is &#x60;true&#x60;. | [optional] 
+**UseSourceTimecode** | **bool?** | When true treat clip_offset and clip_end is relative to input file starting timecode, when false clip_offset and clip_end is relative to 00:00:00.  | [optional] 
 **Variants** | **string** | Pattern utilised to match HLS.Variant presets by name. Default is hls.*. | [optional] 
 **VideoBitrate** | **int?** |  | [optional] 
 **VideoPid** | **string** |  | [optional] 

@@ -170,6 +170,14 @@ namespace Telestream.Cloud.Flip.Test
         {
             // TODO unit test for the property 'StoreId'
         }
+        /// <summary>
+        /// Test the property 'UseSourceTimecode'
+        /// </summary>
+        [Test]
+        public void UseSourceTimecodeTest()
+        {
+            // TODO unit test for the property 'UseSourceTimecode'
+        }
 
     }
 

@@ -46,7 +46,8 @@ namespace Telestream.Cloud.Flip.Model
         /// <param name="ClipOffset">Clip starts at a specific offset..</param>
         /// <param name="StartingTimecode">StartingTimecode.</param>
         /// <param name="StoreId">An individual store_id for this video processing. If provided will replace store_id from cloud factory but must match underlying cloud provider and region..</param>
-        public CreateVideoBody(string SourceUrl = default(string), string Profiles = default(string), string Payload = default(string), string Pipeline = default(string), List<string> SubtitleFiles = default(List<string>), Dictionary<string, List<string>> ExtraFiles = default(Dictionary<string, List<string>>), Dictionary<string, string> ExtraVariables = default(Dictionary<string, string>), string PathFormat = default(string), string ClipEnd = default(string), string ClipLength = default(string), string ClipOffset = default(string), string StartingTimecode = default(string), string StoreId = default(string))
+        /// <param name="UseSourceTimecode">When true treat clip_offset and clip_end is relative to input file starting timecode, when false clip_offset and clip_end is relative to 00:00:00. .</param>
+        public CreateVideoBody(string SourceUrl = default(string), string Profiles = default(string), string Payload = default(string), string Pipeline = default(string), List<string> SubtitleFiles = default(List<string>), Dictionary<string, List<string>> ExtraFiles = default(Dictionary<string, List<string>>), Dictionary<string, string> ExtraVariables = default(Dictionary<string, string>), string PathFormat = default(string), string ClipEnd = default(string), string ClipLength = default(string), string ClipOffset = default(string), string StartingTimecode = default(string), string StoreId = default(string), bool? UseSourceTimecode = default(bool?))
         {
             this.SourceUrl = SourceUrl;
             this.Profiles = Profiles;
@@ -61,6 +62,7 @@ namespace Telestream.Cloud.Flip.Model
             this.ClipOffset = ClipOffset;
             this.StartingTimecode = StartingTimecode;
             this.StoreId = StoreId;
+            this.UseSourceTimecode = UseSourceTimecode;
         }
         
         /// <summary>
@@ -151,6 +153,13 @@ namespace Telestream.Cloud.Flip.Model
         public string StoreId { get; set; }
 
         /// <summary>
+        /// When true treat clip_offset and clip_end is relative to input file starting timecode, when false clip_offset and clip_end is relative to 00:00:00. 
+        /// </summary>
+        /// <value>When true treat clip_offset and clip_end is relative to input file starting timecode, when false clip_offset and clip_end is relative to 00:00:00. </value>
+        [DataMember(Name="use_source_timecode", EmitDefaultValue=false)]
+        public bool? UseSourceTimecode { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -171,6 +180,7 @@ namespace Telestream.Cloud.Flip.Model
             sb.Append("  ClipOffset: ").Append(ClipOffset).Append("\n");
             sb.Append("  StartingTimecode: ").Append(StartingTimecode).Append("\n");
             sb.Append("  StoreId: ").Append(StoreId).Append("\n");
+            sb.Append("  UseSourceTimecode: ").Append(UseSourceTimecode).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -269,6 +279,11 @@ namespace Telestream.Cloud.Flip.Model
                     this.StoreId == input.StoreId ||
                     (this.StoreId != null &&
                     this.StoreId.Equals(input.StoreId))
+                ) && 
+                (
+                    this.UseSourceTimecode == input.UseSourceTimecode ||
+                    (this.UseSourceTimecode != null &&
+                    this.UseSourceTimecode.Equals(input.UseSourceTimecode))
                 );
         }
 
@@ -307,6 +322,8 @@ namespace Telestream.Cloud.Flip.Model
                     hashCode = hashCode * 59 + this.StartingTimecode.GetHashCode();
                 if (this.StoreId != null)
                     hashCode = hashCode * 59 + this.StoreId.GetHashCode();
+                if (this.UseSourceTimecode != null)
+                    hashCode = hashCode * 59 + this.UseSourceTimecode.GetHashCode();
                 return hashCode;
             }
         }

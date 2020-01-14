@@ -25,6 +25,7 @@ Name | Type | Description | Notes
 **SourceUrl** | **string** | An URL pointing to the source file. | [optional] 
 **Status** | **string** | Determines at what stage of importing process the Video is at the moment. | [optional] 
 **UpdatedAt** | **string** | A date and time when a Video has been updated last time. | [optional] 
+**UseSourceTimecode** | **bool?** | When true treat clip_offset and clip_end is relative to input file starting timecode, when false clip_offset and clip_end is relative to 00:00:00.  | [optional] 
 **VideoBitrate** | **int?** | video bitrate (in bits/s) | [optional] 
 **VideoCodec** | **string** | A codec that has been used to encode the input file&#39;s video streams. | [optional] 
 

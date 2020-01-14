@@ -491,6 +491,14 @@ namespace Telestream.Cloud.Flip.Test
             // TODO unit test for the property 'Upscale'
         }
         /// <summary>
+        /// Test the property 'UseSourceTimecode'
+        /// </summary>
+        [Test]
+        public void UseSourceTimecodeTest()
+        {
+            // TODO unit test for the property 'UseSourceTimecode'
+        }
+        /// <summary>
         /// Test the property 'Variants'
         /// </summary>
         [Test]

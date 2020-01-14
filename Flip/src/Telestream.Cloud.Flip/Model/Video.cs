@@ -55,9 +55,10 @@ namespace Telestream.Cloud.Flip.Model
         /// <param name="SourceUrl">An URL pointing to the source file..</param>
         /// <param name="Status">Determines at what stage of importing process the Video is at the moment..</param>
         /// <param name="UpdatedAt">A date and time when a Video has been updated last time..</param>
+        /// <param name="UseSourceTimecode">When true treat clip_offset and clip_end is relative to input file starting timecode, when false clip_offset and clip_end is relative to 00:00:00. .</param>
         /// <param name="VideoBitrate">video bitrate (in bits/s).</param>
         /// <param name="VideoCodec">A codec that has been used to encode the input file&#39;s video streams..</param>
-        public Video(string Id = default(string), int? AudioBitrate = default(int?), int? AudioChannels = default(int?), string AudioCodec = default(string), int? AudioSampleRate = default(int?), string CreatedAt = default(string), int? Duration = default(int?), int? EncodingsCount = default(int?), string ErrorClass = default(string), string ErrorMessage = default(string), string Extname = default(string), long? FileSize = default(long?), decimal? Fps = default(decimal?), int? Height = default(int?), int? Width = default(int?), string MimeType = default(string), string OriginalFilename = default(string), string Path = default(string), string Payload = default(string), string SourceUrl = default(string), string Status = default(string), string UpdatedAt = default(string), int? VideoBitrate = default(int?), string VideoCodec = default(string))
+        public Video(string Id = default(string), int? AudioBitrate = default(int?), int? AudioChannels = default(int?), string AudioCodec = default(string), int? AudioSampleRate = default(int?), string CreatedAt = default(string), int? Duration = default(int?), int? EncodingsCount = default(int?), string ErrorClass = default(string), string ErrorMessage = default(string), string Extname = default(string), long? FileSize = default(long?), decimal? Fps = default(decimal?), int? Height = default(int?), int? Width = default(int?), string MimeType = default(string), string OriginalFilename = default(string), string Path = default(string), string Payload = default(string), string SourceUrl = default(string), string Status = default(string), string UpdatedAt = default(string), bool? UseSourceTimecode = default(bool?), int? VideoBitrate = default(int?), string VideoCodec = default(string))
         {
             this.Id = Id;
             this.AudioBitrate = AudioBitrate;
@@ -81,6 +82,7 @@ namespace Telestream.Cloud.Flip.Model
             this.SourceUrl = SourceUrl;
             this.Status = Status;
             this.UpdatedAt = UpdatedAt;
+            this.UseSourceTimecode = UseSourceTimecode;
             this.VideoBitrate = VideoBitrate;
             this.VideoCodec = VideoCodec;
         }
@@ -239,6 +241,13 @@ namespace Telestream.Cloud.Flip.Model
         public string UpdatedAt { get; set; }
 
         /// <summary>
+        /// When true treat clip_offset and clip_end is relative to input file starting timecode, when false clip_offset and clip_end is relative to 00:00:00. 
+        /// </summary>
+        /// <value>When true treat clip_offset and clip_end is relative to input file starting timecode, when false clip_offset and clip_end is relative to 00:00:00. </value>
+        [DataMember(Name="use_source_timecode", EmitDefaultValue=false)]
+        public bool? UseSourceTimecode { get; set; }
+
+        /// <summary>
         /// video bitrate (in bits/s)
         /// </summary>
         /// <value>video bitrate (in bits/s)</value>
@@ -282,6 +291,7 @@ namespace Telestream.Cloud.Flip.Model
             sb.Append("  SourceUrl: ").Append(SourceUrl).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
+            sb.Append("  UseSourceTimecode: ").Append(UseSourceTimecode).Append("\n");
             sb.Append("  VideoBitrate: ").Append(VideoBitrate).Append("\n");
             sb.Append("  VideoCodec: ").Append(VideoCodec).Append("\n");
             sb.Append("}\n");
@@ -429,6 +439,11 @@ namespace Telestream.Cloud.Flip.Model
                     this.UpdatedAt.Equals(input.UpdatedAt))
                 ) && 
                 (
+                    this.UseSourceTimecode == input.UseSourceTimecode ||
+                    (this.UseSourceTimecode != null &&
+                    this.UseSourceTimecode.Equals(input.UseSourceTimecode))
+                ) && 
+                (
                     this.VideoBitrate == input.VideoBitrate ||
                     (this.VideoBitrate != null &&
                     this.VideoBitrate.Equals(input.VideoBitrate))
@@ -493,6 +508,8 @@ namespace Telestream.Cloud.Flip.Model
                     hashCode = hashCode * 59 + this.Status.GetHashCode();
                 if (this.UpdatedAt != null)
                     hashCode = hashCode * 59 + this.UpdatedAt.GetHashCode();
+                if (this.UseSourceTimecode != null)
+                    hashCode = hashCode * 59 + this.UseSourceTimecode.GetHashCode();
                 if (this.VideoBitrate != null)
                     hashCode = hashCode * 59 + this.VideoBitrate.GetHashCode();
                 if (this.VideoCodec != null)

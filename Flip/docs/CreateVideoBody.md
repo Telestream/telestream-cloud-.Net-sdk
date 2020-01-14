@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **ClipOffset** | **string** | Clip starts at a specific offset. | [optional] 
 **StartingTimecode** | **string** |  | [optional] 
 **StoreId** | **string** | An individual store_id for this video processing. If provided will replace store_id from cloud factory but must match underlying cloud provider and region. | [optional] 
+**UseSourceTimecode** | **bool?** | When true treat clip_offset and clip_end is relative to input file starting timecode, when false clip_offset and clip_end is relative to 00:00:00.  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
